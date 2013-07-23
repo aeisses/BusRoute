@@ -40,4 +40,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [dataReader release]; dataReader = nil;
+    [mapViewController release]; mapViewController = nil;
+}
 @end

@@ -24,7 +24,8 @@
 		04DA2A9A179E04C000EF177B /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A98179E04C000EF177B /* MapViewController.xib */; };
 		04DA2A9D179E04DC00EF177B /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA2A9C179E04DC00EF177B /* MapView.m */; };
 		04DA2A9F179E04EF00EF177B /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A9E179E04EF00EF177B /* MapView.xib */; };
-		04DA2AA1179E05EB00EF177B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2AA0179E05EB00EF177B /* MapKit.framework */; };
+		04DA2AA3179E113A00EF177B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2AA2179E113A00EF177B /* CoreLocation.framework */; };
+		04DA2AA5179E116400EF177B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2AA4179E116400EF177B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +54,8 @@
 		04DA2A9B179E04DC00EF177B /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
 		04DA2A9C179E04DC00EF177B /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
 		04DA2A9E179E04EF00EF177B /* MapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
-		04DA2AA0179E05EB00EF177B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		04DA2AA2179E113A00EF177B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		04DA2AA4179E116400EF177B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04DA2AA1179E05EB00EF177B /* MapKit.framework in Frameworks */,
+				04DA2AA5179E116400EF177B /* MapKit.framework in Frameworks */,
+				04DA2AA3179E113A00EF177B /* CoreLocation.framework in Frameworks */,
 				04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */,
 				04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */,
 				04DA2A73179DE91200EF177B /* CoreGraphics.framework in Frameworks */,
@@ -91,7 +94,8 @@
 		04DA2A6D179DE91200EF177B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04DA2AA0179E05EB00EF177B /* MapKit.framework */,
+				04DA2AA4179E116400EF177B /* MapKit.framework */,
+				04DA2AA2179E113A00EF177B /* CoreLocation.framework */,
 				04DA2A6E179DE91200EF177B /* UIKit.framework */,
 				04DA2A70179DE91200EF177B /* Foundation.framework */,
 				04DA2A72179DE91200EF177B /* CoreGraphics.framework */,
@@ -298,6 +302,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusRoutes/BusRoutes-Prefix.pch";
 				INFOPLIST_FILE = "BusRoutes/BusRoutes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -309,6 +314,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusRoutes/BusRoutes-Prefix.pch";
 				INFOPLIST_FILE = "BusRoutes/BusRoutes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

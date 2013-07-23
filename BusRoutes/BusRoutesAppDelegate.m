@@ -25,7 +25,7 @@
     // Override point for customization after application launch.
     UIViewController *rootView = [[BusRoutesViewController alloc] initWithNibName:@"BusRoutesViewController" bundle:nil];
     self.navController = [[UINavigationController alloc] initWithRootViewController:rootView];
-    
+    _navController.navigationBarHidden = YES;
     self.window.rootViewController = self.navController;
     [self.window makeKeyAndVisible];
     [rootView release];

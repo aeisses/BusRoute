@@ -38,4 +38,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [_mapView release]; _mapView = nil;
+}
 @end

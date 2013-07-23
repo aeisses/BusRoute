@@ -8,13 +8,19 @@
 
 #import "MapView.h"
 
+#define HALIFAX_LATITUDE_CENTRE 44.6479 // This is the offical centre of Halifax.
+#define HALIFAX_LATITUDE_MAX 44.695 // This is max latitude, we need to shift a bit, halifax is not a square city.
+#define HALIFAX_LONGITUDE -63.5744
+
+#define HALIFAX_ZOOM_MAX 37500
+
 @implementation MapView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder*)coder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:coder];
     if (self) {
-        // Initialization code
+        [super setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(HALIFAX_LATITUDE_MAX,HALIFAX_LONGITUDE), HALIFAX_ZOOM_MAX, HALIFAX_ZOOM_MAX) animated:NO];
     }
     return self;
 }
@@ -28,4 +34,9 @@
 }
 */
 
+- (void)dealloc
+{
+    [super dealloc];
+}
+ 
 @end
