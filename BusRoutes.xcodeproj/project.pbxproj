@@ -18,6 +18,13 @@
 		04DA2A85179DE91200EF177B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A84179DE91200EF177B /* Default-568h@2x.png */; };
 		04DA2A88179DE91200EF177B /* BusRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA2A87179DE91200EF177B /* BusRoutesViewController.m */; };
 		04DA2A8B179DE91200EF177B /* BusRoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A89179DE91200EF177B /* BusRoutesViewController.xib */; };
+		04DA2A93179DFE6D00EF177B /* DataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA2A92179DFE6D00EF177B /* DataReader.m */; };
+		04DA2A95179DFFB400EF177B /* stops.json in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A94179DFFB400EF177B /* stops.json */; };
+		04DA2A99179E04C000EF177B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA2A97179E04C000EF177B /* MapViewController.m */; };
+		04DA2A9A179E04C000EF177B /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A98179E04C000EF177B /* MapViewController.xib */; };
+		04DA2A9D179E04DC00EF177B /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA2A9C179E04DC00EF177B /* MapView.m */; };
+		04DA2A9F179E04EF00EF177B /* MapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A9E179E04EF00EF177B /* MapView.xib */; };
+		04DA2AA1179E05EB00EF177B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2AA0179E05EB00EF177B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +44,16 @@
 		04DA2A86179DE91200EF177B /* BusRoutesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusRoutesViewController.h; sourceTree = "<group>"; };
 		04DA2A87179DE91200EF177B /* BusRoutesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusRoutesViewController.m; sourceTree = "<group>"; };
 		04DA2A8A179DE91200EF177B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BusRoutesViewController.xib; sourceTree = "<group>"; };
+		04DA2A91179DFE6D00EF177B /* DataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataReader.h; sourceTree = "<group>"; };
+		04DA2A92179DFE6D00EF177B /* DataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataReader.m; sourceTree = "<group>"; };
+		04DA2A94179DFFB400EF177B /* stops.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = stops.json; sourceTree = "<group>"; };
+		04DA2A96179E04C000EF177B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		04DA2A97179E04C000EF177B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		04DA2A98179E04C000EF177B /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		04DA2A9B179E04DC00EF177B /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
+		04DA2A9C179E04DC00EF177B /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
+		04DA2A9E179E04EF00EF177B /* MapView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapView.xib; sourceTree = "<group>"; };
+		04DA2AA0179E05EB00EF177B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04DA2AA1179E05EB00EF177B /* MapKit.framework in Frameworks */,
 				04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */,
 				04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */,
 				04DA2A73179DE91200EF177B /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +91,7 @@
 		04DA2A6D179DE91200EF177B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04DA2AA0179E05EB00EF177B /* MapKit.framework */,
 				04DA2A6E179DE91200EF177B /* UIKit.framework */,
 				04DA2A70179DE91200EF177B /* Foundation.framework */,
 				04DA2A72179DE91200EF177B /* CoreGraphics.framework */,
@@ -83,11 +102,20 @@
 		04DA2A74179DE91200EF177B /* BusRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				04DA2A94179DFFB400EF177B /* stops.json */,
+				04DA2A91179DFE6D00EF177B /* DataReader.h */,
+				04DA2A92179DFE6D00EF177B /* DataReader.m */,
 				04DA2A7D179DE91200EF177B /* BusRoutesAppDelegate.h */,
 				04DA2A7E179DE91200EF177B /* BusRoutesAppDelegate.m */,
 				04DA2A86179DE91200EF177B /* BusRoutesViewController.h */,
 				04DA2A87179DE91200EF177B /* BusRoutesViewController.m */,
 				04DA2A89179DE91200EF177B /* BusRoutesViewController.xib */,
+				04DA2A96179E04C000EF177B /* MapViewController.h */,
+				04DA2A97179E04C000EF177B /* MapViewController.m */,
+				04DA2A98179E04C000EF177B /* MapViewController.xib */,
+				04DA2A9B179E04DC00EF177B /* MapView.h */,
+				04DA2A9C179E04DC00EF177B /* MapView.m */,
+				04DA2A9E179E04EF00EF177B /* MapView.xib */,
 				04DA2A75179DE91200EF177B /* Supporting Files */,
 			);
 			path = BusRoutes;
@@ -164,6 +192,9 @@
 				04DA2A83179DE91200EF177B /* Default@2x.png in Resources */,
 				04DA2A85179DE91200EF177B /* Default-568h@2x.png in Resources */,
 				04DA2A8B179DE91200EF177B /* BusRoutesViewController.xib in Resources */,
+				04DA2A95179DFFB400EF177B /* stops.json in Resources */,
+				04DA2A9A179E04C000EF177B /* MapViewController.xib in Resources */,
+				04DA2A9F179E04EF00EF177B /* MapView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +208,9 @@
 				04DA2A7B179DE91200EF177B /* main.m in Sources */,
 				04DA2A7F179DE91200EF177B /* BusRoutesAppDelegate.m in Sources */,
 				04DA2A88179DE91200EF177B /* BusRoutesViewController.m in Sources */,
+				04DA2A93179DFE6D00EF177B /* DataReader.m in Sources */,
+				04DA2A99179E04C000EF177B /* MapViewController.m in Sources */,
+				04DA2A9D179E04DC00EF177B /* MapView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +333,7 @@
 				04DA2A90179DE91200EF177B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

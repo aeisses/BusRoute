@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataReader.h"
+#import "MapViewController.h"
 
 @interface BusRoutesViewController : UIViewController
+{
+    DataReader *dataReader;
+    MapViewController *mapViewController;
+}
 
 @end
