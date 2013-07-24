@@ -14,6 +14,7 @@
 {
     DataReader *dataReader;
     MapViewController *mapViewController;
+    UIActivityIndicatorView *activityIndicator;
 }
 
 @end
