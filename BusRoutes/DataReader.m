@@ -31,7 +31,6 @@
         if (placemark.geometry && placemark.name) {
             [mutableStops addObject:[[BusStop alloc] initWithName:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry] ];
         }
-//        NSLog(@"Placemark: %@",placemark.descriptionValue);
     }
     _stops = [[NSArray alloc] initWithArray:mutableStops];
 }
