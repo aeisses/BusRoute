@@ -8,6 +8,8 @@
 #import "DataReader.h"
 
 #define STOPDATAFILE @"stops"
+#define STOPSGEODATAFILE @"Bus Stops"
+#define KMLBUSSTOPSURL @"https://www.halifaxopendata.ca/api/geospatial/xus8-fjzt?method=export&format=KML"
 
 @implementation DataReader
 
@@ -15,17 +17,34 @@
 {
     if (self = [super init])
     {
-        // Load in the data file
-        NSError *error;
-        NSData *data = [[NSData alloc] initWithContentsOfFile:[[NSString alloc] initWithFormat:@"%@",[[NSBundle mainBundle] pathForResource:STOPDATAFILE ofType:@"json"]]];
-        busStopsJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        url = [[NSURL alloc] initWithString:KMLBUSSTOPSURL];
+        _stops = [NSArray array];
     }
     return self;
 }
 
--(NSArray*)getStops
+- (void)loadKMLData
 {
-    return (NSArray *)[busStopsJson objectForKey:@"data"];
+    KMLRoot *kml = [KMLParser parseKMLAtURL:url];
+    NSMutableArray *mutableStops = [NSMutableArray array];
+    for (KMLPlacemark *placemark in kml.placemarks) {
+        if (placemark.geometry && placemark.name) {
+            [mutableStops addObject:[[BusStop alloc] initWithName:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry] ];
+        }
+//        NSLog(@"Placemark: %@",placemark.descriptionValue);
+    }
+    _stops = [[NSArray alloc] initWithArray:mutableStops];
 }
 
+- (NSArray*)getStops
+{
+    return _stops;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+    [_stops release];
+    [url release];
+}
 @end

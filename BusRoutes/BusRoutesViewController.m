@@ -24,14 +24,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // Load in data
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dataReader = [[DataReader alloc] init];
-//    });
+//    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//    activityIndicator.center = CGPointMake(100,100);
+//    [activityIndicator hidesWhenStopped];
+//    [self.view addSubview:activityIndicator];
+//    [activityIndicator startAnimating];
     
-    mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-    [self showMapViewController];
-    NSLog(@"Data: %@",[dataReader getStops]);
+    // Load in data
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dataReader = [[DataReader alloc] init];
+        [dataReader loadKMLData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+//            [activityIndicator stopAnimating];
+            [self showMapViewController];
+        });
+    });
+    
+//    NSLog(@"Data: %@",[dataReader getStops]);
 }
 
 - (void)didReceiveMemoryWarning

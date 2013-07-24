@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <KML/KML.h>
+#import "BusStop.h"
 
 @interface DataReader : NSObject
 {
-    NSDictionary *busStopsJson;
+    NSURL *url;
 }
 
 - (id)init;
+- (void)loadKMLData;
 
-@property (nonatomic, retain, getter = getStops) NSArray *stops;
+@property (nonatomic, retain) NSArray *stops;
 
 @end

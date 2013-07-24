@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BF6234179F33EC008380FD /* Bus Stops.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04BF6233179F33EC008380FD /* Bus Stops.kml */; };
+		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
+		04BF6239179F45F5008380FD /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BF6238179F45F5008380FD /* BusStop.m */; };
 		04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A6E179DE91200EF177B /* UIKit.framework */; };
 		04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A70179DE91200EF177B /* Foundation.framework */; };
 		04DA2A73179DE91200EF177B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A72179DE91200EF177B /* CoreGraphics.framework */; };
@@ -29,6 +32,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BF6233179F33EC008380FD /* Bus Stops.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Bus Stops.kml"; path = "../../../Downloads/Bus Stops.kml"; sourceTree = "<group>"; };
+		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
+		04BF6237179F45F5008380FD /* BusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStop.h; sourceTree = "<group>"; };
+		04BF6238179F45F5008380FD /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
 		04DA2A6B179DE91200EF177B /* BusRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DA2A6E179DE91200EF177B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04DA2A70179DE91200EF177B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -68,6 +75,7 @@
 				04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */,
 				04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */,
 				04DA2A73179DE91200EF177B /* CoreGraphics.framework in Frameworks */,
+				04BF6236179F35CB008380FD /* KML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +102,7 @@
 		04DA2A6D179DE91200EF177B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04BF6235179F35CB008380FD /* KML.framework */,
 				04DA2AA4179E116400EF177B /* MapKit.framework */,
 				04DA2AA2179E113A00EF177B /* CoreLocation.framework */,
 				04DA2A6E179DE91200EF177B /* UIKit.framework */,
@@ -106,9 +115,12 @@
 		04DA2A74179DE91200EF177B /* BusRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				04BF6233179F33EC008380FD /* Bus Stops.kml */,
 				04DA2A94179DFFB400EF177B /* stops.json */,
 				04DA2A91179DFE6D00EF177B /* DataReader.h */,
 				04DA2A92179DFE6D00EF177B /* DataReader.m */,
+				04BF6237179F45F5008380FD /* BusStop.h */,
+				04BF6238179F45F5008380FD /* BusStop.m */,
 				04DA2A7D179DE91200EF177B /* BusRoutesAppDelegate.h */,
 				04DA2A7E179DE91200EF177B /* BusRoutesAppDelegate.m */,
 				04DA2A86179DE91200EF177B /* BusRoutesViewController.h */,
@@ -199,6 +211,7 @@
 				04DA2A95179DFFB400EF177B /* stops.json in Resources */,
 				04DA2A9A179E04C000EF177B /* MapViewController.xib in Resources */,
 				04DA2A9F179E04EF00EF177B /* MapView.xib in Resources */,
+				04BF6234179F33EC008380FD /* Bus Stops.kml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +228,7 @@
 				04DA2A93179DFE6D00EF177B /* DataReader.m in Sources */,
 				04DA2A99179E04C000EF177B /* MapViewController.m in Sources */,
 				04DA2A9D179E04DC00EF177B /* MapView.m in Sources */,
+				04BF6239179F45F5008380FD /* BusStop.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +313,10 @@
 		04DA2A8F179DE91200EF177B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusRoutes/BusRoutes-Prefix.pch";
 				INFOPLIST_FILE = "BusRoutes/BusRoutes-Info.plist";
@@ -311,6 +329,10 @@
 		04DA2A90179DE91200EF177B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusRoutes/BusRoutes-Prefix.pch";
 				INFOPLIST_FILE = "BusRoutes/BusRoutes-Info.plist";
