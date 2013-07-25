@@ -16,7 +16,17 @@
 
 - (void)showMapViewController
 {
+    mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
     [[self navigationController] pushViewController:mapViewController animated:NO];
+}
+
+-(void)addBusStop:(BusStop*)busStop
+{
+//    __block BusStop *blockBusStop = busStop;
+//    __block MapViewController *blockMapViewController = mapViewController;
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        [mapViewController addBusStop:busStop];
+//    });
 }
 
 - (void)viewDidLoad
@@ -31,14 +41,25 @@
 //    [activityIndicator startAnimating];
     
     // Load in data
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dataReader = [[DataReader alloc] init];
-        [dataReader loadKMLData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-//            [activityIndicator stopAnimating];
-            [self showMapViewController];
-        });
+    dataReader = [[DataReader alloc] init];
+    dataReader.delegate = self;
+    [self showMapViewController];
+
+    __block DataReader *blockDataReader = dataReader;
+//    __block BusRoutesViewController *blockSelf = self;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//        __block DataReader* blockDataReader = dataReader;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+            //            [activityIndicator stopAnimating];
+//        });
+        [blockDataReader loadKMLData];
+//        NSLog(@"Count: %i",[blockDataReader.stops count]);
+//        for (int i=0; i<[blockDataReader.stops count]-1; i++) {
+//            NSLog(@"i: %i: BusStop: %@",i,[blockDataReader.stops objectAtIndex:i]);
+//            dispatch_async(dispatch_get_main_queue(), ^{
+///                [mapViewController addBusStop:[blockDataReader.stops objectAtIndex:i]];
+//            });
+//        }
     });
     
 //    NSLog(@"Data: %@",[dataReader getStops]);

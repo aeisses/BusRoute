@@ -23,69 +23,70 @@
     [temp replaceOccurrencesOfString:@"</span></li>" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
     
     NSArray *splitArray = [temp componentsSeparatedByString:@"\n"];
+    [temp release];
     for (NSString *element in splitArray) {
         NSString *trimedElemet = [element stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         NSArray *thisArray = [trimedElemet componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if ([thisArray count] == 2) {
             if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"OBJECTID"]) {
-                _objectId = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
+                objectId = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"FCODE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSIN"]) {
-                    _fcode = trbsin;
+                    fcode = trbsin;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSAC"]) {
-                    _fcode = trbsac;
+                    fcode = trbsac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSNAC"]) {
-                    _fcode = trbssnac;
+                    fcode = trbssnac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBS"]) {
-                    _fcode = trbs;
+                    fcode = trbs;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSHAC"]) {
-                    _fcode = trbsshac;
+                    fcode = trbsshac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSH"]) {
-                    _fcode = trbssh;
+                    fcode = trbssh;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRPR"]) {
-                    _fcode = trpr;
+                    fcode = trpr;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSTMAC"]) {
-                    _fcode = trbstmac;
+                    fcode = trbstmac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSTM"]) {
-                    _fcode = trbstm;
+                    fcode = trbstm;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSHIN"]) {
-                    _fcode = trbsshin;
+                    fcode = trbsshin;
                 }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SOURCE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRANSIT"]) {
-                    _source = transit;
+                    source = transit;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"HASTUS"]) {
-                    _source = hastus;
+                    source = hastus;
                 }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SACC"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"DV"]) {
-                    _sacc = DV;
+                    sacc = DV;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"IN"]) {
-                    _sacc = IN;
+                    sacc = IN;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"XY"]) {
-                    _sacc = XY;
+                    sacc = XY;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"GP"]) {
-                    _sacc = GP;
+                    sacc = GP;
                 }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SDATE"]) {
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
-                _date = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
+                date = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"GOTIME"]) {
-                _gotime = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
+                gotime = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
-                _address = (NSString *)[thisArray objectAtIndex:1];
+                address = (NSString *)[thisArray objectAtIndex:1];
             }
         }
     }
 }
 
-- (id)initWithName:(NSString *)name description:(NSString*)decription andLocation:(KMLPoint*)location
+- (id)initWithTitle:(NSString *)title description:(NSString*)decription andLocation:(KMLPoint*)location
 {
     if (self = [super init])
     {
-        _name = name;
-        _location = location;
+        _title = title;
+        _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         stopDescription = decription;
         [self parseStopDescription];
     }
@@ -95,8 +96,7 @@
 - (void)dealloc
 {
     [super dealloc];
-    [_name release];
-    [_location release];
+    [_title release];
     [stopDescription release];
 }
 

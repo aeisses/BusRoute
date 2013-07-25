@@ -10,6 +10,10 @@
 #import <KML/KML.h>
 #import "BusStop.h"
 
+@protocol DataReaderDelegate <NSObject>
+-(void)addBusStop:(BusStop*)busStop;
+@end
+
 @interface DataReader : NSObject
 {
     NSURL *url;
@@ -19,5 +23,6 @@
 - (void)loadKMLData;
 
 @property (nonatomic, retain) NSArray *stops;
+@property (nonatomic, retain) id <DataReaderDelegate> delegate;
 
 @end

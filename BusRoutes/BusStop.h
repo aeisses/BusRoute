@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <KML/KML.h>
+#import <MapKit/MapKit.h>
 
 typedef enum {
     trbsin,
@@ -34,21 +35,21 @@ typedef enum {
     GP
 } SACC;
 
-@interface BusStop : NSObject
+@interface BusStop : NSObject <MKAnnotation>
 {
     NSString *stopDescription;
+    NSInteger objectId;
+    FCODE fcode;
+    SOURCE source;
+    SACC sacc;
+    NSDate *date;
+    NSInteger gotime;
+    NSString *address;
 }
 
--(id)initWithName:(NSString *)name description:(NSString*)description andLocation:(KMLPoint*)location;
+-(id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
 
-@property (retain, nonatomic) NSString *name;
-@property (retain, nonatomic) KMLPoint *location;
-@property (assign, nonatomic) NSInteger objectId;
-@property (assign, nonatomic) FCODE fcode;
-@property (assign, nonatomic) SOURCE source;
-@property (assign, nonatomic) SACC sacc;
-@property (retain, nonatomic) NSDate *date;
-@property (assign, nonatomic) NSInteger gotime;
-@property (retain, nonatomic) NSString *address;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 @end

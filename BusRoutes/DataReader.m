@@ -13,6 +13,8 @@
 
 @implementation DataReader
 
+@synthesize delegate;
+
 - (id)init
 {
     if (self = [super init])
@@ -29,10 +31,14 @@
     NSMutableArray *mutableStops = [NSMutableArray array];
     for (KMLPlacemark *placemark in kml.placemarks) {
         if (placemark.geometry && placemark.name) {
-            [mutableStops addObject:[[BusStop alloc] initWithName:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry] ];
+            BusStop *busStop = [[BusStop alloc] initWithTitle:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry];
+            [mutableStops addObject:busStop];
+            [delegate addBusStop:busStop];
+            [busStop release];
         }
     }
     _stops = [[NSArray alloc] initWithArray:mutableStops];
+    NSLog(@"Finished Loading Data");
 }
 
 - (NSArray*)getStops
@@ -45,5 +51,6 @@
     [super dealloc];
     [_stops release];
     [url release];
+    delegate = nil;
 }
 @end

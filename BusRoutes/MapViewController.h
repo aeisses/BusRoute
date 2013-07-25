@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MapView.h"
+#import "BusStop.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <MKMapViewDelegate>
 
-@property (retain, nonatomic) MapView *mapView;
+@property (retain, nonatomic) IBOutlet MKMapView *mapView;
+
+-(void)addBusStop:(BusStop*)busStop;
 
 @end
