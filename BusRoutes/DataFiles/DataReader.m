@@ -7,8 +7,6 @@
 //
 #import "DataReader.h"
 
-#define STOPDATAFILE @"stops"
-#define STOPSGEODATAFILE @"Bus Stops"
 #define KMLBUSSTOPSURL @"https://www.halifaxopendata.ca/api/geospatial/xus8-fjzt?method=export&format=KML"
 
 @implementation DataReader
@@ -38,7 +36,6 @@
         }
     }
     _stops = [[NSArray alloc] initWithArray:mutableStops];
-    NSLog(@"Finished Loading Data");
 }
 
 - (NSArray*)getStops

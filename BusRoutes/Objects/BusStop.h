@@ -47,9 +47,9 @@ typedef enum {
     NSString *address;
 }
 
--(id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
-
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+-(id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
 
 @end

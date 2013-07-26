@@ -24,9 +24,9 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     UIViewController *rootView = [[BusRoutesViewController alloc] initWithNibName:@"BusRoutesViewController" bundle:nil];
-    self.navController = [[UINavigationController alloc] initWithRootViewController:rootView];
+    _navController = [[UINavigationController alloc] initWithRootViewController:rootView];
     _navController.navigationBarHidden = YES;
-    self.window.rootViewController = self.navController;
+    self.window.rootViewController = _navController;
     [self.window makeKeyAndVisible];
     [rootView release];
     return YES;

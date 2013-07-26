@@ -14,6 +14,26 @@
 
 @implementation BusStop
 
+- (id)initWithTitle:(NSString *)title description:(NSString*)decription andLocation:(KMLPoint*)location
+{
+    if (self = [super init])
+    {
+        _title = title;
+        _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        stopDescription = decription;
+        [self parseStopDescription];
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [super dealloc];
+    [_title release];
+    [stopDescription release];
+}
+
+#pragma Private Methods
 - (void)parseStopDescription
 {
     NSMutableString *temp = [[NSMutableString alloc] initWithString:stopDescription];
@@ -72,6 +92,7 @@
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
                 date = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
+                [formatter release];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"GOTIME"]) {
                 gotime = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
@@ -79,25 +100,6 @@
             }
         }
     }
-}
-
-- (id)initWithTitle:(NSString *)title description:(NSString*)decription andLocation:(KMLPoint*)location
-{
-    if (self = [super init])
-    {
-        _title = title;
-        _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-        stopDescription = decription;
-        [self parseStopDescription];
-    }
-    return self;
-}
-
-- (void)dealloc
-{
-    [super dealloc];
-    [_title release];
-    [stopDescription release];
 }
 
 @end

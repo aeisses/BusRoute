@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "BusStop.h"
+#import "RegionZoomData.h"
+#import "MovementButtonView.h"
 
-@interface MapViewController : UIViewController <MKMapViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,MovementButtonViewDelegate>
+{
+    UISwipeGestureRecognizer *swipeDown;
+    UISwipeGestureRecognizer *swipeUp;
+    MovementButtonView *buttonView;
+}
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 

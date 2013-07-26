@@ -8,26 +8,11 @@
 
 #import "BusRoutesViewController.h"
 
-@interface BusRoutesViewController ()
-
-@end
+@interface MovementButtonView (PrivateMethods)
+- (void)showMapViewController;
+@end;
 
 @implementation BusRoutesViewController
-
-- (void)showMapViewController
-{
-    mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
-    [[self navigationController] pushViewController:mapViewController animated:NO];
-}
-
--(void)addBusStop:(BusStop*)busStop
-{
-//    __block BusStop *blockBusStop = busStop;
-//    __block MapViewController *blockMapViewController = mapViewController;
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [mapViewController addBusStop:busStop];
-//    });
-}
 
 - (void)viewDidLoad
 {
@@ -71,10 +56,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
+//        buttonView.frame = (CGRect){768-150,buttonView.frame.origin.y,buttonView.frame.size};
+    } else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+//        buttonView.frame = (CGRect){1024-150,buttonView.frame.origin.y,buttonView.frame.size};
+    } else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
+//        buttonView.frame = (CGRect){1024-150,buttonView.frame.origin.y,buttonView.frame.size};
+    } else if (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
+//        buttonView.frame = (CGRect){768-150,buttonView.frame.origin.y,buttonView.frame.size};
+    }
+    return YES;
+}
+
 - (void)dealloc
 {
     [super dealloc];
     [dataReader release]; dataReader = nil;
     [mapViewController release]; mapViewController = nil;
 }
+
+#pragma Private Methods
+- (void)showMapViewController
+{
+    mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+    [[self navigationController] pushViewController:mapViewController animated:NO];
+}
+
+#pragma DataReaderDelegate Methods
+-(void)addBusStop:(BusStop*)busStop
+{
+    //    __block BusStop *blockBusStop = busStop;
+    //    __block MapViewController *blockMapViewController = mapViewController;
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    [mapViewController addBusStop:busStop];
+    //    });
+}
+
 @end
