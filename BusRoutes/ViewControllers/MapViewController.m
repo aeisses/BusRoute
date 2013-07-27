@@ -22,13 +22,14 @@
         swipeUp.numberOfTouchesRequired = 1;
         swipeUp.direction = (UISwipeGestureRecognizerDirectionUp);
         
-        buttonView = [[[NSBundle mainBundle] loadNibNamed:@"MovementButtonView" owner:self options:nil] objectAtIndex:0];
-        buttonView.delegate = self;
-        buttonView.frame = (CGRect){
-            self.view.frame.size.width-buttonView.frame.size.width,
-            0-buttonView.frame.size.height,
-            buttonView.frame.size};
-        [buttonView setButtons];
+        burrowZoomButtonView = [[[NSBundle mainBundle] loadNibNamed:@"BurrowZoomButtonsView" owner:self options:nil] objectAtIndex:0];
+        burrowZoomButtonView.delegate = self;
+        burrowZoomButtonView.frame = (CGRect){
+            self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
+            0-burrowZoomButtonView.frame.size.height,
+            burrowZoomButtonView.frame.size};
+        [burrowZoomButtonView setButtons];
+        [self.view addSubview:burrowZoomButtonView];
     }
     return self;
 }
@@ -41,24 +42,27 @@
     _mapView.zoomEnabled = NO;
     [self.view addGestureRecognizer:swipeDown];
     [self.view addGestureRecognizer:swipeUp];
-    [self.view addSubview:buttonView];
 }
 
 - (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture
 {
-    [buttonView showViewAtFrame:(CGRect){
-        buttonView.frame.origin.x,
-        0-buttonView.frame.size.height,
-        buttonView.frame.size
+    [burrowZoomButtonView showViewAtFrame:(CGRect){
+        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
+        0-burrowZoomButtonView.frame.size.height,
+        burrowZoomButtonView.frame.size
     }];
 }
 
 - (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture
 {
-    [buttonView showViewAtFrame:(CGRect){
-        buttonView.frame.origin.x,
+    burrowZoomButtonView.frame = (CGRect){
+        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
+        0-burrowZoomButtonView.frame.size.height,
+        burrowZoomButtonView.frame.size};
+    [burrowZoomButtonView showViewAtFrame:(CGRect){
+        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
         0,
-        buttonView.frame.size
+        burrowZoomButtonView.frame.size
     }];
 }
 
@@ -82,23 +86,20 @@
 
 - (void)addProgressIndicator
 {
-    __block UIActivityIndicatorView *blockActivityIndicator = activityIndicator;
-    __block MapViewController *blockSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        blockActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        blockActivityIndicator.center = CGPointMake(blockSelf.view.frame.size.width/2,blockSelf.view.frame.size.height/2);
-        [blockActivityIndicator hidesWhenStopped];
-        [blockSelf.view addSubview:blockActivityIndicator];
-        [blockActivityIndicator startAnimating];
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
+        [activityIndicator hidesWhenStopped];
+        [self.view addSubview:activityIndicator];
+        [activityIndicator startAnimating];
     });
 }
 
 - (void)removeProgressIndicator
 {
-    __block UIActivityIndicatorView *blockActivityIndicator = activityIndicator;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [blockActivityIndicator stopAnimating];
-        [blockActivityIndicator removeFromSuperview];
+        [activityIndicator stopAnimating];
+        [activityIndicator removeFromSuperview];
     });
 }
 
@@ -114,11 +115,34 @@
     swipeUp.enabled = NO;
 }
 
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if (burrowZoomButtonView.frame.origin.y >= 0)
+        burrowZoomButtonView.hidden = YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if (burrowZoomButtonView.hidden) {
+        burrowZoomButtonView.frame = (CGRect){
+            self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
+            0,
+            burrowZoomButtonView.frame.size
+        };
+        burrowZoomButtonView.hidden = NO;
+    }
+    activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
+}
+
 - (void)dealloc
 {
     [super dealloc];
     [_mapView release]; _mapView = nil;
-    [buttonView release]; buttonView = nil;
+    [burrowZoomButtonView release]; burrowZoomButtonView = nil;
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
 }
@@ -128,10 +152,10 @@
 {
     MovementButton *button = (MovementButton*)sender;
     [_mapView setRegion:[RegionZoomData getRegion:button.region] animated:NO];
-    [buttonView showViewAtFrame:(CGRect){
-        buttonView.frame.origin.x,
-        0-buttonView.frame.size.height,
-        buttonView.frame.size
+    [burrowZoomButtonView showViewAtFrame:(CGRect){
+        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
+        0-burrowZoomButtonView.frame.size.height,
+        burrowZoomButtonView.frame.size
     }];
 }
 

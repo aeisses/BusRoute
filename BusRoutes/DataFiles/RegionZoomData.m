@@ -25,7 +25,7 @@
         case Dartmouth:
             coordinates = (MKCoordinateRegion){DARTMOUTH_LATITUDE,DARTMOUTH_LONGITUDE,DARTMOUTH_LATITUDE_DELTA,DARTMOUTH_LONGITUDE_DELTA};
             break;
-        case Coleharbour:
+        case ColeHarbour:
             coordinates = (MKCoordinateRegion){COLEHARBOUR_LATITUDE,COLEHARBOUR_LONGITUDE,COLEHARBOUR_LATITUDE_DELTA,COLEHARBOUR_LONGITUDE_DELTA};
             break;
         case Sackville:
@@ -34,7 +34,7 @@
         case Fairview:
             coordinates = (MKCoordinateRegion){FAIRVIEW_LATITUDE,FAIRVIEW_LONGITUDE,FAIRVIEW_LATITUDE_DELTA,FAIRVIEW_LONGITUDE_DELTA};
             break;
-        case Claytonpark:
+        case ClaytonPark:
             coordinates = (MKCoordinateRegion){CLAYTONPARK_LATITUDE,CLAYTONPARK_LONGITUDE,CLAYTONPARK_LATITUDE_DELTA,CLAYTONPARK_LONGITUDE_DELTA};
             break;
         case Spryfield:

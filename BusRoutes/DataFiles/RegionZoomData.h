@@ -59,10 +59,10 @@ typedef enum {
     HRM,
     Halifax,
     Dartmouth,
-    Coleharbour,
+    ColeHarbour,
     Sackville,
     Fairview,
-    Claytonpark,
+    ClaytonPark,
     Spryfield,
     Bedford
 } REGION;

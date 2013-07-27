@@ -8,7 +8,7 @@
 
 #import "BusRoutesViewController.h"
 
-@interface MovementButtonView (PrivateMethods)
+@interface BurrowZoomButtonsView (PrivateMethods)
 - (void)showMapViewController;
 @end;
 
@@ -35,16 +35,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if (interfaceOrientation == UIInterfaceOrientationPortrait) {
-//        buttonView.frame = (CGRect){768-150,buttonView.frame.origin.y,buttonView.frame.size};
-    } else if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
-//        buttonView.frame = (CGRect){1024-150,buttonView.frame.origin.y,buttonView.frame.size};
-    } else if (interfaceOrientation == UIInterfaceOrientationLandscapeRight) {
-//        buttonView.frame = (CGRect){1024-150,buttonView.frame.origin.y,buttonView.frame.size};
-    } else if (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown) {
-//        buttonView.frame = (CGRect){768-150,buttonView.frame.origin.y,buttonView.frame.size};
-    }
+- (BOOL)shouldAutorotate {
     return YES;
 }
 

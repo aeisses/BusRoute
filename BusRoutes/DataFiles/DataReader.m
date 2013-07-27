@@ -32,7 +32,7 @@
         if (placemark.geometry && placemark.name) {
             BusStop *busStop = [[BusStop alloc] initWithTitle:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry];
             [mutableStops addObject:busStop];
-            [delegate addBusStop:busStop];
+//            [delegate addBusStop:busStop];
             [busStop release];
         }
     }

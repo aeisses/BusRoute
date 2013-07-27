@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BusStop.h"
 #import "RegionZoomData.h"
-#import "MovementButtonView.h"
+#import "BurrowZoomButtonsView.h"
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,MovementButtonViewDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
-    MovementButtonView *buttonView;
+    BurrowZoomButtonsView *burrowZoomButtonView;
     UIActivityIndicatorView *activityIndicator;
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BA5CE117A40E4700EDEE4C /* BusRoutesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE017A40E4700EDEE4C /* BusRoutesNavigationController.m */; };
 		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
 		04CFB8DF17A1F360003E56E9 /* DataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DC17A1F360003E56E9 /* DataReader.m */; };
 		04CFB8E017A1F360003E56E9 /* RegionZoomData.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */; };
@@ -14,9 +15,9 @@
 		04CFB8F417A1F36A003E56E9 /* arrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8E917A1F36A003E56E9 /* arrest.png */; };
 		04CFB8F517A1F36A003E56E9 /* BusRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */; };
 		04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EE17A1F36A003E56E9 /* MapViewController.m */; };
-		04CFB8F717A1F36A003E56E9 /* MovementButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8F117A1F36A003E56E9 /* MovementButtonView.m */; };
+		04CFB8F717A1F36A003E56E9 /* BurrowZoomButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8F117A1F36A003E56E9 /* BurrowZoomButtonsView.m */; };
 		04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8F817A1F38E003E56E9 /* MapViewController.xib */; };
-		04CFB8FB17A1F3F8003E56E9 /* MovementButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8FA17A1F3F8003E56E9 /* MovementButtonView.xib */; };
+		04CFB8FB17A1F3F8003E56E9 /* BurrowZoomButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8FA17A1F3F8003E56E9 /* BurrowZoomButtonsView.xib */; };
 		04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8FD17A1F440003E56E9 /* MovementButton.m */; };
 		04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A6E179DE91200EF177B /* UIKit.framework */; };
 		04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A70179DE91200EF177B /* Foundation.framework */; };
@@ -33,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BA5CDF17A40E4700EDEE4C /* BusRoutesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoutesNavigationController.h; sourceTree = "<group>"; };
+		04BA5CE017A40E4700EDEE4C /* BusRoutesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoutesNavigationController.m; sourceTree = "<group>"; };
 		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
 		04CFB8DB17A1F360003E56E9 /* DataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataReader.h; sourceTree = "<group>"; };
 		04CFB8DC17A1F360003E56E9 /* DataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataReader.m; sourceTree = "<group>"; };
@@ -45,10 +48,10 @@
 		04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoutesViewController.m; sourceTree = "<group>"; };
 		04CFB8ED17A1F36A003E56E9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		04CFB8EE17A1F36A003E56E9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		04CFB8F017A1F36A003E56E9 /* MovementButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementButtonView.h; sourceTree = "<group>"; };
-		04CFB8F117A1F36A003E56E9 /* MovementButtonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementButtonView.m; sourceTree = "<group>"; };
+		04CFB8F017A1F36A003E56E9 /* BurrowZoomButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BurrowZoomButtonsView.h; sourceTree = "<group>"; };
+		04CFB8F117A1F36A003E56E9 /* BurrowZoomButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BurrowZoomButtonsView.m; sourceTree = "<group>"; };
 		04CFB8F817A1F38E003E56E9 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
-		04CFB8FA17A1F3F8003E56E9 /* MovementButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovementButtonView.xib; sourceTree = "<group>"; };
+		04CFB8FA17A1F3F8003E56E9 /* BurrowZoomButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BurrowZoomButtonsView.xib; sourceTree = "<group>"; };
 		04CFB8FC17A1F440003E56E9 /* MovementButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementButton.h; sourceTree = "<group>"; };
 		04CFB8FD17A1F440003E56E9 /* MovementButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementButton.m; sourceTree = "<group>"; };
 		04DA2A6B179DE91200EF177B /* BusRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +120,7 @@
 		04CFB8E417A1F36A003E56E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				04CFB8FA17A1F3F8003E56E9 /* MovementButtonView.xib */,
+				04CFB8FA17A1F3F8003E56E9 /* BurrowZoomButtonsView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -148,6 +151,8 @@
 				04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */,
 				04CFB8ED17A1F36A003E56E9 /* MapViewController.h */,
 				04CFB8EE17A1F36A003E56E9 /* MapViewController.m */,
+				04BA5CDF17A40E4700EDEE4C /* BusRoutesNavigationController.h */,
+				04BA5CE017A40E4700EDEE4C /* BusRoutesNavigationController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -155,8 +160,8 @@
 		04CFB8EF17A1F36A003E56E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				04CFB8F017A1F36A003E56E9 /* MovementButtonView.h */,
-				04CFB8F117A1F36A003E56E9 /* MovementButtonView.m */,
+				04CFB8F017A1F36A003E56E9 /* BurrowZoomButtonsView.h */,
+				04CFB8F117A1F36A003E56E9 /* BurrowZoomButtonsView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -281,7 +286,7 @@
 				04DA2A8B179DE91200EF177B /* BusRoutesViewController.xib in Resources */,
 				04CFB8F417A1F36A003E56E9 /* arrest.png in Resources */,
 				04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */,
-				04CFB8FB17A1F3F8003E56E9 /* MovementButtonView.xib in Resources */,
+				04CFB8FB17A1F3F8003E56E9 /* BurrowZoomButtonsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,8 +304,9 @@
 				04CFB8F317A1F36A003E56E9 /* BusStop.m in Sources */,
 				04CFB8F517A1F36A003E56E9 /* BusRoutesViewController.m in Sources */,
 				04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */,
-				04CFB8F717A1F36A003E56E9 /* MovementButtonView.m in Sources */,
+				04CFB8F717A1F36A003E56E9 /* BurrowZoomButtonsView.m in Sources */,
 				04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */,
+				04BA5CE117A40E4700EDEE4C /* BusRoutesNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

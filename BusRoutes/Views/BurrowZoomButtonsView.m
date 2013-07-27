@@ -6,16 +6,14 @@
 //  Copyright (c) 2013 Aaron Eisses. All rights reserved.
 //
 
-#import "MovementButtonView.h"
+#import "BurrowZoomButtonsView.h"
 
-// TODO: This might get changed to a ViewController
-
-@interface MovementButtonView (PrivateMethods)
+@interface BurrowZoomButtonsView (PrivateMethods)
 - (void)enableButtons;
 - (void)disableButtons;
 @end;
 
-@implementation MovementButtonView
+@implementation BurrowZoomButtonsView
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -31,10 +29,10 @@
     _hrm.region = HRM;
     _halifax.region = Halifax;
     _dartmouth.region = Dartmouth;
-    _coleharbour.region = Coleharbour;
+    _coleHarbour.region = ColeHarbour;
     _sackville.region = Sackville;
     _bedford.region = Bedford;
-    _claytonpark.region = Claytonpark;
+    _claytonPark.region = ClaytonPark;
     _fairview.region = Fairview;
     _spryfield.region = Spryfield;
 }
@@ -69,10 +67,10 @@
     [_hrm release]; _hrm = nil;
     [_halifax release]; _halifax = nil;
     [_dartmouth release]; _dartmouth = nil;
-    [_coleharbour release]; _coleharbour = nil;
+    [_coleHarbour release]; _coleHarbour = nil;
     [_sackville release]; _sackville = nil;
     [_bedford release]; _bedford = nil;
-    [_claytonpark release]; _claytonpark = nil;
+    [_claytonPark release]; _claytonPark = nil;
     [_fairview release]; _fairview = nil;
     [_spryfield release]; _spryfield = nil;
     _delegate = nil;
@@ -83,15 +81,15 @@
 - (void)enableButtons
 {
     _hrm.enabled = _halifax.enabled = _dartmouth.enabled =
-    _coleharbour.enabled = _sackville.enabled = _bedford.enabled =
-    _claytonpark.enabled = _fairview.enabled = _spryfield.enabled = YES;
+    _coleHarbour.enabled = _sackville.enabled = _bedford.enabled =
+    _claytonPark.enabled = _fairview.enabled = _spryfield.enabled = YES;
 }
 
 - (void)disableButtons
 {
     _hrm.enabled = _halifax.enabled = _dartmouth.enabled =
-    _coleharbour.enabled = _sackville.enabled = _bedford.enabled =
-    _claytonpark.enabled = _fairview.enabled = _spryfield.enabled = NO;
+    _coleHarbour.enabled = _sackville.enabled = _bedford.enabled =
+    _claytonPark.enabled = _fairview.enabled = _spryfield.enabled = NO;
 }
 
 @end
