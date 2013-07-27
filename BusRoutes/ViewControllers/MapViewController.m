@@ -135,6 +135,7 @@
         };
         burrowZoomButtonView.hidden = NO;
     }
+    activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
 }
 
 - (void)dealloc
