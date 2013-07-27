@@ -13,15 +13,15 @@
 - (void)buttonTouched:(id)sender;
 @end
 
-@interface MovementButtonView : UIView
+@interface BurrowZoomButtonsView : UIView
 
 @property (retain, nonatomic) IBOutlet MovementButton *hrm;
 @property (retain, nonatomic) IBOutlet MovementButton *halifax;
 @property (retain, nonatomic) IBOutlet MovementButton *dartmouth;
-@property (retain, nonatomic) IBOutlet MovementButton *coleharbour;
+@property (retain, nonatomic) IBOutlet MovementButton *coleHarbour;
 @property (retain, nonatomic) IBOutlet MovementButton *sackville;
 @property (retain, nonatomic) IBOutlet MovementButton *bedford;
-@property (retain, nonatomic) IBOutlet MovementButton *claytonpark;
+@property (retain, nonatomic) IBOutlet MovementButton *claytonPark;
 @property (retain, nonatomic) IBOutlet MovementButton *fairview;
 @property (retain, nonatomic) IBOutlet MovementButton *spryfield;
 

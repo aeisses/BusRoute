@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BusRoutesNavigationController.h"
 
 @class BusRoutesViewController;
 
 @interface BusRoutesAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UINavigationController *navController;
+@property (strong, nonatomic) BusRoutesNavigationController *navController;
 
 @end
