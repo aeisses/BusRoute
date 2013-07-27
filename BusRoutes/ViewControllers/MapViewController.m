@@ -73,11 +73,45 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)addBusStop:(BusStop*)busStop
+- (void)addBusStop:(BusStop*)busStop
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [_mapView addAnnotation:busStop];
     });
+}
+
+- (void)addProgressIndicator
+{
+    __block UIActivityIndicatorView *blockActivityIndicator = activityIndicator;
+    __block MapViewController *blockSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        blockActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        blockActivityIndicator.center = CGPointMake(blockSelf.view.frame.size.width/2,blockSelf.view.frame.size.height/2);
+        [blockActivityIndicator hidesWhenStopped];
+        [blockSelf.view addSubview:blockActivityIndicator];
+        [blockActivityIndicator startAnimating];
+    });
+}
+
+- (void)removeProgressIndicator
+{
+    __block UIActivityIndicatorView *blockActivityIndicator = activityIndicator;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [blockActivityIndicator stopAnimating];
+        [blockActivityIndicator removeFromSuperview];
+    });
+}
+
+- (void)enableGestures
+{
+    swipeDown.enabled = YES;
+    swipeUp.enabled = YES;
+}
+
+- (void)disableGestures
+{
+    swipeDown.enabled = NO;
+    swipeUp.enabled = NO;
 }
 
 - (void)dealloc
@@ -93,7 +127,7 @@
 - (void)buttonTouched:(id)sender
 {
     MovementButton *button = (MovementButton*)sender;
-    [_mapView setRegion:[RegionZoomData getRegion:button.region] animated:YES];
+    [_mapView setRegion:[RegionZoomData getRegion:button.region] animated:NO];
     [buttonView showViewAtFrame:(CGRect){
         buttonView.frame.origin.x,
         0-buttonView.frame.size.height,

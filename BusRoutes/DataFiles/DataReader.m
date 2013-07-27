@@ -25,6 +25,7 @@
 
 - (void)loadKMLData
 {
+    [delegate startProgressIndicator];
     KMLRoot *kml = [KMLParser parseKMLAtURL:url];
     NSMutableArray *mutableStops = [NSMutableArray array];
     for (KMLPlacemark *placemark in kml.placemarks) {
@@ -36,6 +37,7 @@
         }
     }
     _stops = [[NSArray alloc] initWithArray:mutableStops];
+    [delegate endProgressIndicator];
 }
 
 - (NSArray*)getStops

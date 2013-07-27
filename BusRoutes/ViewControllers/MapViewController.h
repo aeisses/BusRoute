@@ -16,10 +16,15 @@
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
     MovementButtonView *buttonView;
+    UIActivityIndicatorView *activityIndicator;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 
--(void)addBusStop:(BusStop*)busStop;
+- (void)addBusStop:(BusStop*)busStop;
+- (void)addProgressIndicator;
+- (void)removeProgressIndicator;
+- (void)enableGestures;
+- (void)disableGestures;
 
 @end

@@ -11,6 +11,8 @@
 #import "BusStop.h"
 
 @protocol DataReaderDelegate <NSObject>
+-(void)startProgressIndicator;
+-(void)endProgressIndicator;
 -(void)addBusStop:(BusStop*)busStop;
 @end
 
