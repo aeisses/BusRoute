@@ -8,6 +8,10 @@
 
 #import "MapViewController.h"
 
+@interface MapViewController (PrivateMethods)
+- (void)frameIntervalLoop:(CADisplayLink *)sender;
+@end;
+
 @implementation MapViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,6 +38,15 @@
     return self;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    if (date != nil) {
+        [date release];
+        date = [[NSDate alloc] init];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -42,6 +55,8 @@
     _mapView.zoomEnabled = NO;
     [self.view addGestureRecognizer:swipeDown];
     [self.view addGestureRecognizer:swipeUp];
+    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(frameIntervalLoop:)];
+    [displayLink setFrameInterval:15];
 }
 
 - (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture
@@ -69,6 +84,16 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [_mapView setRegion:[RegionZoomData getRegion:HRM] animated:NO];
+    [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [displayLink removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    if (date != nil) {
+        [date release];
+        date = [[NSDate alloc] init];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -145,6 +170,24 @@
     [burrowZoomButtonView release]; burrowZoomButtonView = nil;
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
+}
+
+#pragma Private Methods
+- (void)frameIntervalLoop:(CADisplayLink *)sender
+{
+    if (burrowZoomButtonView.frame.origin.y >= 0) {
+        if (date == nil) {
+            date = [[NSDate alloc] init];
+        }
+        if ([date timeIntervalSinceNow] < WINDOWS_AUTO_CLOSE) {
+            [burrowZoomButtonView showViewAtFrame:(CGRect){
+                self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
+                0-burrowZoomButtonView.frame.size.height,
+                burrowZoomButtonView.frame.size
+            }];
+            [date release]; date = nil;
+        }
+    }
 }
 
 #pragma MovementButtonViewDelegate

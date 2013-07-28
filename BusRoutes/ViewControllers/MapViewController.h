@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 #import "BusStop.h"
 #import "RegionZoomData.h"
 #import "BurrowZoomButtonsView.h"
+
+#define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,MovementButtonViewDelegate>
 {
@@ -17,6 +20,8 @@
     UISwipeGestureRecognizer *swipeUp;
     BurrowZoomButtonsView *burrowZoomButtonView;
     UIActivityIndicatorView *activityIndicator;
+    CADisplayLink *displayLink;
+    NSDate *date;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
