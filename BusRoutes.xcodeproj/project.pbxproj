@@ -10,6 +10,7 @@
 		04BA5CE117A40E4700EDEE4C /* BusRoutesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE017A40E4700EDEE4C /* BusRoutesNavigationController.m */; };
 		04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */; };
 		04BA5CE617A5CE9A00EDEE4C /* BurrowZoomButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE317A5C8E800EDEE4C /* BurrowZoomButtonsView.m */; };
+		04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */; };
 		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
 		04CFB8DF17A1F360003E56E9 /* DataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DC17A1F360003E56E9 /* DataReader.m */; };
 		04CFB8E017A1F360003E56E9 /* RegionZoomData.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */; };
@@ -40,6 +41,9 @@
 		04BA5CE217A5C8E800EDEE4C /* BurrowZoomButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BurrowZoomButtonsView.h; sourceTree = "<group>"; };
 		04BA5CE317A5C8E800EDEE4C /* BurrowZoomButtonsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BurrowZoomButtonsView.m; sourceTree = "<group>"; };
 		04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04BA5CE717A5DA3D00EDEE4C /* BusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoute.h; sourceTree = "<group>"; };
+		04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoute.m; sourceTree = "<group>"; };
+		04BA5CEA17A5E0E400EDEE4C /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
 		04CFB8DB17A1F360003E56E9 /* DataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataReader.h; sourceTree = "<group>"; };
 		04CFB8DC17A1F360003E56E9 /* DataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataReader.m; sourceTree = "<group>"; };
@@ -135,6 +139,9 @@
 				04CFB8E717A1F36A003E56E9 /* BusStop.m */,
 				04CFB8FC17A1F440003E56E9 /* MovementButton.h */,
 				04CFB8FD17A1F440003E56E9 /* MovementButton.m */,
+				04BA5CE717A5DA3D00EDEE4C /* BusRoute.h */,
+				04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */,
+				04BA5CEA17A5E0E400EDEE4C /* Enums.h */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -311,6 +318,7 @@
 				04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */,
 				04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */,
 				04BA5CE117A40E4700EDEE4C /* BusRoutesNavigationController.m in Sources */,
+				04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

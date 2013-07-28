@@ -1,27 +1,29 @@
 //
-//  BusStop.m
+//  BusRoute.m
 //  BusRoutes
 //
-//  Created by Aaron Eisses on 13-07-23.
+//  Created by Aaron Eisses on 13-07-28.
 //  Copyright (c) 2013 Aaron Eisses. All rights reserved.
 //
 
-#import "BusStop.h"
+#import "BusRoute.h"
 
-@interface BusStop (PrivateMethods)
-- (void)parseStopDescription;
+@interface BusRoute (PrivateMethods)
+- (void)parseRouteDescription;
 @end;
 
-@implementation BusStop
+@implementation BusRoute
 
-- (id)initWithTitle:(NSString *)title description:(NSString*)decription andLocation:(KMLPoint*)location
+- (id)initWithTitle:(NSString *)title description:(NSString*)decription andGeometries:(KMLMultiGeometry*)geometries
 {
     if (self = [super init])
     {
         _title = title;
-        _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        _geometries = geometries;
+        // NOTE: KMLMultiGeomtry has an NSArray value called geometries, the first element of the Array is KMLPoint followed by an unknow number of KMLLineString
+        NSLog(@"%@",geometries.geometries);
         stopDescription = decription;
-        [self parseStopDescription];
+        [self parseRouteDescription];
     }
     return self;
 }
@@ -30,13 +32,16 @@
 {
     [super dealloc];
     [_title release];
+    [_geometries release];
     [stopDescription release];
-    [date release];
-    [address release];
+    [routeTitle release];
+    [startDate release];
+    [revDate release];
+    [socrateId release];
 }
 
-#pragma Private Methods
-- (void)parseStopDescription
+# pragma Private Methods
+- (void)parseRouteDescription
 {
     NSMutableString *temp = [[NSMutableString alloc] initWithString:stopDescription];
     [temp replaceOccurrencesOfString:@"<ul class=\"textattributes\">" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
@@ -52,10 +57,13 @@
         if ([thisArray count] == 2) {
             if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"OBJECTID"]) {
                 objectId = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
-            } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"FCODE"]) {
-                if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSIN"]) {
-                    fcode = trbsin;
-                } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSAC"]) {
+            } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"ROUTE_NUM"]) {
+                routeNum = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
+            } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"CLASS"]) {
+                if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"WEEKDAY LIMITED"]) {
+                    classType = weekday_limited;
+                }
+/*                } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSAC"]) {
                     fcode = trbsac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSNAC"]) {
                     fcode = trbssnac;
@@ -74,6 +82,9 @@
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSHIN"]) {
                     fcode = trbsshin;
                 }
+ */
+            } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"TITLE"]) {
+                routeTitle = (NSString *)[thisArray objectAtIndex:1];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SOURCE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRANSIT"]) {
                     source = transit;
@@ -90,15 +101,20 @@
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"GP"]) {
                     sacc = GP;
                 }
-            } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SDATE"]) {
+            } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"DATE_ACT"]) {
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
-                date = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
+                startDate = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
+                [formatter release];
+            } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"DATE_REV"]) {
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
+                revDate = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
                 [formatter release];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"GOTIME"]) {
-                gotime = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
+                shapeLen = [(NSString *)([thisArray objectAtIndex:1]) floatValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
-                address = (NSString *)[thisArray objectAtIndex:1];
+                socrateId = (NSString *)[thisArray objectAtIndex:1];
             }
         }
     }

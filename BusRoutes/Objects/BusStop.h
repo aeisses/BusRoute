@@ -9,31 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <KML/KML.h>
 #import <MapKit/MapKit.h>
-
-typedef enum {
-    trbsin,
-    trbsac,
-    trbssnac,
-    trbs,
-    trbsshac,
-    trbssh,
-    trpr,
-    trbstmac,
-    trbstm,
-    trbsshin
-} FCODE;
-
-typedef enum {
-    transit,
-    hastus
-} SOURCE;
-
-typedef enum {
-    DV,
-    IN,
-    XY,
-    GP
-} SACC;
+#import "Enums.h"
 
 @interface BusStop : NSObject <MKAnnotation>
 {

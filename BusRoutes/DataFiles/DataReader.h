@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <KML/KML.h>
 #import "BusStop.h"
+#import "BusRoute.h"
 
 @protocol DataReaderDelegate <NSObject>
 -(void)startProgressIndicator;
@@ -18,13 +19,15 @@
 
 @interface DataReader : NSObject
 {
-    NSURL *url;
+    NSURL *stopsUrl;
+    NSURL *routesUrl;
 }
 
 - (id)init;
 - (void)loadKMLData;
 
 @property (nonatomic, retain) NSArray *stops;
+@property (nonatomic, retain) NSArray *routes;
 @property (nonatomic, retain) id <DataReaderDelegate> delegate;
 
 @end
