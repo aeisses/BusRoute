@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <KML/KML.h>
+#import <MapKit/MapKit.h>
 #import "Enums.h"
 
 @interface BusRoute : NSObject
@@ -26,7 +27,7 @@
 }
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) KMLMultiGeometry *geometries;
+@property (nonatomic, copy) MKPolyline *line;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)decription andGeometries:(KMLMultiGeometry*)geometries;
 

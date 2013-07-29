@@ -9,22 +9,32 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "BusStop.h"
+#import "BusRoute.h"
 #import "RegionZoomData.h"
 #import "BurrowZoomButtonsView.h"
+#import "DisplayTypeView.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,MovementButtonViewDelegate>
+@protocol MapViewControllerDelegate <NSObject>
+- (NSArray *)getStops;
+- (NSArray *)getRoutes;
+@end
+
+@interface MapViewController : UIViewController <MKMapViewDelegate,MovementButtonViewDelegate,DisplayTypeViewDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
     BurrowZoomButtonsView *burrowZoomButtonView;
+    DisplayTypeView *displayTypeView;
     UIActivityIndicatorView *activityIndicator;
     CADisplayLink *displayLink;
     NSDate *date;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
+
+@property (retain, nonatomic) id <MapViewControllerDelegate> delegate;
 
 - (void)addBusStop:(BusStop*)busStop;
 - (void)addProgressIndicator;

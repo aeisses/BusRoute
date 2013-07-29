@@ -10,7 +10,7 @@
 #import "MovementButton.h"
 
 @protocol MovementButtonViewDelegate <NSObject>
-- (void)buttonTouched:(id)sender;
+- (void)burrowZoomButtonTouched:(id)sender;
 @end
 
 @interface BurrowZoomButtonsView : UIView

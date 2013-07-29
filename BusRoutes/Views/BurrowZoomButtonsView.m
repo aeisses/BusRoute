@@ -59,7 +59,7 @@
 
 - (IBAction)touchUp:(id)sender
 {
-    [_delegate buttonTouched:sender];
+    [_delegate burrowZoomButtonTouched:sender];
 }
 
 - (void)dealloc

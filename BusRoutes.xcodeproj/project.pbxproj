@@ -11,6 +11,8 @@
 		04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */; };
 		04BA5CE617A5CE9A00EDEE4C /* BurrowZoomButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE317A5C8E800EDEE4C /* BurrowZoomButtonsView.m */; };
 		04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */; };
+		04BA5CEC17A5F15500EDEE4C /* DisplayTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA5CEB17A5F15500EDEE4C /* DisplayTypeView.xib */; };
+		04BA5CEF17A5F22F00EDEE4C /* DisplayTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CEE17A5F22F00EDEE4C /* DisplayTypeView.m */; };
 		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
 		04CFB8DF17A1F360003E56E9 /* DataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DC17A1F360003E56E9 /* DataReader.m */; };
 		04CFB8E017A1F360003E56E9 /* RegionZoomData.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */; };
@@ -44,6 +46,9 @@
 		04BA5CE717A5DA3D00EDEE4C /* BusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoute.h; sourceTree = "<group>"; };
 		04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoute.m; sourceTree = "<group>"; };
 		04BA5CEA17A5E0E400EDEE4C /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
+		04BA5CEB17A5F15500EDEE4C /* DisplayTypeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DisplayTypeView.xib; sourceTree = "<group>"; };
+		04BA5CED17A5F22F00EDEE4C /* DisplayTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayTypeView.h; sourceTree = "<group>"; };
+		04BA5CEE17A5F22F00EDEE4C /* DisplayTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayTypeView.m; sourceTree = "<group>"; };
 		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
 		04CFB8DB17A1F360003E56E9 /* DataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataReader.h; sourceTree = "<group>"; };
 		04CFB8DC17A1F360003E56E9 /* DataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataReader.m; sourceTree = "<group>"; };
@@ -128,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				04CFB8FA17A1F3F8003E56E9 /* BurrowZoomButtonsView.xib */,
+				04BA5CEB17A5F15500EDEE4C /* DisplayTypeView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -172,6 +178,8 @@
 			children = (
 				04BA5CE217A5C8E800EDEE4C /* BurrowZoomButtonsView.h */,
 				04BA5CE317A5C8E800EDEE4C /* BurrowZoomButtonsView.m */,
+				04BA5CED17A5F22F00EDEE4C /* DisplayTypeView.h */,
+				04BA5CEE17A5F22F00EDEE4C /* DisplayTypeView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +306,7 @@
 				04CFB8F417A1F36A003E56E9 /* arrest.png in Resources */,
 				04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */,
 				04CFB8FB17A1F3F8003E56E9 /* BurrowZoomButtonsView.xib in Resources */,
+				04BA5CEC17A5F15500EDEE4C /* DisplayTypeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +328,7 @@
 				04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */,
 				04BA5CE117A40E4700EDEE4C /* BusRoutesNavigationController.m in Sources */,
 				04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */,
+				04BA5CEF17A5F22F00EDEE4C /* DisplayTypeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

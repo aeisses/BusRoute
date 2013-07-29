@@ -19,9 +19,35 @@
     if (self = [super init])
     {
         _title = title;
-        _geometries = geometries;
+//        _geometries = geometries;
+        NSMutableArray *coordinatesMutable = [NSMutableArray array];
+        for (int i=0; i<[geometries.geometries count]; i++) {
+            if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLPoint class]]) {
+                [coordinatesMutable addObject:((KMLPoint *)[geometries.geometries objectAtIndex:i]).coordinate];
+            } else if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLLineString class]]) {
+                [coordinatesMutable addObjectsFromArray:(NSArray *)(((KMLLineString *)[geometries.geometries objectAtIndex:1]).coordinates)];
+//                KMLLineString *lineString = (KMLLineString *)([geometries.geometries objectAtIndex:1]).coordinates;
+//                NSLog(@"%@",lineString.coordinates);
+//                for (int j=0; j<[lineString.coordinates count]; j++) {
+//                    if ([[lineString.coordinates objectAtIndex:j] isKindOfClass:[KMLPoint class]]) {
+//                        [coordinates addObject:[lineString.coordinates objectAtIndex:j]];
+//                    }
+//                }
+            }
+        }
+
+        CLLocationCoordinate2D coordinates[[coordinatesMutable count]];
+        for (int i=0; i<[coordinatesMutable count]; i++) {
+            KMLCoordinate *point = (KMLCoordinate*)[coordinatesMutable objectAtIndex:i];
+            coordinates[i] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
+            i++;
+        }
+        _line = [MKPolyline polylineWithCoordinates:coordinates count:[coordinatesMutable count]];
+//        _line = [MKPolyline ]
+//        KMLLineString
         // NOTE: KMLMultiGeomtry has an NSArray value called geometries, the first element of the Array is KMLPoint followed by an unknow number of KMLLineString
-        NSLog(@"%@",geometries.geometries);
+        //       KMLLineString has an Array of coordinates;
+//        NSLog(@"%@",geometries.geometries);
         stopDescription = decription;
         [self parseRouteDescription];
     }
@@ -32,7 +58,6 @@
 {
     [super dealloc];
     [_title release];
-    [_geometries release];
     [stopDescription release];
     [routeTitle release];
     [startDate release];

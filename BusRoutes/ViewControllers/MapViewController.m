@@ -34,6 +34,15 @@
             burrowZoomButtonView.frame.size};
         [burrowZoomButtonView setButtons];
         [self.view addSubview:burrowZoomButtonView];
+        
+        displayTypeView = [[[NSBundle mainBundle] loadNibNamed:@"DisplayTypeView" owner:self options:nil] objectAtIndex:0];
+        displayTypeView.delegate = self;
+        displayTypeView.frame = (CGRect){
+            0,
+            0-displayTypeView.frame.size.height,
+            displayTypeView.frame.size
+        };
+        [self.view addSubview:displayTypeView];
     }
     return self;
 }
@@ -66,6 +75,11 @@
         0-burrowZoomButtonView.frame.size.height,
         burrowZoomButtonView.frame.size
     }];
+    [displayTypeView showViewAtFrame:(CGRect){
+        0,
+        0-displayTypeView.frame.size.height,
+        displayTypeView.frame.size
+    }];
 }
 
 - (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture
@@ -74,10 +88,20 @@
         self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
         0-burrowZoomButtonView.frame.size.height,
         burrowZoomButtonView.frame.size};
+    displayTypeView.frame = (CGRect){
+        0,
+        0-displayTypeView.frame.size.height,
+        displayTypeView.frame.size
+    };
     [burrowZoomButtonView showViewAtFrame:(CGRect){
         self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
         0,
         burrowZoomButtonView.frame.size
+    }];
+    [displayTypeView showViewAtFrame:(CGRect){
+        0,
+        0,
+        displayTypeView.frame.size
     }];
 }
 
@@ -146,8 +170,10 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    if (burrowZoomButtonView.frame.origin.y >= 0)
+    if (burrowZoomButtonView.frame.origin.y >= 0) {
         burrowZoomButtonView.hidden = YES;
+        displayTypeView.hidden = YES;
+    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -158,7 +184,13 @@
             0,
             burrowZoomButtonView.frame.size
         };
+        displayTypeView.frame = (CGRect){
+            0,
+            0,
+            displayTypeView.frame.size
+        };
         burrowZoomButtonView.hidden = NO;
+        displayTypeView.hidden = NO;
     }
     activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
 }
@@ -170,6 +202,7 @@
     [burrowZoomButtonView release]; burrowZoomButtonView = nil;
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
+    _delegate = nil;
 }
 
 #pragma Private Methods
@@ -185,13 +218,18 @@
                 0-burrowZoomButtonView.frame.size.height,
                 burrowZoomButtonView.frame.size
             }];
+            [displayTypeView showViewAtFrame:(CGRect){
+                0,
+                0-displayTypeView.frame.size.height,
+                displayTypeView.frame.size
+            }];
             [date release]; date = nil;
         }
     }
 }
 
-#pragma MovementButtonViewDelegate
-- (void)buttonTouched:(id)sender
+#pragma BurrowZoomButtonViewDelegate
+- (void)burrowZoomButtonTouched:(id)sender
 {
     MovementButton *button = (MovementButton*)sender;
     [_mapView setRegion:[RegionZoomData getRegion:button.region] animated:NO];
@@ -200,6 +238,27 @@
         0-burrowZoomButtonView.frame.size.height,
         burrowZoomButtonView.frame.size
     }];
+    [displayTypeView showViewAtFrame:(CGRect){
+        0,
+        0-displayTypeView.frame.size.height,
+        displayTypeView.frame.size
+    }];
+}
+
+#pragma DisplayTypeViewDelegate
+- (void)displayTypeButtonPressed:(id)sender
+{
+    if (displayTypeView.routeButton.enabled) {
+        [_mapView removeAnnotations:[_delegate getStops]];//:[_delegate getStops]];
+        NSArray *routes = [_delegate getRoutes];
+        for (int i=0; i<[routes count]; i++) {
+            BusRoute *route = [routes objectAtIndex:i];
+            NSLog(@"%@",route.line);
+            [_mapView addOverlay:(MKPolyline *)route.line];
+        }
+    } else if (displayTypeView.stopButton.enabled) {
+//        [_mapView removeAllAnnotation];//:[_delegate getStops]];
+    }
 }
 
 #pragma MKMapViewDelegate Methods
@@ -221,6 +280,15 @@
     }
     
     return nil;
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+    
+    MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
+    polylineView.strokeColor = [UIColor greenColor];
+    polylineView.lineWidth = 5.0;
+    
+    return polylineView;
 }
 
 //- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
