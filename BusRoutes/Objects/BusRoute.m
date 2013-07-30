@@ -14,50 +14,42 @@
 
 @implementation BusRoute
 
-- (id)initWithTitle:(NSString *)title description:(NSString*)decription andGeometries:(KMLMultiGeometry*)geometries
+- (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries
 {
     if (self = [super init])
     {
         _title = title;
-//        _geometries = geometries;
         NSMutableArray *coordinatesMutable = [NSMutableArray array];
         for (int i=0; i<[geometries.geometries count]; i++) {
             if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLPoint class]]) {
-                [coordinatesMutable addObject:((KMLPoint *)[geometries.geometries objectAtIndex:i]).coordinate];
             } else if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLLineString class]]) {
-                [coordinatesMutable addObjectsFromArray:(NSArray *)(((KMLLineString *)[geometries.geometries objectAtIndex:1]).coordinates)];
-//                KMLLineString *lineString = (KMLLineString *)([geometries.geometries objectAtIndex:1]).coordinates;
-//                NSLog(@"%@",lineString.coordinates);
-//                for (int j=0; j<[lineString.coordinates count]; j++) {
-//                    if ([[lineString.coordinates objectAtIndex:j] isKindOfClass:[KMLPoint class]]) {
-//                        [coordinates addObject:[lineString.coordinates objectAtIndex:j]];
-//                    }
-//                }
+                [coordinatesMutable addObjectsFromArray:(NSArray *)(((KMLLineString *)[geometries.geometries objectAtIndex:i]).coordinates)];
             }
         }
 
-        CLLocationCoordinate2D coordinates[[coordinatesMutable count]];
-        for (int i=0; i<[coordinatesMutable count]; i++) {
+        _count = [coordinatesMutable count];
+        coordinatesArray = malloc(sizeof(CLLocationCoordinate2D) * _count);
+        for (int i = 0; i < _count; ++i) {
             KMLCoordinate *point = (KMLCoordinate*)[coordinatesMutable objectAtIndex:i];
-            coordinates[i] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
-            i++;
+            coordinatesArray[i] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
         }
-        _line = [MKPolyline polylineWithCoordinates:coordinates count:[coordinatesMutable count]];
-//        _line = [MKPolyline ]
-//        KMLLineString
-        // NOTE: KMLMultiGeomtry has an NSArray value called geometries, the first element of the Array is KMLPoint followed by an unknow number of KMLLineString
-        //       KMLLineString has an Array of coordinates;
-//        NSLog(@"%@",geometries.geometries);
-        stopDescription = decription;
+        stopDescription = description;
+//        NSLog(@"%@",description);
         [self parseRouteDescription];
     }
     return self;
+}
+
+- (void)getCoordinates:(CLLocationCoordinate2D*)coordinates
+{
+    memcpy(coordinates, coordinatesArray, _count * sizeof(CLLocationCoordinate2D));
 }
 
 - (void)dealloc
 {
     [super dealloc];
     [_title release];
+    free(coordinatesArray);
     [stopDescription release];
     [routeTitle release];
     [startDate release];

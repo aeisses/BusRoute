@@ -24,11 +24,13 @@
     NSDate *revDate;
     float shapeLen;
     NSString *socrateId;
+    CLLocationCoordinate2D *coordinatesArray;
 }
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) MKPolyline *line;
+@property (readonly) NSInteger count;
 
-- (id)initWithTitle:(NSString *)title description:(NSString*)decription andGeometries:(KMLMultiGeometry*)geometries;
+- (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
+- (void)getCoordinates:(CLLocationCoordinate2D*)coordinates;
 
 @end

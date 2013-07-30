@@ -248,17 +248,34 @@
 #pragma DisplayTypeViewDelegate
 - (void)displayTypeButtonPressed:(id)sender
 {
-    if (displayTypeView.routeButton.enabled) {
-        [_mapView removeAnnotations:[_delegate getStops]];//:[_delegate getStops]];
-        NSArray *routes = [_delegate getRoutes];
-        for (int i=0; i<[routes count]; i++) {
-            BusRoute *route = [routes objectAtIndex:i];
-            NSLog(@"%@",route.line);
-            [_mapView addOverlay:(MKPolyline *)route.line];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if (displayTypeView.routeButton.enabled) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeAnnotations:[_delegate getStops]];
+            });
+            NSArray *routes = [_delegate getRoutes];
+            for (int i=0; i<[routes count]; i++) {
+//            for (int i=0; i<1; i++) {
+                BusRoute *route = [routes objectAtIndex:i];
+                CLLocationCoordinate2D coordinates[route.count];
+                [route getCoordinates:coordinates];
+//                    for (int j=0; j<25;j++)
+//                    {
+//                        MKMapPoint temp = coordinates[j];
+//                        NSLog(@"Longitude: %f Lattitude: %f",temp.x,temp.y);
+//                    }
+//                MKPolyline *line = [MKPolyline polylineWithPoints:coordinates count:25];
+                MKPolyline *line = [MKPolyline polylineWithCoordinates:coordinates count:route.count];
+//            NSLog(@"Line: %@",line);
+
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_mapView addOverlay:(MKPolyline *)line];
+                });
+            }
+        } else if (displayTypeView.stopButton.enabled) {
+//          [_mapView removeAllAnnotation];//:[_delegate getStops]];
         }
-    } else if (displayTypeView.stopButton.enabled) {
-//        [_mapView removeAllAnnotation];//:[_delegate getStops]];
-    }
+    });
 }
 
 #pragma MKMapViewDelegate Methods
@@ -285,8 +302,9 @@
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     
     MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
-    polylineView.strokeColor = [UIColor greenColor];
-    polylineView.lineWidth = 5.0;
+    polylineView.strokeColor = [UIColor blackColor];
+    polylineView.lineJoin = kCGLineCapButt;
+    polylineView.lineWidth = 2.0;
     
     return polylineView;
 }
