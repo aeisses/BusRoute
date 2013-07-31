@@ -14,25 +14,44 @@
 
 @implementation BusRoute
 
-- (id)initWithTitle:(NSString *)title description:(NSString*)decription andGeometries:(KMLMultiGeometry*)geometries
+- (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries
 {
     if (self = [super init])
     {
         _title = title;
-        _geometries = geometries;
-        // NOTE: KMLMultiGeomtry has an NSArray value called geometries, the first element of the Array is KMLPoint followed by an unknow number of KMLLineString
-        NSLog(@"%@",geometries.geometries);
-        stopDescription = decription;
+        NSMutableArray *linesMutable = [NSMutableArray array];
+        for (int i=0; i<[geometries.geometries count]; i++) {
+            if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLPoint class]]) {
+            } else if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLLineString class]]) {
+                NSArray *points = (NSArray *)(((KMLLineString *)[geometries.geometries objectAtIndex:i]).coordinates);
+                struct lineSegment lineSeg;
+                lineSeg.count = [points count];
+                lineSeg.line = malloc(sizeof(CLLocationCoordinate2D) * lineSeg.count);
+                for (int j = 0; j < lineSeg.count; ++j) {
+                    KMLCoordinate *point = (KMLCoordinate*)[points objectAtIndex:j];
+                    lineSeg.line[j] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
+                }
+                NSValue *lineSegmentValue = [NSValue valueWithBytes:&lineSeg objCType:@encode(lineSegment)];
+                [linesMutable insertObject:lineSegmentValue atIndex:[linesMutable count]];
+            }
+        }
+        _lines = [[NSArray alloc] initWithArray:linesMutable];
+        stopDescription = description;
         [self parseRouteDescription];
     }
     return self;
+}
+
+- (void)getCoordinates:(CLLocationCoordinate2D*)coordinates
+{
+//    memcpy(coordinates, coordinatesArray, _count * sizeof(CLLocationCoordinate2D));
 }
 
 - (void)dealloc
 {
     [super dealloc];
     [_title release];
-    [_geometries release];
+//    free(coordinatesArray);
     [stopDescription release];
     [routeTitle release];
     [startDate release];

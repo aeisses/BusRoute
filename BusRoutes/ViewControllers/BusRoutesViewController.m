@@ -50,25 +50,37 @@
 - (void)showMapViewController
 {
     mapViewController = [[MapViewController alloc] initWithNibName:@"MapViewController" bundle:nil];
+    mapViewController.delegate = self;
     [[self navigationController] pushViewController:mapViewController animated:NO];
 }
 
 #pragma DataReaderDelegate Methods
--(void)startProgressIndicator
+- (void)startProgressIndicator
 {
     [mapViewController disableGestures];
     [mapViewController addProgressIndicator];
 }
 
--(void)endProgressIndicator
+- (void)endProgressIndicator
 {
     [mapViewController removeProgressIndicator];
     [mapViewController enableGestures];
 }
 
--(void)addBusStop:(BusStop*)busStop
+- (void)addBusStop:(BusStop*)busStop
 {
     [mapViewController addBusStop:busStop];
+}
+
+#pragma MapViewControllerDelegate Methods
+- (NSArray*)getStops
+{
+    return dataReader.stops;
+}
+
+- (NSArray *)getRoutes
+{
+    return dataReader.routes;
 }
 
 @end

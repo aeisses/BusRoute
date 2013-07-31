@@ -10,7 +10,7 @@
 #import "DataReader.h"
 #import "MapViewController.h"
 
-@interface BusRoutesViewController : UIViewController <DataReaderDelegate>
+@interface BusRoutesViewController : UIViewController <DataReaderDelegate,MapViewControllerDelegate>
 {
     DataReader *dataReader;
     MapViewController *mapViewController;

@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <KML/KML.h>
+#import <MapKit/MapKit.h>
 #import "Enums.h"
+
+typedef struct lineSegment {
+    NSInteger count;
+    CLLocationCoordinate2D *line;
+} lineSegment;
 
 @interface BusRoute : NSObject
 {
@@ -23,11 +29,15 @@
     NSDate *revDate;
     float shapeLen;
     NSString *socrateId;
+//    CLLocationCoordinate2D *coordinatesArray;
+//    NSArray *coordinatesArray;
 }
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) KMLMultiGeometry *geometries;
+@property (readonly) NSInteger count;
+@property (nonatomic, retain) NSArray *lines;
 
-- (id)initWithTitle:(NSString *)title description:(NSString*)decription andGeometries:(KMLMultiGeometry*)geometries;
+- (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
+- (void)getCoordinates:(CLLocationCoordinate2D*)coordinates;
 
 @end
