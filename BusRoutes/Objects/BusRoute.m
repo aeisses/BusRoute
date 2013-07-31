@@ -19,22 +19,24 @@
     if (self = [super init])
     {
         _title = title;
-        NSMutableArray *coordinatesMutable = [NSMutableArray array];
+        NSMutableArray *linesMutable = [NSMutableArray array];
         for (int i=0; i<[geometries.geometries count]; i++) {
             if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLPoint class]]) {
             } else if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLLineString class]]) {
-                [coordinatesMutable addObjectsFromArray:(NSArray *)(((KMLLineString *)[geometries.geometries objectAtIndex:i]).coordinates)];
+                NSArray *points = (NSArray *)(((KMLLineString *)[geometries.geometries objectAtIndex:i]).coordinates);
+                struct lineSegment lineSeg;
+                lineSeg.count = [points count];
+                lineSeg.line = malloc(sizeof(CLLocationCoordinate2D) * lineSeg.count);
+                for (int j = 0; j < lineSeg.count; ++j) {
+                    KMLCoordinate *point = (KMLCoordinate*)[points objectAtIndex:j];
+                    lineSeg.line[j] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
+                }
+                NSValue *lineSegmentValue = [NSValue valueWithBytes:&lineSeg objCType:@encode(lineSegment)];
+                [linesMutable insertObject:lineSegmentValue atIndex:[linesMutable count]];
             }
         }
-
-        _count = [coordinatesMutable count];
-        coordinatesArray = malloc(sizeof(CLLocationCoordinate2D) * _count);
-        for (int i = 0; i < _count; ++i) {
-            KMLCoordinate *point = (KMLCoordinate*)[coordinatesMutable objectAtIndex:i];
-            coordinatesArray[i] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
-        }
+        _lines = [[NSArray alloc] initWithArray:linesMutable];
         stopDescription = description;
-//        NSLog(@"%@",description);
         [self parseRouteDescription];
     }
     return self;
@@ -42,14 +44,14 @@
 
 - (void)getCoordinates:(CLLocationCoordinate2D*)coordinates
 {
-    memcpy(coordinates, coordinatesArray, _count * sizeof(CLLocationCoordinate2D));
+//    memcpy(coordinates, coordinatesArray, _count * sizeof(CLLocationCoordinate2D));
 }
 
 - (void)dealloc
 {
     [super dealloc];
     [_title release];
-    free(coordinatesArray);
+//    free(coordinatesArray);
     [stopDescription release];
     [routeTitle release];
     [startDate release];

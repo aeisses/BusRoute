@@ -19,6 +19,7 @@
 
 @property (retain, nonatomic) id <DisplayTypeViewDelegate> delegate;
 
+- (void)setButtons;
 - (void)hideViewAtFrame:(CGRect)frame;
 - (void)showViewAtFrame:(CGRect)frame;
 - (IBAction)buttonTouched:(id)sender;

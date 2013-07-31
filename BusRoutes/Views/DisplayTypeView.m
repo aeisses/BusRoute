@@ -24,6 +24,12 @@
     return self;
 }
 
+- (void)setButtons
+{
+    _stopButton.enabled = NO;
+    _routeButton.enabled = YES;
+}
+
 - (IBAction)buttonTouched:(id)sender
 {
     [_delegate displayTypeButtonPressed:sender];
@@ -52,11 +58,11 @@
 #pragma Private Methods
 - (void)enableButtons
 {
-    _stopButton.enabled = _routeButton.enabled = YES;
+//    _stopButton.enabled = _routeButton.enabled = YES;
 }
 
 - (void)disableButtons
 {
-    _stopButton.enabled = _routeButton.enabled =  NO;
+//    _stopButton.enabled = _routeButton.enabled =  NO;
 }
 @end

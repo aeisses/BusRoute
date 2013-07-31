@@ -42,6 +42,7 @@
             0-displayTypeView.frame.size.height,
             displayTypeView.frame.size
         };
+        [displayTypeView setButtons];
         [self.view addSubview:displayTypeView];
     }
     return self;
@@ -250,30 +251,46 @@
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         if (displayTypeView.routeButton.enabled) {
+            displayTypeView.routeButton.enabled = NO;
+            displayTypeView.stopButton.enabled = YES;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_mapView removeAnnotations:[_delegate getStops]];
             });
             NSArray *routes = [_delegate getRoutes];
             for (int i=0; i<[routes count]; i++) {
-//            for (int i=0; i<1; i++) {
                 BusRoute *route = [routes objectAtIndex:i];
-                CLLocationCoordinate2D coordinates[route.count];
-                [route getCoordinates:coordinates];
-//                    for (int j=0; j<25;j++)
-//                    {
-//                        MKMapPoint temp = coordinates[j];
-//                        NSLog(@"Longitude: %f Lattitude: %f",temp.x,temp.y);
-//                    }
-//                MKPolyline *line = [MKPolyline polylineWithPoints:coordinates count:25];
-                MKPolyline *line = [MKPolyline polylineWithCoordinates:coordinates count:route.count];
-//            NSLog(@"Line: %@",line);
-
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_mapView addOverlay:(MKPolyline *)line];
-                });
+                for (int j=0; j<[route.lines count]; j++) {
+                    lineSegment lineSeg;
+                    NSValue *value = [route.lines objectAtIndex:j];
+                    [value getValue:&lineSeg];
+                    MKPolyline *line = [MKPolyline polylineWithCoordinates:lineSeg.line count:lineSeg.count];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [_mapView addOverlay:(MKPolyline *)line];
+                    });
+                }
             }
         } else if (displayTypeView.stopButton.enabled) {
-//          [_mapView removeAllAnnotation];//:[_delegate getStops]];
+            displayTypeView.stopButton.enabled = NO;
+            displayTypeView.routeButton.enabled = YES;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray *routes = [_delegate getRoutes];
+                for (int i=0; i<[routes count]; i++) {
+                    BusRoute *route = [routes objectAtIndex:i];
+                    for (int j=0; j<[route.lines count]; j++) {
+                        lineSegment lineSeg;
+                        NSValue *value = [route.lines objectAtIndex:j];
+                        [value getValue:&lineSeg];
+                        MKPolyline *line = [MKPolyline polylineWithCoordinates:lineSeg.line count:lineSeg.count];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [_mapView removeOverlay:(MKPolyline *)line];
+                        });
+                    }
+                }
+                NSArray *stops = [_delegate getStops];
+                for (int i=0; i<[stops count]; i++) {
+                    [_mapView addAnnotation:(BusStop *)[stops objectAtIndex:i]];
+                }
+            });
         }
     });
 }
