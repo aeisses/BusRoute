@@ -15,6 +15,7 @@
 -(void)startProgressIndicator;
 -(void)endProgressIndicator;
 -(void)addBusStop:(BusStop*)busStop;
+-(void)addRoute:(BusRoute*)route;
 @end
 
 @interface DataReader : NSObject
