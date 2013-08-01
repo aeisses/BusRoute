@@ -19,6 +19,8 @@
 @protocol MapViewControllerDelegate <NSObject>
 - (NSArray *)getStops;
 - (NSArray *)getRoutes;
+- (void)showStops;
+- (void)showRoutes;
 @end
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,MovementButtonViewDelegate,DisplayTypeViewDelegate>
@@ -30,13 +32,16 @@
     UIActivityIndicatorView *activityIndicator;
     CADisplayLink *displayLink;
     NSDate *date;
+    int loadingBusStopCounter;
+    int loadingBusRouteCounter;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
-
+@property (assign) BOOL isDataLoading;
 @property (retain, nonatomic) id <MapViewControllerDelegate> delegate;
 
 - (void)addBusStop:(BusStop*)busStop;
+- (void)addRoute:(BusRoute*)route;
 - (void)addProgressIndicator;
 - (void)removeProgressIndicator;
 - (void)enableGestures;

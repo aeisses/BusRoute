@@ -24,9 +24,12 @@
     dataReader.delegate = self;
     [self showMapViewController];
     __block DataReader *blockDataReader = dataReader;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(loadDataQueue, ^{
+        [mapViewController addProgressIndicator];
         [blockDataReader loadKMLData];
     });
+    dispatch_release(loadDataQueue);
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,11 +61,13 @@
 - (void)startProgressIndicator
 {
     [mapViewController disableGestures];
-    [mapViewController addProgressIndicator];
+//    [mapViewController addProgressIndicator];
+    mapViewController.isDataLoading = YES;
 }
 
 - (void)endProgressIndicator
 {
+    mapViewController.isDataLoading = NO;
     [mapViewController removeProgressIndicator];
     [mapViewController enableGestures];
 }
@@ -70,6 +75,11 @@
 - (void)addBusStop:(BusStop*)busStop
 {
     [mapViewController addBusStop:busStop];
+}
+
+-(void)addRoute:(BusRoute*)route;
+{
+    [mapViewController addRoute:route];
 }
 
 #pragma MapViewControllerDelegate Methods
@@ -81,6 +91,16 @@
 - (NSArray *)getRoutes
 {
     return dataReader.routes;
+}
+
+- (void)showStops
+{
+    [dataReader showBusStops];
+}
+
+- (void)showRoutes
+{
+    [dataReader showRoutes];
 }
 
 @end

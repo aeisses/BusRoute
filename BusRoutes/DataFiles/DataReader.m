@@ -33,7 +33,7 @@
 {
     [delegate startProgressIndicator];
     [self loadStopDataAndShow:YES];
-    [self loadRouteDataAndShow:YES];
+    [self loadRouteDataAndShow:NO];
     [delegate endProgressIndicator];
 }
 
@@ -87,7 +87,9 @@
 - (void)loadRouteDataAndShow:(BOOL)show
 {
     if (_routes != nil && show) {
-        
+        for (BusRoute *busRoute in _routes) {
+            [delegate addRoute:busRoute];
+        }
     } else if (_routes == nil) {
         KMLRoot *kmlRoutes = [KMLParser parseKMLAtURL:routesUrl];
         NSMutableArray *mutableRoutes = [NSMutableArray array];
