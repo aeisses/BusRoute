@@ -129,17 +129,28 @@
 
 - (void)addBusStop:(BusStop*)busStop
 {
+    loadingBusStopCounter++;
     dispatch_async(dispatch_get_main_queue(), ^{
         [_mapView addAnnotation:busStop];
     });
 }
 
+- (void)addRoute:(BusRoute*)route
+{
+    loadingBusRouteCounter++;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_mapView addOverlays:route.lines];
+    });
+}
+
 - (void)addProgressIndicator
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    if (activityIndicator == nil) {
         activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
         [activityIndicator hidesWhenStopped];
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:activityIndicator];
         [activityIndicator startAnimating];
     });
@@ -147,10 +158,12 @@
 
 - (void)removeProgressIndicator
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [activityIndicator stopAnimating];
-        [activityIndicator removeFromSuperview];
-    });
+    if (!_isDataLoading && !loadingBusStopCounter && !loadingBusRouteCounter) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [activityIndicator removeFromSuperview];
+        });
+    }
 }
 
 - (void)enableGestures
@@ -249,57 +262,34 @@
 #pragma DisplayTypeViewDelegate
 - (void)displayTypeButtonPressed:(id)sender
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(loadDataQueue, ^{
+        [self addProgressIndicator];
         if (displayTypeView.routeButton.enabled) {
-            displayTypeView.routeButton.enabled = NO;
-            displayTypeView.stopButton.enabled = YES;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_mapView removeAnnotations:[_delegate getStops]];
             });
-            NSArray *routes = [_delegate getRoutes];
-            for (int i=0; i<[routes count]; i++) {
-                BusRoute *route = [routes objectAtIndex:i];
-                for (int j=0; j<[route.lines count]; j++) {
-                    lineSegment lineSeg;
-                    NSValue *value = [route.lines objectAtIndex:j];
-                    [value getValue:&lineSeg];
-                    MKPolyline *line = [MKPolyline polylineWithCoordinates:lineSeg.line count:lineSeg.count];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [_mapView addOverlay:(MKPolyline *)line];
-                    });
-                }
-            }
+            [_delegate showRoutes];
+            displayTypeView.routeButton.enabled = NO;
+            displayTypeView.stopButton.enabled = YES;
         } else if (displayTypeView.stopButton.enabled) {
-            displayTypeView.stopButton.enabled = NO;
+            for (BusRoute *busRoute in [_delegate getRoutes]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_mapView removeOverlays:busRoute.lines];
+                });
+            }
+            [_delegate showStops];
             displayTypeView.routeButton.enabled = YES;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSArray *routes = [_delegate getRoutes];
-                for (int i=0; i<[routes count]; i++) {
-                    BusRoute *route = [routes objectAtIndex:i];
-                    for (int j=0; j<[route.lines count]; j++) {
-                        lineSegment lineSeg;
-                        NSValue *value = [route.lines objectAtIndex:j];
-                        [value getValue:&lineSeg];
-                        MKPolyline *line = [MKPolyline polylineWithCoordinates:lineSeg.line count:lineSeg.count];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [_mapView removeOverlay:(MKPolyline *)line];
-                        });
-                    }
-                }
-                NSArray *stops = [_delegate getStops];
-                for (int i=0; i<[stops count]; i++) {
-                    [_mapView addAnnotation:(BusStop *)[stops objectAtIndex:i]];
-                }
-            });
+            displayTypeView.stopButton.enabled = NO;
         }
     });
+    dispatch_release(loadDataQueue);
 }
 
 #pragma MKMapViewDelegate Methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     static NSString *identifier = @"BusStop";
     if ([annotation isKindOfClass:[BusStop class]]) {
-        
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
@@ -316,6 +306,12 @@
     return nil;
 }
 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    loadingBusStopCounter--;
+    [self removeProgressIndicator];
+}
+
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     
     MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
@@ -326,11 +322,9 @@
     return polylineView;
 }
 
-//- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
-//- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
-//{
-//    NSLog(@"RegionCentreLatitude: %f Longitude: %f",mapView.region.center.latitude,mapView.region.center.longitude);
-//    NSLog(@"RegionSpanLattitudeDelta: %f LongitudeDelta: %f",mapView.region.span.latitudeDelta,mapView.region.span.longitudeDelta);
-//}
+- (void)mapView:(MKMapView *)mapView didAddOverlayViews:(NSArray *)overlayViews {
+    loadingBusRouteCounter--;
+    [self removeProgressIndicator];
+}
 
 @end

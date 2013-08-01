@@ -29,15 +29,11 @@ typedef struct lineSegment {
     NSDate *revDate;
     float shapeLen;
     NSString *socrateId;
-//    CLLocationCoordinate2D *coordinatesArray;
-//    NSArray *coordinatesArray;
 }
 
 @property (nonatomic, copy) NSString *title;
-@property (readonly) NSInteger count;
 @property (nonatomic, retain) NSArray *lines;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
-- (void)getCoordinates:(CLLocationCoordinate2D*)coordinates;
 
 @end

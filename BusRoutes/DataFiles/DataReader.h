@@ -15,6 +15,7 @@
 -(void)startProgressIndicator;
 -(void)endProgressIndicator;
 -(void)addBusStop:(BusStop*)busStop;
+-(void)addRoute:(BusRoute*)route;
 @end
 
 @interface DataReader : NSObject
@@ -25,6 +26,8 @@
 
 - (id)init;
 - (void)loadKMLData;
+- (void)showRoutes;
+- (void)showBusStops;
 
 @property (nonatomic, retain) NSArray *stops;
 @property (nonatomic, retain) NSArray *routes;
