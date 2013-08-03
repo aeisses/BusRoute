@@ -8,7 +8,7 @@
 
 #import "BusRoutesViewController.h"
 
-@interface BurrowZoomButtonsView (PrivateMethods)
+@interface HudZoomButtonsView (PrivateMethods)
 - (void)showMapViewController;
 @end;
 
@@ -61,7 +61,6 @@
 - (void)startProgressIndicator
 {
     [mapViewController disableGestures];
-//    [mapViewController addProgressIndicator];
     mapViewController.isDataLoading = YES;
 }
 

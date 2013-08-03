@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MovementButton.h"
 
-@protocol MovementButtonViewDelegate <NSObject>
-- (void)burrowZoomButtonTouched:(id)sender;
+@protocol HudZoomButtonsViewDelegate <NSObject>
+- (void)zoomButtonTouched:(id)sender;
 @end
 
-@interface BurrowZoomButtonsView : UIView
+@interface HudZoomButtonsView : UIView
 
 @property (retain, nonatomic) IBOutlet MovementButton *hrm;
 @property (retain, nonatomic) IBOutlet MovementButton *halifax;
@@ -25,11 +25,11 @@
 @property (retain, nonatomic) IBOutlet MovementButton *fairview;
 @property (retain, nonatomic) IBOutlet MovementButton *spryfield;
 
-@property (retain, nonatomic) id <MovementButtonViewDelegate> delegate;
+@property (retain, nonatomic) id <HudZoomButtonsViewDelegate> delegate;
 
 - (void)setButtons;
-- (void)hideViewAtFrame:(CGRect)frame;
-- (void)showViewAtFrame:(CGRect)frame;
 - (IBAction)touchUp:(id)sender;
+- (void)enableButtons;
+- (void)disableButtons;
 
 @end

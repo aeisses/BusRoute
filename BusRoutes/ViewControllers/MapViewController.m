@@ -26,35 +26,21 @@
         swipeUp.numberOfTouchesRequired = 1;
         swipeUp.direction = (UISwipeGestureRecognizerDirectionUp);
         
-        burrowZoomButtonView = [[[NSBundle mainBundle] loadNibNamed:@"BurrowZoomButtonsView" owner:self options:nil] objectAtIndex:0];
-        burrowZoomButtonView.delegate = self;
-        burrowZoomButtonView.frame = (CGRect){
-            self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
-            0-burrowZoomButtonView.frame.size.height,
-            burrowZoomButtonView.frame.size};
-        [burrowZoomButtonView setButtons];
-        [self.view addSubview:burrowZoomButtonView];
-        
-        displayTypeView = [[[NSBundle mainBundle] loadNibNamed:@"DisplayTypeView" owner:self options:nil] objectAtIndex:0];
-        displayTypeView.delegate = self;
-        displayTypeView.frame = (CGRect){
-            0,
-            0-displayTypeView.frame.size.height,
-            displayTypeView.frame.size
-        };
-        [displayTypeView setButtons];
-        [self.view addSubview:displayTypeView];
+        UIImage *image = [UIImage imageNamed:@"landscapeHudView"];
+        hudView = [[HudView alloc] initWithImage:image];
+        hudView.delegate = self;
+        hudView.frame = (CGRect){hudView.frame.origin.x, 0-hudView.frame.size.height, hudView.frame.size};
     }
     return self;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [super touchesBegan:touches withEvent:event];
     if (date != nil) {
         [date release];
         date = [[NSDate alloc] init];
     }
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)viewDidLoad
@@ -65,45 +51,19 @@
     _mapView.zoomEnabled = NO;
     [self.view addGestureRecognizer:swipeDown];
     [self.view addGestureRecognizer:swipeUp];
+    [self.view addSubview:hudView];
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(frameIntervalLoop:)];
     [displayLink setFrameInterval:15];
 }
 
 - (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture
 {
-    [burrowZoomButtonView showViewAtFrame:(CGRect){
-        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
-        0-burrowZoomButtonView.frame.size.height,
-        burrowZoomButtonView.frame.size
-    }];
-    [displayTypeView showViewAtFrame:(CGRect){
-        0,
-        0-displayTypeView.frame.size.height,
-        displayTypeView.frame.size
-    }];
+    [hudView hide];
 }
 
 - (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture
 {
-    burrowZoomButtonView.frame = (CGRect){
-        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
-        0-burrowZoomButtonView.frame.size.height,
-        burrowZoomButtonView.frame.size};
-    displayTypeView.frame = (CGRect){
-        0,
-        0-displayTypeView.frame.size.height,
-        displayTypeView.frame.size
-    };
-    [burrowZoomButtonView showViewAtFrame:(CGRect){
-        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
-        0,
-        burrowZoomButtonView.frame.size
-    }];
-    [displayTypeView showViewAtFrame:(CGRect){
-        0,
-        0,
-        displayTypeView.frame.size
-    }];
+    [hudView show];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -146,9 +106,11 @@
 - (void)addProgressIndicator
 {
     if (activityIndicator == nil) {
-        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
-        [activityIndicator hidesWhenStopped];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+            activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
+            [activityIndicator hidesWhenStopped];
+        });
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:activityIndicator];
@@ -184,27 +146,16 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    if (burrowZoomButtonView.frame.origin.y >= 0) {
-        burrowZoomButtonView.hidden = YES;
-        displayTypeView.hidden = YES;
+    if (hudView.frame.origin.y >= 0) {
+        hudView.hidden = YES;
     }
+    [hudView setOrientation:toInterfaceOrientation];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    if (burrowZoomButtonView.hidden) {
-        burrowZoomButtonView.frame = (CGRect){
-            self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
-            0,
-            burrowZoomButtonView.frame.size
-        };
-        displayTypeView.frame = (CGRect){
-            0,
-            0,
-            displayTypeView.frame.size
-        };
-        burrowZoomButtonView.hidden = NO;
-        displayTypeView.hidden = NO;
+    if (hudView.hidden) {
+        hudView.hidden = NO;
     }
     activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
 }
@@ -212,8 +163,8 @@
 - (void)dealloc
 {
     [super dealloc];
+    [hudView release];
     [_mapView release]; _mapView = nil;
-    [burrowZoomButtonView release]; burrowZoomButtonView = nil;
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
     _delegate = nil;
@@ -222,73 +173,53 @@
 #pragma Private Methods
 - (void)frameIntervalLoop:(CADisplayLink *)sender
 {
-    if (burrowZoomButtonView.frame.origin.y >= 0) {
+    if (hudView.frame.origin.y >= 0) {
         if (date == nil) {
             date = [[NSDate alloc] init];
         }
         if ([date timeIntervalSinceNow] < WINDOWS_AUTO_CLOSE) {
-            [burrowZoomButtonView showViewAtFrame:(CGRect){
-                self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
-                0-burrowZoomButtonView.frame.size.height,
-                burrowZoomButtonView.frame.size
-            }];
-            [displayTypeView showViewAtFrame:(CGRect){
-                0,
-                0-displayTypeView.frame.size.height,
-                displayTypeView.frame.size
-            }];
+            [hudView hide];
             [date release]; date = nil;
         }
     }
 }
 
 #pragma BurrowZoomButtonViewDelegate
-- (void)burrowZoomButtonTouched:(id)sender
+- (void)zoomButtonTouched:(id)sender
 {
     MovementButton *button = (MovementButton*)sender;
     [_mapView setRegion:[RegionZoomData getRegion:button.region] animated:NO];
-    [burrowZoomButtonView showViewAtFrame:(CGRect){
-        self.view.frame.size.width-burrowZoomButtonView.frame.size.width,
-        0-burrowZoomButtonView.frame.size.height,
-        burrowZoomButtonView.frame.size
-    }];
-    [displayTypeView showViewAtFrame:(CGRect){
-        0,
-        0-displayTypeView.frame.size.height,
-        displayTypeView.frame.size
-    }];
+    [hudView hide];
 }
 
 #pragma DisplayTypeViewDelegate
-- (void)displayTypeButtonPressed:(id)sender
+- (void)displayButtonPressed:(id)sender
 {
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
+        DisplayButton *button = (DisplayButton*)sender;
         [self addProgressIndicator];
-        if (displayTypeView.routeButton.enabled) {
+        if (button.displayType == routes) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_mapView removeAnnotations:[_delegate getStops]];
             });
             [_delegate showRoutes];
-            displayTypeView.routeButton.enabled = NO;
-            displayTypeView.stopButton.enabled = YES;
-        } else if (displayTypeView.stopButton.enabled) {
+        } else if (button.displayType == stops) {
             for (BusRoute *busRoute in [_delegate getRoutes]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [_mapView removeOverlays:busRoute.lines];
                 });
             }
             [_delegate showStops];
-            displayTypeView.routeButton.enabled = YES;
-            displayTypeView.stopButton.enabled = NO;
         }
     });
     dispatch_release(loadDataQueue);
+    [hudView hide];
 }
 
 #pragma MKMapViewDelegate Methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    static NSString *identifier = @"BusStop";
+    NSString *identifier = @"BusStop";
     if ([annotation isKindOfClass:[BusStop class]]) {
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {

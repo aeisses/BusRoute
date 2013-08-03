@@ -11,8 +11,7 @@
 #import "BusStop.h"
 #import "BusRoute.h"
 #import "RegionZoomData.h"
-#import "BurrowZoomButtonsView.h"
-#import "DisplayTypeView.h"
+#import "HudView.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -23,13 +22,12 @@
 - (void)showRoutes;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,MovementButtonViewDelegate,DisplayTypeViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,HudViewDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
-    BurrowZoomButtonsView *burrowZoomButtonView;
-    DisplayTypeView *displayTypeView;
     UIActivityIndicatorView *activityIndicator;
+    HudView *hudView;
     CADisplayLink *displayLink;
     NSDate *date;
     int loadingBusStopCounter;
