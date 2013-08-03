@@ -224,9 +224,9 @@
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
-            annotationView.enabled = YES;
-            annotationView.canShowCallout = YES;
-            annotationView.image = [UIImage imageNamed:@"arrest.png"];//here we use a nice image instead of the default pins
+            annotationView.enabled = NO;
+            annotationView.canShowCallout = NO;
+            annotationView.image = [UIImage imageNamed:@"stop.png"];//here we use a nice image instead of the default pins
         } else {
             annotationView.annotation = annotation;
         }

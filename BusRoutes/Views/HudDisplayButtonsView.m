@@ -34,6 +34,13 @@
 - (IBAction)buttonTouched:(id)sender
 {
     [_delegate displayButtonPressed:sender];
+    if (isStopButtonEnabled) {
+        isRouteButtonEnabled = YES;
+        isStopButtonEnabled = NO;
+    } else {
+        isRouteButtonEnabled = NO;
+        isStopButtonEnabled = YES;
+    }
 }
 
 - (void)enableButtons
