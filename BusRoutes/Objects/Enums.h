@@ -7,16 +7,17 @@
 //
 
 typedef enum {
-    trbsin,
-    trbsac,
-    trbssnac,
-    trbs,
-    trbsshac,
-    trbssh,
-    trpr,
-    trbstmac,
-    trbstm,
-    trbsshin
+    trbsin, // Bus Stop Inaccessible
+    trbsac, // Bus Stop Accessible
+    trbstmin, // Bus Terminal Inaccessible
+    trbs, // Bus Stop Non-Standard
+    trbsshac, // Bus Stop Shelter Accessible
+    trbssh, // Bus Stop Shelter Non-Standard
+    trpr, // Park and Ride
+    trbstmac, // Bus Terminal Accessible
+    trbstm, // Bus Terminal Non-Standard
+    trbsshin, // Bus Stop Shelter Inaccessible
+    tbrsml // Metro Link
 } FCODE;
 
 typedef enum {

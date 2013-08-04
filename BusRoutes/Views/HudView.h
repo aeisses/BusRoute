@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HudZoomButtonsView.h"
 #import "HudDisplayButtonsView.h"
+#import "HudStopsButtonsView.h"
 
 #define LANDSCAPE_WIDTH 1024
 #define PORTRAIT_WIDTH  768
@@ -20,10 +21,11 @@
 - (void)displayButtonPressed:(id)sender;
 @end
 
-@interface HudView : UIImageView <HudDisplayButtonViewDelegate,HudZoomButtonsViewDelegate>
+@interface HudView : UIImageView <HudDisplayButtonViewDelegate,HudZoomButtonsViewDelegate,HudStopsButtonViewDelegate>
 {
     HudDisplayButtonsView *dislpayButtonsView;
     HudZoomButtonsView *zoomButtonsView;
+    HudStopsButtonsView *stopsButtonsView;
 }
 
 @property (retain, nonatomic) id <HudViewDelegate> delegate;

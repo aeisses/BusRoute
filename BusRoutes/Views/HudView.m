@@ -34,6 +34,12 @@
         };
         [dislpayButtonsView setButtons];
         [self addSubview:dislpayButtonsView];
+        
+        stopsButtonsView = [[[[NSBundle mainBundle] loadNibNamed:@"HudStopsButtonsView" owner:self options:nil] objectAtIndex:0] retain];
+        stopsButtonsView.delegate = self;
+        stopsButtonsView.center = (CGPoint){self.frame.size.width/2,50};
+        [stopsButtonsView setButtons];
+        [self addSubview:stopsButtonsView];
     }
     return self;
 }
@@ -41,17 +47,22 @@
 - (void)setOrientation:(UIInterfaceOrientation)orientation
 {
     if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+        stopsButtonsView.center = (CGPoint){LANDSCAPE_WIDTH/2,50};
         [self setImage:[UIImage imageNamed:@"landscapeHudView"]];
+        self.frame = (CGRect){0,0,768,1024};
         zoomButtonsView.frame = (CGRect){
             LANDSCAPE_WIDTH-zoomButtonsView.frame.size.width,
             zoomButtonsView.frame.origin.y,
             zoomButtonsView.frame.size};
     } else if (orientation == UIInterfaceOrientationPortrait) {
+        stopsButtonsView.center = (CGPoint){PORTRAIT_WIDTH/2,50};
         [self setImage:[UIImage imageNamed:@"portraitHudView"]];
+        self.frame = (CGRect){0,0,1024,768};
         zoomButtonsView.frame = (CGRect){
             PORTRAIT_WIDTH-zoomButtonsView.frame.size.width,
             zoomButtonsView.frame.origin.y,
             zoomButtonsView.frame.size};
+//        stopsButtonsView.center = (CGPoint){self.frame.size.width/2,50};
     }
 }
 
@@ -87,6 +98,7 @@
 {
     [zoomButtonsView release]; zoomButtonsView = nil;
     [dislpayButtonsView release]; dislpayButtonsView = nil;
+    [stopsButtonsView release]; stopsButtonsView = nil;
     [super dealloc];
 }
 
@@ -96,11 +108,16 @@
     [_delegate zoomButtonTouched:sender];
 }
 
-#pragma HudDisplayButtonsView Methods
+#pragma HudDisplayButtonViewDelegate Methods
 - (void)displayButtonPressed:(id)sender
 {
     [_delegate displayButtonPressed:sender];
 }
 
+#pragma HudStopsButtonViewDelegate Methods
+- (void)stopsButtonPressed:(id)sender
+{
+    
+}
 
 @end

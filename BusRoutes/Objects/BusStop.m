@@ -21,9 +21,21 @@
         _title = title;
         _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         stopDescription = decription;
+        _routes = [NSArray array];
         [self parseStopDescription];
     }
     return self;
+}
+
+- (void)addRouteNumber:(NSNumber*)route
+{
+    if ([_routes indexOfObject:route] == NSNotFound) {
+        NSMutableArray *mRoutes = [[NSMutableArray alloc] initWithArray:_routes];
+        [mRoutes addObject:route];
+        [_routes release];
+        _routes = [[NSArray alloc] initWithArray:mRoutes];
+        [mRoutes release];
+    }
 }
 
 - (void)dealloc
@@ -33,6 +45,7 @@
     [stopDescription release];
     [date release];
     [address release];
+    [_routes release];
 }
 
 #pragma Private Methods
@@ -57,8 +70,8 @@
                     fcode = trbsin;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSAC"]) {
                     fcode = trbsac;
-                } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSNAC"]) {
-                    fcode = trbssnac;
+                } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSTMIN"]) {
+                    fcode = trbstmin;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBS"]) {
                     fcode = trbs;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSHAC"]) {
@@ -73,6 +86,8 @@
                     fcode = trbstm;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSHIN"]) {
                     fcode = trbsshin;
+                } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TBRSML"]) {
+                    fcode = tbrsml;
                 }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SOURCE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRANSIT"]) {
@@ -96,7 +111,7 @@
                 date = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
                 [formatter release];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"GOTIME"]) {
-                gotime = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
+                _goTime = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
                 address = (NSString *)[thisArray objectAtIndex:1];
             }

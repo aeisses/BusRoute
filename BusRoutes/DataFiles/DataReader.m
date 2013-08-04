@@ -9,6 +9,7 @@
 
 #define KMLBUSSTOPSURL @"https://www.halifaxopendata.ca/api/geospatial/xus8-fjzt?method=export&format=KML"
 #define KMLBUSROUTEURL @"https://www.halifaxopendata.ca/api/geospatial/y3cf-ivzs?method=export&format=KML"
+#define ESERVICENUMBER @"http://eservices.halifax.ca/GoTime/index.jsf?goTime="
 
 @interface DataReader (PrivateMethods)
 - (void)loadStopDataAndShow:(BOOL)show;
@@ -77,11 +78,28 @@
                 [mutableStops addObject:busStop];
                 if (show)
                     [delegate addBusStop:busStop];
+                // Get the go Time
+                NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%i",ESERVICENUMBER,busStop.goTime]];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                TFHpple *htmlParser = [TFHpple hppleWithHTMLData:data];
+
+                NSString *tutorialsXpathQueryString = @"//table[@id='avl_main_form:departure_table']/tbody/tr";
+                NSArray *tutorialsNodes = [htmlParser searchWithXPathQuery:tutorialsXpathQueryString];
+                for (TFHppleElement *element in tutorialsNodes) {
+                    [busStop addRouteNumber:[NSNumber numberWithInteger:[[[element firstChild] firstChild].content integerValue]]];
+                }
                 [busStop release];
             }
         }
         _stops = [[NSArray alloc] initWithArray:mutableStops];
     }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    //[responseData appendData:data];
+//    [webData appendData:data];
+    NSLog(@"Data: %@",data);
 }
 
 - (void)loadRouteDataAndShow:(BOOL)show

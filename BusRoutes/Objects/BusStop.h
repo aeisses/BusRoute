@@ -19,13 +19,15 @@
     SOURCE source;
     SACC sacc;
     NSDate *date;
-    NSInteger gotime;
     NSString *address;
 }
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (readonly) NSInteger goTime;
+@property (nonatomic, retain) NSArray *routes;
 
--(id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
+- (id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
+- (void)addRouteNumber:(NSNumber*)route;
 
 @end

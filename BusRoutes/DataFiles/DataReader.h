@@ -10,6 +10,7 @@
 #import <KML/KML.h>
 #import "BusStop.h"
 #import "BusRoute.h"
+#import "TFHpple.h"
 
 @protocol DataReaderDelegate <NSObject>
 -(void)startProgressIndicator;
@@ -18,7 +19,7 @@
 -(void)addRoute:(BusRoute*)route;
 @end
 
-@interface DataReader : NSObject
+@interface DataReader : NSObject <NSURLConnectionDelegate>
 {
     NSURL *stopsUrl;
     NSURL *routesUrl;
