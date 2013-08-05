@@ -65,44 +65,28 @@
 #pragma Private Methods
 - (void)loadStopDataAndShow:(BOOL)show
 {
-    NSDictionary *dictonary = [[NSDictionary alloc] initWithContentsOfFile:@"Sample.plist"];
+    NSDictionary *dictonary = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"plist"]];
     if (_stops != nil && show) {
         for (BusStop *busStop in _stops) {
             [delegate addBusStop:busStop];
         }
     } else if (_stops == nil) {
         KMLRoot *kmlStops = [KMLParser parseKMLAtURL:stopsUrl];
+        if (kmlStops == nil)
+            kmlStops = [KMLParser parseKMLAtPath:[[NSBundle mainBundle] pathForResource:@"Bus Stops" ofType:@"kml"]];
         NSMutableArray *mutableStops = [NSMutableArray array];
         for (KMLPlacemark *placemark in kmlStops.placemarks) {
             if (placemark.geometry && placemark.name) {
                 BusStop *busStop = [[BusStop alloc] initWithTitle:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry];
                 [mutableStops addObject:busStop];
-                if (show)
-                    [delegate addBusStop:busStop];
-                // Get the go Time
-/*                NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%i",ESERVICENUMBER,busStop.goTime]];
-                NSData *data = [NSData dataWithContentsOfURL:url];
-                TFHpple *htmlParser = [TFHpple hppleWithHTMLData:data];
-
-                NSString *tutorialsXpathQueryString = @"//table[@id='avl_main_form:departure_table']/tbody/tr";
-                NSArray *tutorialsNodes = [htmlParser searchWithXPathQuery:tutorialsXpathQueryString];
-                for (TFHppleElement *element in tutorialsNodes) {
-                    [busStop addRouteNumber:[NSNumber numberWithInteger:[[[element firstChild] firstChild].content integerValue]]];
-                }
- */
                 busStop.routes = (NSArray*)[dictonary objectForKey:[NSString stringWithFormat:@"%i",busStop.goTime]];
                 [busStop release];
+                if (show)
+                    [delegate addBusStop:busStop];
             }
         }
         _stops = [[NSArray alloc] initWithArray:mutableStops];
     }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    //[responseData appendData:data];
-//    [webData appendData:data];
-    NSLog(@"Data: %@",data);
 }
 
 - (void)loadRouteDataAndShow:(BOOL)show
@@ -113,6 +97,8 @@
         }
     } else if (_routes == nil) {
         KMLRoot *kmlRoutes = [KMLParser parseKMLAtURL:routesUrl];
+        if (!kmlRoutes)
+            kmlRoutes = [KMLParser parseKMLAtPath:[[NSBundle mainBundle] pathForResource:@"Bus Routes" ofType:@"kml"]];
         NSMutableArray *mutableRoutes = [NSMutableArray array];
         for (KMLPlacemark *placemark in kmlRoutes.placemarks) {
             if (placemark.geometry && placemark.name) {

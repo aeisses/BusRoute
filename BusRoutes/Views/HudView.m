@@ -124,7 +124,7 @@
 #pragma HudStopsButtonViewDelegate Methods
 - (void)stopsButtonPressed:(id)sender
 {
-    
+    [_delegate stopsButtonPressed:sender];
 }
 
 @end

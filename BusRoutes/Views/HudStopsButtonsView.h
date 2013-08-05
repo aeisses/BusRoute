@@ -17,6 +17,8 @@
     
 }
 
+@property (retain, nonatomic) IBOutlet UIButton *button;
+
 @property (retain, nonatomic) id <HudStopsButtonViewDelegate> delegate;
 
 - (void)setButtons;

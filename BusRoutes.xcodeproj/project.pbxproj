@@ -35,6 +35,9 @@
 		04BA64D917AF2C83001D4B56 /* dot10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64CF17AF2C83001D4B56 /* dot10@2x.png */; };
 		04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64DA17AF39EF001D4B56 /* sample.plist */; };
 		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
+		04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109417AFE02700D194AC /* Bus Routes.kml */; };
+		04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109617AFE02D00D194AC /* Bus Stops.kml */; };
+		04C8109917AFE0EC00D194AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */; };
 		04CACFBA17AC665B004EE283 /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFB917AC665B004EE283 /* HudView.m */; };
 		04CACFC117AD43E2004EE283 /* DisplayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFC017AD43E2004EE283 /* DisplayButton.m */; };
 		04CACFC417AD651F004EE283 /* landscapeHudView.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC217AD651F004EE283 /* landscapeHudView.png */; };
@@ -104,6 +107,9 @@
 		04BA64CF17AF2C83001D4B56 /* dot10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot10@2x.png"; sourceTree = "<group>"; };
 		04BA64DA17AF39EF001D4B56 /* sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sample.plist; sourceTree = "<group>"; };
 		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
+		04C8109417AFE02700D194AC /* Bus Routes.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Routes.kml"; sourceTree = "<group>"; };
+		04C8109617AFE02D00D194AC /* Bus Stops.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Stops.kml"; sourceTree = "<group>"; };
+		04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		04CACFB817AC665B004EE283 /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudView.h; sourceTree = "<group>"; };
 		04CACFB917AC665B004EE283 /* HudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudView.m; sourceTree = "<group>"; };
 		04CACFBF17AD43E2004EE283 /* DisplayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayButton.h; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C8109917AFE0EC00D194AC /* SystemConfiguration.framework in Frameworks */,
 				04CACFDB17ADE30F004EE283 /* libxml2.2.dylib in Frameworks */,
 				04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */,
 				04DA2AA5179E116400EF177B /* MapKit.framework in Frameworks */,
@@ -244,6 +251,8 @@
 		04CFB8E817A1F36A003E56E9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04C8109617AFE02D00D194AC /* Bus Stops.kml */,
+				04C8109417AFE02700D194AC /* Bus Routes.kml */,
 				04BA64DA17AF39EF001D4B56 /* sample.plist */,
 				04BA64C617AF2C83001D4B56 /* dot1@2x.png */,
 				04BA64C717AF2C83001D4B56 /* dot2@2x.png */,
@@ -322,6 +331,7 @@
 		04DA2A6D179DE91200EF177B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */,
 				04CACFD917ADE30F004EE283 /* libxml2.2.dylib */,
 				04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */,
 				04BF6235179F35CB008380FD /* KML.framework */,
@@ -453,6 +463,8 @@
 				04BA64D817AF2C83001D4B56 /* dot9@2x.png in Resources */,
 				04BA64D917AF2C83001D4B56 /* dot10@2x.png in Resources */,
 				04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */,
+				04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */,
+				04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

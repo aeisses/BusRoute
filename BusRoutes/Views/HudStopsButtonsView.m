@@ -24,6 +24,9 @@
     
 }
 
-
+- (IBAction)touchButton:(id)sender
+{
+    [_delegate stopsButtonPressed:sender];
+}
 
 @end

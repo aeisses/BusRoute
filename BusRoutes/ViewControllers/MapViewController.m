@@ -186,7 +186,7 @@
     }
 }
 
-#pragma BurrowZoomButtonViewDelegate
+#pragma HudViewDelegate Methods
 - (void)zoomButtonTouched:(id)sender
 {
     MovementButton *button = (MovementButton*)sender;
@@ -194,7 +194,6 @@
     [hudView hide];
 }
 
-#pragma DisplayTypeViewDelegate
 - (void)displayButtonPressed:(id)sender
 {
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
@@ -219,6 +218,20 @@
     [hudView hide];
 }
 
+- (void)stopsButtonPressed:(id)sender
+{
+    [self addProgressIndicator];
+    if (showNumberOfRoutesStops) {
+        showNumberOfRoutesStops = NO;
+    } else {
+        showNumberOfRoutesStops = YES;
+    }
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        [_mapView removeAnnotations:[_delegate getStops]];
+//    });
+    [_delegate showStops];
+}
+
 #pragma MKMapViewDelegate Methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BusStop class]]) {
@@ -234,7 +247,14 @@
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
             annotationView.enabled = NO;
             annotationView.canShowCallout = NO;
-            annotationView.image = [UIImage imageNamed:@"stop.png"];//here we use a nice image instead of the default pins
+            NSString *imageName;
+            if (!showNumberOfRoutesStops) {
+                imageName = @"stop.png";
+            } else {
+                BusStop *busStop = (BusStop*)annotation;
+                imageName = [NSString stringWithFormat:@"dot%i.png",[busStop.routes count]];
+            }
+            annotationView.image = [UIImage imageNamed:imageName];//here we use a nice image instead of the default pins
         } else {
             annotationView.annotation = annotation;
         }

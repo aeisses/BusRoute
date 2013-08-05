@@ -19,6 +19,7 @@
 @protocol HudViewDelegate <NSObject>
 - (void)zoomButtonTouched:(id)sender;
 - (void)displayButtonPressed:(id)sender;
+- (void)stopsButtonPressed:(id)sender;
 @end
 
 @interface HudView : UIImageView <HudDisplayButtonViewDelegate,HudZoomButtonsViewDelegate,HudStopsButtonViewDelegate>

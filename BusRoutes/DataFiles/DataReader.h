@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <KML/KML.h>
+#import <SystemConfiguration/SystemConfiguration.h>
 #import "BusStop.h"
 #import "BusRoute.h"
 #import "TFHpple.h"
