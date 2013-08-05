@@ -30,6 +30,8 @@
         hudView = [[HudView alloc] initWithImage:image];
         hudView.delegate = self;
         hudView.frame = (CGRect){hudView.frame.origin.x, 0-hudView.frame.size.height, hudView.frame.size};
+        
+        showNumberOfRoutesStops = NO;
     }
     return self;
 }
@@ -219,8 +221,14 @@
 
 #pragma MKMapViewDelegate Methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    NSString *identifier = @"BusStop";
     if ([annotation isKindOfClass:[BusStop class]]) {
+        NSString *identifier;
+        if (!showNumberOfRoutesStops) {
+            identifier = @"BusStop";
+        } else {
+            BusStop *busStop = (BusStop*)annotation;
+            identifier = [NSString stringWithFormat:@"BusStop%i",[busStop.routes count]];
+        }
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
@@ -230,10 +238,8 @@
         } else {
             annotationView.annotation = annotation;
         }
-        
         return annotationView;
     }
-    
     return nil;
 }
 

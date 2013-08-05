@@ -47,22 +47,29 @@
 - (void)setOrientation:(UIInterfaceOrientation)orientation
 {
     if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
-        stopsButtonsView.center = (CGPoint){LANDSCAPE_WIDTH/2,50};
         [self setImage:[UIImage imageNamed:@"landscapeHudView"]];
-        self.frame = (CGRect){0,0,768,1024};
+        if (self.hidden) {
+            self.frame = (CGRect){0,0,1024,500};
+        } else {
+            self.frame = (CGRect){0,-500,1024,500};
+        }
+        stopsButtonsView.center = (CGPoint){LANDSCAPE_WIDTH/2,50};
         zoomButtonsView.frame = (CGRect){
-            LANDSCAPE_WIDTH-zoomButtonsView.frame.size.width,
+            LANDSCAPE_WIDTH-150,
             zoomButtonsView.frame.origin.y,
             zoomButtonsView.frame.size};
     } else if (orientation == UIInterfaceOrientationPortrait) {
-        stopsButtonsView.center = (CGPoint){PORTRAIT_WIDTH/2,50};
         [self setImage:[UIImage imageNamed:@"portraitHudView"]];
-        self.frame = (CGRect){0,0,1024,768};
+        if (self.hidden) {
+            self.frame = (CGRect){0,0,768,500};
+        } else {
+            self.frame = (CGRect){0,-500,768,500};
+        }
+        stopsButtonsView.center = (CGPoint){PORTRAIT_WIDTH/2,50};
         zoomButtonsView.frame = (CGRect){
-            PORTRAIT_WIDTH-zoomButtonsView.frame.size.width,
+            PORTRAIT_WIDTH-150,
             zoomButtonsView.frame.origin.y,
             zoomButtonsView.frame.size};
-//        stopsButtonsView.center = (CGPoint){self.frame.size.width/2,50};
     }
 }
 

@@ -32,6 +32,7 @@
     NSDate *date;
     int loadingBusStopCounter;
     int loadingBusRouteCounter;
+    BOOL showNumberOfRoutesStops;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;

@@ -65,6 +65,7 @@
 #pragma Private Methods
 - (void)loadStopDataAndShow:(BOOL)show
 {
+    NSDictionary *dictonary = [[NSDictionary alloc] initWithContentsOfFile:@"Sample.plist"];
     if (_stops != nil && show) {
         for (BusStop *busStop in _stops) {
             [delegate addBusStop:busStop];
@@ -79,7 +80,7 @@
                 if (show)
                     [delegate addBusStop:busStop];
                 // Get the go Time
-                NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%i",ESERVICENUMBER,busStop.goTime]];
+/*                NSURL *url = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"%@%i",ESERVICENUMBER,busStop.goTime]];
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 TFHpple *htmlParser = [TFHpple hppleWithHTMLData:data];
 
@@ -88,6 +89,8 @@
                 for (TFHppleElement *element in tutorialsNodes) {
                     [busStop addRouteNumber:[NSNumber numberWithInteger:[[[element firstChild] firstChild].content integerValue]]];
                 }
+ */
+                busStop.routes = (NSArray*)[dictonary objectForKey:[NSString stringWithFormat:@"%i",busStop.goTime]];
                 [busStop release];
             }
         }
