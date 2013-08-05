@@ -7,6 +7,58 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04BA5CE117A40E4700EDEE4C /* BusRoutesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE017A40E4700EDEE4C /* BusRoutesNavigationController.m */; };
+		04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */; };
+		04BA5CE617A5CE9A00EDEE4C /* HudZoomButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE317A5C8E800EDEE4C /* HudZoomButtonsView.m */; };
+		04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */; };
+		04BA5CEC17A5F15500EDEE4C /* HudDisplayButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BA5CEB17A5F15500EDEE4C /* HudDisplayButtonsView.xib */; };
+		04BA5CEF17A5F22F00EDEE4C /* HudDisplayButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CEE17A5F22F00EDEE4C /* HudDisplayButtonsView.m */; };
+		04BA64BC17AF2C79001D4B56 /* dot1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B217AF2C79001D4B56 /* dot1.png */; };
+		04BA64BD17AF2C79001D4B56 /* dot2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B317AF2C79001D4B56 /* dot2.png */; };
+		04BA64BE17AF2C79001D4B56 /* dot3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B417AF2C79001D4B56 /* dot3.png */; };
+		04BA64BF17AF2C79001D4B56 /* dot4.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B517AF2C79001D4B56 /* dot4.png */; };
+		04BA64C017AF2C79001D4B56 /* dot5.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B617AF2C79001D4B56 /* dot5.png */; };
+		04BA64C117AF2C79001D4B56 /* dot6.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B717AF2C79001D4B56 /* dot6.png */; };
+		04BA64C217AF2C79001D4B56 /* dot7.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B817AF2C79001D4B56 /* dot7.png */; };
+		04BA64C317AF2C79001D4B56 /* dot8.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64B917AF2C79001D4B56 /* dot8.png */; };
+		04BA64C417AF2C79001D4B56 /* dot9.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64BA17AF2C79001D4B56 /* dot9.png */; };
+		04BA64C517AF2C79001D4B56 /* dot10.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64BB17AF2C79001D4B56 /* dot10.png */; };
+		04BA64D017AF2C83001D4B56 /* dot1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64C617AF2C83001D4B56 /* dot1@2x.png */; };
+		04BA64D117AF2C83001D4B56 /* dot2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64C717AF2C83001D4B56 /* dot2@2x.png */; };
+		04BA64D217AF2C83001D4B56 /* dot3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64C817AF2C83001D4B56 /* dot3@2x.png */; };
+		04BA64D317AF2C83001D4B56 /* dot4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64C917AF2C83001D4B56 /* dot4@2x.png */; };
+		04BA64D417AF2C83001D4B56 /* dot5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64CA17AF2C83001D4B56 /* dot5@2x.png */; };
+		04BA64D517AF2C83001D4B56 /* dot6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64CB17AF2C83001D4B56 /* dot6@2x.png */; };
+		04BA64D617AF2C83001D4B56 /* dot7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64CC17AF2C83001D4B56 /* dot7@2x.png */; };
+		04BA64D717AF2C83001D4B56 /* dot8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64CD17AF2C83001D4B56 /* dot8@2x.png */; };
+		04BA64D817AF2C83001D4B56 /* dot9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64CE17AF2C83001D4B56 /* dot9@2x.png */; };
+		04BA64D917AF2C83001D4B56 /* dot10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64CF17AF2C83001D4B56 /* dot10@2x.png */; };
+		04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64DA17AF39EF001D4B56 /* sample.plist */; };
+		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
+		04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109417AFE02700D194AC /* Bus Routes.kml */; };
+		04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109617AFE02D00D194AC /* Bus Stops.kml */; };
+		04C8109917AFE0EC00D194AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */; };
+		04CACFBA17AC665B004EE283 /* HudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFB917AC665B004EE283 /* HudView.m */; };
+		04CACFC117AD43E2004EE283 /* DisplayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFC017AD43E2004EE283 /* DisplayButton.m */; };
+		04CACFC417AD651F004EE283 /* landscapeHudView.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC217AD651F004EE283 /* landscapeHudView.png */; };
+		04CACFC517AD651F004EE283 /* portraitHudView.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC317AD651F004EE283 /* portraitHudView.png */; };
+		04CACFC717ADC817004EE283 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC617ADC817004EE283 /* stop.png */; };
+		04CACFC917ADC906004EE283 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC817ADC906004EE283 /* stop@2x.png */; };
+		04CACFCC17ADCEAB004EE283 /* HudStopsButtonsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFCB17ADCEAB004EE283 /* HudStopsButtonsView.m */; };
+		04CACFCE17ADCECD004EE283 /* HudStopsButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFCD17ADCECD004EE283 /* HudStopsButtonsView.xib */; };
+		04CACFD617ADE121004EE283 /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFD117ADE121004EE283 /* TFHpple.m */; };
+		04CACFD717ADE121004EE283 /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFD317ADE121004EE283 /* TFHppleElement.m */; };
+		04CACFD817ADE121004EE283 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFD517ADE121004EE283 /* XPathQuery.m */; };
+		04CACFDB17ADE30F004EE283 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CACFD917ADE30F004EE283 /* libxml2.2.dylib */; };
+		04CFB8DF17A1F360003E56E9 /* DataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DC17A1F360003E56E9 /* DataReader.m */; };
+		04CFB8E017A1F360003E56E9 /* RegionZoomData.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */; };
+		04CFB8F317A1F36A003E56E9 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8E717A1F36A003E56E9 /* BusStop.m */; };
+		04CFB8F417A1F36A003E56E9 /* arrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8E917A1F36A003E56E9 /* arrest.png */; };
+		04CFB8F517A1F36A003E56E9 /* BusRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */; };
+		04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EE17A1F36A003E56E9 /* MapViewController.m */; };
+		04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8F817A1F38E003E56E9 /* MapViewController.xib */; };
+		04CFB8FB17A1F3F8003E56E9 /* HudZoomButtonsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8FA17A1F3F8003E56E9 /* HudZoomButtonsView.xib */; };
+		04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8FD17A1F440003E56E9 /* MovementButton.m */; };
 		04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A6E179DE91200EF177B /* UIKit.framework */; };
 		04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A70179DE91200EF177B /* Foundation.framework */; };
 		04DA2A73179DE91200EF177B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A72179DE91200EF177B /* CoreGraphics.framework */; };
@@ -16,11 +68,81 @@
 		04DA2A81179DE91200EF177B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A80179DE91200EF177B /* Default.png */; };
 		04DA2A83179DE91200EF177B /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A82179DE91200EF177B /* Default@2x.png */; };
 		04DA2A85179DE91200EF177B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A84179DE91200EF177B /* Default-568h@2x.png */; };
-		04DA2A88179DE91200EF177B /* BusRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DA2A87179DE91200EF177B /* BusRoutesViewController.m */; };
 		04DA2A8B179DE91200EF177B /* BusRoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04DA2A89179DE91200EF177B /* BusRoutesViewController.xib */; };
+		04DA2AA3179E113A00EF177B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2AA2179E113A00EF177B /* CoreLocation.framework */; };
+		04DA2AA5179E116400EF177B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2AA4179E116400EF177B /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04BA5CDF17A40E4700EDEE4C /* BusRoutesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoutesNavigationController.h; sourceTree = "<group>"; };
+		04BA5CE017A40E4700EDEE4C /* BusRoutesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoutesNavigationController.m; sourceTree = "<group>"; };
+		04BA5CE217A5C8E800EDEE4C /* HudZoomButtonsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HudZoomButtonsView.h; sourceTree = "<group>"; };
+		04BA5CE317A5C8E800EDEE4C /* HudZoomButtonsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HudZoomButtonsView.m; sourceTree = "<group>"; };
+		04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		04BA5CE717A5DA3D00EDEE4C /* BusRoute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoute.h; sourceTree = "<group>"; };
+		04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoute.m; sourceTree = "<group>"; };
+		04BA5CEA17A5E0E400EDEE4C /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
+		04BA5CEB17A5F15500EDEE4C /* HudDisplayButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HudDisplayButtonsView.xib; sourceTree = "<group>"; };
+		04BA5CED17A5F22F00EDEE4C /* HudDisplayButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudDisplayButtonsView.h; sourceTree = "<group>"; };
+		04BA5CEE17A5F22F00EDEE4C /* HudDisplayButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudDisplayButtonsView.m; sourceTree = "<group>"; };
+		04BA64B217AF2C79001D4B56 /* dot1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot1.png; sourceTree = "<group>"; };
+		04BA64B317AF2C79001D4B56 /* dot2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot2.png; sourceTree = "<group>"; };
+		04BA64B417AF2C79001D4B56 /* dot3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot3.png; sourceTree = "<group>"; };
+		04BA64B517AF2C79001D4B56 /* dot4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot4.png; sourceTree = "<group>"; };
+		04BA64B617AF2C79001D4B56 /* dot5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot5.png; sourceTree = "<group>"; };
+		04BA64B717AF2C79001D4B56 /* dot6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot6.png; sourceTree = "<group>"; };
+		04BA64B817AF2C79001D4B56 /* dot7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot7.png; sourceTree = "<group>"; };
+		04BA64B917AF2C79001D4B56 /* dot8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot8.png; sourceTree = "<group>"; };
+		04BA64BA17AF2C79001D4B56 /* dot9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot9.png; sourceTree = "<group>"; };
+		04BA64BB17AF2C79001D4B56 /* dot10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dot10.png; sourceTree = "<group>"; };
+		04BA64C617AF2C83001D4B56 /* dot1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot1@2x.png"; sourceTree = "<group>"; };
+		04BA64C717AF2C83001D4B56 /* dot2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot2@2x.png"; sourceTree = "<group>"; };
+		04BA64C817AF2C83001D4B56 /* dot3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot3@2x.png"; sourceTree = "<group>"; };
+		04BA64C917AF2C83001D4B56 /* dot4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot4@2x.png"; sourceTree = "<group>"; };
+		04BA64CA17AF2C83001D4B56 /* dot5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot5@2x.png"; sourceTree = "<group>"; };
+		04BA64CB17AF2C83001D4B56 /* dot6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot6@2x.png"; sourceTree = "<group>"; };
+		04BA64CC17AF2C83001D4B56 /* dot7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot7@2x.png"; sourceTree = "<group>"; };
+		04BA64CD17AF2C83001D4B56 /* dot8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot8@2x.png"; sourceTree = "<group>"; };
+		04BA64CE17AF2C83001D4B56 /* dot9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot9@2x.png"; sourceTree = "<group>"; };
+		04BA64CF17AF2C83001D4B56 /* dot10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dot10@2x.png"; sourceTree = "<group>"; };
+		04BA64DA17AF39EF001D4B56 /* sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sample.plist; sourceTree = "<group>"; };
+		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
+		04C8109417AFE02700D194AC /* Bus Routes.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Routes.kml"; sourceTree = "<group>"; };
+		04C8109617AFE02D00D194AC /* Bus Stops.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Stops.kml"; sourceTree = "<group>"; };
+		04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		04CACFB817AC665B004EE283 /* HudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudView.h; sourceTree = "<group>"; };
+		04CACFB917AC665B004EE283 /* HudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudView.m; sourceTree = "<group>"; };
+		04CACFBF17AD43E2004EE283 /* DisplayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayButton.h; sourceTree = "<group>"; };
+		04CACFC017AD43E2004EE283 /* DisplayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayButton.m; sourceTree = "<group>"; };
+		04CACFC217AD651F004EE283 /* landscapeHudView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landscapeHudView.png; sourceTree = "<group>"; };
+		04CACFC317AD651F004EE283 /* portraitHudView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portraitHudView.png; sourceTree = "<group>"; };
+		04CACFC617ADC817004EE283 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		04CACFC817ADC906004EE283 /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
+		04CACFCA17ADCEAB004EE283 /* HudStopsButtonsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HudStopsButtonsView.h; sourceTree = "<group>"; };
+		04CACFCB17ADCEAB004EE283 /* HudStopsButtonsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HudStopsButtonsView.m; sourceTree = "<group>"; };
+		04CACFCD17ADCECD004EE283 /* HudStopsButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HudStopsButtonsView.xib; sourceTree = "<group>"; };
+		04CACFD017ADE121004EE283 /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHpple.h; sourceTree = "<group>"; };
+		04CACFD117ADE121004EE283 /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHpple.m; sourceTree = "<group>"; };
+		04CACFD217ADE121004EE283 /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFHppleElement.h; sourceTree = "<group>"; };
+		04CACFD317ADE121004EE283 /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFHppleElement.m; sourceTree = "<group>"; };
+		04CACFD417ADE121004EE283 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		04CACFD517ADE121004EE283 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		04CACFD917ADE30F004EE283 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		04CFB8DB17A1F360003E56E9 /* DataReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataReader.h; sourceTree = "<group>"; };
+		04CFB8DC17A1F360003E56E9 /* DataReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataReader.m; sourceTree = "<group>"; };
+		04CFB8DD17A1F360003E56E9 /* RegionZoomData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionZoomData.h; sourceTree = "<group>"; };
+		04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionZoomData.m; sourceTree = "<group>"; };
+		04CFB8E617A1F36A003E56E9 /* BusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStop.h; sourceTree = "<group>"; };
+		04CFB8E717A1F36A003E56E9 /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
+		04CFB8E917A1F36A003E56E9 /* arrest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrest.png; sourceTree = "<group>"; };
+		04CFB8EB17A1F36A003E56E9 /* BusRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoutesViewController.h; sourceTree = "<group>"; };
+		04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoutesViewController.m; sourceTree = "<group>"; };
+		04CFB8ED17A1F36A003E56E9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		04CFB8EE17A1F36A003E56E9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		04CFB8F817A1F38E003E56E9 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		04CFB8FA17A1F3F8003E56E9 /* HudZoomButtonsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HudZoomButtonsView.xib; sourceTree = "<group>"; };
+		04CFB8FC17A1F440003E56E9 /* MovementButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementButton.h; sourceTree = "<group>"; };
+		04CFB8FD17A1F440003E56E9 /* MovementButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementButton.m; sourceTree = "<group>"; };
 		04DA2A6B179DE91200EF177B /* BusRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DA2A6E179DE91200EF177B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04DA2A70179DE91200EF177B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -34,9 +156,9 @@
 		04DA2A80179DE91200EF177B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		04DA2A82179DE91200EF177B /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		04DA2A84179DE91200EF177B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		04DA2A86179DE91200EF177B /* BusRoutesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BusRoutesViewController.h; sourceTree = "<group>"; };
-		04DA2A87179DE91200EF177B /* BusRoutesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BusRoutesViewController.m; sourceTree = "<group>"; };
 		04DA2A8A179DE91200EF177B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BusRoutesViewController.xib; sourceTree = "<group>"; };
+		04DA2AA2179E113A00EF177B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		04DA2AA4179E116400EF177B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,15 +166,151 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C8109917AFE0EC00D194AC /* SystemConfiguration.framework in Frameworks */,
+				04CACFDB17ADE30F004EE283 /* libxml2.2.dylib in Frameworks */,
+				04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */,
+				04DA2AA5179E116400EF177B /* MapKit.framework in Frameworks */,
+				04DA2AA3179E113A00EF177B /* CoreLocation.framework in Frameworks */,
 				04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */,
 				04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */,
 				04DA2A73179DE91200EF177B /* CoreGraphics.framework in Frameworks */,
+				04BF6236179F35CB008380FD /* KML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04CACFCF17ADE120004EE283 /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				04CACFD017ADE121004EE283 /* TFHpple.h */,
+				04CACFD117ADE121004EE283 /* TFHpple.m */,
+				04CACFD217ADE121004EE283 /* TFHppleElement.h */,
+				04CACFD317ADE121004EE283 /* TFHppleElement.m */,
+				04CACFD417ADE121004EE283 /* XPathQuery.h */,
+				04CACFD517ADE121004EE283 /* XPathQuery.m */,
+			);
+			path = Hpple;
+			sourceTree = "<group>";
+		};
+		04CFB8DA17A1F360003E56E9 /* DataFiles */ = {
+			isa = PBXGroup;
+			children = (
+				04CFB8DB17A1F360003E56E9 /* DataReader.h */,
+				04CFB8DC17A1F360003E56E9 /* DataReader.m */,
+				04CFB8DD17A1F360003E56E9 /* RegionZoomData.h */,
+				04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */,
+			);
+			path = DataFiles;
+			sourceTree = "<group>";
+		};
+		04CFB8E117A1F36A003E56E9 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				04CFB8E317A1F36A003E56E9 /* ViewController */,
+				04CFB8E417A1F36A003E56E9 /* Views */,
+			);
+			path = Nibs;
+			sourceTree = "<group>";
+		};
+		04CFB8E317A1F36A003E56E9 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04CFB8F817A1F38E003E56E9 /* MapViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		04CFB8E417A1F36A003E56E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04CFB8FA17A1F3F8003E56E9 /* HudZoomButtonsView.xib */,
+				04BA5CEB17A5F15500EDEE4C /* HudDisplayButtonsView.xib */,
+				04CACFCD17ADCECD004EE283 /* HudStopsButtonsView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04CFB8E517A1F36A003E56E9 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				04CFB8E617A1F36A003E56E9 /* BusStop.h */,
+				04CFB8E717A1F36A003E56E9 /* BusStop.m */,
+				04CFB8FC17A1F440003E56E9 /* MovementButton.h */,
+				04CFB8FD17A1F440003E56E9 /* MovementButton.m */,
+				04BA5CE717A5DA3D00EDEE4C /* BusRoute.h */,
+				04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */,
+				04BA5CEA17A5E0E400EDEE4C /* Enums.h */,
+				04CACFBF17AD43E2004EE283 /* DisplayButton.h */,
+				04CACFC017AD43E2004EE283 /* DisplayButton.m */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		04CFB8E817A1F36A003E56E9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04C8109617AFE02D00D194AC /* Bus Stops.kml */,
+				04C8109417AFE02700D194AC /* Bus Routes.kml */,
+				04BA64DA17AF39EF001D4B56 /* sample.plist */,
+				04BA64C617AF2C83001D4B56 /* dot1@2x.png */,
+				04BA64C717AF2C83001D4B56 /* dot2@2x.png */,
+				04BA64C817AF2C83001D4B56 /* dot3@2x.png */,
+				04BA64C917AF2C83001D4B56 /* dot4@2x.png */,
+				04BA64CA17AF2C83001D4B56 /* dot5@2x.png */,
+				04BA64CB17AF2C83001D4B56 /* dot6@2x.png */,
+				04BA64CC17AF2C83001D4B56 /* dot7@2x.png */,
+				04BA64CD17AF2C83001D4B56 /* dot8@2x.png */,
+				04BA64CE17AF2C83001D4B56 /* dot9@2x.png */,
+				04BA64CF17AF2C83001D4B56 /* dot10@2x.png */,
+				04BA64B217AF2C79001D4B56 /* dot1.png */,
+				04BA64B317AF2C79001D4B56 /* dot2.png */,
+				04BA64B417AF2C79001D4B56 /* dot3.png */,
+				04BA64B517AF2C79001D4B56 /* dot4.png */,
+				04BA64B617AF2C79001D4B56 /* dot5.png */,
+				04BA64B717AF2C79001D4B56 /* dot6.png */,
+				04BA64B817AF2C79001D4B56 /* dot7.png */,
+				04BA64B917AF2C79001D4B56 /* dot8.png */,
+				04BA64BA17AF2C79001D4B56 /* dot9.png */,
+				04BA64BB17AF2C79001D4B56 /* dot10.png */,
+				04CACFC817ADC906004EE283 /* stop@2x.png */,
+				04CACFC617ADC817004EE283 /* stop.png */,
+				04CACFC217AD651F004EE283 /* landscapeHudView.png */,
+				04CACFC317AD651F004EE283 /* portraitHudView.png */,
+				04CFB8E917A1F36A003E56E9 /* arrest.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		04CFB8EA17A1F36A003E56E9 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				04CFB8EB17A1F36A003E56E9 /* BusRoutesViewController.h */,
+				04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */,
+				04CFB8ED17A1F36A003E56E9 /* MapViewController.h */,
+				04CFB8EE17A1F36A003E56E9 /* MapViewController.m */,
+				04BA5CDF17A40E4700EDEE4C /* BusRoutesNavigationController.h */,
+				04BA5CE017A40E4700EDEE4C /* BusRoutesNavigationController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		04CFB8EF17A1F36A003E56E9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04BA5CE217A5C8E800EDEE4C /* HudZoomButtonsView.h */,
+				04BA5CE317A5C8E800EDEE4C /* HudZoomButtonsView.m */,
+				04BA5CED17A5F22F00EDEE4C /* HudDisplayButtonsView.h */,
+				04BA5CEE17A5F22F00EDEE4C /* HudDisplayButtonsView.m */,
+				04CACFCA17ADCEAB004EE283 /* HudStopsButtonsView.h */,
+				04CACFCB17ADCEAB004EE283 /* HudStopsButtonsView.m */,
+				04CACFB817AC665B004EE283 /* HudView.h */,
+				04CACFB917AC665B004EE283 /* HudView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		04DA2A62179DE91200EF177B = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +331,12 @@
 		04DA2A6D179DE91200EF177B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */,
+				04CACFD917ADE30F004EE283 /* libxml2.2.dylib */,
+				04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */,
+				04BF6235179F35CB008380FD /* KML.framework */,
+				04DA2AA4179E116400EF177B /* MapKit.framework */,
+				04DA2AA2179E113A00EF177B /* CoreLocation.framework */,
 				04DA2A6E179DE91200EF177B /* UIKit.framework */,
 				04DA2A70179DE91200EF177B /* Foundation.framework */,
 				04DA2A72179DE91200EF177B /* CoreGraphics.framework */,
@@ -83,10 +347,15 @@
 		04DA2A74179DE91200EF177B /* BusRoutes */ = {
 			isa = PBXGroup;
 			children = (
+				04CACFCF17ADE120004EE283 /* Hpple */,
+				04CFB8E117A1F36A003E56E9 /* Nibs */,
+				04CFB8E517A1F36A003E56E9 /* Objects */,
+				04CFB8E817A1F36A003E56E9 /* Resources */,
+				04CFB8EA17A1F36A003E56E9 /* ViewControllers */,
+				04CFB8EF17A1F36A003E56E9 /* Views */,
+				04CFB8DA17A1F360003E56E9 /* DataFiles */,
 				04DA2A7D179DE91200EF177B /* BusRoutesAppDelegate.h */,
 				04DA2A7E179DE91200EF177B /* BusRoutesAppDelegate.m */,
-				04DA2A86179DE91200EF177B /* BusRoutesViewController.h */,
-				04DA2A87179DE91200EF177B /* BusRoutesViewController.m */,
 				04DA2A89179DE91200EF177B /* BusRoutesViewController.xib */,
 				04DA2A75179DE91200EF177B /* Supporting Files */,
 			);
@@ -164,6 +433,38 @@
 				04DA2A83179DE91200EF177B /* Default@2x.png in Resources */,
 				04DA2A85179DE91200EF177B /* Default-568h@2x.png in Resources */,
 				04DA2A8B179DE91200EF177B /* BusRoutesViewController.xib in Resources */,
+				04CFB8F417A1F36A003E56E9 /* arrest.png in Resources */,
+				04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */,
+				04CFB8FB17A1F3F8003E56E9 /* HudZoomButtonsView.xib in Resources */,
+				04BA5CEC17A5F15500EDEE4C /* HudDisplayButtonsView.xib in Resources */,
+				04CACFC417AD651F004EE283 /* landscapeHudView.png in Resources */,
+				04CACFC517AD651F004EE283 /* portraitHudView.png in Resources */,
+				04CACFC717ADC817004EE283 /* stop.png in Resources */,
+				04CACFC917ADC906004EE283 /* stop@2x.png in Resources */,
+				04CACFCE17ADCECD004EE283 /* HudStopsButtonsView.xib in Resources */,
+				04BA64BC17AF2C79001D4B56 /* dot1.png in Resources */,
+				04BA64BD17AF2C79001D4B56 /* dot2.png in Resources */,
+				04BA64BE17AF2C79001D4B56 /* dot3.png in Resources */,
+				04BA64BF17AF2C79001D4B56 /* dot4.png in Resources */,
+				04BA64C017AF2C79001D4B56 /* dot5.png in Resources */,
+				04BA64C117AF2C79001D4B56 /* dot6.png in Resources */,
+				04BA64C217AF2C79001D4B56 /* dot7.png in Resources */,
+				04BA64C317AF2C79001D4B56 /* dot8.png in Resources */,
+				04BA64C417AF2C79001D4B56 /* dot9.png in Resources */,
+				04BA64C517AF2C79001D4B56 /* dot10.png in Resources */,
+				04BA64D017AF2C83001D4B56 /* dot1@2x.png in Resources */,
+				04BA64D117AF2C83001D4B56 /* dot2@2x.png in Resources */,
+				04BA64D217AF2C83001D4B56 /* dot3@2x.png in Resources */,
+				04BA64D317AF2C83001D4B56 /* dot4@2x.png in Resources */,
+				04BA64D417AF2C83001D4B56 /* dot5@2x.png in Resources */,
+				04BA64D517AF2C83001D4B56 /* dot6@2x.png in Resources */,
+				04BA64D617AF2C83001D4B56 /* dot7@2x.png in Resources */,
+				04BA64D717AF2C83001D4B56 /* dot8@2x.png in Resources */,
+				04BA64D817AF2C83001D4B56 /* dot9@2x.png in Resources */,
+				04BA64D917AF2C83001D4B56 /* dot10@2x.png in Resources */,
+				04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */,
+				04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */,
+				04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,9 +475,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04BA5CE617A5CE9A00EDEE4C /* HudZoomButtonsView.m in Sources */,
 				04DA2A7B179DE91200EF177B /* main.m in Sources */,
 				04DA2A7F179DE91200EF177B /* BusRoutesAppDelegate.m in Sources */,
-				04DA2A88179DE91200EF177B /* BusRoutesViewController.m in Sources */,
+				04CFB8DF17A1F360003E56E9 /* DataReader.m in Sources */,
+				04CFB8E017A1F360003E56E9 /* RegionZoomData.m in Sources */,
+				04CFB8F317A1F36A003E56E9 /* BusStop.m in Sources */,
+				04CFB8F517A1F36A003E56E9 /* BusRoutesViewController.m in Sources */,
+				04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */,
+				04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */,
+				04BA5CE117A40E4700EDEE4C /* BusRoutesNavigationController.m in Sources */,
+				04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */,
+				04BA5CEF17A5F22F00EDEE4C /* HudDisplayButtonsView.m in Sources */,
+				04CACFBA17AC665B004EE283 /* HudView.m in Sources */,
+				04CACFC117AD43E2004EE283 /* DisplayButton.m in Sources */,
+				04CACFCC17ADCEAB004EE283 /* HudStopsButtonsView.m in Sources */,
+				04CACFD617ADE121004EE283 /* TFHpple.m in Sources */,
+				04CACFD717ADE121004EE283 /* TFHppleElement.m in Sources */,
+				04CACFD817ADE121004EE283 /* XPathQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +577,15 @@
 		04DA2A8F179DE91200EF177B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusRoutes/BusRoutes-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "BusRoutes/BusRoutes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -272,9 +594,15 @@
 		04DA2A90179DE91200EF177B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BusRoutes/BusRoutes-Prefix.pch";
+				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = "BusRoutes/BusRoutes-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -299,6 +627,7 @@
 				04DA2A90179DE91200EF177B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
