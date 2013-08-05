@@ -220,16 +220,19 @@
 
 - (void)stopsButtonPressed:(id)sender
 {
-    [self addProgressIndicator];
-    if (showNumberOfRoutesStops) {
-        showNumberOfRoutesStops = NO;
-    } else {
-        showNumberOfRoutesStops = YES;
-    }
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [_mapView removeAnnotations:[_delegate getStops]];
-//    });
-    [_delegate showStops];
+    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(loadDataQueue, ^{
+        [self addProgressIndicator];
+        if (showNumberOfRoutesStops) {
+            showNumberOfRoutesStops = NO;
+        } else {
+            showNumberOfRoutesStops = YES;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_mapView removeAnnotations:[_delegate getStops]];
+        });
+        [_delegate showStops];
+    });
 }
 
 #pragma MKMapViewDelegate Methods
@@ -249,7 +252,7 @@
             annotationView.canShowCallout = NO;
             NSString *imageName;
             if (!showNumberOfRoutesStops) {
-                imageName = @"stop.png";
+                imageName = @"dot0.png";
             } else {
                 BusStop *busStop = (BusStop*)annotation;
                 imageName = [NSString stringWithFormat:@"dot%i.png",[busStop.routes count]];
