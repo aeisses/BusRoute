@@ -31,7 +31,11 @@
         hudView.delegate = self;
         hudView.frame = (CGRect){hudView.frame.origin.x, 0-hudView.frame.size.height, hudView.frame.size};
         
+        legendView = [[[[NSBundle mainBundle] loadNibNamed:@"LegendView" owner:self options:nil] objectAtIndex:0] retain];
+        legendView.delegate = self;
+        
         showNumberOfRoutesStops = NO;
+        buttonSort = -1;
     }
     return self;
 }
@@ -169,6 +173,7 @@
     [_mapView release]; _mapView = nil;
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
+    [legendView release]; legendView = nil;
     _delegate = nil;
 }
 
@@ -211,7 +216,7 @@
                     [_mapView removeOverlays:busRoute.lines];
                 });
             }
-            [_delegate showStops];
+            [_delegate showStopsWithValue:-1];
         }
     });
     dispatch_release(loadDataQueue);
@@ -220,19 +225,48 @@
 
 - (void)stopsButtonPressed:(id)sender
 {
+    StopsButton *button = (StopsButton*)sender;
+    if (button.stopType == legend) {
+        legendView.frame = (CGRect){50,200,legendView.frame.size};
+        [self.view addSubview:legendView];
+    } else {
+        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+        dispatch_async(loadDataQueue, ^{
+            [self addProgressIndicator];
+            if (showNumberOfRoutesStops) {
+                showNumberOfRoutesStops = NO;
+            } else {
+                showNumberOfRoutesStops = YES;
+            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeAnnotations:[_delegate getStops]];
+            });
+            [_delegate showStopsWithValue:-1];
+        });
+        dispatch_release(loadDataQueue);
+    }
+    [hudView hide];
+}
+
+#pragma LegendViewDelegate Methods
+- (void)showNumberOfRoutes:(NSInteger)num
+{
+    buttonSort = num;
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
-        if (showNumberOfRoutesStops) {
-            showNumberOfRoutesStops = NO;
-        } else {
-            showNumberOfRoutesStops = YES;
-        }
+        showNumberOfRoutesStops = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView removeAnnotations:[_delegate getStops]];
         });
-        [_delegate showStops];
+        [_delegate showStopsWithValue:buttonSort];
     });
+    dispatch_release(loadDataQueue);
+}
+
+- (void)exitLegendView
+{
+    [legendView removeFromSuperview];
 }
 
 #pragma MKMapViewDelegate Methods
@@ -256,6 +290,11 @@
             } else {
                 BusStop *busStop = (BusStop*)annotation;
                 imageName = [NSString stringWithFormat:@"dot%i.png",[busStop.routes count]];
+                if (buttonSort != -1 && [busStop.routes count] != buttonSort) {
+                    annotationView.hidden = YES;
+                } else {
+                    annotationView.hidden = NO;
+                }
             }
             annotationView.image = [UIImage imageNamed:imageName];//here we use a nice image instead of the default pins
         } else {

@@ -12,17 +12,19 @@
 #import "BusRoute.h"
 #import "RegionZoomData.h"
 #import "HudView.h"
+#import "StopsButton.h"
+#import "LegendView.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
 @protocol MapViewControllerDelegate <NSObject>
 - (NSArray *)getStops;
 - (NSArray *)getRoutes;
-- (void)showStops;
+- (void)showStopsWithValue:(NSInteger)value;
 - (void)showRoutes;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,HudViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,HudViewDelegate,LegendViewDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -33,6 +35,8 @@
     int loadingBusStopCounter;
     int loadingBusRouteCounter;
     BOOL showNumberOfRoutesStops;
+    LegendView *legendView;
+    NSInteger buttonSort;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;

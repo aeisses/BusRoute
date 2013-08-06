@@ -12,7 +12,7 @@
 #define ESERVICENUMBER @"http://eservices.halifax.ca/GoTime/index.jsf?goTime="
 
 @interface DataReader (PrivateMethods)
-- (void)loadStopDataAndShow:(BOOL)show;
+- (void)loadStopDataAndShow:(BOOL)show withValue:(NSInteger)value;
 - (void)loadRouteDataAndShow:(BOOL)show;
 @end;
 
@@ -33,15 +33,15 @@
 - (void)loadKMLData
 {
     [delegate startProgressIndicator];
-    [self loadStopDataAndShow:YES];
+    [self loadStopDataAndShow:YES withValue:-1];
     [self loadRouteDataAndShow:NO];
     [delegate endProgressIndicator];
 }
 
-- (void)showBusStops
+- (void)showBusStopsWithValue:(NSInteger)value
 {
     [delegate startProgressIndicator];
-    [self loadStopDataAndShow:YES];
+    [self loadStopDataAndShow:YES withValue:value];
     [delegate endProgressIndicator];
 }
 
@@ -63,12 +63,13 @@
 }
 
 #pragma Private Methods
-- (void)loadStopDataAndShow:(BOOL)show
+- (void)loadStopDataAndShow:(BOOL)show withValue:(NSInteger)value
 {
     NSDictionary *dictonary = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"plist"]];
     if (_stops != nil && show) {
         for (BusStop *busStop in _stops) {
-            [delegate addBusStop:busStop];
+            if (show && (value == -1 || value == [busStop.routes count]))
+                [delegate addBusStop:busStop];
         }
     } else if (_stops == nil) {
         KMLRoot *kmlStops = [KMLParser parseKMLAtURL:stopsUrl];
@@ -80,13 +81,14 @@
                 BusStop *busStop = [[BusStop alloc] initWithTitle:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry];
                 [mutableStops addObject:busStop];
                 busStop.routes = (NSArray*)[dictonary objectForKey:[NSString stringWithFormat:@"%i",busStop.goTime]];
-                [busStop release];
-                if (show)
+                if (show && (value == -1 || value == [busStop.routes count]))
                     [delegate addBusStop:busStop];
+                [busStop release];
             }
         }
         _stops = [[NSArray alloc] initWithArray:mutableStops];
     }
+    [dictonary release];
 }
 
 - (void)loadRouteDataAndShow:(BOOL)show

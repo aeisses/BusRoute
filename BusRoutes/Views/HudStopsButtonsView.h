@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StopsButton.h"
 
 @protocol HudStopsButtonViewDelegate <NSObject>
 - (void)stopsButtonPressed:(id)sender;
@@ -17,7 +18,8 @@
     
 }
 
-@property (retain, nonatomic) IBOutlet UIButton *button;
+@property (retain, nonatomic) IBOutlet StopsButton *button;
+@property (retain, nonatomic) IBOutlet StopsButton *legend;
 
 @property (retain, nonatomic) id <HudStopsButtonViewDelegate> delegate;
 

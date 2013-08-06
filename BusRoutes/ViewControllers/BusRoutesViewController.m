@@ -92,9 +92,9 @@
     return dataReader.routes;
 }
 
-- (void)showStops
+- (void)showStopsWithValue:(NSInteger)value
 {
-    [dataReader showBusStops];
+    [dataReader showBusStopsWithValue:value];
 }
 
 - (void)showRoutes
