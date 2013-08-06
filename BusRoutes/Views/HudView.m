@@ -47,25 +47,30 @@
 - (void)setOrientation:(UIInterfaceOrientation)orientation
 {
     if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+                stopsButtonsView.center = (CGPoint){LANDSCAPE_WIDTH/2,50};
+//        stopsButtonsView.frame = (CGRect){(LANDSCAPE_WIDTH-stopsButtonsView.frame.size.width)/2,stopsButtonsView.frame.origin.y,stopsButtonsView.frame.size};
+        NSLog(@"FrameX: %f Y: %f Width: %f Height: %f",stopsButtonsView.frame.origin.x,stopsButtonsView.frame.origin.y,stopsButtonsView.frame.size.width,stopsButtonsView.frame.size.height);
         [self setImage:[UIImage imageNamed:@"landscapeHudView"]];
         if (self.hidden) {
-            self.frame = (CGRect){0,0,1024,500};
+            self.frame = (CGRect){0,0,LANDSCAPE_WIDTH,500};
         } else {
-            self.frame = (CGRect){0,-500,1024,500};
+            self.frame = (CGRect){0,-500,LANDSCAPE_WIDTH,500};
         }
-        stopsButtonsView.center = (CGPoint){LANDSCAPE_WIDTH/2,50};
+
         zoomButtonsView.frame = (CGRect){
             LANDSCAPE_WIDTH-150,
             zoomButtonsView.frame.origin.y,
             zoomButtonsView.frame.size};
     } else if (orientation == UIInterfaceOrientationPortrait) {
+                stopsButtonsView.center = (CGPoint){PORTRAIT_WIDTH/2,50};
+//        stopsButtonsView.frame = (CGRect){(PORTRAIT_WIDTH-stopsButtonsView.frame.size.width)/2,stopsButtonsView.frame.origin.y,stopsButtonsView.frame.size};
+        NSLog(@"FrameX: %f Y: %f Width: %f Height: %f",stopsButtonsView.frame.origin.x,stopsButtonsView.frame.origin.y,stopsButtonsView.frame.size.width,stopsButtonsView.frame.size.height);
         [self setImage:[UIImage imageNamed:@"portraitHudView"]];
         if (self.hidden) {
-            self.frame = (CGRect){0,0,768,500};
+            self.frame = (CGRect){0,0,PORTRAIT_WIDTH,500};
         } else {
-            self.frame = (CGRect){0,-500,768,500};
+            self.frame = (CGRect){0,-500,PORTRAIT_WIDTH,500};
         }
-        stopsButtonsView.center = (CGPoint){PORTRAIT_WIDTH/2,50};
         zoomButtonsView.frame = (CGRect){
             PORTRAIT_WIDTH-150,
             zoomButtonsView.frame.origin.y,

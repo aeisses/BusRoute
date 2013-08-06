@@ -21,7 +21,8 @@
 
 - (void)setButtons
 {
-    
+    _button.stopType = duplication;
+    _legend.stopType = legend;
 }
 
 - (IBAction)touchButton:(id)sender
