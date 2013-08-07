@@ -10,7 +10,8 @@
 
 typedef enum {
     duplication,
-    legend
+    legend,
+    terminal
 } STOPTYPE;
 
 @interface StopsButton : UIButton

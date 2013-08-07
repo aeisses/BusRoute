@@ -35,6 +35,7 @@
     int loadingBusStopCounter;
     int loadingBusRouteCounter;
     BOOL showNumberOfRoutesStops;
+    BOOL showTerminals;
     LegendView *legendView;
     NSInteger buttonSort;
 }

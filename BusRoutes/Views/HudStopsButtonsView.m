@@ -23,6 +23,7 @@
 {
     _button.stopType = duplication;
     _legend.stopType = legend;
+    _terminals.stopType = terminal;
 }
 
 - (IBAction)touchButton:(id)sender

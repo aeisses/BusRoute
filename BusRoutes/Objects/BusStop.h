@@ -15,7 +15,6 @@
 {
     NSString *stopDescription;
     NSInteger objectId;
-    FCODE fcode;
     SOURCE source;
     SACC sacc;
     NSDate *date;
@@ -26,6 +25,7 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (readonly) NSInteger goTime;
 @property (nonatomic, retain) NSArray *routes;
+@property (readonly) FCODE fcode;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
 - (void)addRouteNumber:(NSNumber*)route;

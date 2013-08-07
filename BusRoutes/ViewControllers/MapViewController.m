@@ -229,15 +229,24 @@
     if (button.stopType == legend) {
         legendView.frame = (CGRect){50,200,legendView.frame.size};
         [self.view addSubview:legendView];
+    } else if (button.stopType == terminal) {
+        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+        dispatch_async(loadDataQueue, ^{
+            [self addProgressIndicator];
+            showTerminals = YES;
+            showNumberOfRoutesStops = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeAnnotations:[_delegate getStops]];
+            });
+            [_delegate showStopsWithValue:-1];
+        });
+        dispatch_release(loadDataQueue);
     } else {
         dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
         dispatch_async(loadDataQueue, ^{
             [self addProgressIndicator];
-            if (showNumberOfRoutesStops) {
-                showNumberOfRoutesStops = NO;
-            } else {
-                showNumberOfRoutesStops = YES;
-            }
+            showNumberOfRoutesStops = YES;
+            showTerminals = NO;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_mapView removeAnnotations:[_delegate getStops]];
             });
@@ -273,8 +282,11 @@
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BusStop class]]) {
         NSString *identifier;
-        if (!showNumberOfRoutesStops) {
+        if (!showNumberOfRoutesStops && !showTerminals) {
             identifier = @"BusStop";
+        } else if (!showNumberOfRoutesStops && showTerminals) {
+            BusStop *busStop = (BusStop*)annotation;
+            identifier = [NSString stringWithFormat:@"Terminal%i",busStop.fcode];
         } else {
             BusStop *busStop = (BusStop*)annotation;
             identifier = [NSString stringWithFormat:@"BusStop%i",[busStop.routes count]];
@@ -285,16 +297,20 @@
             annotationView.enabled = NO;
             annotationView.canShowCallout = NO;
             NSString *imageName;
-            if (!showNumberOfRoutesStops) {
+            if (!showNumberOfRoutesStops && !showTerminals) {
                 imageName = @"dot0.png";
+            } else if (!showNumberOfRoutesStops && showTerminals) {
+                BusStop *busStop = (BusStop*)annotation;
+                imageName = [NSString stringWithFormat:@"terminal%i",busStop.fcode];
             } else {
                 BusStop *busStop = (BusStop*)annotation;
                 imageName = [NSString stringWithFormat:@"dot%i.png",[busStop.routes count]];
-                if (buttonSort != -1 && [busStop.routes count] != buttonSort) {
+/*                if (buttonSort != -1 && [busStop.routes count] != buttonSort) {
                     annotationView.hidden = YES;
                 } else {
                     annotationView.hidden = NO;
                 }
+ */
             }
             annotationView.image = [UIImage imageNamed:imageName];//here we use a nice image instead of the default pins
         } else {

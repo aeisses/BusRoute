@@ -19,6 +19,7 @@
 }
 
 @property (retain, nonatomic) IBOutlet StopsButton *button;
+@property (retain, nonatomic) IBOutlet StopsButton *terminals;
 @property (retain, nonatomic) IBOutlet StopsButton *legend;
 
 @property (retain, nonatomic) id <HudStopsButtonViewDelegate> delegate;

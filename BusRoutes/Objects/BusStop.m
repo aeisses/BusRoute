@@ -67,27 +67,27 @@
                 objectId = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"FCODE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSIN"]) {
-                    fcode = trbsin;
+                    _fcode = trbsin;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSAC"]) {
-                    fcode = trbsac;
+                    _fcode = trbsac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSTMIN"]) {
-                    fcode = trbstmin;
+                    _fcode = trbstmin;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBS"]) {
-                    fcode = trbs;
+                    _fcode = trbs;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSHAC"]) {
-                    fcode = trbsshac;
+                    _fcode = trbsshac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSH"]) {
-                    fcode = trbssh;
+                    _fcode = trbssh;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRPR"]) {
-                    fcode = trpr;
+                    _fcode = trpr;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSTMAC"]) {
-                    fcode = trbstmac;
+                    _fcode = trbstmac;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSTM"]) {
-                    fcode = trbstm;
+                    _fcode = trbstm;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRBSSHIN"]) {
-                    fcode = trbsshin;
+                    _fcode = trbsshin;
                 } else if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TBRSML"]) {
-                    fcode = tbrsml;
+                    _fcode = tbrsml;
                 }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SOURCE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRANSIT"]) {
