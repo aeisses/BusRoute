@@ -40,6 +40,35 @@
     return self;
 }
 
+- (IBAction)titleBarButtonTouched:(id)sender
+{
+    UIBarButtonItem *button = (UIBarButtonItem*)sender;
+    if (button.tag == 1) {
+        
+    } else if (button.tag == 2) {
+        
+    } else if (button.tag == 3) {
+        if (popOverController == nil) {
+            NumericNodeTable *table = [[NumericNodeTable alloc] initWithNibName:@"NumericNodeTableViewController" bundle:[NSBundle mainBundle]];
+            
+            popOverController = [[UIPopoverController alloc] initWithContentViewController:table];
+            
+            popOverController.delegate = self;
+            [table release];
+        }
+        
+        [popOverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else if (button.tag == 4) {
+        
+    } else if (button.tag == 5) {
+        
+    } else if (button.tag == 6) {
+        
+    }
+}
+
+//– popoverControllerShouldDismissPopover:
+//– popoverControllerDidDismissPopover:
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (date != nil) {
@@ -55,6 +84,7 @@
     // Do any additional setup after loading the view from its nib.
     _mapView.scrollEnabled = NO;
     _mapView.zoomEnabled = NO;
+    [self.view bringSubviewToFront:_toolBar];
     [self.view addGestureRecognizer:swipeDown];
     [self.view addGestureRecognizer:swipeUp];
     [self.view addSubview:hudView];
@@ -174,6 +204,7 @@
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
     [legendView release]; legendView = nil;
+    [popOverController release];
     _delegate = nil;
 }
 

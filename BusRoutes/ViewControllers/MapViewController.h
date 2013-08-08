@@ -14,6 +14,7 @@
 #import "HudView.h"
 #import "StopsButton.h"
 #import "LegendView.h"
+#import "NumericNodeTable.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -24,7 +25,7 @@
 - (void)showRoutes;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,HudViewDelegate,LegendViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,HudViewDelegate,LegendViewDelegate,UIPopoverControllerDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -38,12 +39,15 @@
     BOOL showTerminals;
     LegendView *legendView;
     NSInteger buttonSort;
+    UIPopoverController *popOverController;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
+@property (retain, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (assign) BOOL isDataLoading;
 @property (retain, nonatomic) id <MapViewControllerDelegate> delegate;
 
+- (IBAction)titleBarButtonTouched:(id)sender;
 - (void)addBusStop:(BusStop*)busStop;
 - (void)addRoute:(BusRoute*)route;
 - (void)addProgressIndicator;
