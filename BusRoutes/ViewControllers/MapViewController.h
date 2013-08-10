@@ -15,6 +15,7 @@
 #import "LegendView.h"
 #import "NumericNodeTable.h"
 #import "LocationsTable.h"
+#import "TerminalTable.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -25,7 +26,7 @@
 - (void)showRoutes;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;

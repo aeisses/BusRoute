@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "NumericNode.h"
 #import "NumericNodeCell.h"
 
 @protocol NumericNodeTableDelegate <NSObject>

@@ -75,7 +75,16 @@
         [table release];
         [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else if (button.tag == 4) {
-        
+        if (popOverController == nil) {
+            [popOverController dismissPopoverAnimated:NO];
+            [popOverController release];
+        }
+        TerminalTable *table = [[TerminalTable alloc] initWithNibName:@"TerminalTable" bundle:[NSBundle mainBundle]];
+        table.delegate = self;
+        popOverController = [[UIPopoverController alloc] initWithContentViewController:table];
+        [popOverController setPopoverContentSize:(CGSize){320,400}];
+        [table release];
+        [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else if (button.tag == 5) {
         legendView.frame = (CGRect){50,200,legendView.frame.size};
         [self.view addSubview:legendView];
@@ -279,6 +288,23 @@
     [self hideHudView];
 }
 
+#pragma TerminaTableDelegate Methods
+- (void)touchedTerminalTableElement:(NSInteger)element
+{
+    [popOverController dismissPopoverAnimated:NO];
+    buttonSort = element;
+    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(loadDataQueue, ^{
+        [self addProgressIndicator];
+        showNumberOfRoutesStops = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_mapView removeAnnotations:[_delegate getStops]];
+        });
+        [_delegate showStopsWithValue:buttonSort];
+    });
+    dispatch_release(loadDataQueue);
+}
+
 #pragma LegendViewDelegate Methods
 - (void)exitLegendView
 {
@@ -312,12 +338,6 @@
             } else {
                 BusStop *busStop = (BusStop*)annotation;
                 imageName = [NSString stringWithFormat:@"dot%i.png",[busStop.routes count]];
-/*                if (buttonSort != -1 && [busStop.routes count] != buttonSort) {
-                    annotationView.hidden = YES;
-                } else {
-                    annotationView.hidden = NO;
-                }
- */
             }
             annotationView.image = [UIImage imageNamed:imageName];//here we use a nice image instead of the default pins
         } else {
