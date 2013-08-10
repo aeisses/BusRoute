@@ -11,9 +11,10 @@
 #import "BusStop.h"
 #import "BusRoute.h"
 #import "RegionZoomData.h"
-#import "HudView.h"
 #import "StopsButton.h"
 #import "LegendView.h"
+#import "NumericNodeTable.h"
+#import "LocationsTable.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -24,12 +25,11 @@
 - (void)showRoutes;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,HudViewDelegate,LegendViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
     UIActivityIndicatorView *activityIndicator;
-    HudView *hudView;
     CADisplayLink *displayLink;
     NSDate *date;
     int loadingBusStopCounter;
@@ -38,12 +38,15 @@
     BOOL showTerminals;
     LegendView *legendView;
     NSInteger buttonSort;
+    UIPopoverController *popOverController;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
+@property (retain, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (assign) BOOL isDataLoading;
 @property (retain, nonatomic) id <MapViewControllerDelegate> delegate;
 
+- (IBAction)titleBarButtonTouched:(id)sender;
 - (void)addBusStop:(BusStop*)busStop;
 - (void)addRoute:(BusRoute*)route;
 - (void)addProgressIndicator;

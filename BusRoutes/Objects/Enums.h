@@ -7,6 +7,32 @@
 //
 
 typedef enum {
+    zero,
+    one,
+    two,
+    three,
+    four,
+    five,
+    six,
+    seven,
+    eight,
+    nine,
+    ten,
+    eleven,
+    twelve,
+    thirteen,
+    fourteen,
+    fifteen,
+    sixteen,
+    seventeen,
+    eighteen,
+    nineteen,
+    twenty,
+    all,
+    none
+} NUMERICNODE;
+
+typedef enum {
     trbsin, // Bus Stop Inaccessible
     trbsac, // Bus Stop Accessible
     trbstmin, // Bus Terminal Inaccessible

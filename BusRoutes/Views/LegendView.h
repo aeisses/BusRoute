@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @protocol LegendViewDelegate <NSObject>
-- (void)showNumberOfRoutes:(NSInteger)num;
 - (void)exitLegendView;
 @end
 

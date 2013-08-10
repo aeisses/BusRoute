@@ -8,7 +8,7 @@
 
 #import "BusRoutesViewController.h"
 
-@interface HudZoomButtonsView (PrivateMethods)
+@interface BusRoutesViewController (PrivateMethods)
 - (void)showMapViewController;
 @end;
 
@@ -18,8 +18,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    // Load in data
+    set = [[NSMutableSet alloc] initWithCapacity:5];
     dataReader = [[DataReader alloc] init];
     dataReader.delegate = self;
     [self showMapViewController];
@@ -47,6 +46,7 @@
     [super dealloc];
     [dataReader release]; dataReader = nil;
     [mapViewController release]; mapViewController = nil;
+    [set release]; set = nil;
 }
 
 #pragma Private Methods
@@ -94,7 +94,13 @@
 
 - (void)showStopsWithValue:(NSInteger)value
 {
-    [dataReader showBusStopsWithValue:value];
+    if (value == -1) {
+        [set release]; set = nil;
+        set = [[NSMutableSet alloc] initWithCapacity:0];
+    } else {
+        [set addObject:[NSNumber numberWithInteger:value]];
+    }
+    [dataReader showBusStopsWithValue:[NSSet setWithSet:set]];
 }
 
 - (void)showRoutes

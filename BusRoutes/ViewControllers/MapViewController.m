@@ -10,6 +10,8 @@
 
 @interface MapViewController (PrivateMethods)
 - (void)frameIntervalLoop:(CADisplayLink *)sender;
+- (void)hideHudView;
+- (void)showHudView;
 @end;
 
 @implementation MapViewController
@@ -26,11 +28,6 @@
         swipeUp.numberOfTouchesRequired = 1;
         swipeUp.direction = (UISwipeGestureRecognizerDirectionUp);
         
-        UIImage *image = [UIImage imageNamed:@"landscapeHudView"];
-        hudView = [[HudView alloc] initWithImage:image];
-        hudView.delegate = self;
-        hudView.frame = (CGRect){hudView.frame.origin.x, 0-hudView.frame.size.height, hudView.frame.size};
-        
         legendView = [[[[NSBundle mainBundle] loadNibNamed:@"LegendView" owner:self options:nil] objectAtIndex:0] retain];
         legendView.delegate = self;
         
@@ -38,6 +35,63 @@
         buttonSort = -1;
     }
     return self;
+}
+
+- (IBAction)titleBarButtonTouched:(id)sender
+{
+    UIBarButtonItem *button = (UIBarButtonItem*)sender;
+    if (button.tag == 1) {
+        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+        dispatch_async(loadDataQueue, ^{
+            [self addProgressIndicator];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeAnnotations:[_delegate getStops]];
+            });
+            [_delegate showRoutes];
+        });
+        dispatch_release(loadDataQueue);
+        [self hideHudView];
+    } else if (button.tag == 2) {
+        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+        dispatch_async(loadDataQueue, ^{
+            [self addProgressIndicator];
+            for (BusRoute *busRoute in [_delegate getRoutes]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_mapView removeOverlays:busRoute.lines];
+                });
+            }
+            [_delegate showStopsWithValue:-1];
+        });
+        dispatch_release(loadDataQueue);
+        [self hideHudView];
+    } else if (button.tag == 3) {
+        if (popOverController == nil) {
+            [popOverController dismissPopoverAnimated:NO];
+            [popOverController release];
+        }
+        NumericNodeTable *table = [[NumericNodeTable alloc] initWithNibName:@"NumericNodeTableViewController" bundle:[NSBundle mainBundle]];
+        table.delegate = self;
+        popOverController = [[UIPopoverController alloc] initWithContentViewController:table];
+        [table release];
+        [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else if (button.tag == 4) {
+        
+    } else if (button.tag == 5) {
+        legendView.frame = (CGRect){50,200,legendView.frame.size};
+        [self.view addSubview:legendView];
+        [self hideHudView];
+    } else if (button.tag == 6) {
+        if (popOverController == nil) {
+            [popOverController dismissPopoverAnimated:NO];
+            [popOverController release];
+        }
+        LocationsTable *table = [[LocationsTable alloc] initWithNibName:@"LocationsTable" bundle:[NSBundle mainBundle]];
+        table.delegate = self;
+        popOverController = [[UIPopoverController alloc] initWithContentViewController:table];
+        [popOverController setPopoverContentSize:(CGSize){320,400}];
+        [table release];
+        [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -55,21 +109,22 @@
     // Do any additional setup after loading the view from its nib.
     _mapView.scrollEnabled = NO;
     _mapView.zoomEnabled = NO;
+    _toolBar.hidden = YES;
+    [self.view bringSubviewToFront:_toolBar];
     [self.view addGestureRecognizer:swipeDown];
     [self.view addGestureRecognizer:swipeUp];
-    [self.view addSubview:hudView];
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(frameIntervalLoop:)];
     [displayLink setFrameInterval:15];
 }
 
 - (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture
 {
-    [hudView hide];
+    [self hideHudView];
 }
 
 - (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture
 {
-    [hudView show];
+    [self showHudView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,7 +145,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)addBusStop:(BusStop*)busStop
@@ -152,115 +206,59 @@
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    if (hudView.frame.origin.y >= 0) {
-        hudView.hidden = YES;
-    }
-    [hudView setOrientation:toInterfaceOrientation];
+
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    if (hudView.hidden) {
-        hudView.hidden = NO;
-    }
     activityIndicator.center = CGPointMake(self.view.frame.size.width/2,self.view.frame.size.height/2);
 }
 
 - (void)dealloc
 {
     [super dealloc];
-    [hudView release];
     [_mapView release]; _mapView = nil;
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
     [legendView release]; legendView = nil;
+    [popOverController release]; popOverController = nil;
     _delegate = nil;
 }
 
 #pragma Private Methods
 - (void)frameIntervalLoop:(CADisplayLink *)sender
 {
-    if (hudView.frame.origin.y >= 0) {
+    if (!_toolBar.hidden) {
         if (date == nil) {
             date = [[NSDate alloc] init];
         }
         if ([date timeIntervalSinceNow] < WINDOWS_AUTO_CLOSE) {
-            [hudView hide];
+            [self hideHudView];
             [date release]; date = nil;
         }
     }
 }
 
-#pragma HudViewDelegate Methods
-- (void)zoomButtonTouched:(id)sender
+- (void)hideHudView
 {
-    MovementButton *button = (MovementButton*)sender;
-    [_mapView setRegion:[RegionZoomData getRegion:button.region] animated:NO];
-    [hudView hide];
+    [popOverController dismissPopoverAnimated:NO];
+    [UIView animateWithDuration:0.5 animations:^{
+        _toolBar.hidden = YES;
+    }];
 }
 
-- (void)displayButtonPressed:(id)sender
+- (void)showHudView
 {
-    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
-    dispatch_async(loadDataQueue, ^{
-        DisplayButton *button = (DisplayButton*)sender;
-        [self addProgressIndicator];
-        if (button.displayType == routes) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_mapView removeAnnotations:[_delegate getStops]];
-            });
-            [_delegate showRoutes];
-        } else if (button.displayType == stops) {
-            for (BusRoute *busRoute in [_delegate getRoutes]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_mapView removeOverlays:busRoute.lines];
-                });
-            }
-            [_delegate showStopsWithValue:-1];
-        }
-    });
-    dispatch_release(loadDataQueue);
-    [hudView hide];
+    [UIView animateWithDuration:0.5 animations:^{
+        _toolBar.hidden = NO;
+    }];
 }
 
-- (void)stopsButtonPressed:(id)sender
+#pragma NumericNodeTableDelegate Methods
+- (void)touchedTableElement:(NSInteger)element
 {
-    StopsButton *button = (StopsButton*)sender;
-    if (button.stopType == legend) {
-        legendView.frame = (CGRect){50,200,legendView.frame.size};
-        [self.view addSubview:legendView];
-    } else if (button.stopType == terminal) {
-        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
-        dispatch_async(loadDataQueue, ^{
-            [self addProgressIndicator];
-            showTerminals = YES;
-            showNumberOfRoutesStops = NO;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_mapView removeAnnotations:[_delegate getStops]];
-            });
-            [_delegate showStopsWithValue:-1];
-        });
-        dispatch_release(loadDataQueue);
-    } else {
-        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
-        dispatch_async(loadDataQueue, ^{
-            [self addProgressIndicator];
-            showNumberOfRoutesStops = YES;
-            showTerminals = NO;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_mapView removeAnnotations:[_delegate getStops]];
-            });
-            [_delegate showStopsWithValue:-1];
-        });
-        dispatch_release(loadDataQueue);
-    }
-    [hudView hide];
-}
-
-#pragma LegendViewDelegate Methods
-- (void)showNumberOfRoutes:(NSInteger)num
-{
-    buttonSort = num;
+    [popOverController dismissPopoverAnimated:NO];
+    buttonSort = element;
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
@@ -273,6 +271,15 @@
     dispatch_release(loadDataQueue);
 }
 
+#pragma LocationsTableDelegate Methods
+- (void)touchedLocationTable:(REGION)region
+{
+    [popOverController dismissPopoverAnimated:NO];
+    [_mapView setRegion:[RegionZoomData getRegion:region] animated:NO];
+    [self hideHudView];
+}
+
+#pragma LegendViewDelegate Methods
 - (void)exitLegendView
 {
     [legendView removeFromSuperview];

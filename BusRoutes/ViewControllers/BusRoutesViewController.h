@@ -14,6 +14,7 @@
 {
     DataReader *dataReader;
     MapViewController *mapViewController;
+    NSMutableSet *set;
 }
 
 @property (retain, nonatomic) UIActivityIndicatorView *activityIndicator;

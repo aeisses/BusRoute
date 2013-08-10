@@ -68,7 +68,7 @@
 
 - (IBAction)touchButton:(id)sender;
 {
-    [_delegate showNumberOfRoutes:((UIButton*)sender).tag];
+
 }
 
 - (IBAction)touchExitButton:(id)sender
