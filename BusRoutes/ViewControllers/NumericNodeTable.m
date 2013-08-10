@@ -49,6 +49,7 @@
                  [[[NumericNodeCell alloc] initWithNumericNode:eighteen] autorelease],
                  [[[NumericNodeCell alloc] initWithNumericNode:nineteen] autorelease],
                  [[[NumericNodeCell alloc] initWithNumericNode:twenty] autorelease],
+                 [[[NumericNodeCell alloc] initWithNumericNode:all] autorelease],
                  nil];
 
     self.clearsSelectionOnViewWillAppear = NO;
@@ -82,14 +83,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //---add this---
-//    PopOverExample1AppDelegate *appDelegate =
-//    [[UIApplication sharedApplication] delegate];
-    
-//   appDelegate.viewController.detailItem =
-//    [listOfMovies objectAtIndex:indexPath.row];
-    
+    if (((NumericNodeCell*)[nodeTypes objectAtIndex:indexPath.row]).node == all) {
+        [_delegate touchedTableElement:-1];
+    } else {
+        [_delegate touchedTableElement:indexPath.row];
+    }
 }
 
 - (void)dealloc

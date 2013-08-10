@@ -11,7 +11,6 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import "BusStop.h"
 #import "BusRoute.h"
-#import "TFHpple.h"
 
 @protocol DataReaderDelegate <NSObject>
 -(void)startProgressIndicator;
@@ -29,7 +28,7 @@
 - (id)init;
 - (void)loadKMLData;
 - (void)showRoutes;
-- (void)showBusStopsWithValue:(NSInteger)value;
+- (void)showBusStopsWithValue:(NSSet*)set;
 
 @property (nonatomic, retain) NSArray *stops;
 @property (nonatomic, retain) NSArray *routes;

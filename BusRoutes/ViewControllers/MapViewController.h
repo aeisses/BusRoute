@@ -11,10 +11,10 @@
 #import "BusStop.h"
 #import "BusRoute.h"
 #import "RegionZoomData.h"
-#import "HudView.h"
 #import "StopsButton.h"
 #import "LegendView.h"
 #import "NumericNodeTable.h"
+#import "LocationsTable.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -25,12 +25,11 @@
 - (void)showRoutes;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,HudViewDelegate,LegendViewDelegate,UIPopoverControllerDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
     UIActivityIndicatorView *activityIndicator;
-    HudView *hudView;
     CADisplayLink *displayLink;
     NSDate *date;
     int loadingBusStopCounter;

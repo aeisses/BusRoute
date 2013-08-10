@@ -16,6 +16,7 @@
     if (self) {
         _image = [Utils getImageForNumericNode:numericNode];
         _title = [Utils getTitleForNumericNode:numericNode];
+        _node = numericNode;
     }
     return self;
 }

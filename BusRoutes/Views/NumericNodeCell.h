@@ -13,6 +13,7 @@
 
 @property (retain, nonatomic) UIImage *image;
 @property (retain, nonatomic) NSString *title;
+@property (readonly) NUMERICNODE node;
 
 - (id)initWithNumericNode:(NUMERICNODE)numericNode;
 
