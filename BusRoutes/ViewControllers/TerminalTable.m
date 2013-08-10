@@ -72,7 +72,6 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
     cell.textLabel.text = ((TerminalNodeCell*)[terminalArray objectAtIndex:indexPath.row]).title;
     cell.imageView.image = ((TerminalNodeCell*)[terminalArray objectAtIndex:indexPath.row]).image;
     return cell;

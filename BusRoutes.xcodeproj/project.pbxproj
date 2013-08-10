@@ -87,28 +87,28 @@
 		04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EE17A1F36A003E56E9 /* MapViewController.m */; };
 		04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8F817A1F38E003E56E9 /* MapViewController.xib */; };
 		04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8FD17A1F440003E56E9 /* MovementButton.m */; };
-		04D4E59417B1D8610062AA26 /* terminal10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57217B1D8610062AA26 /* terminal10@2x.png */; };
-		04D4E59517B1D8610062AA26 /* terminal11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57317B1D8610062AA26 /* terminal11@2x.png */; };
-		04D4E59617B1D8610062AA26 /* terminal1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57417B1D8610062AA26 /* terminal1@2x.png */; };
-		04D4E59717B1D8610062AA26 /* terminal2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57517B1D8610062AA26 /* terminal2@2x.png */; };
-		04D4E59817B1D8610062AA26 /* terminal3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57617B1D8610062AA26 /* terminal3@2x.png */; };
-		04D4E59917B1D8610062AA26 /* terminal4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57717B1D8610062AA26 /* terminal4@2x.png */; };
-		04D4E59A17B1D8610062AA26 /* terminal5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57817B1D8610062AA26 /* terminal5@2x.png */; };
-		04D4E59B17B1D8610062AA26 /* terminal6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57917B1D8610062AA26 /* terminal6@2x.png */; };
-		04D4E59C17B1D8610062AA26 /* terminal7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57A17B1D8610062AA26 /* terminal7@2x.png */; };
-		04D4E59D17B1D8610062AA26 /* terminal8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57B17B1D8610062AA26 /* terminal8@2x.png */; };
-		04D4E59E17B1D8610062AA26 /* terminal9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57C17B1D8610062AA26 /* terminal9@2x.png */; };
-		04D4E59F17B1D8610062AA26 /* terminal1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57E17B1D8610062AA26 /* terminal1.png */; };
-		04D4E5A017B1D8610062AA26 /* terminal10.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57F17B1D8610062AA26 /* terminal10.png */; };
-		04D4E5A117B1D8610062AA26 /* terminal11.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58017B1D8610062AA26 /* terminal11.png */; };
-		04D4E5A217B1D8610062AA26 /* terminal2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58117B1D8610062AA26 /* terminal2.png */; };
-		04D4E5A317B1D8610062AA26 /* terminal3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58217B1D8610062AA26 /* terminal3.png */; };
-		04D4E5A417B1D8610062AA26 /* terminal4.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58317B1D8610062AA26 /* terminal4.png */; };
-		04D4E5A517B1D8610062AA26 /* terminal5.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58417B1D8610062AA26 /* terminal5.png */; };
-		04D4E5A617B1D8610062AA26 /* terminal6.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58517B1D8610062AA26 /* terminal6.png */; };
-		04D4E5A717B1D8610062AA26 /* terminal7.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58617B1D8610062AA26 /* terminal7.png */; };
-		04D4E5A817B1D8610062AA26 /* terminal8.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58717B1D8610062AA26 /* terminal8.png */; };
-		04D4E5A917B1D8610062AA26 /* terminal9.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58817B1D8610062AA26 /* terminal9.png */; };
+		04D4E59417B1D8610062AA26 /* terminal9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57217B1D8610062AA26 /* terminal9@2x.png */; };
+		04D4E59517B1D8610062AA26 /* terminal10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57317B1D8610062AA26 /* terminal10@2x.png */; };
+		04D4E59617B1D8610062AA26 /* terminal0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57417B1D8610062AA26 /* terminal0@2x.png */; };
+		04D4E59717B1D8610062AA26 /* terminal1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57517B1D8610062AA26 /* terminal1@2x.png */; };
+		04D4E59817B1D8610062AA26 /* terminal2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57617B1D8610062AA26 /* terminal2@2x.png */; };
+		04D4E59917B1D8610062AA26 /* terminal3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57717B1D8610062AA26 /* terminal3@2x.png */; };
+		04D4E59A17B1D8610062AA26 /* terminal4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57817B1D8610062AA26 /* terminal4@2x.png */; };
+		04D4E59B17B1D8610062AA26 /* terminal5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57917B1D8610062AA26 /* terminal5@2x.png */; };
+		04D4E59C17B1D8610062AA26 /* terminal6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57A17B1D8610062AA26 /* terminal6@2x.png */; };
+		04D4E59D17B1D8610062AA26 /* terminal7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57B17B1D8610062AA26 /* terminal7@2x.png */; };
+		04D4E59E17B1D8610062AA26 /* terminal8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57C17B1D8610062AA26 /* terminal8@2x.png */; };
+		04D4E59F17B1D8610062AA26 /* terminal0.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57E17B1D8610062AA26 /* terminal0.png */; };
+		04D4E5A017B1D8610062AA26 /* terminal9.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57F17B1D8610062AA26 /* terminal9.png */; };
+		04D4E5A117B1D8610062AA26 /* terminal10.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58017B1D8610062AA26 /* terminal10.png */; };
+		04D4E5A217B1D8610062AA26 /* terminal1.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58117B1D8610062AA26 /* terminal1.png */; };
+		04D4E5A317B1D8610062AA26 /* terminal2.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58217B1D8610062AA26 /* terminal2.png */; };
+		04D4E5A417B1D8610062AA26 /* terminal3.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58317B1D8610062AA26 /* terminal3.png */; };
+		04D4E5A517B1D8610062AA26 /* terminal4.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58417B1D8610062AA26 /* terminal4.png */; };
+		04D4E5A617B1D8610062AA26 /* terminal5.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58517B1D8610062AA26 /* terminal5.png */; };
+		04D4E5A717B1D8610062AA26 /* terminal6.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58617B1D8610062AA26 /* terminal6.png */; };
+		04D4E5A817B1D8610062AA26 /* terminal7.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58717B1D8610062AA26 /* terminal7.png */; };
+		04D4E5A917B1D8610062AA26 /* terminal8.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E58817B1D8610062AA26 /* terminal8.png */; };
 		04DA2A6F179DE91200EF177B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A6E179DE91200EF177B /* UIKit.framework */; };
 		04DA2A71179DE91200EF177B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A70179DE91200EF177B /* Foundation.framework */; };
 		04DA2A73179DE91200EF177B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04DA2A72179DE91200EF177B /* CoreGraphics.framework */; };
@@ -223,28 +223,28 @@
 		04CFB8F817A1F38E003E56E9 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		04CFB8FC17A1F440003E56E9 /* MovementButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementButton.h; sourceTree = "<group>"; };
 		04CFB8FD17A1F440003E56E9 /* MovementButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementButton.m; sourceTree = "<group>"; };
-		04D4E57217B1D8610062AA26 /* terminal10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal10@2x.png"; sourceTree = "<group>"; };
-		04D4E57317B1D8610062AA26 /* terminal11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal11@2x.png"; sourceTree = "<group>"; };
-		04D4E57417B1D8610062AA26 /* terminal1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal1@2x.png"; sourceTree = "<group>"; };
-		04D4E57517B1D8610062AA26 /* terminal2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal2@2x.png"; sourceTree = "<group>"; };
-		04D4E57617B1D8610062AA26 /* terminal3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal3@2x.png"; sourceTree = "<group>"; };
-		04D4E57717B1D8610062AA26 /* terminal4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal4@2x.png"; sourceTree = "<group>"; };
-		04D4E57817B1D8610062AA26 /* terminal5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal5@2x.png"; sourceTree = "<group>"; };
-		04D4E57917B1D8610062AA26 /* terminal6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal6@2x.png"; sourceTree = "<group>"; };
-		04D4E57A17B1D8610062AA26 /* terminal7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal7@2x.png"; sourceTree = "<group>"; };
-		04D4E57B17B1D8610062AA26 /* terminal8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal8@2x.png"; sourceTree = "<group>"; };
-		04D4E57C17B1D8610062AA26 /* terminal9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal9@2x.png"; sourceTree = "<group>"; };
-		04D4E57E17B1D8610062AA26 /* terminal1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal1.png; sourceTree = "<group>"; };
-		04D4E57F17B1D8610062AA26 /* terminal10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal10.png; sourceTree = "<group>"; };
-		04D4E58017B1D8610062AA26 /* terminal11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal11.png; sourceTree = "<group>"; };
-		04D4E58117B1D8610062AA26 /* terminal2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal2.png; sourceTree = "<group>"; };
-		04D4E58217B1D8610062AA26 /* terminal3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal3.png; sourceTree = "<group>"; };
-		04D4E58317B1D8610062AA26 /* terminal4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal4.png; sourceTree = "<group>"; };
-		04D4E58417B1D8610062AA26 /* terminal5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal5.png; sourceTree = "<group>"; };
-		04D4E58517B1D8610062AA26 /* terminal6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal6.png; sourceTree = "<group>"; };
-		04D4E58617B1D8610062AA26 /* terminal7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal7.png; sourceTree = "<group>"; };
-		04D4E58717B1D8610062AA26 /* terminal8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal8.png; sourceTree = "<group>"; };
-		04D4E58817B1D8610062AA26 /* terminal9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal9.png; sourceTree = "<group>"; };
+		04D4E57217B1D8610062AA26 /* terminal9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal9@2x.png"; sourceTree = "<group>"; };
+		04D4E57317B1D8610062AA26 /* terminal10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal10@2x.png"; sourceTree = "<group>"; };
+		04D4E57417B1D8610062AA26 /* terminal0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal0@2x.png"; sourceTree = "<group>"; };
+		04D4E57517B1D8610062AA26 /* terminal1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal1@2x.png"; sourceTree = "<group>"; };
+		04D4E57617B1D8610062AA26 /* terminal2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal2@2x.png"; sourceTree = "<group>"; };
+		04D4E57717B1D8610062AA26 /* terminal3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal3@2x.png"; sourceTree = "<group>"; };
+		04D4E57817B1D8610062AA26 /* terminal4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal4@2x.png"; sourceTree = "<group>"; };
+		04D4E57917B1D8610062AA26 /* terminal5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal5@2x.png"; sourceTree = "<group>"; };
+		04D4E57A17B1D8610062AA26 /* terminal6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal6@2x.png"; sourceTree = "<group>"; };
+		04D4E57B17B1D8610062AA26 /* terminal7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal7@2x.png"; sourceTree = "<group>"; };
+		04D4E57C17B1D8610062AA26 /* terminal8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal8@2x.png"; sourceTree = "<group>"; };
+		04D4E57E17B1D8610062AA26 /* terminal0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal0.png; sourceTree = "<group>"; };
+		04D4E57F17B1D8610062AA26 /* terminal9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal9.png; sourceTree = "<group>"; };
+		04D4E58017B1D8610062AA26 /* terminal10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal10.png; sourceTree = "<group>"; };
+		04D4E58117B1D8610062AA26 /* terminal1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal1.png; sourceTree = "<group>"; };
+		04D4E58217B1D8610062AA26 /* terminal2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal2.png; sourceTree = "<group>"; };
+		04D4E58317B1D8610062AA26 /* terminal3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal3.png; sourceTree = "<group>"; };
+		04D4E58417B1D8610062AA26 /* terminal4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal4.png; sourceTree = "<group>"; };
+		04D4E58517B1D8610062AA26 /* terminal5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal5.png; sourceTree = "<group>"; };
+		04D4E58617B1D8610062AA26 /* terminal6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal6.png; sourceTree = "<group>"; };
+		04D4E58717B1D8610062AA26 /* terminal7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal7.png; sourceTree = "<group>"; };
+		04D4E58817B1D8610062AA26 /* terminal8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = terminal8.png; sourceTree = "<group>"; };
 		04DA2A6B179DE91200EF177B /* BusRoutes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusRoutes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04DA2A6E179DE91200EF177B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04DA2A70179DE91200EF177B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -481,17 +481,17 @@
 		04D4E57117B1D8610062AA26 /* retina */ = {
 			isa = PBXGroup;
 			children = (
-				04D4E57217B1D8610062AA26 /* terminal10@2x.png */,
-				04D4E57317B1D8610062AA26 /* terminal11@2x.png */,
-				04D4E57417B1D8610062AA26 /* terminal1@2x.png */,
-				04D4E57517B1D8610062AA26 /* terminal2@2x.png */,
-				04D4E57617B1D8610062AA26 /* terminal3@2x.png */,
-				04D4E57717B1D8610062AA26 /* terminal4@2x.png */,
-				04D4E57817B1D8610062AA26 /* terminal5@2x.png */,
-				04D4E57917B1D8610062AA26 /* terminal6@2x.png */,
-				04D4E57A17B1D8610062AA26 /* terminal7@2x.png */,
-				04D4E57B17B1D8610062AA26 /* terminal8@2x.png */,
-				04D4E57C17B1D8610062AA26 /* terminal9@2x.png */,
+				04D4E57217B1D8610062AA26 /* terminal9@2x.png */,
+				04D4E57317B1D8610062AA26 /* terminal10@2x.png */,
+				04D4E57417B1D8610062AA26 /* terminal0@2x.png */,
+				04D4E57517B1D8610062AA26 /* terminal1@2x.png */,
+				04D4E57617B1D8610062AA26 /* terminal2@2x.png */,
+				04D4E57717B1D8610062AA26 /* terminal3@2x.png */,
+				04D4E57817B1D8610062AA26 /* terminal4@2x.png */,
+				04D4E57917B1D8610062AA26 /* terminal5@2x.png */,
+				04D4E57A17B1D8610062AA26 /* terminal6@2x.png */,
+				04D4E57B17B1D8610062AA26 /* terminal7@2x.png */,
+				04D4E57C17B1D8610062AA26 /* terminal8@2x.png */,
 			);
 			path = retina;
 			sourceTree = "<group>";
@@ -499,17 +499,17 @@
 		04D4E57D17B1D8610062AA26 /* standard */ = {
 			isa = PBXGroup;
 			children = (
-				04D4E57E17B1D8610062AA26 /* terminal1.png */,
-				04D4E57F17B1D8610062AA26 /* terminal10.png */,
-				04D4E58017B1D8610062AA26 /* terminal11.png */,
-				04D4E58117B1D8610062AA26 /* terminal2.png */,
-				04D4E58217B1D8610062AA26 /* terminal3.png */,
-				04D4E58317B1D8610062AA26 /* terminal4.png */,
-				04D4E58417B1D8610062AA26 /* terminal5.png */,
-				04D4E58517B1D8610062AA26 /* terminal6.png */,
-				04D4E58617B1D8610062AA26 /* terminal7.png */,
-				04D4E58717B1D8610062AA26 /* terminal8.png */,
-				04D4E58817B1D8610062AA26 /* terminal9.png */,
+				04D4E57E17B1D8610062AA26 /* terminal0.png */,
+				04D4E57F17B1D8610062AA26 /* terminal9.png */,
+				04D4E58017B1D8610062AA26 /* terminal10.png */,
+				04D4E58117B1D8610062AA26 /* terminal1.png */,
+				04D4E58217B1D8610062AA26 /* terminal2.png */,
+				04D4E58317B1D8610062AA26 /* terminal3.png */,
+				04D4E58417B1D8610062AA26 /* terminal4.png */,
+				04D4E58517B1D8610062AA26 /* terminal5.png */,
+				04D4E58617B1D8610062AA26 /* terminal6.png */,
+				04D4E58717B1D8610062AA26 /* terminal7.png */,
+				04D4E58817B1D8610062AA26 /* terminal8.png */,
 			);
 			path = standard;
 			sourceTree = "<group>";
@@ -689,28 +689,28 @@
 				04C8112217B0089E00D194AC /* LegendView.xib in Resources */,
 				0489769517B0557C00E8A2E8 /* exitButton@2x.png in Resources */,
 				0489769617B0557C00E8A2E8 /* exitButton.png in Resources */,
-				04D4E59417B1D8610062AA26 /* terminal10@2x.png in Resources */,
-				04D4E59517B1D8610062AA26 /* terminal11@2x.png in Resources */,
-				04D4E59617B1D8610062AA26 /* terminal1@2x.png in Resources */,
-				04D4E59717B1D8610062AA26 /* terminal2@2x.png in Resources */,
-				04D4E59817B1D8610062AA26 /* terminal3@2x.png in Resources */,
-				04D4E59917B1D8610062AA26 /* terminal4@2x.png in Resources */,
-				04D4E59A17B1D8610062AA26 /* terminal5@2x.png in Resources */,
-				04D4E59B17B1D8610062AA26 /* terminal6@2x.png in Resources */,
-				04D4E59C17B1D8610062AA26 /* terminal7@2x.png in Resources */,
-				04D4E59D17B1D8610062AA26 /* terminal8@2x.png in Resources */,
-				04D4E59E17B1D8610062AA26 /* terminal9@2x.png in Resources */,
-				04D4E59F17B1D8610062AA26 /* terminal1.png in Resources */,
-				04D4E5A017B1D8610062AA26 /* terminal10.png in Resources */,
-				04D4E5A117B1D8610062AA26 /* terminal11.png in Resources */,
-				04D4E5A217B1D8610062AA26 /* terminal2.png in Resources */,
-				04D4E5A317B1D8610062AA26 /* terminal3.png in Resources */,
-				04D4E5A417B1D8610062AA26 /* terminal4.png in Resources */,
-				04D4E5A517B1D8610062AA26 /* terminal5.png in Resources */,
-				04D4E5A617B1D8610062AA26 /* terminal6.png in Resources */,
-				04D4E5A717B1D8610062AA26 /* terminal7.png in Resources */,
-				04D4E5A817B1D8610062AA26 /* terminal8.png in Resources */,
-				04D4E5A917B1D8610062AA26 /* terminal9.png in Resources */,
+				04D4E59417B1D8610062AA26 /* terminal9@2x.png in Resources */,
+				04D4E59517B1D8610062AA26 /* terminal10@2x.png in Resources */,
+				04D4E59617B1D8610062AA26 /* terminal0@2x.png in Resources */,
+				04D4E59717B1D8610062AA26 /* terminal1@2x.png in Resources */,
+				04D4E59817B1D8610062AA26 /* terminal2@2x.png in Resources */,
+				04D4E59917B1D8610062AA26 /* terminal3@2x.png in Resources */,
+				04D4E59A17B1D8610062AA26 /* terminal4@2x.png in Resources */,
+				04D4E59B17B1D8610062AA26 /* terminal5@2x.png in Resources */,
+				04D4E59C17B1D8610062AA26 /* terminal6@2x.png in Resources */,
+				04D4E59D17B1D8610062AA26 /* terminal7@2x.png in Resources */,
+				04D4E59E17B1D8610062AA26 /* terminal8@2x.png in Resources */,
+				04D4E59F17B1D8610062AA26 /* terminal0.png in Resources */,
+				04D4E5A017B1D8610062AA26 /* terminal9.png in Resources */,
+				04D4E5A117B1D8610062AA26 /* terminal10.png in Resources */,
+				04D4E5A217B1D8610062AA26 /* terminal1.png in Resources */,
+				04D4E5A317B1D8610062AA26 /* terminal2.png in Resources */,
+				04D4E5A417B1D8610062AA26 /* terminal3.png in Resources */,
+				04D4E5A517B1D8610062AA26 /* terminal4.png in Resources */,
+				04D4E5A617B1D8610062AA26 /* terminal5.png in Resources */,
+				04D4E5A717B1D8610062AA26 /* terminal6.png in Resources */,
+				04D4E5A817B1D8610062AA26 /* terminal7.png in Resources */,
+				04D4E5A917B1D8610062AA26 /* terminal8.png in Resources */,
 				04B92C1417B310C800EA08FD /* NumericNodeCell.xib in Resources */,
 				04B92C2217B31D2000EA08FD /* NumericNodeTableViewController.xib in Resources */,
 				04BFFFCB17B66BFD0057B81E /* LocationsTable.xib in Resources */,

@@ -12,7 +12,7 @@
 
 + (UIImage*)getImageForTerminal:(FCODE)terminal
 {
-    return [UIImage imageNamed:[NSString stringWithFormat:@"dot%i@2x.png",terminal+30]];
+    return [UIImage imageNamed:[NSString stringWithFormat:@"terminal%i@2x.png",terminal]];
 }
 
 + (NSString*)getTitleForTerminal:(FCODE)terminal

@@ -272,6 +272,7 @@
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
         showNumberOfRoutesStops = YES;
+        showTerminals = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView removeAnnotations:[_delegate getStops]];
         });
@@ -296,7 +297,8 @@
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
-        showNumberOfRoutesStops = YES;
+        showNumberOfRoutesStops = NO;
+        showTerminals = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView removeAnnotations:[_delegate getStops]];
         });
