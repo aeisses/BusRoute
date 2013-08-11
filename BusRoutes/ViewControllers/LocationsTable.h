@@ -11,6 +11,7 @@
 
 @protocol LocationsTableDelegate <NSObject>
 - (void)touchedLocationTable:(REGION)region;
+- (void)freeZoom;
 @end
 
 @interface LocationsTable : UITableViewController

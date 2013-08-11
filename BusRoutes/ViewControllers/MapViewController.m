@@ -237,7 +237,7 @@
 #pragma Private Methods
 - (void)frameIntervalLoop:(CADisplayLink *)sender
 {
-    if (!_toolBar.hidden) {
+    if (!_toolBar.hidden && !_mapView.scrollEnabled && !_mapView.zoomEnabled) {
         if (date == nil) {
             date = [[NSDate alloc] init];
         }
@@ -307,8 +307,17 @@
 - (void)touchedLocationTable:(REGION)region
 {
     [popOverController dismissPopoverAnimated:NO];
+    _mapView.scrollEnabled = NO;
+    _mapView.zoomEnabled = NO;
     [_mapView setRegion:[RegionZoomData getRegion:region] animated:NO];
     [self hideHudView];
+}
+
+- (void)freeZoom
+{
+    [popOverController dismissPopoverAnimated:NO];
+    _mapView.scrollEnabled = YES;
+    _mapView.zoomEnabled = YES;
 }
 
 #pragma TerminaTableDelegate Methods

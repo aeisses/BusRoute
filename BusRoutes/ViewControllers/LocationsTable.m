@@ -37,6 +37,7 @@
                  @"Clayton Park",
                  @"Fairview",
                  @"Spryfield",
+                 @"Free Hand",
                  nil];
     
     self.clearsSelectionOnViewWillAppear = NO;}
@@ -104,6 +105,9 @@
             break;
         case 8:
             [_delegate touchedLocationTable:Spryfield];
+            break;
+        case 9:
+            [_delegate freeZoom];
             break;
     }
 }
