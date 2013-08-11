@@ -251,9 +251,10 @@
 - (void)hideHudView
 {
     [popOverController dismissPopoverAnimated:NO];
-    [UIView animateWithDuration:0.5 animations:^{
-        _toolBar.hidden = YES;
-    }];
+    if (!_mapView.scrollEnabled && !_mapView.zoomEnabled)
+        [UIView animateWithDuration:0.5 animations:^{
+            _toolBar.hidden = YES;
+        }];
 }
 
 - (void)showHudView
