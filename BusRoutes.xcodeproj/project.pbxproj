@@ -75,15 +75,12 @@
 		04C8112217B0089E00D194AC /* LegendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C8112117B0089E00D194AC /* LegendView.xib */; };
 		04C8112517B0127800D194AC /* LegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8112417B0127800D194AC /* LegendView.m */; };
 		04CACFC117AD43E2004EE283 /* DisplayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CACFC017AD43E2004EE283 /* DisplayButton.m */; };
-		04CACFC417AD651F004EE283 /* landscapeHudView.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC217AD651F004EE283 /* landscapeHudView.png */; };
-		04CACFC517AD651F004EE283 /* portraitHudView.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC317AD651F004EE283 /* portraitHudView.png */; };
 		04CACFC717ADC817004EE283 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC617ADC817004EE283 /* stop.png */; };
 		04CACFC917ADC906004EE283 /* stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CACFC817ADC906004EE283 /* stop@2x.png */; };
 		04CACFDB17ADE30F004EE283 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CACFD917ADE30F004EE283 /* libxml2.2.dylib */; };
 		04CFB8DF17A1F360003E56E9 /* DataReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DC17A1F360003E56E9 /* DataReader.m */; };
 		04CFB8E017A1F360003E56E9 /* RegionZoomData.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */; };
 		04CFB8F317A1F36A003E56E9 /* BusStop.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8E717A1F36A003E56E9 /* BusStop.m */; };
-		04CFB8F417A1F36A003E56E9 /* arrest.png in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8E917A1F36A003E56E9 /* arrest.png */; };
 		04CFB8F517A1F36A003E56E9 /* BusRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */; };
 		04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EE17A1F36A003E56E9 /* MapViewController.m */; };
 		04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8F817A1F38E003E56E9 /* MapViewController.xib */; };
@@ -207,8 +204,6 @@
 		04C8112417B0127800D194AC /* LegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegendView.m; sourceTree = "<group>"; };
 		04CACFBF17AD43E2004EE283 /* DisplayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayButton.h; sourceTree = "<group>"; };
 		04CACFC017AD43E2004EE283 /* DisplayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayButton.m; sourceTree = "<group>"; };
-		04CACFC217AD651F004EE283 /* landscapeHudView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = landscapeHudView.png; sourceTree = "<group>"; };
-		04CACFC317AD651F004EE283 /* portraitHudView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portraitHudView.png; sourceTree = "<group>"; };
 		04CACFC617ADC817004EE283 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		04CACFC817ADC906004EE283 /* stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stop@2x.png"; sourceTree = "<group>"; };
 		04CACFD917ADE30F004EE283 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
@@ -218,7 +213,6 @@
 		04CFB8DE17A1F360003E56E9 /* RegionZoomData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionZoomData.m; sourceTree = "<group>"; };
 		04CFB8E617A1F36A003E56E9 /* BusStop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusStop.h; sourceTree = "<group>"; };
 		04CFB8E717A1F36A003E56E9 /* BusStop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusStop.m; sourceTree = "<group>"; };
-		04CFB8E917A1F36A003E56E9 /* arrest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrest.png; sourceTree = "<group>"; };
 		04CFB8EB17A1F36A003E56E9 /* BusRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusRoutesViewController.h; sourceTree = "<group>"; };
 		04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoutesViewController.m; sourceTree = "<group>"; };
 		04CFB8ED17A1F36A003E56E9 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -437,9 +431,6 @@
 				0489769417B0557C00E8A2E8 /* exitButton.png */,
 				04CACFC817ADC906004EE283 /* stop@2x.png */,
 				04CACFC617ADC817004EE283 /* stop.png */,
-				04CACFC217AD651F004EE283 /* landscapeHudView.png */,
-				04CACFC317AD651F004EE283 /* portraitHudView.png */,
-				04CFB8E917A1F36A003E56E9 /* arrest.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -640,10 +631,7 @@
 				04DA2A83179DE91200EF177B /* Default@2x.png in Resources */,
 				04DA2A85179DE91200EF177B /* Default-568h@2x.png in Resources */,
 				04DA2A8B179DE91200EF177B /* BusRoutesViewController.xib in Resources */,
-				04CFB8F417A1F36A003E56E9 /* arrest.png in Resources */,
 				04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */,
-				04CACFC417AD651F004EE283 /* landscapeHudView.png in Resources */,
-				04CACFC517AD651F004EE283 /* portraitHudView.png in Resources */,
 				04CACFC717ADC817004EE283 /* stop.png in Resources */,
 				04CACFC917ADC906004EE283 /* stop@2x.png in Resources */,
 				04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */,
