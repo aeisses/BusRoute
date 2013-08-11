@@ -25,6 +25,7 @@
 		04BFFFCF17B6EE1A0057B81E /* TerminalTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFCD17B6EE1A0057B81E /* TerminalTable.m */; };
 		04BFFFD017B6EE1A0057B81E /* TerminalTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BFFFCE17B6EE1A0057B81E /* TerminalTable.xib */; };
 		04BFFFD317B6F01F0057B81E /* TerminalNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */; };
+		04BFFFD617B717660057B81E /* LegendElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD517B717660057B81E /* LegendElement.m */; };
 		04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109417AFE02700D194AC /* Bus Routes.kml */; };
 		04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109617AFE02D00D194AC /* Bus Stops.kml */; };
 		04C8109917AFE0EC00D194AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */; };
@@ -152,6 +153,8 @@
 		04BFFFCE17B6EE1A0057B81E /* TerminalTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TerminalTable.xib; path = ../../ViewControllers/TerminalTable.xib; sourceTree = "<group>"; };
 		04BFFFD117B6F01F0057B81E /* TerminalNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalNodeCell.h; sourceTree = "<group>"; };
 		04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalNodeCell.m; sourceTree = "<group>"; };
+		04BFFFD417B717660057B81E /* LegendElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegendElement.h; sourceTree = "<group>"; };
+		04BFFFD517B717660057B81E /* LegendElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegendElement.m; sourceTree = "<group>"; };
 		04C8109417AFE02700D194AC /* Bus Routes.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Routes.kml"; sourceTree = "<group>"; };
 		04C8109617AFE02D00D194AC /* Bus Stops.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Stops.kml"; sourceTree = "<group>"; };
 		04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -416,6 +419,8 @@
 				04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */,
 				04C8111E17B0062500D194AC /* StopsButton.h */,
 				04C8111F17B0062500D194AC /* StopsButton.m */,
+				04BFFFD417B717660057B81E /* LegendElement.h */,
+				04BFFFD517B717660057B81E /* LegendElement.m */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				04BFFFCA17B66BFD0057B81E /* LocationsTable.m in Sources */,
 				04BFFFCF17B6EE1A0057B81E /* TerminalTable.m in Sources */,
 				04BFFFD317B6F01F0057B81E /* TerminalNodeCell.m in Sources */,
+				04BFFFD617B717660057B81E /* LegendElement.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

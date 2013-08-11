@@ -11,6 +11,8 @@
 
 @protocol TerminalTableDelegate <NSObject>
 - (void)touchedTerminalTableElement:(NSInteger)element;
+- (void)addLegendElementWithTitle:(NSString *)title andImage:(UIImage*)image;
+- (void)clearLegend;
 @end
 
 @interface TerminalTable : UITableViewController

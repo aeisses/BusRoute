@@ -32,6 +32,7 @@
         longPress.numberOfTouchesRequired = 1;
         longPress.minimumPressDuration = 0.5;
         [self addGestureRecognizer:longPress];
+        elementArray = [[NSMutableArray alloc] initWithCapacity:0];
     }
     return self;
 }
@@ -66,9 +67,23 @@
     }
 }
 
-- (IBAction)touchButton:(id)sender;
+- (void)cleanLegend
 {
+    for (int i=0; i<elementArray.count; i++) {
+        [((UIView*)[elementArray objectAtIndex:i]) removeFromSuperview];
+    }
+    [elementArray release];
+    elementArray = [[NSMutableArray alloc] initWithCapacity:0];
+    self.frame = (CGRect){self.frame.origin.x,self.frame.origin.y,139,(CELLWDITH*elementArray.count)+MODIFIER+20};
+}
 
+- (void)addLegendElement:(NSString *)title andImage:(UIImage*)image
+{
+    LegendElement *element = [[LegendElement alloc] initWithFrame:(CGRect){0,(CELLWDITH*elementArray.count)+MODIFIER,139,20} andTitle:title andImage:image];
+    [elementArray addObject:element];
+    self.frame = (CGRect){self.frame.origin.x,self.frame.origin.y,139,(CELLWDITH*elementArray.count)+MODIFIER+20};
+    [self addSubview:element];
+    [element release];
 }
 
 - (IBAction)touchExitButton:(id)sender
@@ -76,15 +91,21 @@
     [_delegate exitLegendView];
 }
 
+- (void)dealloc
+{
+    [super dealloc];
+    [elementArray release];
+}
+
 #pragma Private Methods
 - (void)enableAllButtons
 {
-    _exitButton.enabled = _noGoTime.enabled = _oneRoute.enabled = _twoRoute.enabled = _threeRoute.enabled = _fourRoute.enabled = _fiveRoute.enabled = _sixRoute.enabled = _sevenRoute.enabled = _eighteenRoute.enabled = _nineRoute.enabled = _tenRoute.enabled = _elevenRoute.enabled = _twelveRoute.enabled = _thirteenRoute.enabled = _fourteenRoute.enabled = _fifteenRoute.enabled = _sixteenRoute.enabled = _seventeenRoute.enabled = _eighteenRoute.enabled = _nineteenRoute.enabled = _twentyRoute.enabled = YES;
+    _exitButton.enabled = YES;
 }
 
 - (void)disableAllButtons
 {
-    _exitButton.enabled = _noGoTime.enabled = _oneRoute.enabled = _twoRoute.enabled = _threeRoute.enabled = _fourRoute.enabled = _fiveRoute.enabled = _sixRoute.enabled = _sevenRoute.enabled = _eighteenRoute.enabled = _nineRoute.enabled = _tenRoute.enabled = _elevenRoute.enabled = _twelveRoute.enabled = _thirteenRoute.enabled = _fourteenRoute.enabled = _fifteenRoute.enabled = _sixteenRoute.enabled = _seventeenRoute.enabled = _eighteenRoute.enabled = _nineteenRoute.enabled = _twentyRoute.enabled = NO;
+    _exitButton.enabled = NO;
 }
 
 @end

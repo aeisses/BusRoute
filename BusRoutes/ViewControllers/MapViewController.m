@@ -43,6 +43,7 @@
     UIBarButtonItem *button = (UIBarButtonItem*)sender;
     if (button.tag == 1) {
         [self hideHudView];
+        [legendView cleanLegend];
         dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
         dispatch_async(loadDataQueue, ^{
             [self addProgressIndicator];
@@ -50,10 +51,14 @@
                 [_mapView removeAnnotations:[_delegate getStops]];
             });
             [_delegate showRoutes];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [legendView cleanLegend];
+            });
         });
         dispatch_release(loadDataQueue);
     } else if (button.tag == 2) {
         [self hideHudView];
+        [legendView cleanLegend];
         dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
         dispatch_async(loadDataQueue, ^{
             [self addProgressIndicator];
@@ -68,6 +73,9 @@
             showNumberOfRoutesStops = NO;
             showTerminals = NO;
             [_delegate showStopsWithValue:-1 isTerminal:NO];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self addLegendElementWithTitle:@"All Bus Stops" andImage:[UIImage imageNamed:@"dot0.png"]];
+            });
         });
         dispatch_release(loadDataQueue);
     } else if (button.tag == 3) {
@@ -206,25 +214,8 @@
     }
 }
 
-- (void)enableGestures
-{
-    swipeDown.enabled = YES;
-    swipeUp.enabled = YES;
-}
-
-- (void)disableGestures
-{
-    swipeDown.enabled = NO;
-    swipeUp.enabled = NO;
-}
-
 - (BOOL)shouldAutorotate {
     return YES;
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -272,15 +263,31 @@
     }];
 }
 
+- (void)enableGestures
+{
+    swipeDown.enabled = YES;
+    swipeUp.enabled = YES;
+}
+
+- (void)disableGestures
+{
+    swipeDown.enabled = NO;
+    swipeUp.enabled = NO;
+}
+
 #pragma NumericNodeTableDelegate Methods
 - (void)touchedTableElement:(NSInteger)element
 {
     [popOverController dismissPopoverAnimated:NO];
     [self hideHudView];
+    if (!showNumberOfRoutesStops)
+    {
+        [_delegate clearSets];
+        [legendView cleanLegend];
+    }
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
-        if (!showNumberOfRoutesStops) [_delegate clearSets];
         showNumberOfRoutesStops = YES;
         showTerminals = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -309,11 +316,14 @@
 {
     [popOverController dismissPopoverAnimated:NO];
     [self hideHudView];
+    if (!showTerminals){
+        [_delegate clearSets];
+        [legendView cleanLegend];
+    }
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
         showNumberOfRoutesStops = NO;
-        if (!showTerminals) [_delegate clearSets];
         showTerminals = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView removeAnnotations:[_delegate getStops]];
@@ -326,6 +336,17 @@
         [_delegate showStopsWithValue:element isTerminal:YES];
     });
     dispatch_release(loadDataQueue);
+}
+
+#pragma Common Delegate Method from TerminaTableDelegate and NumericNodeTableDelegate
+- (void)addLegendElementWithTitle:(NSString*)title andImage:(UIImage*)image
+{
+    [legendView addLegendElement:title andImage:image];
+}
+
+- (void)clearLegend
+{
+    [legendView cleanLegend];
 }
 
 #pragma LegendViewDelegate Methods

@@ -11,6 +11,8 @@
 
 @protocol NumericNodeTableDelegate <NSObject>
 - (void)touchedTableElement:(NSInteger)element;
+- (void)addLegendElementWithTitle:(NSString *)title andImage:(UIImage*)image;
+- (void)clearLegend;
 @end
 
 @interface NumericNodeTable : UITableViewController

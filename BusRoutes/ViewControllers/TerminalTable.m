@@ -79,10 +79,17 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (((TerminalNodeCell*)[terminalArray objectAtIndex:indexPath.row]).terminal == fcodeall) {
+    TerminalNodeCell *nodeCell = (TerminalNodeCell*)[terminalArray objectAtIndex:indexPath.row];
+    if (nodeCell.terminal == fcodeall) {
         [_delegate touchedTerminalTableElement:-1];
+        [_delegate clearLegend];
+        for (int i=0; i<[terminalArray count]-1; i++) {
+            TerminalNodeCell *cell = (TerminalNodeCell*)[terminalArray objectAtIndex:i];
+            [_delegate addLegendElementWithTitle:cell.title andImage:cell.image];
+        }
     } else {
         [_delegate touchedTerminalTableElement:indexPath.row];
+        [_delegate addLegendElementWithTitle:nodeCell.title andImage:nodeCell.image];
     }
 }
 
