@@ -60,7 +60,6 @@
 #pragma DataReaderDelegate Methods
 - (void)startProgressIndicator
 {
-    [mapViewController disableGestures];
     mapViewController.isDataLoading = YES;
 }
 
@@ -68,7 +67,6 @@
 {
     mapViewController.isDataLoading = NO;
     [mapViewController removeProgressIndicator];
-    [mapViewController enableGestures];
 }
 
 - (void)addBusStop:(BusStop*)busStop
@@ -92,7 +90,7 @@
     return dataReader.routes;
 }
 
-- (void)showStopsWithValue:(NSInteger)value
+- (void)showStopsWithValue:(NSInteger)value isTerminal:(BOOL)isTerminal
 {
     if (value == -1) {
         [set release]; set = nil;
@@ -100,12 +98,22 @@
     } else {
         [set addObject:[NSNumber numberWithInteger:value]];
     }
-    [dataReader showBusStopsWithValue:[NSSet setWithSet:set]];
+    if (isTerminal) {
+        [dataReader showTerminalsWithValue:[NSSet setWithSet:set]];
+    } else {
+        [dataReader showBusStopsWithValue:[NSSet setWithSet:set]];
+    }
 }
 
 - (void)showRoutes
 {
     [dataReader showRoutes];
+}
+
+- (void)clearSets
+{
+    [set release]; set = nil;
+    set = [[NSMutableSet alloc] initWithCapacity:0];
 }
 
 @end

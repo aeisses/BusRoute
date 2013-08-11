@@ -10,6 +10,54 @@
 
 @implementation Utils
 
++ (UIImage*)getImageForTerminal:(FCODE)terminal
+{
+    return [UIImage imageNamed:[NSString stringWithFormat:@"terminal%i@2x.png",terminal]];
+}
+
++ (NSString*)getTitleForTerminal:(FCODE)terminal
+{
+    switch (terminal) {
+        case trbsin:
+            return @"Bus Stop Inaccessible";
+            break;
+        case trbsac:
+            return @"Bus Stop Accessible";
+            break;
+        case trbstmin:
+            return @"Bus Terminal Inaccessible";
+            break;
+        case trbs:
+            return @"Bus Stop Non-Standard";
+            break;
+        case trbsshac:
+            return @"Bus Stop Shelter Accessible";
+            break;
+        case trbssh:
+            return @"Bus Stop Shelter Non-Standard";
+            break;
+        case trpr:
+            return @"Park and Ride";
+            break;
+        case trbstmac:
+            return @"Bus Terminal Accessible";
+            break;
+        case trbstm:
+            return @"Bus Terminal Non-Standard";
+            break;
+        case trbsshin:
+            return @"Bus Stop Shelter Inaccessible";
+            break;
+        case tbrsml:
+            return @"Metro Link";
+            break;
+        case fcodeall:
+            return @"All Terminals";
+            break;
+    }
+    return @"";
+}
+
 + (UIImage*)getImageForNumericNode:(NUMERICNODE)numericNode
 {
     return [UIImage imageNamed:[NSString stringWithFormat:@"dot%i@2x.png",numericNode]];

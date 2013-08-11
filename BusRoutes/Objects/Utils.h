@@ -11,6 +11,8 @@
 
 @interface Utils : NSObject
 
++ (UIImage*)getImageForTerminal:(FCODE)terminal;
++ (NSString*)getTitleForTerminal:(FCODE)terminal;
 + (UIImage*)getImageForNumericNode:(NUMERICNODE)numericNode;
 + (NSString*)getTitleForNumericNode:(NUMERICNODE)numericNode;
 

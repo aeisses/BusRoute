@@ -83,10 +83,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (((NumericNodeCell*)[nodeTypes objectAtIndex:indexPath.row]).node == all) {
+    NumericNodeCell *nodeCell = (NumericNodeCell*)[nodeTypes objectAtIndex:indexPath.row];
+    if (nodeCell.node == all) {
         [_delegate touchedTableElement:-1];
+        [_delegate clearLegend];
+        for (int i=0; i<[nodeTypes count]-1; i++) {
+            NumericNodeCell *cell = (NumericNodeCell*)[nodeTypes objectAtIndex:i];
+            [_delegate addLegendElementWithTitle:cell.title andImage:cell.image];
+        }
     } else {
         [_delegate touchedTableElement:indexPath.row];
+        [_delegate addLegendElementWithTitle:nodeCell.title andImage:nodeCell.image];
     }
 }
 

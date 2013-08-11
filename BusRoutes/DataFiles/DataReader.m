@@ -13,6 +13,7 @@
 
 @interface DataReader (PrivateMethods)
 - (void)loadStopDataAndShow:(BOOL)show withSet:(NSSet*)set;
+- (void)loadTerminalDataAndShow:(BOOL)show withSet:(NSSet*)set;
 - (void)loadRouteDataAndShow:(BOOL)show;
 @end;
 
@@ -42,6 +43,13 @@
 {
     [delegate startProgressIndicator];
     [self loadStopDataAndShow:YES withSet:set];
+    [delegate endProgressIndicator];
+}
+
+- (void)showTerminalsWithValue:(NSSet*)set
+{
+    [delegate startProgressIndicator];
+    [self loadTerminalDataAndShow:YES withSet:set];
     [delegate endProgressIndicator];
 }
 
@@ -89,6 +97,14 @@
         _stops = [[NSArray alloc] initWithArray:mutableStops];
     }
     [dictonary release];
+}
+
+- (void)loadTerminalDataAndShow:(BOOL)show withSet:(NSSet*)set
+{
+    for (BusStop *busStop in _stops) {
+        if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:busStop.fcode]]))
+            [delegate addBusStop:busStop];
+    }
 }
 
 - (void)loadRouteDataAndShow:(BOOL)show

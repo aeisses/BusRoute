@@ -15,17 +15,19 @@
 #import "LegendView.h"
 #import "NumericNodeTable.h"
 #import "LocationsTable.h"
+#import "TerminalTable.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
 @protocol MapViewControllerDelegate <NSObject>
 - (NSArray *)getStops;
 - (NSArray *)getRoutes;
-- (void)showStopsWithValue:(NSInteger)value;
+- (void)showStopsWithValue:(NSInteger)value isTerminal:(BOOL)isTerminal;
 - (void)showRoutes;
+- (void)clearSets;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -37,7 +39,6 @@
     BOOL showNumberOfRoutesStops;
     BOOL showTerminals;
     LegendView *legendView;
-    NSInteger buttonSort;
     UIPopoverController *popOverController;
 }
 
@@ -51,7 +52,5 @@
 - (void)addRoute:(BusRoute*)route;
 - (void)addProgressIndicator;
 - (void)removeProgressIndicator;
-- (void)enableGestures;
-- (void)disableGestures;
 
 @end

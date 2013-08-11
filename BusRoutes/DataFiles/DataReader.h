@@ -29,6 +29,7 @@
 - (void)loadKMLData;
 - (void)showRoutes;
 - (void)showBusStopsWithValue:(NSSet*)set;
+- (void)showTerminalsWithValue:(NSSet*)set;
 
 @property (nonatomic, retain) NSArray *stops;
 @property (nonatomic, retain) NSArray *routes;

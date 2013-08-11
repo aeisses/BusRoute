@@ -12,6 +12,8 @@
 - (void)frameIntervalLoop:(CADisplayLink *)sender;
 - (void)hideHudView;
 - (void)showHudView;
+- (void)enableGestures;
+- (void)disableGestures;
 @end;
 
 @implementation MapViewController
@@ -32,7 +34,6 @@
         legendView.delegate = self;
         
         showNumberOfRoutesStops = NO;
-        buttonSort = -1;
     }
     return self;
 }
@@ -41,6 +42,8 @@
 {
     UIBarButtonItem *button = (UIBarButtonItem*)sender;
     if (button.tag == 1) {
+        [self hideHudView];
+        [legendView cleanLegend];
         dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
         dispatch_async(loadDataQueue, ^{
             [self addProgressIndicator];
@@ -48,22 +51,33 @@
                 [_mapView removeAnnotations:[_delegate getStops]];
             });
             [_delegate showRoutes];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [legendView cleanLegend];
+            });
         });
         dispatch_release(loadDataQueue);
-        [self hideHudView];
     } else if (button.tag == 2) {
+        [self hideHudView];
+        [legendView cleanLegend];
         dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
         dispatch_async(loadDataQueue, ^{
             [self addProgressIndicator];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeAnnotations:[_delegate getStops]];
+            });
             for (BusRoute *busRoute in [_delegate getRoutes]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [_mapView removeOverlays:busRoute.lines];
                 });
             }
-            [_delegate showStopsWithValue:-1];
+            showNumberOfRoutesStops = NO;
+            showTerminals = NO;
+            [_delegate showStopsWithValue:-1 isTerminal:NO];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self addLegendElementWithTitle:@"All Bus Stops" andImage:[UIImage imageNamed:@"dot0.png"]];
+            });
         });
         dispatch_release(loadDataQueue);
-        [self hideHudView];
     } else if (button.tag == 3) {
         if (popOverController == nil) {
             [popOverController dismissPopoverAnimated:NO];
@@ -75,8 +89,18 @@
         [table release];
         [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else if (button.tag == 4) {
-        
+        if (popOverController == nil) {
+            [popOverController dismissPopoverAnimated:NO];
+            [popOverController release];
+        }
+        TerminalTable *table = [[TerminalTable alloc] initWithNibName:@"TerminalTable" bundle:[NSBundle mainBundle]];
+        table.delegate = self;
+        popOverController = [[UIPopoverController alloc] initWithContentViewController:table];
+        [popOverController setPopoverContentSize:(CGSize){320,400}];
+        [table release];
+        [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else if (button.tag == 5) {
+        [self hideHudView];
         legendView.frame = (CGRect){50,200,legendView.frame.size};
         [self.view addSubview:legendView];
         [self hideHudView];
@@ -172,6 +196,7 @@
             [activityIndicator hidesWhenStopped];
         });
     }
+    [self disableGestures];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:activityIndicator];
         [activityIndicator startAnimating];
@@ -181,6 +206,7 @@
 - (void)removeProgressIndicator
 {
     if (!_isDataLoading && !loadingBusStopCounter && !loadingBusRouteCounter) {
+        [self enableGestures];
         dispatch_async(dispatch_get_main_queue(), ^{
             [activityIndicator stopAnimating];
             [activityIndicator removeFromSuperview];
@@ -188,25 +214,8 @@
     }
 }
 
-- (void)enableGestures
-{
-    swipeDown.enabled = YES;
-    swipeUp.enabled = YES;
-}
-
-- (void)disableGestures
-{
-    swipeDown.enabled = NO;
-    swipeUp.enabled = NO;
-}
-
 - (BOOL)shouldAutorotate {
     return YES;
-}
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -254,19 +263,42 @@
     }];
 }
 
+- (void)enableGestures
+{
+    swipeDown.enabled = YES;
+    swipeUp.enabled = YES;
+}
+
+- (void)disableGestures
+{
+    swipeDown.enabled = NO;
+    swipeUp.enabled = NO;
+}
+
 #pragma NumericNodeTableDelegate Methods
 - (void)touchedTableElement:(NSInteger)element
 {
     [popOverController dismissPopoverAnimated:NO];
-    buttonSort = element;
+    [self hideHudView];
+    if (!showNumberOfRoutesStops)
+    {
+        [_delegate clearSets];
+        [legendView cleanLegend];
+    }
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
         showNumberOfRoutesStops = YES;
+        showTerminals = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView removeAnnotations:[_delegate getStops]];
         });
-        [_delegate showStopsWithValue:buttonSort];
+        for (BusRoute *busRoute in [_delegate getRoutes]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeOverlays:busRoute.lines];
+            });
+        }
+        [_delegate showStopsWithValue:element isTerminal:NO];
     });
     dispatch_release(loadDataQueue);
 }
@@ -277,6 +309,44 @@
     [popOverController dismissPopoverAnimated:NO];
     [_mapView setRegion:[RegionZoomData getRegion:region] animated:NO];
     [self hideHudView];
+}
+
+#pragma TerminaTableDelegate Methods
+- (void)touchedTerminalTableElement:(NSInteger)element
+{
+    [popOverController dismissPopoverAnimated:NO];
+    [self hideHudView];
+    if (!showTerminals){
+        [_delegate clearSets];
+        [legendView cleanLegend];
+    }
+    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(loadDataQueue, ^{
+        [self addProgressIndicator];
+        showNumberOfRoutesStops = NO;
+        showTerminals = YES;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_mapView removeAnnotations:[_delegate getStops]];
+        });
+        for (BusRoute *busRoute in [_delegate getRoutes]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeOverlays:busRoute.lines];
+            });
+        }
+        [_delegate showStopsWithValue:element isTerminal:YES];
+    });
+    dispatch_release(loadDataQueue);
+}
+
+#pragma Common Delegate Method from TerminaTableDelegate and NumericNodeTableDelegate
+- (void)addLegendElementWithTitle:(NSString*)title andImage:(UIImage*)image
+{
+    [legendView addLegendElement:title andImage:image];
+}
+
+- (void)clearLegend
+{
+    [legendView cleanLegend];
 }
 
 #pragma LegendViewDelegate Methods
@@ -312,12 +382,6 @@
             } else {
                 BusStop *busStop = (BusStop*)annotation;
                 imageName = [NSString stringWithFormat:@"dot%i.png",[busStop.routes count]];
-/*                if (buttonSort != -1 && [busStop.routes count] != buttonSort) {
-                    annotationView.hidden = YES;
-                } else {
-                    annotationView.hidden = NO;
-                }
- */
             }
             annotationView.image = [UIImage imageNamed:imageName];//here we use a nice image instead of the default pins
         } else {
