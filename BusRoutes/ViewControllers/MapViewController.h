@@ -22,8 +22,9 @@
 @protocol MapViewControllerDelegate <NSObject>
 - (NSArray *)getStops;
 - (NSArray *)getRoutes;
-- (void)showStopsWithValue:(NSInteger)value;
+- (void)showStopsWithValue:(NSInteger)value isTerminal:(BOOL)isTerminal;
 - (void)showRoutes;
+- (void)clearSets;
 @end
 
 @interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate>
@@ -38,7 +39,6 @@
     BOOL showNumberOfRoutesStops;
     BOOL showTerminals;
     LegendView *legendView;
-    NSInteger buttonSort;
     UIPopoverController *popOverController;
 }
 
@@ -52,7 +52,5 @@
 - (void)addRoute:(BusRoute*)route;
 - (void)addProgressIndicator;
 - (void)removeProgressIndicator;
-- (void)enableGestures;
-- (void)disableGestures;
 
 @end

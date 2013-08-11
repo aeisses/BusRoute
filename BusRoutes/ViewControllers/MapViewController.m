@@ -12,6 +12,8 @@
 - (void)frameIntervalLoop:(CADisplayLink *)sender;
 - (void)hideHudView;
 - (void)showHudView;
+- (void)enableGestures;
+- (void)disableGestures;
 @end;
 
 @implementation MapViewController
@@ -32,7 +34,6 @@
         legendView.delegate = self;
         
         showNumberOfRoutesStops = NO;
-        buttonSort = -1;
     }
     return self;
 }
@@ -41,6 +42,7 @@
 {
     UIBarButtonItem *button = (UIBarButtonItem*)sender;
     if (button.tag == 1) {
+        [self hideHudView];
         dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
         dispatch_async(loadDataQueue, ^{
             [self addProgressIndicator];
@@ -50,20 +52,24 @@
             [_delegate showRoutes];
         });
         dispatch_release(loadDataQueue);
-        [self hideHudView];
     } else if (button.tag == 2) {
+        [self hideHudView];
         dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
         dispatch_async(loadDataQueue, ^{
             [self addProgressIndicator];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeAnnotations:[_delegate getStops]];
+            });
             for (BusRoute *busRoute in [_delegate getRoutes]) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [_mapView removeOverlays:busRoute.lines];
                 });
             }
-            [_delegate showStopsWithValue:-1];
+            showNumberOfRoutesStops = NO;
+            showTerminals = NO;
+            [_delegate showStopsWithValue:-1 isTerminal:NO];
         });
         dispatch_release(loadDataQueue);
-        [self hideHudView];
     } else if (button.tag == 3) {
         if (popOverController == nil) {
             [popOverController dismissPopoverAnimated:NO];
@@ -86,6 +92,7 @@
         [table release];
         [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else if (button.tag == 5) {
+        [self hideHudView];
         legendView.frame = (CGRect){50,200,legendView.frame.size};
         [self.view addSubview:legendView];
         [self hideHudView];
@@ -181,6 +188,7 @@
             [activityIndicator hidesWhenStopped];
         });
     }
+    [self disableGestures];
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view addSubview:activityIndicator];
         [activityIndicator startAnimating];
@@ -190,6 +198,7 @@
 - (void)removeProgressIndicator
 {
     if (!_isDataLoading && !loadingBusStopCounter && !loadingBusRouteCounter) {
+        [self enableGestures];
         dispatch_async(dispatch_get_main_queue(), ^{
             [activityIndicator stopAnimating];
             [activityIndicator removeFromSuperview];
@@ -267,16 +276,22 @@
 - (void)touchedTableElement:(NSInteger)element
 {
     [popOverController dismissPopoverAnimated:NO];
-    buttonSort = element;
+    [self hideHudView];
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
+        if (!showNumberOfRoutesStops) [_delegate clearSets];
         showNumberOfRoutesStops = YES;
         showTerminals = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView removeAnnotations:[_delegate getStops]];
         });
-        [_delegate showStopsWithValue:buttonSort];
+        for (BusRoute *busRoute in [_delegate getRoutes]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeOverlays:busRoute.lines];
+            });
+        }
+        [_delegate showStopsWithValue:element isTerminal:NO];
     });
     dispatch_release(loadDataQueue);
 }
@@ -293,16 +308,22 @@
 - (void)touchedTerminalTableElement:(NSInteger)element
 {
     [popOverController dismissPopoverAnimated:NO];
-    buttonSort = element;
+    [self hideHudView];
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
         showNumberOfRoutesStops = NO;
+        if (!showTerminals) [_delegate clearSets];
         showTerminals = YES;
         dispatch_async(dispatch_get_main_queue(), ^{
             [_mapView removeAnnotations:[_delegate getStops]];
         });
-        [_delegate showStopsWithValue:buttonSort];
+        for (BusRoute *busRoute in [_delegate getRoutes]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_mapView removeOverlays:busRoute.lines];
+            });
+        }
+        [_delegate showStopsWithValue:element isTerminal:YES];
     });
     dispatch_release(loadDataQueue);
 }

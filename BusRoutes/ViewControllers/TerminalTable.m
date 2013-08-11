@@ -40,7 +40,6 @@
                      [[[TerminalNodeCell alloc] initWithTerminal:trbsshin] autorelease],
                      [[[TerminalNodeCell alloc] initWithTerminal:tbrsml] autorelease],
                      [[[TerminalNodeCell alloc] initWithTerminal:fcodeall] autorelease],
-                     [[[TerminalNodeCell alloc] initWithTerminal:fcodenone] autorelease],
                      nil];
 
     self.clearsSelectionOnViewWillAppear = NO;

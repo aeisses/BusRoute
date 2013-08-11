@@ -54,9 +54,6 @@
         case fcodeall:
             return @"All Terminals";
             break;
-        case fcodenone:
-            return @"No Terminals";
-            break;
     }
     return @"";
 }

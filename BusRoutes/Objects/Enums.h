@@ -44,8 +44,7 @@ typedef enum {
     trbstm, // Bus Terminal Non-Standard
     trbsshin, // Bus Stop Shelter Inaccessible
     tbrsml, // Metro Link
-    fcodeall,
-    fcodenone
+    fcodeall
 } FCODE;
 
 typedef enum {
