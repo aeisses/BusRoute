@@ -9,6 +9,9 @@
 #import "MapViewController.h"
 
 @interface MapViewController (PrivateMethods)
+- (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture;
+- (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture;
+- (void)mapTapped:(UITapGestureRecognizer*)tapGesture;
 - (void)frameIntervalLoop:(CADisplayLink *)sender;
 - (void)hideHudView;
 - (void)showHudView;
@@ -29,6 +32,9 @@
         swipeUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipedScreenUp:)];
         swipeUp.numberOfTouchesRequired = 1;
         swipeUp.direction = (UISwipeGestureRecognizerDirectionUp);
+        
+        touchDown = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
+        touchDown.numberOfTapsRequired = 2;
         
         legendView = [[[[NSBundle mainBundle] loadNibNamed:@"LegendView" owner:self options:nil] objectAtIndex:0] retain];
         legendView.delegate = self;
@@ -115,7 +121,9 @@
         [popOverController setPopoverContentSize:(CGSize){320,400}];
         [table release];
         [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    }
+    } else if (button.tag == 7) {
+        [_mapView addGestureRecognizer:touchDown];
+    } 
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -149,6 +157,31 @@
 - (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture
 {
     [self showHudView];
+}
+
+- (void)mapTapped:(UITapGestureRecognizer*)tapGesture
+{
+    MKMapView *mapView = (MKMapView *)tapGesture.view;
+    id<MKOverlay> tappedOverlay = nil;
+    for (id<MKOverlay> overlay in mapView.overlays)
+    {
+        MKOverlayView *view = [mapView viewForOverlay:overlay];
+        if (view)
+        {
+            // Get view frame rect in the mapView's coordinate system
+            CGRect viewFrameInMapView = [view.superview convertRect:view.frame toView:mapView];
+            // Get touch point in the mapView's coordinate system
+            CGPoint point = [tapGesture locationInView:mapView];
+            // Check if the touch is within the view bounds
+            if (CGRectContainsPoint(viewFrameInMapView, point))
+            {
+                tappedOverlay = overlay;
+                break;
+            }
+        }
+    }
+    NSLog(@"Tapped view: %@", [mapView viewForOverlay:tappedOverlay]);
+    [_mapView removeOverlay:tappedOverlay];
 }
 
 - (void)viewWillAppear:(BOOL)animated

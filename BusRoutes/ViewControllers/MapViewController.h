@@ -31,6 +31,7 @@
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
+    UITapGestureRecognizer *touchDown;
     UIActivityIndicatorView *activityIndicator;
     CADisplayLink *displayLink;
     NSDate *date;
