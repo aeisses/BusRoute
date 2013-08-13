@@ -32,6 +32,7 @@
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
     UITapGestureRecognizer *touchDown;
+    UIPanGestureRecognizer *pan;
     UIActivityIndicatorView *activityIndicator;
     CADisplayLink *displayLink;
     NSDate *date;
@@ -55,3 +56,14 @@
 - (void)removeProgressIndicator;
 
 @end
+
+@interface MapViewController (PrivateMethods)
+- (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture;
+- (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture;
+- (void)mapTapped:(UITapGestureRecognizer*)tapGesture;
+- (void)frameIntervalLoop:(CADisplayLink *)sender;
+- (void)hideHudView;
+- (void)showHudView;
+- (void)enableGestures;
+- (void)disableGestures;
+@end;

@@ -8,17 +8,6 @@
 
 #import "MapViewController.h"
 
-@interface MapViewController (PrivateMethods)
-- (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture;
-- (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture;
-- (void)mapTapped:(UITapGestureRecognizer*)tapGesture;
-- (void)frameIntervalLoop:(CADisplayLink *)sender;
-- (void)hideHudView;
-- (void)showHudView;
-- (void)enableGestures;
-- (void)disableGestures;
-@end;
-
 @implementation MapViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -35,6 +24,8 @@
         
         touchDown = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
         touchDown.numberOfTapsRequired = 2;
+        
+        pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(fingerMoved:)];
         
         legendView = [[[[NSBundle mainBundle] loadNibNamed:@"LegendView" owner:self options:nil] objectAtIndex:0] retain];
         legendView.delegate = self;
@@ -123,7 +114,13 @@
         [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else if (button.tag == 7) {
         [_mapView addGestureRecognizer:touchDown];
-    } 
+    } else if (button.tag == 8) {
+        if ([[self.view gestureRecognizers] containsObject:pan]) {
+            [_mapView removeGestureRecognizer:pan];
+        } else {
+            [_mapView addGestureRecognizer:pan];
+        }
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -182,6 +179,11 @@
     }
     NSLog(@"Tapped view: %@", [mapView viewForOverlay:tappedOverlay]);
     [_mapView removeOverlay:tappedOverlay];
+}
+
+- (void)fingerMoved:(UIPanGestureRecognizer*)panGesture
+{
+    NSLog(@"Pan: %@",panGesture);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -270,7 +272,7 @@
 #pragma Private Methods
 - (void)frameIntervalLoop:(CADisplayLink *)sender
 {
-    if (!_toolBar.hidden && !_mapView.scrollEnabled && !_mapView.zoomEnabled) {
+    if (!_toolBar.hidden && !_mapView.scrollEnabled && !_mapView.zoomEnabled && ![[self.view gestureRecognizers] containsObject:pan]) {
         if (date == nil) {
             date = [[NSDate alloc] init];
         }

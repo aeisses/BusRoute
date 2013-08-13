@@ -99,6 +99,13 @@
 								<int key="IBUIStyle">1</int>
 								<reference key="IBUIToolbar" ref="886071316"/>
 							</object>
+							<object class="IBUIBarButtonItem" id="548245547">
+								<int key="IBUITag">8</int>
+								<string key="IBUITitle">Draw</string>
+								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
+								<int key="IBUIStyle">1</int>
+								<reference key="IBUIToolbar" ref="886071316"/>
+							</object>
 						</array>
 					</object>
 				</array>
@@ -212,6 +219,14 @@
 					</object>
 					<int key="connectionID">24</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">titleBarButtonTouched:</string>
+						<reference key="source" ref="548245547"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">26</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -251,6 +266,7 @@
 							<reference ref="956313846"/>
 							<reference ref="179410911"/>
 							<reference ref="123430424"/>
+							<reference ref="548245547"/>
 						</array>
 						<reference key="parent" ref="766721923"/>
 					</object>
@@ -289,6 +305,11 @@
 						<reference key="object" ref="123430424"/>
 						<reference key="parent" ref="886071316"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">25</int>
+						<reference key="object" ref="548245547"/>
+						<reference key="parent" ref="886071316"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -302,6 +323,7 @@
 				<string key="2.CustomClassName">MKMapView</string>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="25.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -311,7 +333,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">24</int>
+			<int key="maxID">26</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
