@@ -36,6 +36,9 @@
         drawingPoint = (CGPoint){0,0};
         
         drawingImageView = [[DrawingImageView alloc] initWithFrame:self.view.frame];
+        drawingImageView.delegate = self;
+        
+        saveViewController = [[SaveViewController alloc] initWithNibName:@"SaveViewController" bundle:nil];
     }
     return self;
 }
@@ -301,6 +304,7 @@
     [legendView release]; legendView = nil;
     [popOverController release]; popOverController = nil;
     [drawingImageView release]; drawingImageView = nil;
+    [saveViewController release]; saveViewController = nil;
     _delegate = nil;
 }
 
@@ -349,7 +353,10 @@
 #pragma DrawingImageViewDelegate Methods
 - (void)saveButtonTouched
 {
-    
+    saveViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:saveViewController animated:YES completion:^{
+        
+    }];
 }
 
 #pragma NumericNodeTableDelegate Methods

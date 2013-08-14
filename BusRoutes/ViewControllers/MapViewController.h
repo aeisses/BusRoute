@@ -17,6 +17,7 @@
 #import "LocationsTable.h"
 #import "TerminalTable.h"
 #import "DrawingImageView.h"
+#import "SaveViewController.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -46,6 +47,7 @@
     CGPoint drawingLastPoint;
     CGPoint drawingPoint;
     DrawingImageView *drawingImageView;
+    SaveViewController *saveViewController;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
