@@ -85,6 +85,11 @@
 		04CFB8F617A1F36A003E56E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8EE17A1F36A003E56E9 /* MapViewController.m */; };
 		04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8F817A1F38E003E56E9 /* MapViewController.xib */; };
 		04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8FD17A1F440003E56E9 /* MovementButton.m */; };
+		04D0EC0D17BAF1830098D138 /* DrawingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0EC0C17BAF1830098D138 /* DrawingImageView.m */; };
+		04D0EC1217BAF7690098D138 /* saveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC0E17BAF7690098D138 /* saveButton.png */; };
+		04D0EC1317BAF7690098D138 /* clearButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC0F17BAF7690098D138 /* clearButton@2x.png */; };
+		04D0EC1417BAF7690098D138 /* saveButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC1017BAF7690098D138 /* saveButton@2x.png */; };
+		04D0EC1517BAF7690098D138 /* clearButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC1117BAF7690098D138 /* clearButton.png */; };
 		04D4E59417B1D8610062AA26 /* terminal9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57217B1D8610062AA26 /* terminal9@2x.png */; };
 		04D4E59517B1D8610062AA26 /* terminal10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57317B1D8610062AA26 /* terminal10@2x.png */; };
 		04D4E59617B1D8610062AA26 /* terminal0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57417B1D8610062AA26 /* terminal0@2x.png */; };
@@ -220,6 +225,12 @@
 		04CFB8F817A1F38E003E56E9 /* MapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		04CFB8FC17A1F440003E56E9 /* MovementButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementButton.h; sourceTree = "<group>"; };
 		04CFB8FD17A1F440003E56E9 /* MovementButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementButton.m; sourceTree = "<group>"; };
+		04D0EC0B17BAF1830098D138 /* DrawingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingImageView.h; sourceTree = "<group>"; };
+		04D0EC0C17BAF1830098D138 /* DrawingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingImageView.m; sourceTree = "<group>"; };
+		04D0EC0E17BAF7690098D138 /* saveButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveButton.png; sourceTree = "<group>"; };
+		04D0EC0F17BAF7690098D138 /* clearButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clearButton@2x.png"; sourceTree = "<group>"; };
+		04D0EC1017BAF7690098D138 /* saveButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveButton@2x.png"; sourceTree = "<group>"; };
+		04D0EC1117BAF7690098D138 /* clearButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearButton.png; sourceTree = "<group>"; };
 		04D4E57217B1D8610062AA26 /* terminal9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal9@2x.png"; sourceTree = "<group>"; };
 		04D4E57317B1D8610062AA26 /* terminal10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal10@2x.png"; sourceTree = "<group>"; };
 		04D4E57417B1D8610062AA26 /* terminal0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal0@2x.png"; sourceTree = "<group>"; };
@@ -448,6 +459,10 @@
 				04C8109617AFE02D00D194AC /* Bus Stops.kml */,
 				04C8109417AFE02700D194AC /* Bus Routes.kml */,
 				04BA64DA17AF39EF001D4B56 /* sample.plist */,
+				04D0EC0E17BAF7690098D138 /* saveButton.png */,
+				04D0EC0F17BAF7690098D138 /* clearButton@2x.png */,
+				04D0EC1017BAF7690098D138 /* saveButton@2x.png */,
+				04D0EC1117BAF7690098D138 /* clearButton.png */,
 				0489769317B0557C00E8A2E8 /* exitButton@2x.png */,
 				0489769417B0557C00E8A2E8 /* exitButton.png */,
 				04CACFC817ADC906004EE283 /* stop@2x.png */,
@@ -476,6 +491,8 @@
 			children = (
 				04C8112317B0127800D194AC /* LegendView.h */,
 				04C8112417B0127800D194AC /* LegendView.m */,
+				04D0EC0B17BAF1830098D138 /* DrawingImageView.h */,
+				04D0EC0C17BAF1830098D138 /* DrawingImageView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -724,6 +741,10 @@
 				04C2FEDE17B7FFC7002B9075 /* LocationsTable.xib in Resources */,
 				04C2FEDF17B7FFC7002B9075 /* NumericNodeTableViewController.xib in Resources */,
 				04C2FEE017B7FFC7002B9075 /* TerminalTable.xib in Resources */,
+				04D0EC1217BAF7690098D138 /* saveButton.png in Resources */,
+				04D0EC1317BAF7690098D138 /* clearButton@2x.png in Resources */,
+				04D0EC1417BAF7690098D138 /* saveButton@2x.png in Resources */,
+				04D0EC1517BAF7690098D138 /* clearButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +776,7 @@
 				04C2FEE817B7FFDC002B9075 /* LocationsTable.m in Sources */,
 				04C2FEE917B7FFDC002B9075 /* NumericNodeTable.m in Sources */,
 				04C2FEEA17B7FFDC002B9075 /* TerminalTable.m in Sources */,
+				04D0EC0D17BAF1830098D138 /* DrawingImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,7 @@
 #import "NumericNodeTable.h"
 #import "LocationsTable.h"
 #import "TerminalTable.h"
+#import "DrawingImageView.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -27,7 +28,7 @@
 - (void)clearSets;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate,DrawingImageViewDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -42,6 +43,9 @@
     BOOL showTerminals;
     LegendView *legendView;
     UIPopoverController *popOverController;
+    CGPoint drawingLastPoint;
+    CGPoint drawingPoint;
+    DrawingImageView *drawingImageView;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
@@ -54,7 +58,6 @@
 - (void)addRoute:(BusRoute*)route;
 - (void)addProgressIndicator;
 - (void)removeProgressIndicator;
-
 @end
 
 @interface MapViewController (PrivateMethods)

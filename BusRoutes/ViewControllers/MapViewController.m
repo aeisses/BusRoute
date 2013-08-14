@@ -31,6 +31,11 @@
         legendView.delegate = self;
         
         showNumberOfRoutesStops = NO;
+        
+        drawingLastPoint = (CGPoint){0,0};
+        drawingPoint = (CGPoint){0,0};
+        
+        drawingImageView = [[DrawingImageView alloc] initWithFrame:self.view.frame];
     }
     return self;
 }
@@ -117,7 +122,9 @@
     } else if (button.tag == 8) {
         if ([[self.view gestureRecognizers] containsObject:pan]) {
             [_mapView removeGestureRecognizer:pan];
+            [drawingImageView removeFromSuperview];
         } else {
+            [self.view insertSubview:drawingImageView belowSubview:_toolBar];
             [_mapView addGestureRecognizer:pan];
         }
     }
@@ -183,7 +190,34 @@
 
 - (void)fingerMoved:(UIPanGestureRecognizer*)panGesture
 {
-    NSLog(@"Pan: %@",panGesture);
+    drawingPoint = [panGesture locationInView:self.view];
+    switch (panGesture.state) {
+        case UIGestureRecognizerStateBegan:
+            drawingLastPoint = drawingPoint;
+            break;
+        case UIGestureRecognizerStateChanged:
+        {
+            [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
+            drawingLastPoint = drawingPoint;
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStatePossible:
+        case UIGestureRecognizerStateCancelled:
+        case UIGestureRecognizerStateFailed:
+            break;
+    }
+    if(panGesture.state == UIGestureRecognizerStateBegan) {
+        
+    } else if (panGesture.state == UIGestureRecognizerStateChanged) {
+        
+    }
+    if (drawingLastPoint.x == 0 && drawingLastPoint.y == 0) {
+        drawingLastPoint = drawingPoint;
+    } else {
+        [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
+        drawingLastPoint = drawingPoint;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -266,6 +300,7 @@
     [swipeUp release]; swipeUp = nil;
     [legendView release]; legendView = nil;
     [popOverController release]; popOverController = nil;
+    [drawingImageView release]; drawingImageView = nil;
     _delegate = nil;
 }
 
@@ -309,6 +344,12 @@
 {
     swipeDown.enabled = NO;
     swipeUp.enabled = NO;
+}
+
+#pragma DrawingImageViewDelegate Methods
+- (void)saveButtonTouched
+{
+    
 }
 
 #pragma NumericNodeTableDelegate Methods
