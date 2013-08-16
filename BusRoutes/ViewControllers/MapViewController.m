@@ -39,6 +39,7 @@
         drawingImageView.delegate = self;
         
         saveViewController = [[SaveViewController alloc] initWithNibName:@"SaveViewController" bundle:nil];
+        counter = 0;
     }
     return self;
 }
@@ -464,7 +465,7 @@
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
-            annotationView.enabled = NO;
+            annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
             NSString *imageName;
             if (!showNumberOfRoutesStops && !showTerminals) {
@@ -504,6 +505,10 @@
 - (void)mapView:(MKMapView *)mapView didAddOverlayViews:(NSArray *)overlayViews {
     loadingBusRouteCounter--;
     [self removeProgressIndicator];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+//    NSLog(@"Hello");
 }
 
 @end

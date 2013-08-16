@@ -18,7 +18,7 @@
 {
     if (self = [super init])
     {
-        _title = title;
+        _title = [title copy];
         _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         stopDescription = decription;
         _routes = [NSArray array];

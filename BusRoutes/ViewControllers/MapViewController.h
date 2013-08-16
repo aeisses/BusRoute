@@ -48,6 +48,7 @@
     CGPoint drawingPoint;
     DrawingImageView *drawingImageView;
     SaveViewController *saveViewController;
+    int counter;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;

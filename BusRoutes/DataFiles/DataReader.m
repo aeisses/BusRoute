@@ -19,8 +19,6 @@
 
 @implementation DataReader
 
-@synthesize delegate;
-
 - (id)init
 {
     if (self = [super init])
@@ -33,31 +31,31 @@
 
 - (void)loadKMLData
 {
-    [delegate startProgressIndicator];
+    [_delegate startProgressIndicator];
     [self loadStopDataAndShow:YES withSet:[NSSet set]];
     [self loadRouteDataAndShow:NO];
-    [delegate endProgressIndicator];
+    [_delegate endProgressIndicator];
 }
 
 - (void)showBusStopsWithValue:(NSSet*)set
 {
-    [delegate startProgressIndicator];
+    [_delegate startProgressIndicator];
     [self loadStopDataAndShow:YES withSet:set];
-    [delegate endProgressIndicator];
+    [_delegate endProgressIndicator];
 }
 
 - (void)showTerminalsWithValue:(NSSet*)set
 {
-    [delegate startProgressIndicator];
+    [_delegate startProgressIndicator];
     [self loadTerminalDataAndShow:YES withSet:set];
-    [delegate endProgressIndicator];
+    [_delegate endProgressIndicator];
 }
 
 - (void)showRoutes
 {
-    [delegate startProgressIndicator];
+    [_delegate startProgressIndicator];
     [self loadRouteDataAndShow:YES];
-    [delegate endProgressIndicator];
+    [_delegate endProgressIndicator];
 }
 
 - (void)dealloc
@@ -67,7 +65,7 @@
     [_routes release];
     [stopsUrl release];
     [routesUrl release];
-    delegate = nil;
+    _delegate = nil;
 }
 
 #pragma Private Methods
@@ -77,7 +75,7 @@
     if (_stops != nil && show) {
         for (BusStop *busStop in _stops) {
             if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
-                [delegate addBusStop:busStop];
+                [_delegate addBusStop:busStop];
         }
     } else if (_stops == nil) {
         KMLRoot *kmlStops = [KMLParser parseKMLAtURL:stopsUrl];
@@ -90,7 +88,7 @@
                 [mutableStops addObject:busStop];
                 busStop.routes = (NSArray*)[dictonary objectForKey:[NSString stringWithFormat:@"%i",busStop.goTime]];
                 if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
-                    [delegate addBusStop:busStop];
+                    [_delegate addBusStop:busStop];
                 [busStop release];
             }
         }
@@ -103,7 +101,7 @@
 {
     for (BusStop *busStop in _stops) {
         if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:busStop.fcode]]))
-            [delegate addBusStop:busStop];
+            [_delegate addBusStop:busStop];
     }
 }
 
@@ -111,7 +109,7 @@
 {
     if (_routes != nil && show) {
         for (BusRoute *busRoute in _routes) {
-            [delegate addRoute:busRoute];
+            [_delegate addRoute:busRoute];
         }
     } else if (_routes == nil) {
         KMLRoot *kmlRoutes = [KMLParser parseKMLAtURL:routesUrl];
@@ -123,7 +121,7 @@
                 BusRoute *busRoute = [[BusRoute alloc] initWithTitle:placemark.name description:placemark.descriptionValue andGeometries:(KMLMultiGeometry *)placemark.geometry];
                 [mutableRoutes addObject:busRoute];
                 if (show)
-                    [delegate addRoute:busRoute];
+                    [_delegate addRoute:busRoute];
                 [busRoute release];
             }
         }
