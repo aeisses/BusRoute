@@ -25,8 +25,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
     locations = [[NSArray alloc] initWithObjects:
                  @"HRM",
                  @"Halifax",
@@ -40,7 +38,9 @@
                  @"Free Hand",
                  nil];
     
-    self.clearsSelectionOnViewWillAppear = NO;}
+    self.clearsSelectionOnViewWillAppear = NO;
+    [super viewDidLoad];
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -16,8 +16,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     set = [[NSMutableSet alloc] initWithCapacity:5];
     dataReader = [[DataReader alloc] init];
     dataReader.delegate = self;
@@ -29,6 +27,7 @@
         [blockDataReader loadKMLData];
     });
     dispatch_release(loadDataQueue);
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning

@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
 	// Do any additional setup after loading the view.
     nodeTypes = [[NSArray alloc] initWithObjects:
                  [[[NumericNodeCell alloc] initWithNumericNode:zero] autorelease],
@@ -53,6 +52,7 @@
                  nil];
 
     self.clearsSelectionOnViewWillAppear = NO;
+    [super viewDidLoad];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

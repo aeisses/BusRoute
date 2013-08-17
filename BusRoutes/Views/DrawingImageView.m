@@ -15,28 +15,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self setUserInteractionEnabled:YES];
-        saveButton = [[UIButton alloc] initWithFrame:(CGRect){20,700,40,40}];
-        [saveButton addTarget:self action:@selector(touchSaveButton:) forControlEvents:UIControlEventTouchUpInside];
-        [saveButton setImage:[UIImage imageNamed:@"saveButton.png"] forState:UIControlStateNormal];
-        [self addSubview:saveButton];
-        clearButton = [[UIButton alloc] initWithFrame:(CGRect){960,700,40,40}];
-        [clearButton setImage:[UIImage imageNamed:@"clearButton.png"] forState:UIControlStateNormal];
-        [self addSubview:clearButton];
-        [clearButton addTarget:self action:@selector(touchClearButton) forControlEvents:UIControlEventTouchUpInside];
+        [self setUserInteractionEnabled:NO];
     }
     return self;
 }
 
-- (void)touchSaveButton:(id)sender
-{
-    [_delegate saveButtonTouched];
-}
-
-- (void)touchClearButton
-{
-    self.image = nil;
-}
 
 - (void)addLineFrom:(CGPoint)drawingLastPoint To:(CGPoint)drawingPoint
 {

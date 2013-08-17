@@ -29,7 +29,7 @@
 - (void)clearSets;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate,DrawingImageViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -49,6 +49,8 @@
     DrawingImageView *drawingImageView;
     SaveViewController *saveViewController;
     int counter;
+    UIButton *saveButton;
+    UIButton *clearButton;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;

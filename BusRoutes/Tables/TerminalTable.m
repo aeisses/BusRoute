@@ -25,8 +25,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-
     terminalArray = [[NSArray alloc] initWithObjects:
                      [[[TerminalNodeCell alloc] initWithTerminal:trbsin] autorelease],
                      [[[TerminalNodeCell alloc] initWithTerminal:trbsac] autorelease],
@@ -43,6 +41,7 @@
                      nil];
 
     self.clearsSelectionOnViewWillAppear = NO;
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
