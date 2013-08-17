@@ -36,8 +36,31 @@
         drawingPoint = (CGPoint){0,0};
         
         drawingImageView = [[DrawingImageView alloc] initWithFrame:self.view.frame];
+        
+        saveButton = [[UIButton alloc] initWithFrame:(CGRect){20,700,40,40}];
+        [saveButton addTarget:self action:@selector(touchSaveButton:) forControlEvents:UIControlEventTouchUpInside];
+        [saveButton setImage:[UIImage imageNamed:@"saveButton.png"] forState:UIControlStateNormal];
+        
+        clearButton = [[UIButton alloc] initWithFrame:(CGRect){960,700,40,40}];
+        [clearButton setImage:[UIImage imageNamed:@"clearButton.png"] forState:UIControlStateNormal];
+        [clearButton addTarget:self action:@selector(touchClearButton) forControlEvents:UIControlEventTouchUpInside];
+        
+        saveViewController = [[SaveViewController alloc] initWithNibName:@"SaveViewController" bundle:nil];
+        counter = 0;
     }
     return self;
+}
+
+- (void)touchSaveButton:(id)sender
+{
+    saveViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:saveViewController animated:YES completion:^{
+        
+    }];}
+
+- (void)touchClearButton
+{
+    drawingImageView.image = nil;
 }
 
 - (IBAction)titleBarButtonTouched:(id)sender
@@ -121,11 +144,15 @@
         [_mapView addGestureRecognizer:touchDown];
     } else if (button.tag == 8) {
         if ([[self.view gestureRecognizers] containsObject:pan]) {
-            [_mapView removeGestureRecognizer:pan];
+//            [_mapView removeGestureRecognizer:pan];
             [drawingImageView removeFromSuperview];
+            [saveButton removeFromSuperview];
+            [clearButton removeFromSuperview];
         } else {
             [self.view insertSubview:drawingImageView belowSubview:_toolBar];
-            [_mapView addGestureRecognizer:pan];
+            [self.view addSubview:saveButton];
+            [self.view addSubview:clearButton];
+//            [_mapView addGestureRecognizer:pan];
         }
     }
 }
@@ -136,13 +163,25 @@
         [date release];
         date = [[NSDate alloc] init];
     }
+    drawingLastPoint = (CGPoint){0,0};
+    drawingPoint = (CGPoint){0,0};
     [super touchesBegan:touches withEvent:event];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+//    NSLog(@"Moved");
+    [super touchesMoved:touches withEvent:event];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+//    NSLog(@"End");
+    [super touchesEnded:touches withEvent:event];
 }
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     _mapView.scrollEnabled = NO;
     _mapView.zoomEnabled = NO;
     _toolBar.hidden = YES;
@@ -151,6 +190,7 @@
     [self.view addGestureRecognizer:swipeUp];
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(frameIntervalLoop:)];
     [displayLink setFrameInterval:15];
+    [super viewDidLoad];
 }
 
 - (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture
@@ -190,8 +230,9 @@
 
 - (void)fingerMoved:(UIPanGestureRecognizer*)panGesture
 {
-    drawingPoint = [panGesture locationInView:self.view];
-    switch (panGesture.state) {
+//    drawingPoint = [panGesture locationInView:self.view];
+//    NSLog(@"Hello");
+/*    switch (panGesture.state) {
         case UIGestureRecognizerStateBegan:
             drawingLastPoint = drawingPoint;
             break;
@@ -218,6 +259,7 @@
         [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
         drawingLastPoint = drawingPoint;
     }
+ */
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -301,6 +343,7 @@
     [legendView release]; legendView = nil;
     [popOverController release]; popOverController = nil;
     [drawingImageView release]; drawingImageView = nil;
+    [saveViewController release]; saveViewController = nil;
     _delegate = nil;
 }
 
@@ -344,12 +387,6 @@
 {
     swipeDown.enabled = NO;
     swipeUp.enabled = NO;
-}
-
-#pragma DrawingImageViewDelegate Methods
-- (void)saveButtonTouched
-{
-    
 }
 
 #pragma NumericNodeTableDelegate Methods
@@ -457,7 +494,7 @@
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
-            annotationView.enabled = NO;
+            annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
             NSString *imageName;
             if (!showNumberOfRoutesStops && !showTerminals) {
@@ -497,6 +534,17 @@
 - (void)mapView:(MKMapView *)mapView didAddOverlayViews:(NSArray *)overlayViews {
     loadingBusRouteCounter--;
     [self removeProgressIndicator];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    BusStop *busStop = view.annotation;
+    drawingPoint = [mapView convertCoordinate:busStop.coordinate toPointToView:drawingImageView];
+    if (drawingLastPoint.x == 0 && drawingLastPoint.y == 0) {
+        drawingLastPoint = drawingPoint;
+    } else {
+        [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
+        drawingLastPoint = drawingPoint;
+    }
 }
 
 @end

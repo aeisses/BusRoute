@@ -17,6 +17,7 @@
 #import "LocationsTable.h"
 #import "TerminalTable.h"
 #import "DrawingImageView.h"
+#import "SaveViewController.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -28,7 +29,7 @@
 - (void)clearSets;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate,DrawingImageViewDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -46,6 +47,10 @@
     CGPoint drawingLastPoint;
     CGPoint drawingPoint;
     DrawingImageView *drawingImageView;
+    SaveViewController *saveViewController;
+    int counter;
+    UIButton *saveButton;
+    UIButton *clearButton;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;

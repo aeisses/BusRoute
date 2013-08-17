@@ -18,7 +18,7 @@
 {
     if (self = [super init])
     {
-        _title = title;
+        _title = [title copy];
         NSMutableArray *linesMutable = [NSMutableArray array];
         for (int i=0; i<[geometries.geometries count]; i++) {
             if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLPoint class]]) {

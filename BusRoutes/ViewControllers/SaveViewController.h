@@ -1,5 +1,5 @@
 //
-//  DrawingImageView.h
+//  SaveViewController.h
 //  BusRoutes
 //
 //  Created by Aaron Eisses on 13-08-13.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DrawingImageView : UIImageView
+@interface SaveViewController : UIViewController
 
-- (void)addLineFrom:(CGPoint)drawingLastPoint To:(CGPoint)drawingPoint;
+- (IBAction)touchExitButton:(id)sender;
 
 @end
