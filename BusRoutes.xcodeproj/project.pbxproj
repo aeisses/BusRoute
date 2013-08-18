@@ -98,6 +98,14 @@
 		04D423CF17C0143A00DEC31D /* radioButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423CB17C0143A00DEC31D /* radioButtonSelected.png */; };
 		04D423D217C014D700DEC31D /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D017C014D700DEC31D /* infoButton.png */; };
 		04D423D317C014D700DEC31D /* infoButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D117C014D700DEC31D /* infoButton2@x.png */; };
+		04D423D817C0210400DEC31D /* deleteButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D417C0210400DEC31D /* deleteButton2@x.png */; };
+		04D423D917C0210400DEC31D /* deleteButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D517C0210400DEC31D /* deleteButtonSelected.png */; };
+		04D423DA17C0210400DEC31D /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D617C0210400DEC31D /* deleteButton.png */; };
+		04D423DB17C0210400DEC31D /* deleteButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D717C0210400DEC31D /* deleteButtonSelected@2x.png */; };
+		04D423E017C0235500DEC31D /* createRouteDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DC17C0235500DEC31D /* createRouteDisabled@2x.png */; };
+		04D423E117C0235500DEC31D /* createRoute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DD17C0235500DEC31D /* createRoute@2x.png */; };
+		04D423E217C0235500DEC31D /* createRoute.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DE17C0235500DEC31D /* createRoute.png */; };
+		04D423E317C0235500DEC31D /* createRouteDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DF17C0235500DEC31D /* createRouteDisabled.png */; };
 		04D4E59417B1D8610062AA26 /* terminal9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57217B1D8610062AA26 /* terminal9@2x.png */; };
 		04D4E59517B1D8610062AA26 /* terminal10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57317B1D8610062AA26 /* terminal10@2x.png */; };
 		04D4E59617B1D8610062AA26 /* terminal0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57417B1D8610062AA26 /* terminal0@2x.png */; };
@@ -248,6 +256,14 @@
 		04D423CB17C0143A00DEC31D /* radioButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioButtonSelected.png; sourceTree = "<group>"; };
 		04D423D017C014D700DEC31D /* infoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoButton.png; sourceTree = "<group>"; };
 		04D423D117C014D700DEC31D /* infoButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoButton2@x.png"; sourceTree = "<group>"; };
+		04D423D417C0210400DEC31D /* deleteButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButton2@x.png"; sourceTree = "<group>"; };
+		04D423D517C0210400DEC31D /* deleteButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButtonSelected.png; sourceTree = "<group>"; };
+		04D423D617C0210400DEC31D /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
+		04D423D717C0210400DEC31D /* deleteButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButtonSelected@2x.png"; sourceTree = "<group>"; };
+		04D423DC17C0235500DEC31D /* createRouteDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createRouteDisabled@2x.png"; sourceTree = "<group>"; };
+		04D423DD17C0235500DEC31D /* createRoute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createRoute@2x.png"; sourceTree = "<group>"; };
+		04D423DE17C0235500DEC31D /* createRoute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createRoute.png; sourceTree = "<group>"; };
+		04D423DF17C0235500DEC31D /* createRouteDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createRouteDisabled.png; sourceTree = "<group>"; };
 		04D4E57217B1D8610062AA26 /* terminal9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal9@2x.png"; sourceTree = "<group>"; };
 		04D4E57317B1D8610062AA26 /* terminal10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal10@2x.png"; sourceTree = "<group>"; };
 		04D4E57417B1D8610062AA26 /* terminal0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal0@2x.png"; sourceTree = "<group>"; };
@@ -482,6 +498,14 @@
 				04D0EC1017BAF7690098D138 /* saveButton@2x.png */,
 				04D423C817C0143A00DEC31D /* radioButtonSelected2@x.png */,
 				04D423C917C0143A00DEC31D /* radioButton2@x.png */,
+				04D423D417C0210400DEC31D /* deleteButton2@x.png */,
+				04D423D517C0210400DEC31D /* deleteButtonSelected.png */,
+				04D423D617C0210400DEC31D /* deleteButton.png */,
+				04D423D717C0210400DEC31D /* deleteButtonSelected@2x.png */,
+				04D423DC17C0235500DEC31D /* createRouteDisabled@2x.png */,
+				04D423DD17C0235500DEC31D /* createRoute@2x.png */,
+				04D423DE17C0235500DEC31D /* createRoute.png */,
+				04D423DF17C0235500DEC31D /* createRouteDisabled.png */,
 				04D423CA17C0143A00DEC31D /* radioButton.png */,
 				04D423CB17C0143A00DEC31D /* radioButtonSelected.png */,
 				04D423D017C014D700DEC31D /* infoButton.png */,
@@ -786,6 +810,14 @@
 				04D423CF17C0143A00DEC31D /* radioButtonSelected.png in Resources */,
 				04D423D217C014D700DEC31D /* infoButton.png in Resources */,
 				04D423D317C014D700DEC31D /* infoButton2@x.png in Resources */,
+				04D423D817C0210400DEC31D /* deleteButton2@x.png in Resources */,
+				04D423D917C0210400DEC31D /* deleteButtonSelected.png in Resources */,
+				04D423DA17C0210400DEC31D /* deleteButton.png in Resources */,
+				04D423DB17C0210400DEC31D /* deleteButtonSelected@2x.png in Resources */,
+				04D423E017C0235500DEC31D /* createRouteDisabled@2x.png in Resources */,
+				04D423E117C0235500DEC31D /* createRoute@2x.png in Resources */,
+				04D423E217C0235500DEC31D /* createRoute.png in Resources */,
+				04D423E317C0235500DEC31D /* createRouteDisabled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

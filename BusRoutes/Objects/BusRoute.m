@@ -25,7 +25,7 @@
             } else if ([[geometries.geometries objectAtIndex:i] isKindOfClass:[KMLLineString class]]) {
                 NSArray *points = (NSArray *)(((KMLLineString *)[geometries.geometries objectAtIndex:i]).coordinates);
                 CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [points count]);
-                for (int j = 0; j < [points count]; ++j) {
+                for (int j = 0; j < [points count]; j++) {
                     KMLCoordinate *point = (KMLCoordinate*)[points objectAtIndex:j];
                     line[j] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
                 }
@@ -37,6 +37,21 @@
         
         stopDescription = description;
         [self parseRouteDescription];
+    }
+    return self;
+}
+
+- (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title
+{
+    if (self = [super init])
+    {
+        _lines = [lines copy];
+        _title = [title copy];
+        stopDescription = @"";
+        routeTitle = @"";
+        startDate = [[NSDate alloc] initWithTimeIntervalSinceNow:NSTimeIntervalSince1970];
+        revDate = [[NSDate alloc] initWithTimeIntervalSinceNow:NSTimeIntervalSince1970];
+        socrateId = @"";
     }
     return self;
 }

@@ -107,6 +107,7 @@
 								<reference key="IBUIToolbar" ref="886071316"/>
 							</object>
 							<object class="IBUIBarButtonItem" id="8312649">
+								<int key="IBUITag">9</int>
 								<string key="IBUITitle">Prune</string>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<int key="IBUIStyle">1</int>

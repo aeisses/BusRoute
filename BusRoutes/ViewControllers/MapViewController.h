@@ -51,6 +51,8 @@
     int counter;
     UIButton *saveButton;
     UIButton *clearButton;
+    UIButton *deleteButton;
+    UIButton *createRoute;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
@@ -66,6 +68,10 @@
 @end
 
 @interface MapViewController (PrivateMethods)
+- (void)touchSaveButton;
+- (void)touchClearButton;
+- (void)touchCreateRouteButton;
+- (void)touchDeleteButton;
 - (void)swipedScreenUp:(UISwipeGestureRecognizer*)swipeGesture;
 - (void)swipedScreenDown:(UISwipeGestureRecognizer*)swipeGesture;
 - (void)mapTapped:(UITapGestureRecognizer*)tapGesture;

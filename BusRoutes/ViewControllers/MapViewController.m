@@ -37,13 +37,22 @@
         
         drawingImageView = [[DrawingImageView alloc] initWithFrame:self.view.frame];
         
-        saveButton = [[UIButton alloc] initWithFrame:(CGRect){20,700,40,40}];
-        [saveButton addTarget:self action:@selector(touchSaveButton:) forControlEvents:UIControlEventTouchUpInside];
+        saveButton = [[UIButton alloc] initWithFrame:(CGRect){960,620,40,40}];
+        [saveButton addTarget:self action:@selector(touchSaveButton) forControlEvents:UIControlEventTouchUpInside];
         [saveButton setImage:[UIImage imageNamed:@"saveButton.png"] forState:UIControlStateNormal];
         
         clearButton = [[UIButton alloc] initWithFrame:(CGRect){960,700,40,40}];
-        [clearButton setImage:[UIImage imageNamed:@"clearButton.png"] forState:UIControlStateNormal];
         [clearButton addTarget:self action:@selector(touchClearButton) forControlEvents:UIControlEventTouchUpInside];
+        [clearButton setImage:[UIImage imageNamed:@"clearButton.png"] forState:UIControlStateNormal];
+
+        deleteButton = [[UIButton alloc] initWithFrame:(CGRect){20,620,40,40}];
+        [deleteButton addTarget:self action:@selector(touchDeleteButton) forControlEvents:UIControlEventTouchUpInside];
+        [deleteButton setImage:[UIImage imageNamed:@"deleteButton"] forState:UIControlStateNormal];
+        [deleteButton setImage:[UIImage imageNamed:@"deleteButtonSelected"] forState:UIControlStateSelected];
+        
+        createRoute = [[UIButton alloc] initWithFrame:(CGRect){20,700,40,40}];
+        [createRoute addTarget:self action:@selector(touchCreateRouteButton) forControlEvents:UIControlEventTouchUpInside];
+        [createRoute setImage:[UIImage imageNamed:@"createRoute"] forState:UIControlStateNormal];
         
         saveViewController = [[SaveViewController alloc] initWithNibName:@"SaveViewController" bundle:nil];
         counter = 0;
@@ -51,7 +60,7 @@
     return self;
 }
 
-- (void)touchSaveButton:(id)sender
+- (void)touchSaveButton
 {
     saveViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:saveViewController animated:YES completion:^{
@@ -60,7 +69,18 @@
 
 - (void)touchClearButton
 {
-    drawingImageView.image = nil;
+    [drawingImageView clearLine];
+}
+
+- (void)touchCreateRouteButton
+{
+    BusRoute *route = [drawingImageView createBusRoute:_mapView];
+    [self addRoute:route];
+}
+
+- (void)touchDeleteButton
+{
+    deleteButton.selected = !deleteButton.selected;
 }
 
 - (IBAction)titleBarButtonTouched:(id)sender
@@ -148,12 +168,18 @@
             [drawingImageView removeFromSuperview];
             [saveButton removeFromSuperview];
             [clearButton removeFromSuperview];
+            [deleteButton removeFromSuperview];
+            [createRoute removeFromSuperview];
         } else {
             [self.view insertSubview:drawingImageView belowSubview:_toolBar];
             [self.view addSubview:saveButton];
             [self.view addSubview:clearButton];
+            [self.view addSubview:deleteButton];
+            [self.view addSubview:createRoute];
 //            [_mapView addGestureRecognizer:pan];
         }
+    } else if (button.tag == 9) {
+        // The Prune button...
     }
 }
 
@@ -177,6 +203,7 @@
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
 //    NSLog(@"End");
+    [drawingImageView closeLine];
     [super touchesEnded:touches withEvent:event];
 }
 
@@ -344,6 +371,9 @@
     [popOverController release]; popOverController = nil;
     [drawingImageView release]; drawingImageView = nil;
     [saveViewController release]; saveViewController = nil;
+    [clearButton release]; clearButton = nil;
+    [saveButton release]; saveButton = nil;
+    [deleteButton release]; deleteButton = nil;
     _delegate = nil;
 }
 
@@ -432,6 +462,13 @@
     [popOverController dismissPopoverAnimated:NO];
     _mapView.scrollEnabled = YES;
     _mapView.zoomEnabled = YES;
+}
+
+- (void)lockZoom
+{
+    [popOverController dismissPopoverAnimated:NO];
+    _mapView.scrollEnabled = NO;
+    _mapView.zoomEnabled = NO;
 }
 
 #pragma TerminaTableDelegate Methods
@@ -539,7 +576,10 @@
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     BusStop *busStop = view.annotation;
     drawingPoint = [mapView convertCoordinate:busStop.coordinate toPointToView:drawingImageView];
-    if (drawingLastPoint.x == 0 && drawingLastPoint.y == 0) {
+    if (deleteButton.selected) {
+        drawingLastPoint = (CGPoint){0,0};
+        [drawingImageView removePoint:drawingPoint];
+    } else if (drawingLastPoint.x == 0 && drawingLastPoint.y == 0) {
         drawingLastPoint = drawingPoint;
     } else {
         [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
