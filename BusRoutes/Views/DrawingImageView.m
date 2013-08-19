@@ -57,8 +57,14 @@
     [points addObject:[NSValue valueWithCGPoint:drawingPoint]];
 }
 
-- (void)removePoint:(CGPoint)removingPoint
+- (void)addBusStop:(BusStop*)busStop
 {
+    [annotations addObject:busStop];
+}
+
+- (void)removePoint:(CGPoint)removingPoint andBusStop:(BusStop*)busStop
+{
+    [annotations removeObject:busStop];
     self.image = nil;
     for (NSMutableArray *pointsArray in lines) {
         [pointsArray removeObject:[NSValue valueWithCGPoint:removingPoint]];

@@ -18,6 +18,7 @@
 #import "TerminalTable.h"
 #import "DrawingImageView.h"
 #import "SaveViewController.h"
+#import "InfoViewController.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 

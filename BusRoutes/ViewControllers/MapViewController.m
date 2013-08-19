@@ -69,7 +69,7 @@
 
 - (void)touchClearButton
 {
-    [drawingImageView clearLine];
+    [drawingImageView clearLines];
 }
 
 - (void)touchCreateRouteButton
@@ -180,6 +180,11 @@
         }
     } else if (button.tag == 9) {
         // The Prune button...
+        InfoViewController *infoVC = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil forInfo:prune];
+        infoVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:infoVC animated:YES completion:^{
+//            [infoVC release];
+        }];
     }
 }
 
@@ -578,7 +583,7 @@
     drawingPoint = [mapView convertCoordinate:busStop.coordinate toPointToView:drawingImageView];
     if (deleteButton.selected) {
         drawingLastPoint = (CGPoint){0,0};
-        [drawingImageView removePoint:drawingPoint];
+        [drawingImageView removePoint:drawingPoint andBusStop:busStop];
     } else if (drawingLastPoint.x == 0 && drawingLastPoint.y == 0) {
         drawingLastPoint = drawingPoint;
     } else {

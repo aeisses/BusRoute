@@ -8,22 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import "BusRoute.h"
+#import "BusStop.h"
 
 @interface DrawingImageView : UIImageView
 {
     NSMutableArray *lines;
     NSMutableArray *points;
+    NSMutableArray *annotations;
 }
 
 - (void)clearLines;
-- (void)clearLine;
 - (void)closeLine;
 - (void)addLineFrom:(CGPoint)drawingLastPoint To:(CGPoint)drawingPoint;
-- (void)removePoint:(CGPoint)removingPoint;
+- (void)addBusStop:(BusStop*)busStop;
+- (void)removePoint:(CGPoint)removingPoint andBusStop:(BusStop*)busStop;
 - (BusRoute*)createBusRoute:(MKMapView*)mapView;
 
 @end
 
 @interface DrawingImageView (PrivateMethods)
+- (void)clearLine;
 - (void)drawLineFrom:(CGPoint)from To:(CGPoint)to;
 @end

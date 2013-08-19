@@ -26,6 +26,13 @@
 		04C2FEE917B7FFDC002B9075 /* NumericNodeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEE517B7FFDC002B9075 /* NumericNodeTable.m */; };
 		04C2FEEA17B7FFDC002B9075 /* TerminalTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEE717B7FFDC002B9075 /* TerminalTable.m */; };
 		04C2FEED17B80051002B9075 /* NumericNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEEC17B7FFFA002B9075 /* NumericNodeCell.m */; };
+		04C4438C17C1905B00485D41 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4438A17C1905B00485D41 /* InfoViewController.m */; };
+		04C4438D17C1905B00485D41 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C4438B17C1905B00485D41 /* InfoViewController.xib */; };
+		04C4439217C195E100485D41 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4438E17C195E100485D41 /* checkBoxChecked.png */; };
+		04C4439317C195E100485D41 /* checkBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4438F17C195E100485D41 /* checkBox@2x.png */; };
+		04C4439417C195E100485D41 /* checkBoxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4439017C195E100485D41 /* checkBoxChecked@2x.png */; };
+		04C4439517C195E100485D41 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4439117C195E100485D41 /* checkBox.png */; };
+		04C4439717C1A17C00485D41 /* Strings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C4439617C1A17C00485D41 /* Strings.plist */; };
 		04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109417AFE02700D194AC /* Bus Routes.kml */; };
 		04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109617AFE02D00D194AC /* Bus Stops.kml */; };
 		04C8109917AFE0EC00D194AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */; };
@@ -173,6 +180,14 @@
 		04C2FEE717B7FFDC002B9075 /* TerminalTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalTable.m; sourceTree = "<group>"; };
 		04C2FEEB17B7FFFA002B9075 /* NumericNodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumericNodeCell.h; sourceTree = "<group>"; };
 		04C2FEEC17B7FFFA002B9075 /* NumericNodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumericNodeCell.m; sourceTree = "<group>"; };
+		04C4438917C1905B00485D41 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoViewController.h; path = BusRoutes/ViewControllers/InfoViewController.h; sourceTree = SOURCE_ROOT; };
+		04C4438A17C1905B00485D41 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoViewController.m; path = BusRoutes/ViewControllers/InfoViewController.m; sourceTree = SOURCE_ROOT; };
+		04C4438B17C1905B00485D41 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InfoViewController.xib; path = BusRoutes/ViewControllers/InfoViewController.xib; sourceTree = SOURCE_ROOT; };
+		04C4438E17C195E100485D41 /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxChecked.png; sourceTree = "<group>"; };
+		04C4438F17C195E100485D41 /* checkBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBox@2x.png"; sourceTree = "<group>"; };
+		04C4439017C195E100485D41 /* checkBoxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxChecked@2x.png"; sourceTree = "<group>"; };
+		04C4439117C195E100485D41 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
+		04C4439617C1A17C00485D41 /* Strings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Strings.plist; sourceTree = "<group>"; };
 		04C8109417AFE02700D194AC /* Bus Routes.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Routes.kml"; sourceTree = "<group>"; };
 		04C8109617AFE02D00D194AC /* Bus Stops.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Stops.kml"; sourceTree = "<group>"; };
 		04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -513,8 +528,13 @@
 				04D0EC1117BAF7690098D138 /* clearButton.png */,
 				0489769317B0557C00E8A2E8 /* exitButton@2x.png */,
 				0489769417B0557C00E8A2E8 /* exitButton.png */,
+				04C4438E17C195E100485D41 /* checkBoxChecked.png */,
+				04C4438F17C195E100485D41 /* checkBox@2x.png */,
+				04C4439017C195E100485D41 /* checkBoxChecked@2x.png */,
+				04C4439117C195E100485D41 /* checkBox.png */,
 				04CACFC817ADC906004EE283 /* stop@2x.png */,
 				04CACFC617ADC817004EE283 /* stop.png */,
+				04C4439617C1A17C00485D41 /* Strings.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -543,6 +563,9 @@
 				04C8112417B0127800D194AC /* LegendView.m */,
 				04D0EC0B17BAF1830098D138 /* DrawingImageView.h */,
 				04D0EC0C17BAF1830098D138 /* DrawingImageView.m */,
+				04C4438917C1905B00485D41 /* InfoViewController.h */,
+				04C4438A17C1905B00485D41 /* InfoViewController.m */,
+				04C4438B17C1905B00485D41 /* InfoViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -818,6 +841,12 @@
 				04D423E117C0235500DEC31D /* createRoute@2x.png in Resources */,
 				04D423E217C0235500DEC31D /* createRoute.png in Resources */,
 				04D423E317C0235500DEC31D /* createRouteDisabled.png in Resources */,
+				04C4438D17C1905B00485D41 /* InfoViewController.xib in Resources */,
+				04C4439217C195E100485D41 /* checkBoxChecked.png in Resources */,
+				04C4439317C195E100485D41 /* checkBox@2x.png in Resources */,
+				04C4439417C195E100485D41 /* checkBoxChecked@2x.png in Resources */,
+				04C4439517C195E100485D41 /* checkBox.png in Resources */,
+				04C4439717C1A17C00485D41 /* Strings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,6 +880,7 @@
 				04C2FEEA17B7FFDC002B9075 /* TerminalTable.m in Sources */,
 				04D0EC0D17BAF1830098D138 /* DrawingImageView.m in Sources */,
 				04D0EC1E17BB0E3B0098D138 /* SaveViewController.m in Sources */,
+				04C4438C17C1905B00485D41 /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
