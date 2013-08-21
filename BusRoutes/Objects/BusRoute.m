@@ -41,11 +41,11 @@
     return self;
 }
 
-- (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title
+- (id)initWithLine:(MKPolyline *)line andTitle:(NSString *)title
 {
     if (self = [super init])
     {
-        _lines = [lines copy];
+        _lines = [[NSArray alloc] initWithObjects:line, nil];
         _title = [title copy];
         stopDescription = @"";
         routeTitle = @"";

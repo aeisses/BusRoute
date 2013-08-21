@@ -66,7 +66,7 @@
 
 - (void)touchClearButton
 {
-    [drawingImageView clearLines];
+    [drawingImageView removeAllBusRoutesFromMap:_mapView];
 }
 
 - (void)touchCreateRouteButton
@@ -200,14 +200,11 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    NSLog(@"Moved");
     [super touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-//    NSLog(@"End");
-    [drawingImageView closeLine];
     [drawingImageView showBusRoute:_mapView];
     [super touchesEnded:touches withEvent:event];
 }
@@ -262,36 +259,6 @@
 
 - (void)fingerMoved:(UIPanGestureRecognizer*)panGesture
 {
-//    drawingPoint = [panGesture locationInView:self.view];
-//    NSLog(@"Hello");
-/*    switch (panGesture.state) {
-        case UIGestureRecognizerStateBegan:
-            drawingLastPoint = drawingPoint;
-            break;
-        case UIGestureRecognizerStateChanged:
-        {
-            [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
-            drawingLastPoint = drawingPoint;
-        }
-            break;
-        case UIGestureRecognizerStateEnded:
-        case UIGestureRecognizerStatePossible:
-        case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateFailed:
-            break;
-    }
-    if(panGesture.state == UIGestureRecognizerStateBegan) {
-        
-    } else if (panGesture.state == UIGestureRecognizerStateChanged) {
-        
-    }
-    if (drawingLastPoint.x == 0 && drawingLastPoint.y == 0) {
-        drawingLastPoint = drawingPoint;
-    } else {
-        [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
-        drawingLastPoint = drawingPoint;
-    }
- */
 }
 
 - (void)viewWillAppear:(BOOL)animated

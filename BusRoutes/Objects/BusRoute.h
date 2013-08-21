@@ -35,6 +35,6 @@ typedef struct lineSegment {
 @property (nonatomic, retain) NSArray *lines;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
-- (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title;
+- (id)initWithLine:(MKPolyline *)line andTitle:(NSString *)title;
 
 @end
