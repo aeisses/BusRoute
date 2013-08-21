@@ -7,6 +7,10 @@
 //
 
 typedef enum {
+    prune
+} INFO;
+
+typedef enum {
     zero,
     one,
     two,

@@ -18,6 +18,7 @@
 #import "TerminalTable.h"
 #import "DrawingImageView.h"
 #import "SaveViewController.h"
+#import "InfoViewController.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -44,8 +45,7 @@
     BOOL showTerminals;
     LegendView *legendView;
     UIPopoverController *popOverController;
-    CGPoint drawingLastPoint;
-    CGPoint drawingPoint;
+    BusStop *prevBusStop;
     DrawingImageView *drawingImageView;
     SaveViewController *saveViewController;
     int counter;
