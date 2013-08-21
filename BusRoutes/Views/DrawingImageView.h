@@ -17,12 +17,18 @@
     NSMutableArray *annotations;
 }
 
+@property (retain, nonatomic) BusRoute *busRoute;
+
 - (void)clearLines;
 - (void)closeLine;
-- (void)addLineFrom:(CGPoint)drawingLastPoint To:(CGPoint)drawingPoint;
+- (void)addLineFrom:(BusStop*)fromBusStop To:(BusStop*)toBusStop forMapView:(MKMapView*)mapView;
+//- (void)addLineFrom:(CGPoint)drawingLastPoint To:(CGPoint)drawingPoint;
 - (void)addBusStop:(BusStop*)busStop;
-- (void)removePoint:(CGPoint)removingPoint andBusStop:(BusStop*)busStop;
-- (BusRoute*)createBusRoute:(MKMapView*)mapView;
+- (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView;
+//- (void)removePoint:(CGPoint)removingPoint andBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView;
+- (void)showBusRoute:(MKMapView*)mapView;
+- (void)removeBusRoutes:(BusRoute*)busRoute fromMap:(MKMapView*)mapView;
+- (void)removeAllBusRoutesFromMap:(MKMapView*)mapView;
 
 @end
 

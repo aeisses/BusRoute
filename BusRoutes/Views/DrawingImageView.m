@@ -18,6 +18,7 @@
         [self setUserInteractionEnabled:NO];
         points = [[NSMutableArray alloc] initWithCapacity:0];
         lines = [[NSMutableArray alloc] initWithCapacity:0];
+        annotations = [[NSMutableArray alloc] initWithCapacity:0];
     }
     return self;
 }
@@ -25,7 +26,9 @@
 - (void)dealloc
 {
     [points release]; points = nil;
+    [annotations release]; annotations = nil;
     [lines release]; lines = nil;
+    [_busRoute release]; _busRoute = nil;
     [super dealloc];
 }
 
@@ -45,16 +48,21 @@
 
 - (void)closeLine
 {
-    [lines addObject:points];
-    [self clearLine];
+//    [lines addObject:points];
+//    [self clearLine];
 }
 
-- (void)addLineFrom:(CGPoint)drawingLastPoint To:(CGPoint)drawingPoint
+- (void)addLineFrom:(BusStop*)fromBusStop To:(BusStop*)toBusStop forMapView:(MKMapView*)mapView
 {
-    [self drawLineFrom:drawingLastPoint To:drawingPoint];
-    if ([points count] == 0)
-        [points addObject:[NSValue valueWithCGPoint:drawingLastPoint]];
-    [points addObject:[NSValue valueWithCGPoint:drawingPoint]];
+    CGPoint toPoint = [mapView convertCoordinate:toBusStop.coordinate toPointToView:self];
+    CGPoint fromPoint = [mapView convertCoordinate:fromBusStop.coordinate toPointToView:self];
+    if ([annotations count] == 0 && [points count] == 0) {
+        [annotations addObject:fromBusStop];
+        [points addObject:[NSValue valueWithCGPoint:fromPoint]];
+    }
+    [self drawLineFrom:fromPoint To:toPoint];
+    [annotations addObject:toBusStop];
+    [points addObject:[NSValue valueWithCGPoint:toPoint]];
 }
 
 - (void)addBusStop:(BusStop*)busStop
@@ -62,10 +70,12 @@
     [annotations addObject:busStop];
 }
 
-- (void)removePoint:(CGPoint)removingPoint andBusStop:(BusStop*)busStop
+- (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView
 {
     [annotations removeObject:busStop];
-    self.image = nil;
+    CGPoint removingPoint = [mapView convertCoordinate:busStop.coordinate toPointToView:self];
+    [points removeObject:[NSValue valueWithCGPoint:removingPoint]];
+/*    self.image = nil;
     for (NSMutableArray *pointsArray in lines) {
         [pointsArray removeObject:[NSValue valueWithCGPoint:removingPoint]];
         CGPoint lastPoint = (CGPoint){0,0};
@@ -76,22 +86,51 @@
             }
             lastPoint = [valuePoint CGPointValue];
         }
-    }
+    }*/
+    [self showBusRoute:mapView];
+//    self.image = nil;
 }
 
-- (BusRoute*)createBusRoute:(MKMapView*)mapView
+- (void)createBusRoute:(MKMapView*)mapView
 {
+    
+}
+
+- (void)showBusRoute:(MKMapView*)mapView
+{
+    [mapView removeOverlays:_busRoute.lines];
+    if (_busRoute) [_busRoute release];
     NSMutableArray *newLines = [[NSMutableArray alloc] initWithCapacity:0];
-    for (NSArray *newPoints in lines) {
-        CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [newPoints count]);
-        for (int i = 0; i < [newPoints count]; i++) {
-            line[i] = [mapView convertPoint:[(NSValue*)[newPoints objectAtIndex:i] CGPointValue] toCoordinateFromView:self];
-        }
-        [newLines insertObject:[MKPolyline polylineWithCoordinates:line count:[newPoints count]] atIndex:[newLines count]];
-        free(line);
+    CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [annotations count]);
+    for (int i = 0; i < [annotations count]; i++) {
+        line[i] = ((BusStop*)[annotations objectAtIndex:i]).coordinate;
     }
-    [self clearLines];
-    return [[[BusRoute alloc] initWithLines:[NSArray arrayWithArray:newLines] andTitle:@""] autorelease];
+    [newLines insertObject:[MKPolyline polylineWithCoordinates:line count:[annotations count]] atIndex:[newLines count]];
+    free(line);
+
+    _busRoute = [[BusRoute alloc] initWithLines:[NSArray arrayWithArray:newLines] andTitle:@""];
+    [mapView addOverlays:_busRoute.lines];
+    [newLines release];
+    self.image = nil;
+}
+
+- (void)removeBusRoutes:(BusRoute*)busRoute fromMap:(MKMapView*)mapView
+{
+/*    for (BusRoute *busRoute in _busRoutes)
+        [mapView removeOverlays:busRoute.lines];
+    [_busRoutes removeObject:busRoute];
+    for (BusRoute *busRoute in _busRoutes)
+        [mapView addOverlays:busRoute.lines];
+ */
+}
+
+- (void)removeAllBusRoutesFromMap:(MKMapView*)mapView
+{
+/*    for (BusRoute *busRoute in _busRoutes)
+        [mapView removeOverlays:busRoute.lines];
+    [_busRoutes release]; _busRoutes = nil;
+    _busRoutes = [[NSMutableArray alloc] initWithCapacity:0];
+ */
 }
 
 #pragma Private Methods

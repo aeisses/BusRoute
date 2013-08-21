@@ -32,9 +32,6 @@
         
         showNumberOfRoutesStops = NO;
         
-        drawingLastPoint = (CGPoint){0,0};
-        drawingPoint = (CGPoint){0,0};
-        
         drawingImageView = [[DrawingImageView alloc] initWithFrame:self.view.frame];
         
         saveButton = [[UIButton alloc] initWithFrame:(CGRect){960,620,40,40}];
@@ -74,8 +71,7 @@
 
 - (void)touchCreateRouteButton
 {
-    BusRoute *route = [drawingImageView createBusRoute:_mapView];
-    [self addRoute:route];
+    [drawingImageView showBusRoute:_mapView];
 }
 
 - (void)touchDeleteButton
@@ -194,8 +190,11 @@
         [date release];
         date = [[NSDate alloc] init];
     }
-    drawingLastPoint = (CGPoint){0,0};
-    drawingPoint = (CGPoint){0,0};
+    if (prevBusStop)
+    {
+        [prevBusStop release];
+        prevBusStop = nil;
+    }
     [super touchesBegan:touches withEvent:event];
 }
 
@@ -209,6 +208,7 @@
 {
 //    NSLog(@"End");
     [drawingImageView closeLine];
+    [drawingImageView showBusRoute:_mapView];
     [super touchesEnded:touches withEvent:event];
 }
 
@@ -580,15 +580,19 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     BusStop *busStop = view.annotation;
-    drawingPoint = [mapView convertCoordinate:busStop.coordinate toPointToView:drawingImageView];
     if (deleteButton.selected) {
-        drawingLastPoint = (CGPoint){0,0};
-        [drawingImageView removePoint:drawingPoint andBusStop:busStop];
-    } else if (drawingLastPoint.x == 0 && drawingLastPoint.y == 0) {
-        drawingLastPoint = drawingPoint;
+        if (prevBusStop) {
+            [prevBusStop release];
+            prevBusStop = nil;
+        }
+        [drawingImageView removeBusStop:busStop fromMapView:_mapView];
+    } else if (!prevBusStop) {
+        prevBusStop = [busStop retain];
     } else {
-        [drawingImageView addLineFrom:drawingLastPoint To:drawingPoint];
-        drawingLastPoint = drawingPoint;
+        [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
+        [prevBusStop release];
+        prevBusStop = nil;
+        prevBusStop = [busStop retain];
     }
 }
 

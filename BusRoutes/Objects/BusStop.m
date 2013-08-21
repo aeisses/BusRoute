@@ -42,7 +42,8 @@
 {
     [super dealloc];
     [_title release];
-    [stopDescription release];
+    if (stopDescription)
+        [stopDescription release];
     [date release];
     [address release];
     [_routes release];

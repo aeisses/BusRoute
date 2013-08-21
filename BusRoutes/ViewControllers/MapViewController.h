@@ -45,8 +45,7 @@
     BOOL showTerminals;
     LegendView *legendView;
     UIPopoverController *popOverController;
-    CGPoint drawingLastPoint;
-    CGPoint drawingPoint;
+    BusStop *prevBusStop;
     DrawingImageView *drawingImageView;
     SaveViewController *saveViewController;
     int counter;
