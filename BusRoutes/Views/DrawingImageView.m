@@ -39,9 +39,23 @@
     [annotations addObject:toBusStop];
 }
 
-- (void)addBusStop:(BusStop*)busStop
+- (void)addBusStop:(BusStop*)busStop toMapView:(MKMapView*)mapView
 {
-    [annotations addObject:busStop];
+    double distance = 0;
+    int locationToAdd = 0;
+    int counter = 0;
+    for (BusStop *bs in annotations) {
+        double deltaLong = busStop.coordinate.longitude - bs.coordinate.longitude;
+        double deltaLati = busStop.coordinate.latitude - bs.coordinate.latitude;
+        double newDistance = sqrt((deltaLong * deltaLong) + (deltaLati * deltaLati));
+        if (distance == 0 || newDistance < distance) {
+            distance = newDistance;
+            locationToAdd = counter;
+        }
+        counter++;
+    }
+    [annotations insertObject:busStop atIndex:locationToAdd];
+    [self showBusRoute:mapView];
 }
 
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView
@@ -55,6 +69,12 @@
     
 }
 
+- (void)removeAllBusRoutesFromMap:(MKMapView*)mapView
+{
+    [mapView removeOverlays:_busRoute.lines];
+}
+
+#pragma Private Methods
 - (void)showBusRoute:(MKMapView*)mapView
 {
     [mapView removeOverlays:_busRoute.lines];
@@ -65,18 +85,12 @@
     }
     MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[annotations count]];
     free(line);
-
+    
     _busRoute = [[BusRoute alloc] initWithLine:polyLine andTitle:@""];
     [mapView addOverlays:_busRoute.lines];
     self.image = nil;
 }
 
-- (void)removeAllBusRoutesFromMap:(MKMapView*)mapView
-{
-    [mapView removeOverlays:_busRoute.lines];
-}
-
-#pragma Private Methods
 - (void)drawLineFrom:(CGPoint)from To:(CGPoint)to
 {
     UIGraphicsBeginImageContext(self.frame.size);

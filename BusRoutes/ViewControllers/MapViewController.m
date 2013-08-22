@@ -25,12 +25,11 @@
         touchDown = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
         touchDown.numberOfTapsRequired = 2;
         
-        pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(fingerMoved:)];
-        
         legendView = [[[[NSBundle mainBundle] loadNibNamed:@"LegendView" owner:self options:nil] objectAtIndex:0] retain];
         legendView.delegate = self;
         
         showNumberOfRoutesStops = NO;
+        isDrawing = NO;
         
         drawingImageView = [[DrawingImageView alloc] initWithFrame:self.view.frame];
         
@@ -71,11 +70,13 @@
 
 - (void)touchCreateRouteButton
 {
-    [drawingImageView showBusRoute:_mapView];
+    deleteButton.selected = NO;
+    createRoute.selected = !createRoute.selected;
 }
 
 - (void)touchDeleteButton
 {
+    createRoute.selected = NO;
     deleteButton.selected = !deleteButton.selected;
 }
 
@@ -159,20 +160,20 @@
     } else if (button.tag == 7) {
         [_mapView addGestureRecognizer:touchDown];
     } else if (button.tag == 8) {
-        if ([[self.view gestureRecognizers] containsObject:pan]) {
-//            [_mapView removeGestureRecognizer:pan];
+        if (isDrawing) {
             [drawingImageView removeFromSuperview];
             [saveButton removeFromSuperview];
             [clearButton removeFromSuperview];
             [deleteButton removeFromSuperview];
             [createRoute removeFromSuperview];
+            isDrawing = NO;
         } else {
             [self.view insertSubview:drawingImageView belowSubview:_toolBar];
             [self.view addSubview:saveButton];
             [self.view addSubview:clearButton];
             [self.view addSubview:deleteButton];
             [self.view addSubview:createRoute];
-//            [_mapView addGestureRecognizer:pan];
+            isDrawing = YES;
         }
     } else if (button.tag == 9) {
         // The Prune button...
@@ -255,10 +256,6 @@
     }
     NSLog(@"Tapped view: %@", [mapView viewForOverlay:tappedOverlay]);
     [_mapView removeOverlay:tappedOverlay];
-}
-
-- (void)fingerMoved:(UIPanGestureRecognizer*)panGesture
-{
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -352,7 +349,7 @@
 #pragma Private Methods
 - (void)frameIntervalLoop:(CADisplayLink *)sender
 {
-    if (!_toolBar.hidden && !_mapView.scrollEnabled && !_mapView.zoomEnabled && ![[self.view gestureRecognizers] containsObject:pan]) {
+    if (!_toolBar.hidden && !_mapView.scrollEnabled && !_mapView.zoomEnabled && !isDrawing) {
         if (date == nil) {
             date = [[NSDate alloc] init];
         }
@@ -533,7 +530,11 @@
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     
     MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
-    polylineView.strokeColor = [UIColor blackColor];
+    if (isDrawing) {
+        polylineView.strokeColor = [UIColor orangeColor];
+    } else {
+        polylineView.strokeColor = [UIColor blackColor];
+    }
     polylineView.lineJoin = kCGLineCapButt;
     polylineView.lineWidth = 2.0;
     
@@ -553,9 +554,15 @@
             prevBusStop = nil;
         }
         [drawingImageView removeBusStop:busStop fromMapView:_mapView];
-    } else if (!prevBusStop) {
+    } else if (createRoute.selected) {
+        if (prevBusStop) {
+            [prevBusStop release];
+            prevBusStop = nil;
+        }
+        [drawingImageView addBusStop:busStop toMapView:_mapView];
+    } else if (!prevBusStop && isDrawing) {
         prevBusStop = [busStop retain];
-    } else {
+    } else  if (isDrawing) {
         [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
         [prevBusStop release];
         prevBusStop = nil;

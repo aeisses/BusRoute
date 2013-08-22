@@ -35,7 +35,6 @@
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
     UITapGestureRecognizer *touchDown;
-    UIPanGestureRecognizer *pan;
     UIActivityIndicatorView *activityIndicator;
     CADisplayLink *displayLink;
     NSDate *date;
@@ -53,6 +52,7 @@
     UIButton *clearButton;
     UIButton *deleteButton;
     UIButton *createRoute;
+    BOOL isDrawing;
 }
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;

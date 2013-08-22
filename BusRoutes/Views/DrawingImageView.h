@@ -12,15 +12,13 @@
 
 @interface DrawingImageView : UIImageView
 {
-//    NSMutableArray *lines;
-//    NSMutableArray *points;
     NSMutableArray *annotations;
 }
 
 @property (retain, nonatomic) BusRoute *busRoute;
 
 - (void)addLineFrom:(BusStop*)fromBusStop To:(BusStop*)toBusStop forMapView:(MKMapView*)mapView;
-- (void)addBusStop:(BusStop*)busStop;
+- (void)addBusStop:(BusStop*)busStop toMapView:(MKMapView*)mapView;
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView;
 - (void)showBusRoute:(MKMapView*)mapView;
 - (void)removeAllBusRoutesFromMap:(MKMapView*)mapView;
@@ -28,6 +26,6 @@
 @end
 
 @interface DrawingImageView (PrivateMethods)
-- (void)clearLine;
+- (void)showBusRoute:(MKMapView*)mapView;
 - (void)drawLineFrom:(CGPoint)from To:(CGPoint)to;
 @end
