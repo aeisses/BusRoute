@@ -81,18 +81,23 @@
         KMLRoot *kmlStops = [KMLParser parseKMLAtURL:stopsUrl];
         if (kmlStops == nil)
             kmlStops = [KMLParser parseKMLAtPath:[[NSBundle mainBundle] pathForResource:@"Bus Stops" ofType:@"kml"]];
-        NSMutableArray *mutableStops = [NSMutableArray array];
+        NSMutableArray *mutableStops = [[NSMutableArray alloc] initWithCapacity:0];
         for (KMLPlacemark *placemark in kmlStops.placemarks) {
             if (placemark.geometry && placemark.name) {
                 BusStop *busStop = [[BusStop alloc] initWithTitle:placemark.name description:placemark.descriptionValue andLocation:(KMLPoint *)placemark.geometry];
-                [mutableStops addObject:busStop];
                 busStop.routes = (NSArray*)[dictonary objectForKey:[NSString stringWithFormat:@"%i",busStop.goTime]];
-                if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
-                    [_delegate addBusStop:busStop];
+                if (!([busStop.routes count] == 1 && ([[busStop.routes objectAtIndex:0] intValue] == 400 || [[busStop.routes objectAtIndex:0] intValue] == 401 || [[busStop.routes objectAtIndex:0] intValue] == 402))) {
+                    if (!([busStop.routes count] == 0)) {
+                        [mutableStops addObject:busStop];
+                        if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
+                            [_delegate addBusStop:busStop];
+                    }
+                }
                 [busStop release];
             }
         }
         _stops = [[NSArray alloc] initWithArray:mutableStops];
+        [mutableStops release];
     }
     [dictonary release];
 }

@@ -20,8 +20,8 @@
     {
         _title = [title copy];
         _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-        stopDescription = decription;
-        _routes = [NSArray array];
+        stopDescription = [decription retain];
+//        _routes = [NSArray array];
         [self parseStopDescription];
     }
     return self;
@@ -32,7 +32,6 @@
     if ([_routes indexOfObject:route] == NSNotFound) {
         NSMutableArray *mRoutes = [[NSMutableArray alloc] initWithArray:_routes];
         [mRoutes addObject:route];
-        [_routes release];
         _routes = [[NSArray alloc] initWithArray:mRoutes];
         [mRoutes release];
     }
@@ -44,9 +43,12 @@
     [_title release];
     if (stopDescription)
         [stopDescription release];
-    [date release];
-    [address release];
-    [_routes release];
+    if (date)
+        [date release];
+    if (address)
+        [address release];
+    if (_routes)
+        [_routes release];
 }
 
 #pragma Private Methods

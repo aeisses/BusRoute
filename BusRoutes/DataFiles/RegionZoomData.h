@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-#define HRM_LATITUDE_CENTRE 44.6479 // This is the offical centre of Halifax.
-#define HRM_LATITUDE_MAX 44.695 // This is max latitude, we need to shift a bit, halifax is not a square city.
-#define HRM_LONGITUDE -63.5744
-
-#define HRM_ZOOM_MAX 37500
+#define HRM_LATITUDE 44.690306
+#define HRM_LONGITUDE -63.651112
+#define HRM_LATITUDE_DELTA 0.260442
+#define HRM_LONGITUDE_DELTA 0.488461
 
 #define HALIFAX_LATITUDE 44.64745
 #define HALIFAX_LONGITUDE -63.601491

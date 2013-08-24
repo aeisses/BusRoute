@@ -17,7 +17,7 @@
     {
         case HRM:
         default:
-            coordinates = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(HRM_LATITUDE_MAX,HRM_LONGITUDE), HRM_ZOOM_MAX, HRM_ZOOM_MAX);
+            coordinates = (MKCoordinateRegion){HRM_LATITUDE,HRM_LONGITUDE,HRM_LATITUDE_DELTA,HRM_LONGITUDE_DELTA};
             break;
         case Halifax:
             coordinates = (MKCoordinateRegion){HALIFAX_LATITUDE,HALIFAX_LONGITUDE,HALIFAX_LATITUDE_DELTA,HALIFAX_LONGITUDE_DELTA};
