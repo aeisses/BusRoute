@@ -13,19 +13,20 @@
 
 @interface BusStop : NSObject <MKAnnotation>
 {
-    NSString *stopDescription;
     NSInteger objectId;
     SOURCE source;
     SACC sacc;
-    NSDate *date;
-    NSString *address;
 }
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (readonly) NSInteger goTime;
-@property (nonatomic, retain) NSArray *routes;
+@property (nonatomic, copy) NSArray *routes;
 @property (readonly) FCODE fcode;
+@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSDate *date;
+@property (nonatomic, copy) NSString *address;
+
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
 - (void)addRouteNumber:(NSNumber*)route;

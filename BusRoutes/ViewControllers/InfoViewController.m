@@ -22,14 +22,12 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"String: %@",strings);
     NSDictionary *values;
     switch (_info) {
         case prune:
             values = [[NSDictionary alloc] initWithDictionary:[strings objectForKey:@"Prune"]];
             break;
     }
-    NSLog(@"Value: %@",values);
     _viewTitle.text = [values objectForKey:@"Title"];
     _body.text = [values objectForKey:@"Description"];
     [values release];

@@ -35,7 +35,11 @@
         }
         _lines = [[NSArray alloc] initWithArray:linesMutable];
         
-        stopDescription = description;
+        _description = [description copy];
+        _routeTitle = nil;
+        _startDate = nil;
+        _revDate = nil;
+        _socrateId = nil;
         [self parseRouteDescription];
     }
     return self;
@@ -47,11 +51,11 @@
     {
         _lines = [[NSArray alloc] initWithObjects:line, nil];
         _title = [title copy];
-        stopDescription = @"";
-        routeTitle = @"";
-        startDate = [[NSDate alloc] initWithTimeIntervalSinceNow:NSTimeIntervalSince1970];
-        revDate = [[NSDate alloc] initWithTimeIntervalSinceNow:NSTimeIntervalSince1970];
-        socrateId = @"";
+        _description = nil;
+        _routeTitle = nil;
+        _startDate = nil;
+        _revDate = nil;
+        _socrateId = nil;
     }
     return self;
 }
@@ -59,19 +63,19 @@
 - (void)dealloc
 {
     [super dealloc];
-    [_title release];
-    [_lines release];
-    [stopDescription release];
-    [routeTitle release];
-    [startDate release];
-    [revDate release];
-    [socrateId release];
+    if (_title) [_title release];
+    if (_lines) [_lines release];
+    if (_description) [_description release];
+    if (_routeTitle) [_routeTitle release];
+    if (_startDate) [_startDate release];
+    if (_revDate) [_revDate release];
+    if (_socrateId) [_socrateId release];
 }
 
 # pragma Private Methods
 - (void)parseRouteDescription
 {
-    NSMutableString *temp = [[NSMutableString alloc] initWithString:stopDescription];
+    NSMutableString *temp = [[NSMutableString alloc] initWithString:_description];
     [temp replaceOccurrencesOfString:@"<ul class=\"textattributes\">" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
     [temp replaceOccurrencesOfString:@"<li><strong><span class=\"atr-name\">" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
     [temp replaceOccurrencesOfString:@"</span>:</strong> <span class=\"atr-value\">" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
@@ -112,7 +116,7 @@
                 }
  */
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"TITLE"]) {
-                routeTitle = (NSString *)[thisArray objectAtIndex:1];
+                _routeTitle = (NSString *)[thisArray objectAtIndex:1];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SOURCE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRANSIT"]) {
                     source = transit;
@@ -130,19 +134,23 @@
                     sacc = GP;
                 }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"DATE_ACT"]) {
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
-                startDate = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
-                [formatter release];
+                if ([thisArray count] >= 6) {
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
+                    _startDate = [formatter dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",[thisArray objectAtIndex:1],[thisArray objectAtIndex:2],[thisArray objectAtIndex:3],[thisArray objectAtIndex:4],[thisArray objectAtIndex:5]]];
+                    [formatter release];
+                }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"DATE_REV"]) {
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
-                revDate = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
-                [formatter release];
+                if ([thisArray count] >= 6) {
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
+                    _revDate = [formatter dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",[thisArray objectAtIndex:1],[thisArray objectAtIndex:2],[thisArray objectAtIndex:3],[thisArray objectAtIndex:4],[thisArray objectAtIndex:5]]];
+                    [formatter release];
+                }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"GOTIME"]) {
                 shapeLen = [(NSString *)([thisArray objectAtIndex:1]) floatValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
-                socrateId = (NSString *)[thisArray objectAtIndex:1];
+                _socrateId = (NSString *)[thisArray objectAtIndex:1];
             }
         }
     }

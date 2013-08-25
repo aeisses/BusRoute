@@ -18,21 +18,26 @@ typedef struct lineSegment {
 
 @interface BusRoute : NSObject
 {
-    NSString *stopDescription;
+//    NSString *stopDescription;
     NSInteger objectId;
     NSInteger routeNum;
     CLASS classType;
-    NSString *routeTitle;
+//    NSString *routeTitle;
     SOURCE source;
     SACC sacc;
-    NSDate *startDate;
-    NSDate *revDate;
+//    NSDate *startDate;
+//    NSDate *revDate;
     float shapeLen;
-    NSString *socrateId;
+//    NSString *socrateId;
 }
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, retain) NSArray *lines;
+@property (nonatomic, copy) NSString *description;
+@property (nonatomic, copy) NSString *routeTitle;
+@property (nonatomic, copy) NSDate *startDate;
+@property (nonatomic, copy) NSDate *revDate;
+@property (nonatomic, copy) NSString *socrateId;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
 - (id)initWithLine:(MKPolyline *)line andTitle:(NSString *)title;

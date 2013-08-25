@@ -177,11 +177,12 @@
         }
     } else if (button.tag == 9) {
         // The Prune button...
-        InfoViewController *infoVC = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil forInfo:prune];
+        InfoViewController *infoVC = [[[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil forInfo:prune] autorelease];
+        CGRect origFrame = infoVC.view.frame;
         infoVC.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:infoVC animated:YES completion:^{
-//            [infoVC release];
         }];
+        infoVC.view.superview.bounds = origFrame;
     }
 }
 

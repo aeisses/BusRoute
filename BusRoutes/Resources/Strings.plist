@@ -5,9 +5,9 @@
 	<key>Prune</key>
 	<dict>
 		<key>Title</key>
-		<string>Prune Title</string>
+		<string>Prune</string>
 		<key>Description</key>
-		<string>Prune Description</string>
+		<string>Would you like to remove the 320 Metro X to the Airport and Fall River and the 330 Metro X to Tantallon and Sheldrake Lake?  These routes are basically straight and changes made to them will not really add to any effeciency upgrades.</string>
 	</dict>
 </dict>
 </plist>
