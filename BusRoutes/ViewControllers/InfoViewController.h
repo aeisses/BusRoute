@@ -15,6 +15,10 @@
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *exitButton;
+@property (retain, nonatomic) IBOutlet UIButton *pruneButton;
+@property (retain, nonatomic) IBOutlet UIButton *metroXButton;
+@property (retain, nonatomic) IBOutlet UIButton *metroLinkButton;
+@property (retain, nonatomic) IBOutlet UIButton *expressRouteButton;
 @property (retain, nonatomic) IBOutlet UIButton *dontShowAgain;
 @property (retain, nonatomic) IBOutlet UILabel *viewTitle;
 @property (retain, nonatomic) IBOutlet UITextView *body;
@@ -22,6 +26,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forInfo:(INFO)info;
 - (IBAction)touchExitButton:(id)sender;
+- (IBAction)touchPruneButton:(id)sender;
+- (IBAction)touchRemoveRoutesButton:(id)sender;
 - (IBAction)touchDontShowAgainButton:(id)sender;
 
 @end

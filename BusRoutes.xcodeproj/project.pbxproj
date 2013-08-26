@@ -19,6 +19,10 @@
 		04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */; };
 		04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */; };
 		04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64DA17AF39EF001D4B56 /* sample.plist */; };
+		04BB226117CA7BDD00450342 /* exitButtonLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB225D17CA7BDD00450342 /* exitButtonLarge.png */; };
+		04BB226217CA7BDD00450342 /* pruneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB225E17CA7BDD00450342 /* pruneButton.png */; };
+		04BB226317CA7BDD00450342 /* pruneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB225F17CA7BDD00450342 /* pruneButton@2x.png */; };
+		04BB226417CA7BDD00450342 /* exitButtonLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB226017CA7BDD00450342 /* exitButtonLarge@2x.png */; };
 		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
 		04BFFFD317B6F01F0057B81E /* TerminalNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */; };
 		04BFFFD617B717660057B81E /* LegendElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD517B717660057B81E /* LegendElement.m */; };
@@ -170,6 +174,10 @@
 		04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoute.m; sourceTree = "<group>"; };
 		04BA5CEA17A5E0E400EDEE4C /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 		04BA64DA17AF39EF001D4B56 /* sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sample.plist; sourceTree = "<group>"; };
+		04BB225D17CA7BDD00450342 /* exitButtonLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitButtonLarge.png; sourceTree = "<group>"; };
+		04BB225E17CA7BDD00450342 /* pruneButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pruneButton.png; sourceTree = "<group>"; };
+		04BB225F17CA7BDD00450342 /* pruneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pruneButton@2x.png"; sourceTree = "<group>"; };
+		04BB226017CA7BDD00450342 /* exitButtonLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exitButtonLarge@2x.png"; sourceTree = "<group>"; };
 		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
 		04BFFFD117B6F01F0057B81E /* TerminalNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalNodeCell.h; sourceTree = "<group>"; };
 		04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalNodeCell.m; sourceTree = "<group>"; };
@@ -520,6 +528,10 @@
 				04C8109417AFE02700D194AC /* Bus Routes.kml */,
 				04BA64DA17AF39EF001D4B56 /* sample.plist */,
 				04D0EC0E17BAF7690098D138 /* saveButton.png */,
+				04BB225D17CA7BDD00450342 /* exitButtonLarge.png */,
+				04BB225E17CA7BDD00450342 /* pruneButton.png */,
+				04BB225F17CA7BDD00450342 /* pruneButton@2x.png */,
+				04BB226017CA7BDD00450342 /* exitButtonLarge@2x.png */,
 				04D0EC0F17BAF7690098D138 /* clearButton@2x.png */,
 				04D0EC1017BAF7690098D138 /* saveButton@2x.png */,
 				04D423C817C0143A00DEC31D /* radioButtonSelected2@x.png */,
@@ -857,6 +869,10 @@
 				04C4439717C1A17C00485D41 /* Strings.plist in Resources */,
 				04B568AC17C973F70019509F /* InfoViewController.xib in Resources */,
 				04B568AD17C973F70019509F /* SaveViewController.xib in Resources */,
+				04BB226117CA7BDD00450342 /* exitButtonLarge.png in Resources */,
+				04BB226217CA7BDD00450342 /* pruneButton.png in Resources */,
+				04BB226317CA7BDD00450342 /* pruneButton@2x.png in Resources */,
+				04BB226417CA7BDD00450342 /* exitButtonLarge@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
