@@ -59,9 +59,13 @@
 - (void)touchSaveButton
 {
     saveViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    CGRect origFrame = saveViewController.view.frame;
     [self presentViewController:saveViewController animated:YES completion:^{
         
-    }];}
+    }];
+    saveViewController.view.superview.bounds = origFrame;
+}
+
 
 - (void)touchClearButton
 {

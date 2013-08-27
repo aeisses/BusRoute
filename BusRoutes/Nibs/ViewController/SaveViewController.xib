@@ -39,7 +39,7 @@
 					<object class="IBUILabel" id="123162517">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{129, 10}, {242, 45}}</string>
+						<string key="NSFrame">{{100, 12}, {312, 40}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="382315988"/>
@@ -50,10 +50,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">Create Route</string>
-						<object class="NSColor" key="IBUITextColor" id="184935404">
+						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MCAwIDAAA</bytes>
-							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+							<bytes key="NSRGB">MC40MjM1Mjk0MTE4IDAuNDAzOTIxNTY4NiAwLjMyOTQxMTc2NDcAA</bytes>
 						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
@@ -62,11 +61,11 @@
 							<string key="name">MarkerFelt-Wide</string>
 							<string key="family">Marker Felt</string>
 							<int key="traits">2</int>
-							<double key="pointSize">44</double>
+							<double key="pointSize">28</double>
 						</object>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">MarkerFelt-Wide</string>
-							<double key="NSSize">44</double>
+							<double key="NSSize">28</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
@@ -74,7 +73,7 @@
 					<object class="IBUIButton" id="382315988">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{447, 13}, {40, 40}}</string>
+						<string key="NSFrame">{{459, 12}, {40, 40}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="773324993"/>
@@ -83,7 +82,6 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="473731365">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -96,9 +94,9 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">exitButton.png</string>
+							<string key="NSResourceName">exitButtonLarge.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="820997310">
 							<int key="type">2</int>
@@ -177,7 +175,11 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">Label</string>
-						<reference key="IBUITextColor" ref="184935404"/>
+						<object class="NSColor" key="IBUITextColor" id="184935404">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
+							<string key="IBUIColorCocoaTouchKeyPath">darkTextColor</string>
+						</object>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1021342311">
@@ -238,13 +240,13 @@
 						<reference key="IBUIFont" ref="155136279"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{500, 500}</string>
+				<string key="NSFrameSize">{512, 512}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="123162517"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC44MTI0MTYwNTIyIDEgMC41NTQwMTUwMTU2AA</bytes>
+					<bytes key="NSRGB">MC43ODAzOTIxNTY5IDAuODg2Mjc0NTA5OCAwLjIzOTIxNTY4NjMAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -293,12 +295,12 @@
 						<int key="objectID">2</int>
 						<reference key="object" ref="766721923"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="382315988"/>
 							<reference ref="773324993"/>
 							<reference ref="686906139"/>
 							<reference ref="904057388"/>
 							<reference ref="191750627"/>
 							<reference ref="718650340"/>
+							<reference ref="382315988"/>
 							<reference ref="123162517"/>
 						</array>
 						<reference key="parent" ref="0"/>
@@ -393,7 +395,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="exitButton.png">{20, 20}</string>
+			<string key="exitButtonLarge.png">{40, 40}</string>
 			<string key="infoButton.png">{40, 40}</string>
 			<string key="radioButton.png">{40, 40}</string>
 			<string key="radioButtonSelected.png">{40, 40}</string>
