@@ -15,6 +15,7 @@
 - (void)loadStopDataAndShow:(BOOL)show withSet:(NSSet*)set;
 - (void)loadTerminalDataAndShow:(BOOL)show withSet:(NSSet*)set;
 - (void)loadRouteDataAndShow:(BOOL)show;
+- (NSArray*)removeRoute:(NSNumber*)number FromBusRoutes:(NSMutableArray*)array;
 @end;
 
 @implementation DataReader
@@ -58,6 +59,57 @@
     [_delegate endProgressIndicator];
 }
 
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute
+{
+    [_delegate startProgressIndicator];
+    NSMutableArray *stops = [[NSMutableArray alloc] initWithArray:_stops];
+    for (BusStop *busStop in _stops) {
+        BOOL removed = NO;
+        if ([busStop.routes count] == 1) {
+            if (metroX) {
+                if ([[busStop.routes objectAtIndex:0] intValue] == 320 || [[busStop.routes objectAtIndex:0] intValue] == 330) {
+                    [stops removeObject:busStop];
+                    removed = YES;
+                }
+            }
+            if (metroLink) {
+                if ([[busStop.routes objectAtIndex:0] intValue] == 159 || [[busStop.routes objectAtIndex:0] intValue] == 165 || [[busStop.routes objectAtIndex:0] intValue] == 185) {
+                    [stops removeObject:busStop];
+                    removed = YES;
+                }
+            }
+            if (expressRoute) {
+                if ([[busStop.routes objectAtIndex:0] intValue] == 31 || [[busStop.routes objectAtIndex:0] intValue] == 32 || [[busStop.routes objectAtIndex:0] intValue] == 33 || [[busStop.routes objectAtIndex:0] intValue] == 34 || [[busStop.routes objectAtIndex:0] intValue] == 35) {
+                    [stops removeObject:busStop];
+                    removed = YES;
+                }
+            }
+        } else if ([busStop.routes count] >= 1) {
+            if (metroX) {
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:320] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:330] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+            }
+            if (metroLink) {
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:159] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:165] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:185] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+            }
+            if (expressRoute) {
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:31] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:32] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:33] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:34] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                busStop.routes = [self removeRoute:[NSNumber numberWithInt:35] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+            }
+        }
+        if (!removed)
+            [_delegate addBusStop:busStop];
+    }
+    _stops = stops;
+    [stops release];
+    [_delegate endProgressIndicator];
+}
+
 - (void)dealloc
 {
     [super dealloc];
@@ -88,6 +140,11 @@
                 busStop.routes = (NSArray*)[dictonary objectForKey:[NSString stringWithFormat:@"%i",busStop.goTime]];
                 if (!([busStop.routes count] == 1 && ([[busStop.routes objectAtIndex:0] intValue] == 400 || [[busStop.routes objectAtIndex:0] intValue] == 401 || [[busStop.routes objectAtIndex:0] intValue] == 402))) {
                     if (!([busStop.routes count] == 0)) {
+                        if ([busStop.routes count] >= 1) {
+                            busStop.routes = [self removeRoute:[NSNumber numberWithInt:400] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                            busStop.routes = [self removeRoute:[NSNumber numberWithInt:401] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                            busStop.routes = [self removeRoute:[NSNumber numberWithInt:402] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
+                        }
                         [mutableStops addObject:busStop];
                         if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
                             [_delegate addBusStop:busStop];
@@ -100,6 +157,13 @@
         [mutableStops release];
     }
     [dictonary release];
+}
+
+- (NSArray*)removeRoute:(NSNumber*)number FromBusRoutes:(NSMutableArray*)array
+{
+    if ([array containsObject:number])
+        [array removeObject:number];
+    return array;
 }
 
 - (void)loadTerminalDataAndShow:(BOOL)show withSet:(NSSet*)set

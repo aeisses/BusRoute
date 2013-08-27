@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Aaron Eisses. All rights reserved.
 //
 
-#import "InfoViewController.h"
+#import "PruneViewController.h"
 
-@implementation InfoViewController
+@implementation PruneViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forInfo:(INFO)info
 {
@@ -22,14 +22,12 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"String: %@",strings);
     NSDictionary *values;
     switch (_info) {
         case prune:
             values = [[NSDictionary alloc] initWithDictionary:[strings objectForKey:@"Prune"]];
             break;
     }
-    NSLog(@"Value: %@",values);
     _viewTitle.text = [values objectForKey:@"Title"];
     _body.text = [values objectForKey:@"Description"];
     [values release];
@@ -47,22 +45,30 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
-- (IBAction)touchDontShowAgainButton:(id)sender
+- (IBAction)touchPruneButton:(id)sender
 {
-    _dontShowAgain.selected = YES;
-    switch (self.info) {
-        case prune:
-            break;
-    }
+    [_delegate pruneRoutesMetroX:_metroXButton.selected andMetroLink:_metroLinkButton.selected andExpressRoute:_expressRouteButton.selected];
+    [self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (IBAction)touchRemoveRoutesButton:(id)sender
+{
+    UIButton *button = (UIButton*)sender;
+    button.selected = !button.selected;
 }
 
 - (void)dealloc
 {
     [strings release]; strings = nil;
     [_exitButton release]; _exitButton = nil;
+    [_pruneButton release]; _pruneButton = nil;
+    [_metroXButton release]; _metroXButton = nil;
+    [_metroLinkButton release]; _metroLinkButton = nil;
+    [_expressRouteButton release]; _expressRouteButton = nil;
     [_dontShowAgain release]; _dontShowAgain = nil;
     [_viewTitle release]; _viewTitle = nil;
     [_body release]; _body = nil;
+    _delegate = nil;
     [super dealloc];
 }
 

@@ -20,8 +20,10 @@
     {
         _title = [title copy];
         _coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-        stopDescription = [decription retain];
-//        _routes = [NSArray array];
+        _description = [decription copy];
+        _date = nil;
+        _address = nil;
+        _routes = nil;
         [self parseStopDescription];
     }
     return self;
@@ -41,20 +43,16 @@
 {
     [super dealloc];
     [_title release];
-    if (stopDescription)
-        [stopDescription release];
-    if (date)
-        [date release];
-    if (address)
-        [address release];
-    if (_routes)
-        [_routes release];
+    [_description release];
+    if (_date) [_date release];
+    if (_address) [_address release];
+    if (_routes) [_routes release];
 }
 
 #pragma Private Methods
 - (void)parseStopDescription
 {
-    NSMutableString *temp = [[NSMutableString alloc] initWithString:stopDescription];
+    NSMutableString *temp = [[NSMutableString alloc] initWithString:_description];
     [temp replaceOccurrencesOfString:@"<ul class=\"textattributes\">" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
     [temp replaceOccurrencesOfString:@"<li><strong><span class=\"atr-name\">" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
     [temp replaceOccurrencesOfString:@"</span>:</strong> <span class=\"atr-value\">" withString:@" " options:NSLiteralSearch range:NSMakeRange(0, [temp length])];
@@ -109,14 +107,16 @@
                     sacc = GP;
                 }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SDATE"]) {
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
-                date = [formatter dateFromString:(NSString*)([thisArray objectAtIndex:1])];
-                [formatter release];
+                if ([thisArray count] >= 6) {
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    [formatter setDateFormat:@"MMM d, YYYY hh:mm:ss a"];
+                    _date = [formatter dateFromString:[NSString stringWithFormat:@"%@%@%@%@%@",[thisArray objectAtIndex:1],[thisArray objectAtIndex:2],[thisArray objectAtIndex:3],[thisArray objectAtIndex:4],[thisArray objectAtIndex:5]]];
+                    [formatter release];
+                }
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"GOTIME"]) {
                 _goTime = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
-                address = (NSString *)[thisArray objectAtIndex:1];
+                _address = (NSString *)[thisArray objectAtIndex:1];
             }
         }
     }

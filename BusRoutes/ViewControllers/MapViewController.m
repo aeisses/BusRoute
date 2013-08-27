@@ -176,12 +176,13 @@
             isDrawing = YES;
         }
     } else if (button.tag == 9) {
-        // The Prune button...
-        InfoViewController *infoVC = [[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil forInfo:prune];
+        PruneViewController *infoVC = [[[PruneViewController alloc] initWithNibName:@"PruneViewController" bundle:nil forInfo:prune] autorelease];
+        infoVC.delegate = self;
+        CGRect origFrame = infoVC.view.frame;
         infoVC.modalPresentationStyle = UIModalPresentationFormSheet;
         [self presentViewController:infoVC animated:YES completion:^{
-//            [infoVC release];
         }];
+        infoVC.view.superview.bounds = origFrame;
     }
 }
 
@@ -386,6 +387,21 @@
 {
     swipeDown.enabled = NO;
     swipeUp.enabled = NO;
+}
+
+#pragma PruneViewControllerDelegate Methods
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self hideHudView];
+        [_mapView removeAnnotations:[_delegate getStops]];
+    });
+    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(loadDataQueue, ^{
+        [self addProgressIndicator];
+        [_delegate pruneRoutesMetroX:metroX andMetroLink:metroLink andExpressRoute:expressRoute];
+    });
+    dispatch_release(loadDataQueue);
 }
 
 #pragma NumericNodeTableDelegate Methods

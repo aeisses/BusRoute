@@ -104,6 +104,11 @@
     }
 }
 
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute
+{
+    [dataReader pruneRoutesMetroX:metroX andMetroLink:metroLink andExpressRoute:expressRoute];
+}
+
 - (void)showRoutes
 {
     [dataReader showRoutes];

@@ -18,7 +18,7 @@
 #import "TerminalTable.h"
 #import "DrawingImageView.h"
 #import "SaveViewController.h"
-#import "InfoViewController.h"
+#import "PruneViewController.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -26,11 +26,12 @@
 - (NSArray *)getStops;
 - (NSArray *)getRoutes;
 - (void)showStopsWithValue:(NSInteger)value isTerminal:(BOOL)isTerminal;
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute;
 - (void)showRoutes;
 - (void)clearSets;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate,PruneControllerDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
