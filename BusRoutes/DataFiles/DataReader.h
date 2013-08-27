@@ -30,6 +30,7 @@
 - (void)showRoutes;
 - (void)showBusStopsWithValue:(NSSet*)set;
 - (void)showTerminalsWithValue:(NSSet*)set;
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute;
 
 @property (nonatomic, retain) NSArray *stops;
 @property (nonatomic, retain) NSArray *routes;

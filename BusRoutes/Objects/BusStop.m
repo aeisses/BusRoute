@@ -35,7 +35,6 @@
         NSMutableArray *mRoutes = [[NSMutableArray alloc] initWithArray:_routes];
         [mRoutes addObject:route];
         _routes = [[NSArray alloc] initWithArray:mRoutes];
-//        _routes = mRoutes;
         [mRoutes release];
     }
 }
