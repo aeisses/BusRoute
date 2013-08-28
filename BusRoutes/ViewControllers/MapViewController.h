@@ -19,6 +19,7 @@
 #import "DrawingImageView.h"
 #import "SaveViewController.h"
 #import "PruneViewController.h"
+#import "InfoViewController.h"
 
 #define WINDOWS_AUTO_CLOSE -30.0 // Seconds
 
@@ -31,7 +32,7 @@
 - (void)clearSets;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate,PruneControllerDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate,PruneControllerDelegate,InfoViewControllerDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -53,6 +54,7 @@
     UIButton *clearButton;
     UIButton *deleteButton;
     UIButton *createRoute;
+    UIButton *reverseButton;
     BOOL isDrawing;
 }
 

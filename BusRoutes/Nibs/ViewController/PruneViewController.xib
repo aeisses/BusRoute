@@ -175,13 +175,13 @@
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>
 						<int key="IBUITextAlignment">1</int>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="1050536647">
 							<string key="name">MarkerFelt-Wide</string>
 							<string key="family">Marker Felt</string>
 							<int key="traits">2</int>
 							<double key="pointSize">28</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="977946403">
 							<string key="NSName">MarkerFelt-Wide</string>
 							<double key="NSSize">28</double>
 							<int key="NSfFlags">16</int>
@@ -383,7 +383,7 @@
 					<object class="IBUIButton" id="770472691">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{427, 459}, {73, 44}}</string>
+						<string key="NSFrame">{{420, 459}, {80, 44}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -392,19 +392,18 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Button</string>
-						<reference key="IBUIHighlightedTitleColor" ref="478167704"/>
+						<string key="IBUINormalTitle">Prune</string>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<bytes key="NSRGB">MC43OTIxNTY4NjI3IDAuOTAxOTYwNzg0MyAwLjQ1ODgyMzUyOTQAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="421895328"/>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">pruneButton.png</string>
+							<string key="NSResourceName">buttonBackGround.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="682664417"/>
-						<reference key="IBUIFont" ref="963379569"/>
+						<reference key="IBUIFontDescription" ref="1050536647"/>
+						<reference key="IBUIFont" ref="977946403"/>
 					</object>
 					<object class="IBUIButton" id="833483678">
 						<reference key="NSNextResponder" ref="766721923"/>
@@ -805,10 +804,10 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="buttonBackGround.png">{80, 40}</string>
 			<string key="checkBox.png">{40, 40}</string>
 			<string key="checkBoxChecked.png">{40, 40}</string>
 			<string key="exitButtonLarge.png">{40, 40}</string>
-			<string key="pruneButton.png">{80, 40}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>

@@ -74,6 +74,11 @@
     [mapView removeOverlays:_busRoute.lines];
 }
 
+- (void)reverseRoute
+{
+    
+}
+
 #pragma Private Methods
 - (void)showBusRoute:(MKMapView*)mapView
 {

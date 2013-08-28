@@ -22,6 +22,7 @@
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView;
 - (void)showBusRoute:(MKMapView*)mapView;
 - (void)removeAllBusRoutesFromMap:(MKMapView*)mapView;
+- (void)reverseRoute;
 
 @end
 

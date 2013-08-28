@@ -15,7 +15,6 @@
 
 @interface PruneViewController : UIViewController
 {
-    NSDictionary *strings;
 }
 
 @property (retain, nonatomic) IBOutlet UIButton *exitButton;
@@ -29,7 +28,7 @@
 @property (readwrite, nonatomic) INFO info;
 @property (retain, nonatomic) id <PruneControllerDelegate> delegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forInfo:(INFO)info;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil;
 - (IBAction)touchExitButton:(id)sender;
 - (IBAction)touchPruneButton:(id)sender;
 - (IBAction)touchRemoveRoutesButton:(id)sender;

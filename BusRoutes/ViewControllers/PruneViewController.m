@@ -10,27 +10,23 @@
 
 @implementation PruneViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forInfo:(INFO)info
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _info = info;
-        strings = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Strings" ofType:@"plist"]];
+
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-    NSDictionary *values;
-    switch (_info) {
-        case prune:
-            values = [[NSDictionary alloc] initWithDictionary:[strings objectForKey:@"Prune"]];
-            break;
-    }
+    NSDictionary *strings = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Strings" ofType:@"plist"]];
+    NSDictionary *values = [[NSDictionary alloc] initWithDictionary:[strings objectForKey:@"Prune"]];
     _viewTitle.text = [values objectForKey:@"Title"];
     _body.text = [values objectForKey:@"Description"];
     [values release];
+    [strings release];
     [super viewDidLoad];
 }
 
@@ -59,7 +55,6 @@
 
 - (void)dealloc
 {
-    [strings release]; strings = nil;
     [_exitButton release]; _exitButton = nil;
     [_pruneButton release]; _pruneButton = nil;
     [_metroXButton release]; _metroXButton = nil;

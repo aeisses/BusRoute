@@ -7,7 +7,7 @@
 //
 
 typedef enum {
-    prune
+    reverse
 } INFO;
 
 typedef enum {

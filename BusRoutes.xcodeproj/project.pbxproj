@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0489769517B0557C00E8A2E8 /* exitButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0489769317B0557C00E8A2E8 /* exitButton@2x.png */; };
-		0489769617B0557C00E8A2E8 /* exitButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0489769417B0557C00E8A2E8 /* exitButton.png */; };
 		04B4084417C4483A0037DD7A /* KDTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B4084317C4483A0037DD7A /* KDTree.m */; };
 		04B568AC17C973F70019509F /* PruneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B568AA17C973F70019509F /* PruneViewController.xib */; };
 		04B568AD17C973F70019509F /* SaveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B568AB17C973F70019509F /* SaveViewController.xib */; };
@@ -19,13 +17,41 @@
 		04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */; };
 		04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */; };
 		04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64DA17AF39EF001D4B56 /* sample.plist */; };
-		04BB226117CA7BDD00450342 /* exitButtonLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB225D17CA7BDD00450342 /* exitButtonLarge.png */; };
-		04BB226217CA7BDD00450342 /* pruneButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB225E17CA7BDD00450342 /* pruneButton.png */; };
-		04BB226317CA7BDD00450342 /* pruneButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB225F17CA7BDD00450342 /* pruneButton@2x.png */; };
-		04BB226417CA7BDD00450342 /* exitButtonLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BB226017CA7BDD00450342 /* exitButtonLarge@2x.png */; };
 		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
 		04BFFFD317B6F01F0057B81E /* TerminalNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */; };
 		04BFFFD617B717660057B81E /* LegendElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD517B717660057B81E /* LegendElement.m */; };
+		04C1301F17CD752800EC175A /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C1301D17CD752800EC175A /* InfoViewController.m */; };
+		04C1302217CD767F00EC175A /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C1302117CD767F00EC175A /* InfoViewController.xib */; };
+		04C1304A17CD857500EC175A /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1302817CD857500EC175A /* checkBox.png */; };
+		04C1304B17CD857500EC175A /* checkBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1302917CD857500EC175A /* checkBox@2x.png */; };
+		04C1304C17CD857500EC175A /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1302A17CD857500EC175A /* checkBoxChecked.png */; };
+		04C1304D17CD857500EC175A /* checkBoxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1302B17CD857500EC175A /* checkBoxChecked@2x.png */; };
+		04C1304E17CD857500EC175A /* clearButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1302C17CD857500EC175A /* clearButton.png */; };
+		04C1304F17CD857500EC175A /* clearButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1302D17CD857500EC175A /* clearButton@2x.png */; };
+		04C1305217CD857500EC175A /* createRoute.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303017CD857500EC175A /* createRoute.png */; };
+		04C1305317CD857500EC175A /* createRoute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303117CD857500EC175A /* createRoute@2x.png */; };
+		04C1305417CD857500EC175A /* createRouteDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303217CD857500EC175A /* createRouteDisabled.png */; };
+		04C1305517CD857500EC175A /* createRouteDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303317CD857500EC175A /* createRouteDisabled@2x.png */; };
+		04C1305617CD857500EC175A /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303417CD857500EC175A /* deleteButton.png */; };
+		04C1305717CD857500EC175A /* deleteButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303517CD857500EC175A /* deleteButton2@x.png */; };
+		04C1305817CD857500EC175A /* deleteButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303617CD857500EC175A /* deleteButtonSelected.png */; };
+		04C1305917CD857500EC175A /* deleteButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303717CD857500EC175A /* deleteButtonSelected@2x.png */; };
+		04C1305A17CD857500EC175A /* exitButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303817CD857500EC175A /* exitButton.png */; };
+		04C1305B17CD857500EC175A /* exitButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303917CD857500EC175A /* exitButton@2x.png */; };
+		04C1305C17CD857500EC175A /* exitButtonLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303A17CD857500EC175A /* exitButtonLarge.png */; };
+		04C1305D17CD857500EC175A /* exitButtonLarge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303B17CD857500EC175A /* exitButtonLarge@2x.png */; };
+		04C1305E17CD857500EC175A /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303C17CD857500EC175A /* infoButton.png */; };
+		04C1305F17CD857500EC175A /* infoButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1303D17CD857500EC175A /* infoButton2@x.png */; };
+		04C1306217CD857500EC175A /* radioButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304017CD857500EC175A /* radioButton.png */; };
+		04C1306317CD857500EC175A /* radioButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304117CD857500EC175A /* radioButton2@x.png */; };
+		04C1306417CD857500EC175A /* radioButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304217CD857500EC175A /* radioButtonSelected.png */; };
+		04C1306517CD857500EC175A /* radioButtonSelected2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304317CD857500EC175A /* radioButtonSelected2@x.png */; };
+		04C1306817CD857500EC175A /* reversed.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304617CD857500EC175A /* reversed.png */; };
+		04C1306917CD857500EC175A /* reversed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304717CD857500EC175A /* reversed@2x.png */; };
+		04C1306A17CD857500EC175A /* saveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304817CD857500EC175A /* saveButton.png */; };
+		04C1306B17CD857500EC175A /* saveButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1304917CD857500EC175A /* saveButton@2x.png */; };
+		04C1306D17CD866200EC175A /* buttonBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1306C17CD866100EC175A /* buttonBackGround@2x.png */; };
+		04C1306F17CD869D00EC175A /* buttonBackGround.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C1306E17CD869C00EC175A /* buttonBackGround.png */; };
 		04C2FEDE17B7FFC7002B9075 /* LocationsTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C2FEDB17B7FFC7002B9075 /* LocationsTable.xib */; };
 		04C2FEDF17B7FFC7002B9075 /* NumericNodeTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C2FEDC17B7FFC7002B9075 /* NumericNodeTableViewController.xib */; };
 		04C2FEE017B7FFC7002B9075 /* TerminalTable.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C2FEDD17B7FFC7002B9075 /* TerminalTable.xib */; };
@@ -34,10 +60,6 @@
 		04C2FEEA17B7FFDC002B9075 /* TerminalTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEE717B7FFDC002B9075 /* TerminalTable.m */; };
 		04C2FEED17B80051002B9075 /* NumericNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEEC17B7FFFA002B9075 /* NumericNodeCell.m */; };
 		04C4438C17C1905B00485D41 /* PruneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4438A17C1905B00485D41 /* PruneViewController.m */; };
-		04C4439217C195E100485D41 /* checkBoxChecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4438E17C195E100485D41 /* checkBoxChecked.png */; };
-		04C4439317C195E100485D41 /* checkBox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4438F17C195E100485D41 /* checkBox@2x.png */; };
-		04C4439417C195E100485D41 /* checkBoxChecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4439017C195E100485D41 /* checkBoxChecked@2x.png */; };
-		04C4439517C195E100485D41 /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C4439117C195E100485D41 /* checkBox.png */; };
 		04C4439717C1A17C00485D41 /* Strings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C4439617C1A17C00485D41 /* Strings.plist */; };
 		04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109417AFE02700D194AC /* Bus Routes.kml */; };
 		04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109617AFE02D00D194AC /* Bus Stops.kml */; };
@@ -100,25 +122,7 @@
 		04CFB8F917A1F38E003E56E9 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04CFB8F817A1F38E003E56E9 /* MapViewController.xib */; };
 		04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8FD17A1F440003E56E9 /* MovementButton.m */; };
 		04D0EC0D17BAF1830098D138 /* DrawingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0EC0C17BAF1830098D138 /* DrawingImageView.m */; };
-		04D0EC1217BAF7690098D138 /* saveButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC0E17BAF7690098D138 /* saveButton.png */; };
-		04D0EC1317BAF7690098D138 /* clearButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC0F17BAF7690098D138 /* clearButton@2x.png */; };
-		04D0EC1417BAF7690098D138 /* saveButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC1017BAF7690098D138 /* saveButton@2x.png */; };
-		04D0EC1517BAF7690098D138 /* clearButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D0EC1117BAF7690098D138 /* clearButton.png */; };
 		04D0EC1E17BB0E3B0098D138 /* SaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0EC1C17BB0E3B0098D138 /* SaveViewController.m */; };
-		04D423CC17C0143A00DEC31D /* radioButtonSelected2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423C817C0143A00DEC31D /* radioButtonSelected2@x.png */; };
-		04D423CD17C0143A00DEC31D /* radioButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423C917C0143A00DEC31D /* radioButton2@x.png */; };
-		04D423CE17C0143A00DEC31D /* radioButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423CA17C0143A00DEC31D /* radioButton.png */; };
-		04D423CF17C0143A00DEC31D /* radioButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423CB17C0143A00DEC31D /* radioButtonSelected.png */; };
-		04D423D217C014D700DEC31D /* infoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D017C014D700DEC31D /* infoButton.png */; };
-		04D423D317C014D700DEC31D /* infoButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D117C014D700DEC31D /* infoButton2@x.png */; };
-		04D423D817C0210400DEC31D /* deleteButton2@x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D417C0210400DEC31D /* deleteButton2@x.png */; };
-		04D423D917C0210400DEC31D /* deleteButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D517C0210400DEC31D /* deleteButtonSelected.png */; };
-		04D423DA17C0210400DEC31D /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D617C0210400DEC31D /* deleteButton.png */; };
-		04D423DB17C0210400DEC31D /* deleteButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423D717C0210400DEC31D /* deleteButtonSelected@2x.png */; };
-		04D423E017C0235500DEC31D /* createRouteDisabled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DC17C0235500DEC31D /* createRouteDisabled@2x.png */; };
-		04D423E117C0235500DEC31D /* createRoute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DD17C0235500DEC31D /* createRoute@2x.png */; };
-		04D423E217C0235500DEC31D /* createRoute.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DE17C0235500DEC31D /* createRoute.png */; };
-		04D423E317C0235500DEC31D /* createRouteDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D423DF17C0235500DEC31D /* createRouteDisabled.png */; };
 		04D4E59417B1D8610062AA26 /* terminal9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57217B1D8610062AA26 /* terminal9@2x.png */; };
 		04D4E59517B1D8610062AA26 /* terminal10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57317B1D8610062AA26 /* terminal10@2x.png */; };
 		04D4E59617B1D8610062AA26 /* terminal0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57417B1D8610062AA26 /* terminal0@2x.png */; };
@@ -156,8 +160,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0489769317B0557C00E8A2E8 /* exitButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exitButton@2x.png"; sourceTree = "<group>"; };
-		0489769417B0557C00E8A2E8 /* exitButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitButton.png; sourceTree = "<group>"; };
 		04B4084217C4483A0037DD7A /* KDTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KDTree.h; sourceTree = "<group>"; };
 		04B4084317C4483A0037DD7A /* KDTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KDTree.m; sourceTree = "<group>"; };
 		04B568AA17C973F70019509F /* PruneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PruneViewController.xib; sourceTree = "<group>"; };
@@ -174,15 +176,44 @@
 		04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoute.m; sourceTree = "<group>"; };
 		04BA5CEA17A5E0E400EDEE4C /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 		04BA64DA17AF39EF001D4B56 /* sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sample.plist; sourceTree = "<group>"; };
-		04BB225D17CA7BDD00450342 /* exitButtonLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitButtonLarge.png; sourceTree = "<group>"; };
-		04BB225E17CA7BDD00450342 /* pruneButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pruneButton.png; sourceTree = "<group>"; };
-		04BB225F17CA7BDD00450342 /* pruneButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pruneButton@2x.png"; sourceTree = "<group>"; };
-		04BB226017CA7BDD00450342 /* exitButtonLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exitButtonLarge@2x.png"; sourceTree = "<group>"; };
 		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
 		04BFFFD117B6F01F0057B81E /* TerminalNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalNodeCell.h; sourceTree = "<group>"; };
 		04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalNodeCell.m; sourceTree = "<group>"; };
 		04BFFFD417B717660057B81E /* LegendElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LegendElement.h; sourceTree = "<group>"; };
 		04BFFFD517B717660057B81E /* LegendElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LegendElement.m; sourceTree = "<group>"; };
+		04C1301C17CD752800EC175A /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		04C1301D17CD752800EC175A /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		04C1302117CD767F00EC175A /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		04C1302817CD857500EC175A /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
+		04C1302917CD857500EC175A /* checkBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBox@2x.png"; sourceTree = "<group>"; };
+		04C1302A17CD857500EC175A /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxChecked.png; sourceTree = "<group>"; };
+		04C1302B17CD857500EC175A /* checkBoxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxChecked@2x.png"; sourceTree = "<group>"; };
+		04C1302C17CD857500EC175A /* clearButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearButton.png; sourceTree = "<group>"; };
+		04C1302D17CD857500EC175A /* clearButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clearButton@2x.png"; sourceTree = "<group>"; };
+		04C1303017CD857500EC175A /* createRoute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createRoute.png; sourceTree = "<group>"; };
+		04C1303117CD857500EC175A /* createRoute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createRoute@2x.png"; sourceTree = "<group>"; };
+		04C1303217CD857500EC175A /* createRouteDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createRouteDisabled.png; sourceTree = "<group>"; };
+		04C1303317CD857500EC175A /* createRouteDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createRouteDisabled@2x.png"; sourceTree = "<group>"; };
+		04C1303417CD857500EC175A /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
+		04C1303517CD857500EC175A /* deleteButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButton2@x.png"; sourceTree = "<group>"; };
+		04C1303617CD857500EC175A /* deleteButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButtonSelected.png; sourceTree = "<group>"; };
+		04C1303717CD857500EC175A /* deleteButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButtonSelected@2x.png"; sourceTree = "<group>"; };
+		04C1303817CD857500EC175A /* exitButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitButton.png; sourceTree = "<group>"; };
+		04C1303917CD857500EC175A /* exitButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exitButton@2x.png"; sourceTree = "<group>"; };
+		04C1303A17CD857500EC175A /* exitButtonLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exitButtonLarge.png; sourceTree = "<group>"; };
+		04C1303B17CD857500EC175A /* exitButtonLarge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "exitButtonLarge@2x.png"; sourceTree = "<group>"; };
+		04C1303C17CD857500EC175A /* infoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoButton.png; sourceTree = "<group>"; };
+		04C1303D17CD857500EC175A /* infoButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoButton2@x.png"; sourceTree = "<group>"; };
+		04C1304017CD857500EC175A /* radioButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioButton.png; sourceTree = "<group>"; };
+		04C1304117CD857500EC175A /* radioButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radioButton2@x.png"; sourceTree = "<group>"; };
+		04C1304217CD857500EC175A /* radioButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioButtonSelected.png; sourceTree = "<group>"; };
+		04C1304317CD857500EC175A /* radioButtonSelected2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radioButtonSelected2@x.png"; sourceTree = "<group>"; };
+		04C1304617CD857500EC175A /* reversed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reversed.png; sourceTree = "<group>"; };
+		04C1304717CD857500EC175A /* reversed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "reversed@2x.png"; sourceTree = "<group>"; };
+		04C1304817CD857500EC175A /* saveButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveButton.png; sourceTree = "<group>"; };
+		04C1304917CD857500EC175A /* saveButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveButton@2x.png"; sourceTree = "<group>"; };
+		04C1306C17CD866100EC175A /* buttonBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBackGround@2x.png"; sourceTree = "<group>"; };
+		04C1306E17CD869C00EC175A /* buttonBackGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBackGround.png; sourceTree = "<group>"; };
 		04C2FEDB17B7FFC7002B9075 /* LocationsTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationsTable.xib; sourceTree = "<group>"; };
 		04C2FEDC17B7FFC7002B9075 /* NumericNodeTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NumericNodeTableViewController.xib; sourceTree = "<group>"; };
 		04C2FEDD17B7FFC7002B9075 /* TerminalTable.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TerminalTable.xib; sourceTree = "<group>"; };
@@ -196,10 +227,6 @@
 		04C2FEEC17B7FFFA002B9075 /* NumericNodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumericNodeCell.m; sourceTree = "<group>"; };
 		04C4438917C1905B00485D41 /* PruneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PruneViewController.h; path = BusRoutes/ViewControllers/PruneViewController.h; sourceTree = SOURCE_ROOT; };
 		04C4438A17C1905B00485D41 /* PruneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PruneViewController.m; path = BusRoutes/ViewControllers/PruneViewController.m; sourceTree = SOURCE_ROOT; };
-		04C4438E17C195E100485D41 /* checkBoxChecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBoxChecked.png; sourceTree = "<group>"; };
-		04C4438F17C195E100485D41 /* checkBox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBox@2x.png"; sourceTree = "<group>"; };
-		04C4439017C195E100485D41 /* checkBoxChecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkBoxChecked@2x.png"; sourceTree = "<group>"; };
-		04C4439117C195E100485D41 /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
 		04C4439617C1A17C00485D41 /* Strings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Strings.plist; sourceTree = "<group>"; };
 		04C8109417AFE02700D194AC /* Bus Routes.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Routes.kml"; sourceTree = "<group>"; };
 		04C8109617AFE02D00D194AC /* Bus Stops.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Stops.kml"; sourceTree = "<group>"; };
@@ -273,26 +300,8 @@
 		04CFB8FD17A1F440003E56E9 /* MovementButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementButton.m; sourceTree = "<group>"; };
 		04D0EC0B17BAF1830098D138 /* DrawingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingImageView.h; sourceTree = "<group>"; };
 		04D0EC0C17BAF1830098D138 /* DrawingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingImageView.m; sourceTree = "<group>"; };
-		04D0EC0E17BAF7690098D138 /* saveButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveButton.png; sourceTree = "<group>"; };
-		04D0EC0F17BAF7690098D138 /* clearButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clearButton@2x.png"; sourceTree = "<group>"; };
-		04D0EC1017BAF7690098D138 /* saveButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "saveButton@2x.png"; sourceTree = "<group>"; };
-		04D0EC1117BAF7690098D138 /* clearButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clearButton.png; sourceTree = "<group>"; };
 		04D0EC1B17BB0E3B0098D138 /* SaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveViewController.h; sourceTree = "<group>"; };
 		04D0EC1C17BB0E3B0098D138 /* SaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveViewController.m; sourceTree = "<group>"; };
-		04D423C817C0143A00DEC31D /* radioButtonSelected2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radioButtonSelected2@x.png"; sourceTree = "<group>"; };
-		04D423C917C0143A00DEC31D /* radioButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radioButton2@x.png"; sourceTree = "<group>"; };
-		04D423CA17C0143A00DEC31D /* radioButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioButton.png; sourceTree = "<group>"; };
-		04D423CB17C0143A00DEC31D /* radioButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = radioButtonSelected.png; sourceTree = "<group>"; };
-		04D423D017C014D700DEC31D /* infoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infoButton.png; sourceTree = "<group>"; };
-		04D423D117C014D700DEC31D /* infoButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infoButton2@x.png"; sourceTree = "<group>"; };
-		04D423D417C0210400DEC31D /* deleteButton2@x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButton2@x.png"; sourceTree = "<group>"; };
-		04D423D517C0210400DEC31D /* deleteButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButtonSelected.png; sourceTree = "<group>"; };
-		04D423D617C0210400DEC31D /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
-		04D423D717C0210400DEC31D /* deleteButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deleteButtonSelected@2x.png"; sourceTree = "<group>"; };
-		04D423DC17C0235500DEC31D /* createRouteDisabled@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createRouteDisabled@2x.png"; sourceTree = "<group>"; };
-		04D423DD17C0235500DEC31D /* createRoute@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "createRoute@2x.png"; sourceTree = "<group>"; };
-		04D423DE17C0235500DEC31D /* createRoute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createRoute.png; sourceTree = "<group>"; };
-		04D423DF17C0235500DEC31D /* createRouteDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = createRouteDisabled.png; sourceTree = "<group>"; };
 		04D4E57217B1D8610062AA26 /* terminal9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal9@2x.png"; sourceTree = "<group>"; };
 		04D4E57317B1D8610062AA26 /* terminal10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal10@2x.png"; sourceTree = "<group>"; };
 		04D4E57417B1D8610062AA26 /* terminal0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal0@2x.png"; sourceTree = "<group>"; };
@@ -364,6 +373,43 @@
 				04B4084317C4483A0037DD7A /* KDTree.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		04C1302717CD857500EC175A /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				04C1306E17CD869C00EC175A /* buttonBackGround.png */,
+				04C1306C17CD866100EC175A /* buttonBackGround@2x.png */,
+				04C1302817CD857500EC175A /* checkBox.png */,
+				04C1302917CD857500EC175A /* checkBox@2x.png */,
+				04C1302A17CD857500EC175A /* checkBoxChecked.png */,
+				04C1302B17CD857500EC175A /* checkBoxChecked@2x.png */,
+				04C1302C17CD857500EC175A /* clearButton.png */,
+				04C1302D17CD857500EC175A /* clearButton@2x.png */,
+				04C1303017CD857500EC175A /* createRoute.png */,
+				04C1303117CD857500EC175A /* createRoute@2x.png */,
+				04C1303217CD857500EC175A /* createRouteDisabled.png */,
+				04C1303317CD857500EC175A /* createRouteDisabled@2x.png */,
+				04C1303417CD857500EC175A /* deleteButton.png */,
+				04C1303517CD857500EC175A /* deleteButton2@x.png */,
+				04C1303617CD857500EC175A /* deleteButtonSelected.png */,
+				04C1303717CD857500EC175A /* deleteButtonSelected@2x.png */,
+				04C1303817CD857500EC175A /* exitButton.png */,
+				04C1303917CD857500EC175A /* exitButton@2x.png */,
+				04C1303A17CD857500EC175A /* exitButtonLarge.png */,
+				04C1303B17CD857500EC175A /* exitButtonLarge@2x.png */,
+				04C1303C17CD857500EC175A /* infoButton.png */,
+				04C1303D17CD857500EC175A /* infoButton2@x.png */,
+				04C1304017CD857500EC175A /* radioButton.png */,
+				04C1304117CD857500EC175A /* radioButton2@x.png */,
+				04C1304217CD857500EC175A /* radioButtonSelected.png */,
+				04C1304317CD857500EC175A /* radioButtonSelected2@x.png */,
+				04C1304617CD857500EC175A /* reversed.png */,
+				04C1304717CD857500EC175A /* reversed@2x.png */,
+				04C1304817CD857500EC175A /* saveButton.png */,
+				04C1304917CD857500EC175A /* saveButton@2x.png */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		04C2FEDA17B7FFC7002B9075 /* Tables */ = {
@@ -478,6 +524,7 @@
 		04CFB8E317A1F36A003E56E9 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				04C1302117CD767F00EC175A /* InfoViewController.xib */,
 				04B568AA17C973F70019509F /* PruneViewController.xib */,
 				04B568AB17C973F70019509F /* SaveViewController.xib */,
 				04CFB8F817A1F38E003E56E9 /* MapViewController.xib */,
@@ -524,37 +571,10 @@
 			children = (
 				04D4E56417B1D8610062AA26 /* terminal */,
 				04C8109A17B0032D00D194AC /* dots */,
+				04C1302717CD857500EC175A /* Buttons */,
 				04C8109617AFE02D00D194AC /* Bus Stops.kml */,
 				04C8109417AFE02700D194AC /* Bus Routes.kml */,
 				04BA64DA17AF39EF001D4B56 /* sample.plist */,
-				04D0EC0E17BAF7690098D138 /* saveButton.png */,
-				04BB225D17CA7BDD00450342 /* exitButtonLarge.png */,
-				04BB225E17CA7BDD00450342 /* pruneButton.png */,
-				04BB225F17CA7BDD00450342 /* pruneButton@2x.png */,
-				04BB226017CA7BDD00450342 /* exitButtonLarge@2x.png */,
-				04D0EC0F17BAF7690098D138 /* clearButton@2x.png */,
-				04D0EC1017BAF7690098D138 /* saveButton@2x.png */,
-				04D423C817C0143A00DEC31D /* radioButtonSelected2@x.png */,
-				04D423C917C0143A00DEC31D /* radioButton2@x.png */,
-				04D423D417C0210400DEC31D /* deleteButton2@x.png */,
-				04D423D517C0210400DEC31D /* deleteButtonSelected.png */,
-				04D423D617C0210400DEC31D /* deleteButton.png */,
-				04D423D717C0210400DEC31D /* deleteButtonSelected@2x.png */,
-				04D423DC17C0235500DEC31D /* createRouteDisabled@2x.png */,
-				04D423DD17C0235500DEC31D /* createRoute@2x.png */,
-				04D423DE17C0235500DEC31D /* createRoute.png */,
-				04D423DF17C0235500DEC31D /* createRouteDisabled.png */,
-				04D423CA17C0143A00DEC31D /* radioButton.png */,
-				04D423CB17C0143A00DEC31D /* radioButtonSelected.png */,
-				04D423D017C014D700DEC31D /* infoButton.png */,
-				04D423D117C014D700DEC31D /* infoButton2@x.png */,
-				04D0EC1117BAF7690098D138 /* clearButton.png */,
-				0489769317B0557C00E8A2E8 /* exitButton@2x.png */,
-				0489769417B0557C00E8A2E8 /* exitButton.png */,
-				04C4438E17C195E100485D41 /* checkBoxChecked.png */,
-				04C4438F17C195E100485D41 /* checkBox@2x.png */,
-				04C4439017C195E100485D41 /* checkBoxChecked@2x.png */,
-				04C4439117C195E100485D41 /* checkBox.png */,
 				04CACFC817ADC906004EE283 /* stop@2x.png */,
 				04CACFC617ADC817004EE283 /* stop.png */,
 				04C4439617C1A17C00485D41 /* Strings.plist */,
@@ -575,6 +595,8 @@
 				04B92C1117B30FFD00EA08FD /* NumericNode.m */,
 				04D0EC1B17BB0E3B0098D138 /* SaveViewController.h */,
 				04D0EC1C17BB0E3B0098D138 /* SaveViewController.m */,
+				04C1301C17CD752800EC175A /* InfoViewController.h */,
+				04C1301D17CD752800EC175A /* InfoViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -816,8 +838,6 @@
 				04C8111C17B0032D00D194AC /* dot8.png in Resources */,
 				04C8111D17B0032D00D194AC /* dot9.png in Resources */,
 				04C8112217B0089E00D194AC /* LegendView.xib in Resources */,
-				0489769517B0557C00E8A2E8 /* exitButton@2x.png in Resources */,
-				0489769617B0557C00E8A2E8 /* exitButton.png in Resources */,
 				04D4E59417B1D8610062AA26 /* terminal9@2x.png in Resources */,
 				04D4E59517B1D8610062AA26 /* terminal10@2x.png in Resources */,
 				04D4E59617B1D8610062AA26 /* terminal0@2x.png in Resources */,
@@ -844,35 +864,40 @@
 				04C2FEDE17B7FFC7002B9075 /* LocationsTable.xib in Resources */,
 				04C2FEDF17B7FFC7002B9075 /* NumericNodeTableViewController.xib in Resources */,
 				04C2FEE017B7FFC7002B9075 /* TerminalTable.xib in Resources */,
-				04D0EC1217BAF7690098D138 /* saveButton.png in Resources */,
-				04D0EC1317BAF7690098D138 /* clearButton@2x.png in Resources */,
-				04D0EC1417BAF7690098D138 /* saveButton@2x.png in Resources */,
-				04D0EC1517BAF7690098D138 /* clearButton.png in Resources */,
-				04D423CC17C0143A00DEC31D /* radioButtonSelected2@x.png in Resources */,
-				04D423CD17C0143A00DEC31D /* radioButton2@x.png in Resources */,
-				04D423CE17C0143A00DEC31D /* radioButton.png in Resources */,
-				04D423CF17C0143A00DEC31D /* radioButtonSelected.png in Resources */,
-				04D423D217C014D700DEC31D /* infoButton.png in Resources */,
-				04D423D317C014D700DEC31D /* infoButton2@x.png in Resources */,
-				04D423D817C0210400DEC31D /* deleteButton2@x.png in Resources */,
-				04D423D917C0210400DEC31D /* deleteButtonSelected.png in Resources */,
-				04D423DA17C0210400DEC31D /* deleteButton.png in Resources */,
-				04D423DB17C0210400DEC31D /* deleteButtonSelected@2x.png in Resources */,
-				04D423E017C0235500DEC31D /* createRouteDisabled@2x.png in Resources */,
-				04D423E117C0235500DEC31D /* createRoute@2x.png in Resources */,
-				04D423E217C0235500DEC31D /* createRoute.png in Resources */,
-				04D423E317C0235500DEC31D /* createRouteDisabled.png in Resources */,
-				04C4439217C195E100485D41 /* checkBoxChecked.png in Resources */,
-				04C4439317C195E100485D41 /* checkBox@2x.png in Resources */,
-				04C4439417C195E100485D41 /* checkBoxChecked@2x.png in Resources */,
-				04C4439517C195E100485D41 /* checkBox.png in Resources */,
 				04C4439717C1A17C00485D41 /* Strings.plist in Resources */,
 				04B568AC17C973F70019509F /* PruneViewController.xib in Resources */,
 				04B568AD17C973F70019509F /* SaveViewController.xib in Resources */,
-				04BB226117CA7BDD00450342 /* exitButtonLarge.png in Resources */,
-				04BB226217CA7BDD00450342 /* pruneButton.png in Resources */,
-				04BB226317CA7BDD00450342 /* pruneButton@2x.png in Resources */,
-				04BB226417CA7BDD00450342 /* exitButtonLarge@2x.png in Resources */,
+				04C1302217CD767F00EC175A /* InfoViewController.xib in Resources */,
+				04C1304A17CD857500EC175A /* checkBox.png in Resources */,
+				04C1304B17CD857500EC175A /* checkBox@2x.png in Resources */,
+				04C1304C17CD857500EC175A /* checkBoxChecked.png in Resources */,
+				04C1304D17CD857500EC175A /* checkBoxChecked@2x.png in Resources */,
+				04C1304E17CD857500EC175A /* clearButton.png in Resources */,
+				04C1304F17CD857500EC175A /* clearButton@2x.png in Resources */,
+				04C1305217CD857500EC175A /* createRoute.png in Resources */,
+				04C1305317CD857500EC175A /* createRoute@2x.png in Resources */,
+				04C1305417CD857500EC175A /* createRouteDisabled.png in Resources */,
+				04C1305517CD857500EC175A /* createRouteDisabled@2x.png in Resources */,
+				04C1305617CD857500EC175A /* deleteButton.png in Resources */,
+				04C1305717CD857500EC175A /* deleteButton2@x.png in Resources */,
+				04C1305817CD857500EC175A /* deleteButtonSelected.png in Resources */,
+				04C1305917CD857500EC175A /* deleteButtonSelected@2x.png in Resources */,
+				04C1305A17CD857500EC175A /* exitButton.png in Resources */,
+				04C1305B17CD857500EC175A /* exitButton@2x.png in Resources */,
+				04C1305C17CD857500EC175A /* exitButtonLarge.png in Resources */,
+				04C1305D17CD857500EC175A /* exitButtonLarge@2x.png in Resources */,
+				04C1305E17CD857500EC175A /* infoButton.png in Resources */,
+				04C1305F17CD857500EC175A /* infoButton2@x.png in Resources */,
+				04C1306217CD857500EC175A /* radioButton.png in Resources */,
+				04C1306317CD857500EC175A /* radioButton2@x.png in Resources */,
+				04C1306417CD857500EC175A /* radioButtonSelected.png in Resources */,
+				04C1306517CD857500EC175A /* radioButtonSelected2@x.png in Resources */,
+				04C1306817CD857500EC175A /* reversed.png in Resources */,
+				04C1306917CD857500EC175A /* reversed@2x.png in Resources */,
+				04C1306A17CD857500EC175A /* saveButton.png in Resources */,
+				04C1306B17CD857500EC175A /* saveButton@2x.png in Resources */,
+				04C1306D17CD866200EC175A /* buttonBackGround@2x.png in Resources */,
+				04C1306F17CD869D00EC175A /* buttonBackGround.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -909,6 +934,7 @@
 				04C4438C17C1905B00485D41 /* PruneViewController.m in Sources */,
 				04B4084417C4483A0037DD7A /* KDTree.m in Sources */,
 				04CF4F1017C589F100E157F8 /* KDElement.m in Sources */,
+				04C1301F17CD752800EC175A /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

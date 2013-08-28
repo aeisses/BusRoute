@@ -50,6 +50,10 @@
         [createRoute addTarget:self action:@selector(touchCreateRouteButton) forControlEvents:UIControlEventTouchUpInside];
         [createRoute setImage:[UIImage imageNamed:@"createRoute"] forState:UIControlStateNormal];
         
+        reverseButton = [[UIButton alloc] initWithFrame:(CGRect){15,540,50,40}];
+        [reverseButton addTarget:self action:@selector(touchReverseButton) forControlEvents:UIControlEventTouchUpInside];
+        [reverseButton setImage:[UIImage imageNamed:@"reversed"] forState:UIControlStateNormal];
+         
         saveViewController = [[SaveViewController alloc] initWithNibName:@"SaveViewController" bundle:nil];
         counter = 0;
     }
@@ -82,6 +86,21 @@
 {
     createRoute.selected = NO;
     deleteButton.selected = !deleteButton.selected;
+}
+
+- (void)touchReverseButton
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ReverseInfoWindow"]) {
+        InfoViewController *infoVC = [[[InfoViewController alloc] initWithNibName:@"InfoViewController" bundle:nil] autorelease];
+        infoVC.delegate = self;
+        CGRect origFrame = infoVC.view.frame;
+        infoVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:infoVC animated:YES completion:^{
+        }];
+        infoVC.view.superview.bounds = origFrame;
+    } else {
+        [drawingImageView reverseRoute];
+    }
 }
 
 - (IBAction)titleBarButtonTouched:(id)sender
@@ -170,6 +189,7 @@
             [clearButton removeFromSuperview];
             [deleteButton removeFromSuperview];
             [createRoute removeFromSuperview];
+            [reverseButton removeFromSuperview];
             isDrawing = NO;
         } else {
             [self.view insertSubview:drawingImageView belowSubview:_toolBar];
@@ -177,16 +197,17 @@
             [self.view addSubview:clearButton];
             [self.view addSubview:deleteButton];
             [self.view addSubview:createRoute];
+            [self.view addSubview:reverseButton];
             isDrawing = YES;
         }
     } else if (button.tag == 9) {
-        PruneViewController *infoVC = [[[PruneViewController alloc] initWithNibName:@"PruneViewController" bundle:nil forInfo:prune] autorelease];
-        infoVC.delegate = self;
-        CGRect origFrame = infoVC.view.frame;
-        infoVC.modalPresentationStyle = UIModalPresentationFormSheet;
-        [self presentViewController:infoVC animated:YES completion:^{
+        PruneViewController *pruneVC = [[[PruneViewController alloc] initWithNibName:@"PruneViewController" bundle:nil] autorelease];
+        pruneVC.delegate = self;
+        CGRect origFrame = pruneVC.view.frame;
+        pruneVC.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentViewController:pruneVC animated:YES completion:^{
         }];
-        infoVC.view.superview.bounds = origFrame;
+        pruneVC.view.superview.bounds = origFrame;
     }
 }
 
@@ -348,6 +369,7 @@
     [clearButton release]; clearButton = nil;
     [saveButton release]; saveButton = nil;
     [deleteButton release]; deleteButton = nil;
+    [reverseButton release]; reverseButton = nil;
     _delegate = nil;
 }
 
@@ -391,6 +413,16 @@
 {
     swipeDown.enabled = NO;
     swipeUp.enabled = NO;
+}
+
+#pragma InfoViewControllerDelegate Methods
+- (void)positiveButtonTouchedForInfo:(INFO)info
+{
+    switch (info) {
+        case reverse:
+            [drawingImageView reverseRoute];
+            break;
+    }
 }
 
 #pragma PruneViewControllerDelegate Methods
