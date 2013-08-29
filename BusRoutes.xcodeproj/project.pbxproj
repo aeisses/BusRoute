@@ -59,8 +59,8 @@
 		04C2FEE917B7FFDC002B9075 /* NumericNodeTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEE517B7FFDC002B9075 /* NumericNodeTable.m */; };
 		04C2FEEA17B7FFDC002B9075 /* TerminalTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEE717B7FFDC002B9075 /* TerminalTable.m */; };
 		04C2FEED17B80051002B9075 /* NumericNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C2FEEC17B7FFFA002B9075 /* NumericNodeCell.m */; };
-		04C4438C17C1905B00485D41 /* PruneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4438A17C1905B00485D41 /* PruneViewController.m */; };
 		04C4439717C1A17C00485D41 /* Strings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04C4439617C1A17C00485D41 /* Strings.plist */; };
+		04C4F88717CEDBDD00E6F557 /* PruneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C4F88617CEDBAC00E6F557 /* PruneViewController.m */; };
 		04C8109517AFE02700D194AC /* Bus Routes.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109417AFE02700D194AC /* Bus Routes.kml */; };
 		04C8109717AFE02D00D194AC /* Bus Stops.kml in Resources */ = {isa = PBXBuildFile; fileRef = 04C8109617AFE02D00D194AC /* Bus Stops.kml */; };
 		04C8109917AFE0EC00D194AC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */; };
@@ -225,9 +225,9 @@
 		04C2FEE717B7FFDC002B9075 /* TerminalTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalTable.m; sourceTree = "<group>"; };
 		04C2FEEB17B7FFFA002B9075 /* NumericNodeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumericNodeCell.h; sourceTree = "<group>"; };
 		04C2FEEC17B7FFFA002B9075 /* NumericNodeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumericNodeCell.m; sourceTree = "<group>"; };
-		04C4438917C1905B00485D41 /* PruneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PruneViewController.h; path = BusRoutes/ViewControllers/PruneViewController.h; sourceTree = SOURCE_ROOT; };
-		04C4438A17C1905B00485D41 /* PruneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PruneViewController.m; path = BusRoutes/ViewControllers/PruneViewController.m; sourceTree = SOURCE_ROOT; };
 		04C4439617C1A17C00485D41 /* Strings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Strings.plist; sourceTree = "<group>"; };
+		04C4F88517CEDBAC00E6F557 /* PruneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PruneViewController.h; sourceTree = "<group>"; };
+		04C4F88617CEDBAC00E6F557 /* PruneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PruneViewController.m; sourceTree = "<group>"; };
 		04C8109417AFE02700D194AC /* Bus Routes.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Routes.kml"; sourceTree = "<group>"; };
 		04C8109617AFE02D00D194AC /* Bus Stops.kml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Bus Stops.kml"; sourceTree = "<group>"; };
 		04C8109817AFE0EC00D194AC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -585,6 +585,8 @@
 		04CFB8EA17A1F36A003E56E9 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				04C4F88517CEDBAC00E6F557 /* PruneViewController.h */,
+				04C4F88617CEDBAC00E6F557 /* PruneViewController.m */,
 				04CFB8EB17A1F36A003E56E9 /* BusRoutesViewController.h */,
 				04CFB8EC17A1F36A003E56E9 /* BusRoutesViewController.m */,
 				04CFB8ED17A1F36A003E56E9 /* MapViewController.h */,
@@ -608,8 +610,6 @@
 				04C8112417B0127800D194AC /* LegendView.m */,
 				04D0EC0B17BAF1830098D138 /* DrawingImageView.h */,
 				04D0EC0C17BAF1830098D138 /* DrawingImageView.m */,
-				04C4438917C1905B00485D41 /* PruneViewController.h */,
-				04C4438A17C1905B00485D41 /* PruneViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -908,6 +908,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C4F88717CEDBDD00E6F557 /* PruneViewController.m in Sources */,
 				04C2FEED17B80051002B9075 /* NumericNodeCell.m in Sources */,
 				04DA2A7B179DE91200EF177B /* main.m in Sources */,
 				04DA2A7F179DE91200EF177B /* BusRoutesAppDelegate.m in Sources */,
@@ -931,7 +932,6 @@
 				04C2FEEA17B7FFDC002B9075 /* TerminalTable.m in Sources */,
 				04D0EC0D17BAF1830098D138 /* DrawingImageView.m in Sources */,
 				04D0EC1E17BB0E3B0098D138 /* SaveViewController.m in Sources */,
-				04C4438C17C1905B00485D41 /* PruneViewController.m in Sources */,
 				04B4084417C4483A0037DD7A /* KDTree.m in Sources */,
 				04CF4F1017C589F100E157F8 /* KDElement.m in Sources */,
 				04C1301F17CD752800EC175A /* InfoViewController.m in Sources */,

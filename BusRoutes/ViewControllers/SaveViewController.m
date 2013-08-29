@@ -37,7 +37,48 @@
 
 - (IBAction)touchExitButton:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self exitAndClearWindow];
+}
+
+- (IBAction)touchIsReversedButton:(id)sender
+{
+    _isReversedButton.selected = !_isReversedButton.selected;
+}
+
+- (IBAction)touchCreateButton:(id)sender
+{
+    NSArray *objects = [[NSArray alloc] initWithObjects:_name.text,_number.text,_description.text,[NSNumber numberWithBool:_isReversedButton.selected],nil];
+    NSArray *keys = [[NSArray alloc] initWithObjects:@"Name",@"Number",@"Description",@"isReverse",nil];
+    NSDictionary *values = [[NSDictionary alloc] initWithObjects:objects
+                                                         forKeys:keys];
+    [objects release];
+    [keys release];
+    [_delegate createRouteWithValue:values];
+    [values release];
+    [self exitAndClearWindow];
+}
+
+- (void)dealloc
+{
+    [_exitButton release]; _exitButton = nil;
+    [_isReversedButton release]; _isReversedButton = nil;
+    [_createButton release]; _createButton = nil;
+    [_name release]; _name = nil;
+    [_number release]; _number = nil;
+    [_description release]; _description = nil;
+    _delegate = nil;
+    [super dealloc];
+}
+
+#pragma Private Methods
+- (void)exitAndClearWindow
+{
+    __block typeof(self) block_self = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        block_self.name.text = @"";
+        block_self.number.text = @"";
+        block_self.description.text = @"";
+    }];
 }
 
 @end
