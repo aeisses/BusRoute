@@ -7,7 +7,14 @@
 //
 
 typedef enum {
-    reverse
+    DTStandard,
+    DTActive,
+    DTStaging,
+    DTReverse
+} DRAWINGTYPE;
+
+typedef enum {
+    reverseInfo
 } INFO;
 
 typedef enum {

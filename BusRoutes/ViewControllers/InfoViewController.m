@@ -23,7 +23,7 @@
 - (void)viewDidLoad
 {
     switch (_info) {
-        case reverse:
+        case reverseInfo:
         {
             _titleLabel.text = @"Reverse";
             _textBody.text = @"Most bus routes move in both directions, this function will attempt to take the existing bus route and reverse it, find the stops on the other side of the road. If you choose to do this action please check the route closely to make sure all the correct stops have been added and not incorrect stops have been added.";
@@ -44,7 +44,7 @@
 {
     if (_checkBoxButton.selected) {
         switch (_info) {
-            case reverse:
+            case reverseInfo:
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ReverseInfoWindow"];
                 break;
         }
@@ -62,7 +62,7 @@
 {
     if (_checkBoxButton.selected) {
         switch (_info) {
-            case reverse:
+            case reverseInfo:
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ReverseInfoWindow"];
                 break;
         }

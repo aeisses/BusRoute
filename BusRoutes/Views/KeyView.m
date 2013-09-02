@@ -70,7 +70,7 @@
     CGContextAddLineToPoint(UIGraphicsGetCurrentContext(), to.x, to.y);
     CGContextSetLineCap(UIGraphicsGetCurrentContext(), kCGLineCapRound);
     CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 4.0 );
-    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), (float)components[0], (float)components[1], (float)components[3], 1.0);
+    CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), (float)components[0], (float)components[1], (float)components[2], 1.0);
     CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
     
     CGContextStrokePath(UIGraphicsGetCurrentContext());

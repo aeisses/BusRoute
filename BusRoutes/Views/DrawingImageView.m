@@ -50,7 +50,7 @@
     double distance = 0;
     int locationToAdd = 0;
     int counter = 0;
-    for (BusStop *bs in annotations) {
+    for (BusStop *bs in (NSMutableArray*)[lines objectAtIndex:activeLine]) {
         double deltaLong = busStop.coordinate.longitude - bs.coordinate.longitude;
         double deltaLati = busStop.coordinate.latitude - bs.coordinate.latitude;
         double newDistance = sqrt((deltaLong * deltaLong) + (deltaLati * deltaLati));
@@ -60,13 +60,13 @@
         }
         counter++;
     }
-    [annotations insertObject:busStop atIndex:locationToAdd];
+    [(NSMutableArray*)[lines objectAtIndex:activeLine] insertObject:busStop atIndex:locationToAdd];
     [self showBusRoute:mapView];
 }
 
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView
 {
-    [annotations removeObject:busStop];
+    [(NSMutableArray*)[lines objectAtIndex:activeLine] removeObject:busStop];
     [self showBusRoute:mapView];
 }
 
@@ -87,9 +87,19 @@
 
 - (void)endLine:(MKMapView*)mapView
 {
-    [lines addObject:annotations];
-    [annotations release]; annotations = nil;
-    annotations = [[NSMutableArray alloc] initWithCapacity:0];
+    if (annotations && [annotations count] != 0) {
+        [lines addObject:annotations];
+        activeLine = [lines count] - 1;
+        [self showBusRoute:mapView];
+        [annotations release]; annotations = nil;
+        annotations = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+}
+
+- (void)setActiveLine:(NSString*)lineNum forMapView:(MKMapView*)mapView
+{
+    activeLine = [lineNum integerValue];
+    [self showBusRoute:mapView];
 }
 
 #pragma Private Methods
@@ -97,17 +107,24 @@
 {
     [mapView removeOverlays:_busRoute.lines];
     if (_busRoute) [_busRoute release];
-    for (NSArray *line in lines) {
-        
+    NSMutableArray *brLines = [[NSMutableArray alloc] initWithCapacity:[lines count]];
+    for (int j=0; j<[lines count]; j++) {
+        NSArray *lineArray = [[lines objectAtIndex:j] retain];
+        CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [lineArray count]);
+        for (int i = 0; i < [lineArray count]; i++) {
+            line[i] = ((BusStop*)[lineArray objectAtIndex:i]).coordinate;
+        }
+        MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[lineArray count]];
+        if ((int)activeLine == j) {
+            polyLine.title = @"Red";
+        } else {
+            polyLine.title = @"Blue";
+        }
+        polyLine.subtitle = [NSString stringWithFormat:@"%i",j];
+        free(line);
+        [brLines addObject:polyLine];
     }
-    CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [annotations count]);
-    for (int i = 0; i < [annotations count]; i++) {
-        line[i] = ((BusStop*)[annotations objectAtIndex:i]).coordinate;
-    }
-    MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[annotations count]];
-    free(line);
-    
-    _busRoute = [[BusRoute alloc] initWithLine:polyLine andTitle:@""];
+    _busRoute = [[BusRoute alloc] initWithLines:brLines andTitle:@""];
     [mapView addOverlays:_busRoute.lines];
     self.image = nil;
 }

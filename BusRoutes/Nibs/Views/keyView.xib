@@ -58,7 +58,7 @@
 						<string key="NSFrameSize">{75, 120}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1039163927"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -69,7 +69,7 @@
 						<string key="NSFrameSize">{75, 20}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="832151426"/>
+						<reference key="NSNextKeyView" ref="1039163927"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -128,7 +128,7 @@
 						<string key="NSFrame">{{0, 80}, {75, 20}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="832151426"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIAutoresizesSubviews">NO</bool>
@@ -218,8 +218,8 @@
 							<reference ref="278368389"/>
 							<reference ref="848183471"/>
 							<reference ref="1023307326"/>
-							<reference ref="832151426"/>
 							<reference ref="1039163927"/>
+							<reference ref="832151426"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

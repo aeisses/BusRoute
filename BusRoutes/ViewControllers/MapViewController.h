@@ -44,6 +44,7 @@
     int loadingBusRouteCounter;
     BOOL showNumberOfRoutesStops;
     BOOL showTerminals;
+    BOOL isMoving;
     LegendView *legendView;
     UIPopoverController *popOverController;
     BusStop *prevBusStop;
@@ -60,10 +61,12 @@
 
 @property (retain, nonatomic) IBOutlet MKMapView *mapView;
 @property (retain, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (retain, nonatomic) IBOutlet UIButton *zoomButton;
 @property (assign) BOOL isDataLoading;
 @property (retain, nonatomic) id <MapViewControllerDelegate> delegate;
 
 - (IBAction)titleBarButtonTouched:(id)sender;
+- (IBAction)touchZoomButton:(id)sender;
 - (void)addBusStop:(BusStop*)busStop;
 - (void)addRoute:(BusRoute*)route;
 - (void)addProgressIndicator;

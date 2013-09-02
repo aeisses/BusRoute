@@ -32,7 +32,7 @@ typedef struct lineSegment {
 }
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, retain) NSArray *lines;
+@property (nonatomic, copy) NSArray *lines;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSString *routeTitle;
 @property (nonatomic, copy) NSDate *startDate;
@@ -40,6 +40,6 @@ typedef struct lineSegment {
 @property (nonatomic, copy) NSString *socrateId;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
-- (id)initWithLine:(MKPolyline *)line andTitle:(NSString *)title;
+- (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title;
 
 @end

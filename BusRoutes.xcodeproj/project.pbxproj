@@ -126,6 +126,10 @@
 		04CFB8FE17A1F440003E56E9 /* MovementButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04CFB8FD17A1F440003E56E9 /* MovementButton.m */; };
 		04D0EC0D17BAF1830098D138 /* DrawingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0EC0C17BAF1830098D138 /* DrawingImageView.m */; };
 		04D0EC1E17BB0E3B0098D138 /* SaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D0EC1C17BB0E3B0098D138 /* SaveViewController.m */; };
+		04D3936B17D4C36D00862E93 /* zoomButtonLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D3936717D4C36D00862E93 /* zoomButtonLocked.png */; };
+		04D3936C17D4C36D00862E93 /* zoomButtonLocked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D3936817D4C36D00862E93 /* zoomButtonLocked@2x.png */; };
+		04D3936D17D4C36D00862E93 /* zoomButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D3936917D4C36D00862E93 /* zoomButton.png */; };
+		04D3936E17D4C36D00862E93 /* zoomButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D3936A17D4C36D00862E93 /* zoomButton@2x.png */; };
 		04D4E59417B1D8610062AA26 /* terminal9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57217B1D8610062AA26 /* terminal9@2x.png */; };
 		04D4E59517B1D8610062AA26 /* terminal10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57317B1D8610062AA26 /* terminal10@2x.png */; };
 		04D4E59617B1D8610062AA26 /* terminal0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D4E57417B1D8610062AA26 /* terminal0@2x.png */; };
@@ -309,6 +313,10 @@
 		04D0EC0C17BAF1830098D138 /* DrawingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingImageView.m; sourceTree = "<group>"; };
 		04D0EC1B17BB0E3B0098D138 /* SaveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveViewController.h; sourceTree = "<group>"; };
 		04D0EC1C17BB0E3B0098D138 /* SaveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveViewController.m; sourceTree = "<group>"; };
+		04D3936717D4C36D00862E93 /* zoomButtonLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomButtonLocked.png; sourceTree = "<group>"; };
+		04D3936817D4C36D00862E93 /* zoomButtonLocked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomButtonLocked@2x.png"; sourceTree = "<group>"; };
+		04D3936917D4C36D00862E93 /* zoomButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoomButton.png; sourceTree = "<group>"; };
+		04D3936A17D4C36D00862E93 /* zoomButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zoomButton@2x.png"; sourceTree = "<group>"; };
 		04D4E57217B1D8610062AA26 /* terminal9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal9@2x.png"; sourceTree = "<group>"; };
 		04D4E57317B1D8610062AA26 /* terminal10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal10@2x.png"; sourceTree = "<group>"; };
 		04D4E57417B1D8610062AA26 /* terminal0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "terminal0@2x.png"; sourceTree = "<group>"; };
@@ -385,6 +393,10 @@
 		04C1302717CD857500EC175A /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				04D3936717D4C36D00862E93 /* zoomButtonLocked.png */,
+				04D3936817D4C36D00862E93 /* zoomButtonLocked@2x.png */,
+				04D3936917D4C36D00862E93 /* zoomButton.png */,
+				04D3936A17D4C36D00862E93 /* zoomButton@2x.png */,
 				04C1306E17CD869C00EC175A /* buttonBackGround.png */,
 				04C1306C17CD866100EC175A /* buttonBackGround@2x.png */,
 				04C1302817CD857500EC175A /* checkBox.png */,
@@ -911,6 +923,10 @@
 				04C1306F17CD869D00EC175A /* buttonBackGround.png in Resources */,
 				04BE659117D4083500C34D35 /* KeyView.xib in Resources */,
 				04BE659617D414C500C34D35 /* keyBackGround.png in Resources */,
+				04D3936B17D4C36D00862E93 /* zoomButtonLocked.png in Resources */,
+				04D3936C17D4C36D00862E93 /* zoomButtonLocked@2x.png in Resources */,
+				04D3936D17D4C36D00862E93 /* zoomButton.png in Resources */,
+				04D3936E17D4C36D00862E93 /* zoomButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

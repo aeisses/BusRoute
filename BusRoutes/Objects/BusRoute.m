@@ -29,7 +29,9 @@
                     KMLCoordinate *point = (KMLCoordinate*)[points objectAtIndex:j];
                     line[j] = CLLocationCoordinate2DMake(point.latitude, point.longitude);
                 }
-                [linesMutable insertObject:[MKPolyline polylineWithCoordinates:line count:[points count]] atIndex:[linesMutable count]];
+                MKPolyline *polyline = [MKPolyline polylineWithCoordinates:line count:[points count]];
+                polyline.title = @"Black";
+                [linesMutable insertObject:polyline atIndex:[linesMutable count]];
                 free(line);
             }
         }
@@ -45,11 +47,11 @@
     return self;
 }
 
-- (id)initWithLine:(MKPolyline *)line andTitle:(NSString *)title
+- (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title
 {
     if (self = [super init])
     {
-        _lines = [[NSArray alloc] initWithObjects:line, nil];
+        _lines = [lines copy];
         _title = [title copy];
         _description = nil;
         _routeTitle = nil;

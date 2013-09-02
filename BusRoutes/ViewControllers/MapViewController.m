@@ -33,11 +33,11 @@
         
         drawingImageView = [[DrawingImageView alloc] initWithFrame:self.view.frame];
         
-        saveButton = [[UIButton alloc] initWithFrame:(CGRect){960,620,40,40}];
+        saveButton = [[UIButton alloc] initWithFrame:(CGRect){960,549,40,40}];
         [saveButton addTarget:self action:@selector(touchSaveButton) forControlEvents:UIControlEventTouchUpInside];
         [saveButton setImage:[UIImage imageNamed:@"saveButton.png"] forState:UIControlStateNormal];
         
-        clearButton = [[UIButton alloc] initWithFrame:(CGRect){960,700,40,40}];
+        clearButton = [[UIButton alloc] initWithFrame:(CGRect){960,620,40,40}];
         [clearButton addTarget:self action:@selector(touchClearButton) forControlEvents:UIControlEventTouchUpInside];
         [clearButton setImage:[UIImage imageNamed:@"clearButton.png"] forState:UIControlStateNormal];
 
@@ -181,7 +181,6 @@
         [table release];
         [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } else if (button.tag == 7) {
-        [_mapView addGestureRecognizer:touchDown];
     } else if (button.tag == 8) {
         if (isDrawing) {
             [drawingImageView removeFromSuperview];
@@ -190,6 +189,7 @@
             [deleteButton removeFromSuperview];
             [createRoute removeFromSuperview];
             [reverseButton removeFromSuperview];
+            [_mapView removeGestureRecognizer:touchDown];
             isDrawing = NO;
         } else {
             [self.view insertSubview:drawingImageView belowSubview:_toolBar];
@@ -198,6 +198,7 @@
             [self.view addSubview:deleteButton];
             [self.view addSubview:createRoute];
             [self.view addSubview:reverseButton];
+            [_mapView addGestureRecognizer:touchDown];
             isDrawing = YES;
         }
     } else if (button.tag == 9) {
@@ -208,6 +209,18 @@
         [self presentViewController:pruneVC animated:YES completion:^{
         }];
         pruneVC.view.superview.bounds = origFrame;
+    }
+}
+
+- (IBAction)touchZoomButton:(id)sender
+{
+    _zoomButton.selected = !_zoomButton.selected;
+    if (!_zoomButton.selected) {
+        _mapView.scrollEnabled = YES;
+        _mapView.zoomEnabled = YES;
+    } else {
+        _mapView.scrollEnabled = NO;
+        _mapView.zoomEnabled = NO;
     }
 }
 
@@ -227,12 +240,16 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    isMoving = YES;
     [super touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [drawingImageView showBusRoute:_mapView];
+    
+    if (isDrawing && isMoving)
+        [drawingImageView endLine:_mapView];
+    isMoving = NO;
     [super touchesEnded:touches withEvent:event];
 }
 
@@ -242,6 +259,7 @@
     _mapView.zoomEnabled = NO;
     _toolBar.hidden = YES;
     [self.view bringSubviewToFront:_toolBar];
+    [self.view bringSubviewToFront:_zoomButton];
     [self.view addGestureRecognizer:swipeDown];
     [self.view addGestureRecognizer:swipeUp];
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(frameIntervalLoop:)];
@@ -262,7 +280,6 @@
 - (void)mapTapped:(UITapGestureRecognizer*)tapGesture
 {
     MKMapView *mapView = (MKMapView *)tapGesture.view;
-    id<MKOverlay> tappedOverlay = nil;
     for (id<MKOverlay> overlay in mapView.overlays)
     {
         MKOverlayView *view = [mapView viewForOverlay:overlay];
@@ -275,13 +292,11 @@
             // Check if the touch is within the view bounds
             if (CGRectContainsPoint(viewFrameInMapView, point))
             {
-                tappedOverlay = overlay;
+                [drawingImageView setActiveLine:overlay.subtitle forMapView:_mapView];
                 break;
             }
         }
     }
-    NSLog(@"Tapped view: %@", [mapView viewForOverlay:tappedOverlay]);
-    [_mapView removeOverlay:tappedOverlay];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -339,8 +354,8 @@
 - (void)removeProgressIndicator
 {
     if (!_isDataLoading && !loadingBusStopCounter && !loadingBusRouteCounter) {
-        [self enableGestures];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self enableGestures];
             [activityIndicator stopAnimating];
             [activityIndicator removeFromSuperview];
         });
@@ -360,8 +375,11 @@
 {
     [super dealloc];
     [_mapView release]; _mapView = nil;
+    [_zoomButton release]; _zoomButton = nil;
+    [_toolBar release]; _toolBar = nil;
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
+    [touchDown release]; touchDown = nil;
     [legendView release]; legendView = nil;
     [popOverController release]; popOverController = nil;
     [drawingImageView release]; drawingImageView = nil;
@@ -407,19 +425,28 @@
 {
     swipeDown.enabled = YES;
     swipeUp.enabled = YES;
+    _zoomButton.enabled = YES;
+    if (!_zoomButton.selected) {
+        _mapView.scrollEnabled = YES;
+        _mapView.zoomEnabled = YES;
+    } else {
+        _mapView.scrollEnabled = NO;
+        _mapView.zoomEnabled = NO;
+    }
 }
 
 - (void)disableGestures
 {
     swipeDown.enabled = NO;
     swipeUp.enabled = NO;
+    _zoomButton.enabled = NO;
 }
 
 #pragma InfoViewControllerDelegate Methods
 - (void)positiveButtonTouchedForInfo:(INFO)info
 {
     switch (info) {
-        case reverse:
+        case reverseInfo:
             [drawingImageView reverseRoute];
             break;
     }
@@ -476,20 +503,6 @@
     _mapView.zoomEnabled = NO;
     [_mapView setRegion:[RegionZoomData getRegion:region] animated:NO];
     [self hideHudView];
-}
-
-- (void)freeZoom
-{
-    [popOverController dismissPopoverAnimated:NO];
-    _mapView.scrollEnabled = YES;
-    _mapView.zoomEnabled = YES;
-}
-
-- (void)lockZoom
-{
-    [popOverController dismissPopoverAnimated:NO];
-    _mapView.scrollEnabled = NO;
-    _mapView.zoomEnabled = NO;
 }
 
 #pragma TerminaTableDelegate Methods
@@ -582,13 +595,20 @@
 - (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
     
     MKPolylineView *polylineView = [[[MKPolylineView alloc] initWithPolyline:overlay] autorelease];
-    if (isDrawing) {
-        polylineView.strokeColor = [UIColor orangeColor];
-    } else {
+    if ([overlay.title isEqualToString:@"Black"]) {
         polylineView.strokeColor = [UIColor blackColor];
+        polylineView.lineWidth = 2.0;
+    } else if ([overlay.title isEqualToString:@"Red"]) {
+        polylineView.strokeColor = [UIColor redColor];
+        polylineView.lineWidth = 4.0;
+    } else if ([overlay.title isEqualToString:@"Blue"]) {
+        polylineView.strokeColor = [UIColor blueColor];
+        polylineView.lineWidth = 4.0;
+    } else if ([overlay.title isEqualToString:@"Green"]) {
+        polylineView.strokeColor = [UIColor greenColor];
+        polylineView.lineWidth = 4.0;
     }
     polylineView.lineJoin = kCGLineCapButt;
-    polylineView.lineWidth = 2.0;
     
     return polylineView;
 }
