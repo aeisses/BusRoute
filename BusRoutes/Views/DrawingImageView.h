@@ -9,10 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BusRoute.h"
 #import "BusStop.h"
+#import "KeyView.h"
 
 @interface DrawingImageView : UIImageView
 {
     NSMutableArray *annotations;
+    NSMutableArray *lines;
+    KeyView *keyView;
 }
 
 @property (retain, nonatomic) BusRoute *busRoute;
@@ -27,6 +30,5 @@
 @end
 
 @interface DrawingImageView (PrivateMethods)
-- (void)showBusRoute:(MKMapView*)mapView;
 - (void)drawLineFrom:(CGPoint)from To:(CGPoint)to;
 @end

@@ -17,12 +17,18 @@
         // Initialization code
         [self setUserInteractionEnabled:NO];
         annotations = [[NSMutableArray alloc] initWithCapacity:0];
+        lines = [[NSMutableArray alloc] initWithCapacity:0];
+        keyView = [[[[NSBundle mainBundle] loadNibNamed:@"KeyView" owner:self options:nil] objectAtIndex:0] retain];
+        keyView.frame = (CGRect){10,55,keyView.frame.size};
+        [keyView setUpKey];
+        [self addSubview:keyView];
     }
     return self;
 }
 
 - (void)dealloc
 {
+    [lines release]; lines = nil;
     [annotations release]; annotations = nil;
     [_busRoute release]; _busRoute = nil;
     [super dealloc];
@@ -79,11 +85,21 @@
     
 }
 
+- (void)endLine:(MKMapView*)mapView
+{
+    [lines addObject:annotations];
+    [annotations release]; annotations = nil;
+    annotations = [[NSMutableArray alloc] initWithCapacity:0];
+}
+
 #pragma Private Methods
 - (void)showBusRoute:(MKMapView*)mapView
 {
     [mapView removeOverlays:_busRoute.lines];
     if (_busRoute) [_busRoute release];
+    for (NSArray *line in lines) {
+        
+    }
     CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [annotations count]);
     for (int i = 0; i < [annotations count]; i++) {
         line[i] = ((BusStop*)[annotations objectAtIndex:i]).coordinate;

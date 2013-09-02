@@ -17,6 +17,9 @@
 		04BA5CE517A5CA7900EDEE4C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BA5CE417A5CA7900EDEE4C /* QuartzCore.framework */; };
 		04BA5CE917A5DA3D00EDEE4C /* BusRoute.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */; };
 		04BA64DB17AF39EF001D4B56 /* sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04BA64DA17AF39EF001D4B56 /* sample.plist */; };
+		04BE659117D4083500C34D35 /* KeyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04BE659017D4083500C34D35 /* KeyView.xib */; };
+		04BE659417D409D600C34D35 /* KeyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BE659317D409D600C34D35 /* KeyView.m */; };
+		04BE659617D414C500C34D35 /* keyBackGround.png in Resources */ = {isa = PBXBuildFile; fileRef = 04BE659517D414C500C34D35 /* keyBackGround.png */; };
 		04BF6236179F35CB008380FD /* KML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04BF6235179F35CB008380FD /* KML.framework */; };
 		04BFFFD317B6F01F0057B81E /* TerminalNodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */; };
 		04BFFFD617B717660057B81E /* LegendElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 04BFFFD517B717660057B81E /* LegendElement.m */; };
@@ -176,6 +179,10 @@
 		04BA5CE817A5DA3D00EDEE4C /* BusRoute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusRoute.m; sourceTree = "<group>"; };
 		04BA5CEA17A5E0E400EDEE4C /* Enums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 		04BA64DA17AF39EF001D4B56 /* sample.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sample.plist; sourceTree = "<group>"; };
+		04BE659017D4083500C34D35 /* KeyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyView.xib; sourceTree = "<group>"; };
+		04BE659217D409D600C34D35 /* KeyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyView.h; sourceTree = "<group>"; };
+		04BE659317D409D600C34D35 /* KeyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyView.m; sourceTree = "<group>"; };
+		04BE659517D414C500C34D35 /* keyBackGround.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = keyBackGround.png; sourceTree = "<group>"; };
 		04BF6235179F35CB008380FD /* KML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KML.framework; sourceTree = "<group>"; };
 		04BFFFD117B6F01F0057B81E /* TerminalNodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalNodeCell.h; sourceTree = "<group>"; };
 		04BFFFD217B6F01F0057B81E /* TerminalNodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalNodeCell.m; sourceTree = "<group>"; };
@@ -536,6 +543,7 @@
 			isa = PBXGroup;
 			children = (
 				04B92C1317B310C800EA08FD /* NumericNodeCell.xib */,
+				04BE659017D4083500C34D35 /* KeyView.xib */,
 				04C8112117B0089E00D194AC /* LegendView.xib */,
 			);
 			path = Views;
@@ -576,6 +584,7 @@
 				04C8109417AFE02700D194AC /* Bus Routes.kml */,
 				04BA64DA17AF39EF001D4B56 /* sample.plist */,
 				04CACFC817ADC906004EE283 /* stop@2x.png */,
+				04BE659517D414C500C34D35 /* keyBackGround.png */,
 				04CACFC617ADC817004EE283 /* stop.png */,
 				04C4439617C1A17C00485D41 /* Strings.plist */,
 			);
@@ -610,6 +619,8 @@
 				04C8112417B0127800D194AC /* LegendView.m */,
 				04D0EC0B17BAF1830098D138 /* DrawingImageView.h */,
 				04D0EC0C17BAF1830098D138 /* DrawingImageView.m */,
+				04BE659217D409D600C34D35 /* KeyView.h */,
+				04BE659317D409D600C34D35 /* KeyView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -898,6 +909,8 @@
 				04C1306B17CD857500EC175A /* saveButton@2x.png in Resources */,
 				04C1306D17CD866200EC175A /* buttonBackGround@2x.png in Resources */,
 				04C1306F17CD869D00EC175A /* buttonBackGround.png in Resources */,
+				04BE659117D4083500C34D35 /* KeyView.xib in Resources */,
+				04BE659617D414C500C34D35 /* keyBackGround.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,6 +948,7 @@
 				04B4084417C4483A0037DD7A /* KDTree.m in Sources */,
 				04CF4F1017C589F100E157F8 /* KDElement.m in Sources */,
 				04C1301F17CD752800EC175A /* InfoViewController.m in Sources */,
+				04BE659417D409D600C34D35 /* KeyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
