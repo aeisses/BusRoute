@@ -47,6 +47,22 @@
     return self;
 }
 
+- (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title andNumber:(NSString*)number andDescription:(NSString*)description
+{
+    if (self = [super init])
+    {
+        _lines = [lines copy];
+        _title = [title copy];
+        _description = [description copy];
+        routeNum = [number integerValue];
+        _routeTitle = nil;
+        _startDate = nil;
+        _revDate = nil;
+        _socrateId = nil;
+    }
+    return self;
+}
+
 - (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title
 {
     if (self = [super init])

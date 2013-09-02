@@ -18,6 +18,7 @@
         [self setUserInteractionEnabled:NO];
         annotations = [[NSMutableArray alloc] initWithCapacity:0];
         lines = [[NSMutableArray alloc] initWithCapacity:0];
+        created = [[NSMutableArray alloc] initWithCapacity:0];
         keyView = [[[[NSBundle mainBundle] loadNibNamed:@"KeyView" owner:self options:nil] objectAtIndex:0] retain];
         keyView.frame = (CGRect){10,55,keyView.frame.size};
         [keyView setUpKey];
@@ -31,6 +32,7 @@
     [lines release]; lines = nil;
     [annotations release]; annotations = nil;
     [_busRoute release]; _busRoute = nil;
+    [created release]; created = nil;
     [super dealloc];
 }
 
@@ -54,7 +56,7 @@
         double deltaLong = busStop.coordinate.longitude - bs.coordinate.longitude;
         double deltaLati = busStop.coordinate.latitude - bs.coordinate.latitude;
         double newDistance = sqrt((deltaLong * deltaLong) + (deltaLati * deltaLati));
-        if (distance == 0 || newDistance < distance) {
+        if (distance == 0 || newDistance < distance ) {
             distance = newDistance;
             locationToAdd = counter;
         }
@@ -70,14 +72,41 @@
     [self showBusRoute:mapView];
 }
 
-- (void)createBusRoute:(MKMapView*)mapView
+- (void)createBusRouteOnMap:(MKMapView*)mapView withName:(NSString*)name andNumber:(NSString*)number andDescription:(NSString*)description andIsReversed:(BOOL)isReversed
 {
-    
+    NSMutableArray *brLines = [[NSMutableArray alloc] initWithCapacity:[lines count]];
+    for (int j=0; j<[lines count]; j++) {
+        NSArray *lineArray = [[lines objectAtIndex:j] retain];
+        CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [lineArray count]);
+        for (int i = 0; i < [lineArray count]; i++) {
+            line[i] = ((BusStop*)[lineArray objectAtIndex:i]).coordinate;
+        }
+        MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[lineArray count]];
+        polyLine.title = @"Green";
+        polyLine.subtitle = [NSString stringWithFormat:@"%i",-1];
+        free(line);
+        [brLines addObject:polyLine];
+        [lineArray release];
+    }
+    BusRoute *busRoute = [[BusRoute alloc] initWithLines:brLines andTitle:name andNumber:number andDescription:description];
+    [created addObject:busRoute];
+    [busRoute release];
+    [brLines release];
+    [self removeAllBusRoutesFromMap:mapView];
+    [self showBusRoute:mapView];
 }
 
 - (void)removeAllBusRoutesFromMap:(MKMapView*)mapView
 {
     [mapView removeOverlays:_busRoute.lines];
+    if (_busRoute) {
+        [_busRoute release];
+        _busRoute = nil;
+    }
+    [annotations release]; annotations = nil;
+    annotations = [[NSMutableArray alloc] initWithCapacity:0];
+    [lines release]; lines = nil;
+    lines = [[NSMutableArray alloc] initWithCapacity:0];
 }
 
 - (void)reverseRoute
@@ -123,9 +152,14 @@
         polyLine.subtitle = [NSString stringWithFormat:@"%i",j];
         free(line);
         [brLines addObject:polyLine];
+        [lineArray release];
     }
     _busRoute = [[BusRoute alloc] initWithLines:brLines andTitle:@""];
+    [brLines release];
     [mapView addOverlays:_busRoute.lines];
+    for (BusRoute *busRoute in created) {
+        [mapView addOverlays:busRoute.lines];
+    }
     self.image = nil;
 }
 

@@ -12,7 +12,6 @@
 #import "BusRoute.h"
 #import "RegionZoomData.h"
 #import "StopsButton.h"
-#import "LegendView.h"
 #import "NumericNodeTable.h"
 #import "LocationsTable.h"
 #import "TerminalTable.h"
@@ -32,7 +31,7 @@
 - (void)clearSets;
 @end
 
-@interface MapViewController : UIViewController <MKMapViewDelegate,LegendViewDelegate,NumericNodeTableDelegate,LocationsTableDelegate,TerminalTableDelegate,PruneControllerDelegate,InfoViewControllerDelegate>
+@interface MapViewController : UIViewController <MKMapViewDelegate,LocationsTableDelegate,PruneControllerDelegate,InfoViewControllerDelegate,SaveViewControllerDelegate>
 {
     UISwipeGestureRecognizer *swipeDown;
     UISwipeGestureRecognizer *swipeUp;
@@ -45,7 +44,6 @@
     BOOL showNumberOfRoutesStops;
     BOOL showTerminals;
     BOOL isMoving;
-    LegendView *legendView;
     UIPopoverController *popOverController;
     BusStop *prevBusStop;
     DrawingImageView *drawingImageView;

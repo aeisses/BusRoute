@@ -47,6 +47,12 @@
 
 - (IBAction)touchCreateButton:(id)sender
 {
+    if ([_name.text isEqualToString:@""] || [_number.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"A Route has to have a Name and a Number." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        return;
+    }
     NSArray *objects = [[NSArray alloc] initWithObjects:_name.text,_number.text,_description.text,[NSNumber numberWithBool:_isReversedButton.selected],nil];
     NSArray *keys = [[NSArray alloc] initWithObjects:@"Name",@"Number",@"Description",@"isReverse",nil];
     NSDictionary *values = [[NSDictionary alloc] initWithObjects:objects

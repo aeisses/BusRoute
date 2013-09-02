@@ -25,9 +25,6 @@
         touchDown = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapTapped:)];
         touchDown.numberOfTapsRequired = 2;
         
-        legendView = [[[[NSBundle mainBundle] loadNibNamed:@"LegendView" owner:self options:nil] objectAtIndex:0] retain];
-        legendView.delegate = self;
-        
         showNumberOfRoutesStops = NO;
         isDrawing = NO;
         
@@ -55,6 +52,7 @@
         [reverseButton setImage:[UIImage imageNamed:@"reversed"] forState:UIControlStateNormal];
          
         saveViewController = [[SaveViewController alloc] initWithNibName:@"SaveViewController" bundle:nil];
+        saveViewController.delegate = self;
         counter = 0;
     }
     return self;
@@ -107,69 +105,6 @@
 {
     UIBarButtonItem *button = (UIBarButtonItem*)sender;
     if (button.tag == 1) {
-        [self hideHudView];
-        [legendView cleanLegend];
-        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
-        dispatch_async(loadDataQueue, ^{
-            [self addProgressIndicator];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_mapView removeAnnotations:[_delegate getStops]];
-            });
-            [_delegate showRoutes];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [legendView cleanLegend];
-            });
-        });
-        dispatch_release(loadDataQueue);
-    } else if (button.tag == 2) {
-        [self hideHudView];
-        [legendView cleanLegend];
-        dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
-        dispatch_async(loadDataQueue, ^{
-            [self addProgressIndicator];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_mapView removeAnnotations:[_delegate getStops]];
-            });
-            for (BusRoute *busRoute in [_delegate getRoutes]) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_mapView removeOverlays:busRoute.lines];
-                });
-            }
-            showNumberOfRoutesStops = NO;
-            showTerminals = NO;
-            [_delegate showStopsWithValue:-1 isTerminal:NO];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self addLegendElementWithTitle:@"All Bus Stops" andImage:[UIImage imageNamed:@"dot0.png"]];
-            });
-        });
-        dispatch_release(loadDataQueue);
-    } else if (button.tag == 3) {
-        if (popOverController == nil) {
-            [popOverController dismissPopoverAnimated:NO];
-            [popOverController release];
-        }
-        NumericNodeTable *table = [[NumericNodeTable alloc] initWithNibName:@"NumericNodeTableViewController" bundle:[NSBundle mainBundle]];
-        table.delegate = self;
-        popOverController = [[UIPopoverController alloc] initWithContentViewController:table];
-        [table release];
-        [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else if (button.tag == 4) {
-        if (popOverController == nil) {
-            [popOverController dismissPopoverAnimated:NO];
-            [popOverController release];
-        }
-        TerminalTable *table = [[TerminalTable alloc] initWithNibName:@"TerminalTable" bundle:[NSBundle mainBundle]];
-        table.delegate = self;
-        popOverController = [[UIPopoverController alloc] initWithContentViewController:table];
-        [popOverController setPopoverContentSize:(CGSize){320,400}];
-        [table release];
-        [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else if (button.tag == 5) {
-        [self hideHudView];
-        legendView.frame = (CGRect){50,200,legendView.frame.size};
-        [self.view addSubview:legendView];
-        [self hideHudView];
-    } else if (button.tag == 6) {
         if (popOverController == nil) {
             [popOverController dismissPopoverAnimated:NO];
             [popOverController release];
@@ -180,8 +115,7 @@
         [popOverController setPopoverContentSize:(CGSize){320,400}];
         [table release];
         [popOverController presentPopoverFromBarButtonItem:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else if (button.tag == 7) {
-    } else if (button.tag == 8) {
+    } else if (button.tag == 2) {
         if (isDrawing) {
             [drawingImageView removeFromSuperview];
             [saveButton removeFromSuperview];
@@ -201,7 +135,7 @@
             [_mapView addGestureRecognizer:touchDown];
             isDrawing = YES;
         }
-    } else if (button.tag == 9) {
+    } else if (button.tag == 3) {
         PruneViewController *pruneVC = [[[PruneViewController alloc] initWithNibName:@"PruneViewController" bundle:nil] autorelease];
         pruneVC.delegate = self;
         CGRect origFrame = pruneVC.view.frame;
@@ -279,6 +213,7 @@
 
 - (void)mapTapped:(UITapGestureRecognizer*)tapGesture
 {
+    // TODO: This is not working right, the frame of the routes is to big, need to do something else.
     MKMapView *mapView = (MKMapView *)tapGesture.view;
     for (id<MKOverlay> overlay in mapView.overlays)
     {
@@ -292,7 +227,8 @@
             // Check if the touch is within the view bounds
             if (CGRectContainsPoint(viewFrameInMapView, point))
             {
-                [drawingImageView setActiveLine:overlay.subtitle forMapView:_mapView];
+                if (![overlay.subtitle isEqualToString:@"-1"])
+                    [drawingImageView setActiveLine:overlay.subtitle forMapView:_mapView];
                 break;
             }
         }
@@ -380,7 +316,6 @@
     [swipeDown release]; swipeDown = nil;
     [swipeUp release]; swipeUp = nil;
     [touchDown release]; touchDown = nil;
-    [legendView release]; legendView = nil;
     [popOverController release]; popOverController = nil;
     [drawingImageView release]; drawingImageView = nil;
     [saveViewController release]; saveViewController = nil;
@@ -442,6 +377,17 @@
     _zoomButton.enabled = NO;
 }
 
+#pragma SaveViewControllerDelegate Methods
+- (void)createRouteWithValue:(NSDictionary*)values
+{
+    [drawingImageView createBusRouteOnMap:_mapView
+                                 withName:[values objectForKey:@"Name"]
+                                andNumber:[values objectForKey:@"Number"]
+                           andDescription:[values objectForKey:@"Description"]
+                            andIsReversed:(BOOL)[(NSNumber*)[values objectForKey:@"isReverse"] integerValue]];
+}
+
+
 #pragma InfoViewControllerDelegate Methods
 - (void)positiveButtonTouchedForInfo:(INFO)info
 {
@@ -467,34 +413,6 @@
     dispatch_release(loadDataQueue);
 }
 
-#pragma NumericNodeTableDelegate Methods
-- (void)touchedTableElement:(NSInteger)element
-{
-    [popOverController dismissPopoverAnimated:NO];
-    [self hideHudView];
-    if (!showNumberOfRoutesStops)
-    {
-        [_delegate clearSets];
-        [legendView cleanLegend];
-    }
-    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
-    dispatch_async(loadDataQueue, ^{
-        [self addProgressIndicator];
-        showNumberOfRoutesStops = YES;
-        showTerminals = NO;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_mapView removeAnnotations:[_delegate getStops]];
-        });
-        for (BusRoute *busRoute in [_delegate getRoutes]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_mapView removeOverlays:busRoute.lines];
-            });
-        }
-        [_delegate showStopsWithValue:element isTerminal:NO];
-    });
-    dispatch_release(loadDataQueue);
-}
-
 #pragma LocationsTableDelegate Methods
 - (void)touchedLocationTable:(REGION)region
 {
@@ -503,50 +421,6 @@
     _mapView.zoomEnabled = NO;
     [_mapView setRegion:[RegionZoomData getRegion:region] animated:NO];
     [self hideHudView];
-}
-
-#pragma TerminaTableDelegate Methods
-- (void)touchedTerminalTableElement:(NSInteger)element
-{
-    [popOverController dismissPopoverAnimated:NO];
-    [self hideHudView];
-    if (!showTerminals){
-        [_delegate clearSets];
-        [legendView cleanLegend];
-    }
-    dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
-    dispatch_async(loadDataQueue, ^{
-        [self addProgressIndicator];
-        showNumberOfRoutesStops = NO;
-        showTerminals = YES;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_mapView removeAnnotations:[_delegate getStops]];
-        });
-        for (BusRoute *busRoute in [_delegate getRoutes]) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_mapView removeOverlays:busRoute.lines];
-            });
-        }
-        [_delegate showStopsWithValue:element isTerminal:YES];
-    });
-    dispatch_release(loadDataQueue);
-}
-
-#pragma Common Delegate Method from TerminaTableDelegate and NumericNodeTableDelegate
-- (void)addLegendElementWithTitle:(NSString*)title andImage:(UIImage*)image
-{
-    [legendView addLegendElement:title andImage:image];
-}
-
-- (void)clearLegend
-{
-    [legendView cleanLegend];
-}
-
-#pragma LegendViewDelegate Methods
-- (void)exitLegendView
-{
-    [legendView removeFromSuperview];
 }
 
 #pragma MKMapViewDelegate Methods

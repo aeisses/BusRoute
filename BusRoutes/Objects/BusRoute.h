@@ -40,6 +40,7 @@ typedef struct lineSegment {
 @property (nonatomic, copy) NSString *socrateId;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
+- (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title andNumber:(NSString*)number andDescription:(NSString*)description;
 - (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title;
 
 @end
