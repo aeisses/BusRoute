@@ -18,7 +18,7 @@
         [self setUserInteractionEnabled:NO];
         annotations = [[NSMutableArray alloc] initWithCapacity:0];
         lines = [[NSMutableArray alloc] initWithCapacity:0];
-        created = [[NSMutableArray alloc] initWithCapacity:0];
+        _created = [[NSMutableArray alloc] initWithCapacity:0];
         keyView = [[[[NSBundle mainBundle] loadNibNamed:@"KeyView" owner:self options:nil] objectAtIndex:0] retain];
         keyView.frame = (CGRect){10,55,keyView.frame.size};
         [keyView setUpKey];
@@ -32,7 +32,7 @@
     [lines release]; lines = nil;
     [annotations release]; annotations = nil;
     [_busRoute release]; _busRoute = nil;
-    [created release]; created = nil;
+    [_created release]; _created = nil;
     [super dealloc];
 }
 
@@ -43,12 +43,16 @@
     if ([annotations count] == 0) {
         [annotations addObject:fromBusStop];
     }
-    [self drawLineFrom:fromPoint To:toPoint];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self drawLineFrom:fromPoint To:toPoint];
+    });
     [annotations addObject:toBusStop];
 }
 
 - (void)addBusStop:(BusStop*)busStop toMapView:(MKMapView*)mapView
 {
+    if (lines && [lines count])
+        return;
     double distance = 0;
     int locationToAdd = 0;
     int counter = 0;
@@ -63,42 +67,61 @@
         counter++;
     }
     [(NSMutableArray*)[lines objectAtIndex:activeLine] insertObject:busStop atIndex:locationToAdd];
-    [self showBusRoute:mapView];
+//    dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
+//    dispatch_async(drawingQueue, ^{
+        [self showBusRoute:mapView];
+//    });
+//    dispatch_release(drawingQueue);
 }
 
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView
 {
-    [(NSMutableArray*)[lines objectAtIndex:activeLine] removeObject:busStop];
-    [self showBusRoute:mapView];
+    if (lines && [lines count])
+    {
+        [(NSMutableArray*)[lines objectAtIndex:activeLine] removeObject:busStop];
+//        dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
+//        dispatch_async(drawingQueue, ^{
+            [self showBusRoute:mapView];
+//        });
+//        dispatch_release(drawingQueue);
+    }
 }
 
 - (void)createBusRouteOnMap:(MKMapView*)mapView withName:(NSString*)name andNumber:(NSString*)number andDescription:(NSString*)description andIsReversed:(BOOL)isReversed
 {
-    NSMutableArray *brLines = [[NSMutableArray alloc] initWithCapacity:[lines count]];
-    for (int j=0; j<[lines count]; j++) {
-        NSArray *lineArray = [[lines objectAtIndex:j] retain];
-        CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [lineArray count]);
-        for (int i = 0; i < [lineArray count]; i++) {
-            line[i] = ((BusStop*)[lineArray objectAtIndex:i]).coordinate;
+    dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(drawingQueue, ^{
+        NSMutableArray *brLines = [[NSMutableArray alloc] initWithCapacity:[lines count]];
+        for (int j=0; j<[lines count]; j++) {
+            NSArray *lineArray = [[lines objectAtIndex:j] retain];
+            CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [lineArray count]);
+            for (int i = 0; i < [lineArray count]; i++) {
+                line[i] = ((BusStop*)[lineArray objectAtIndex:i]).coordinate;
+            }
+            MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[lineArray count]];
+            polyLine.title = @"Black";
+            polyLine.subtitle = [NSString stringWithFormat:@"%i",-1];
+            free(line);
+            [brLines addObject:polyLine];
+            [lineArray release];
         }
-        MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[lineArray count]];
-        polyLine.title = @"Green";
-        polyLine.subtitle = [NSString stringWithFormat:@"%i",-1];
-        free(line);
-        [brLines addObject:polyLine];
-        [lineArray release];
-    }
-    BusRoute *busRoute = [[BusRoute alloc] initWithLines:brLines andTitle:name andNumber:number andDescription:description];
-    [created addObject:busRoute];
-    [busRoute release];
-    [brLines release];
-    [self removeAllBusRoutesFromMap:mapView];
-    [self showBusRoute:mapView];
+        BusRoute *busRoute = [[BusRoute alloc] initWithLines:brLines andTitle:name andNumber:number andDescription:description];
+        [_created addObject:busRoute];
+        [busRoute release];
+        [brLines release];
+        [self removeAllBusRoutesFromMap:mapView];
+        [self showBusRoute:mapView];
+    });
+    dispatch_release(drawingQueue);
 }
 
 - (void)removeAllBusRoutesFromMap:(MKMapView*)mapView
 {
-    [mapView removeOverlays:_busRoute.lines];
+    NSArray *arrayLines = [_busRoute.lines copy];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mapView removeOverlays:arrayLines];
+        [arrayLines release];
+    });
     if (_busRoute) {
         [_busRoute release];
         _busRoute = nil;
@@ -134,7 +157,11 @@
 #pragma Private Methods
 - (void)showBusRoute:(MKMapView*)mapView
 {
-    [mapView removeOverlays:_busRoute.lines];
+    NSArray *arrayLines = [_busRoute.lines copy];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mapView removeOverlays:arrayLines];
+        [arrayLines release];
+    });
     if (_busRoute) [_busRoute release];
     NSMutableArray *brLines = [[NSMutableArray alloc] initWithCapacity:[lines count]];
     for (int j=0; j<[lines count]; j++) {
@@ -156,11 +183,17 @@
     }
     _busRoute = [[BusRoute alloc] initWithLines:brLines andTitle:@""];
     [brLines release];
-    [mapView addOverlays:_busRoute.lines];
-    for (BusRoute *busRoute in created) {
-        [mapView addOverlays:busRoute.lines];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [mapView addOverlays:_busRoute.lines];
+    });
+    for (BusRoute *busRoute in _created) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [mapView addOverlays:busRoute.lines];
+        });
     }
-    self.image = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.image = nil;
+    });
 }
 
 - (void)drawLineFrom:(CGPoint)from To:(CGPoint)to

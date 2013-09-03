@@ -18,10 +18,10 @@
     NSMutableArray *reverse;
     KeyView *keyView;
     NSInteger activeLine;
-    NSMutableArray *created;
 }
 
 @property (retain, nonatomic) BusRoute *busRoute;
+@property (retain, nonatomic) NSMutableArray *created;
 
 - (void)addLineFrom:(BusStop*)fromBusStop To:(BusStop*)toBusStop forMapView:(MKMapView*)mapView;
 - (void)addBusStop:(BusStop*)busStop toMapView:(MKMapView*)mapView;

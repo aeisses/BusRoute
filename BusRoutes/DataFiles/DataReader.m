@@ -34,7 +34,7 @@
 {
     [_delegate startProgressIndicator];
     [self loadStopDataAndShow:YES withSet:[NSSet set]];
-    [self loadRouteDataAndShow:NO];
+//    [self loadRouteDataAndShow:NO];
     [_delegate endProgressIndicator];
 }
 

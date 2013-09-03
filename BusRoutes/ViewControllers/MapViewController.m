@@ -71,7 +71,11 @@
 
 - (void)touchClearButton
 {
-    [drawingImageView removeAllBusRoutesFromMap:_mapView];
+    dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(drawingQueue, ^{
+        [drawingImageView removeAllBusRoutesFromMap:_mapView];
+    });
+    dispatch_release(drawingQueue);
 }
 
 - (void)touchCreateRouteButton
@@ -143,6 +147,8 @@
         [self presentViewController:pruneVC animated:YES completion:^{
         }];
         pruneVC.view.superview.bounds = origFrame;
+    } else if (button.tag == 4) {
+        
     }
 }
 
@@ -180,10 +186,13 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
-    if (isDrawing && isMoving)
-        [drawingImageView endLine:_mapView];
-    isMoving = NO;
+    dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(drawingQueue, ^{
+        if (isDrawing && isMoving)
+            [drawingImageView endLine:_mapView];
+        isMoving = NO;
+    });
+    dispatch_release(drawingQueue);
     [super touchesEnded:touches withEvent:event];
 }
 
@@ -213,26 +222,29 @@
 
 - (void)mapTapped:(UITapGestureRecognizer*)tapGesture
 {
-    // TODO: This is not working right, the frame of the routes is to big, need to do something else.
-    MKMapView *mapView = (MKMapView *)tapGesture.view;
-    for (id<MKOverlay> overlay in mapView.overlays)
-    {
-        MKOverlayView *view = [mapView viewForOverlay:overlay];
-        if (view)
+    dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(drawingQueue, ^{
+        // TODO: This is not working right, the frame of the routes is to big, need to do something else.
+        MKMapView *mapView = (MKMapView *)tapGesture.view;
+        for (id<MKOverlay> overlay in mapView.overlays)
         {
-            // Get view frame rect in the mapView's coordinate system
-            CGRect viewFrameInMapView = [view.superview convertRect:view.frame toView:mapView];
-            // Get touch point in the mapView's coordinate system
-            CGPoint point = [tapGesture locationInView:mapView];
-            // Check if the touch is within the view bounds
-            if (CGRectContainsPoint(viewFrameInMapView, point))
+            MKOverlayView *view = [mapView viewForOverlay:overlay];
+            if (view)
             {
-                if (![overlay.subtitle isEqualToString:@"-1"])
-                    [drawingImageView setActiveLine:overlay.subtitle forMapView:_mapView];
-                break;
+                // Get view frame rect in the mapView's coordinate system
+                CGRect viewFrameInMapView = [view.superview convertRect:view.frame toView:mapView];
+                // Get touch point in the mapView's coordinate system
+                CGPoint point = [tapGesture locationInView:mapView];
+                // Check if the touch is within the view bounds
+                if (CGRectContainsPoint(viewFrameInMapView, point))
+                {
+                    if (![overlay.subtitle isEqualToString:@"-1"])
+                        [drawingImageView setActiveLine:overlay.subtitle forMapView:_mapView];
+                    break;
+                }
             }
         }
-    }
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -381,9 +393,9 @@
 - (void)createRouteWithValue:(NSDictionary*)values
 {
     [drawingImageView createBusRouteOnMap:_mapView
-                                 withName:[values objectForKey:@"Name"]
+                                withName:[values objectForKey:@"Name"]
                                 andNumber:[values objectForKey:@"Number"]
-                           andDescription:[values objectForKey:@"Description"]
+                            andDescription:[values objectForKey:@"Description"]
                             andIsReversed:(BOOL)[(NSNumber*)[values objectForKey:@"isReverse"] integerValue]];
 }
 
@@ -493,27 +505,32 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    BusStop *busStop = view.annotation;
-    if (deleteButton.selected) {
-        if (prevBusStop) {
+    dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
+    dispatch_async(drawingQueue, ^{
+        BusStop *busStop = view.annotation;
+        if (deleteButton.selected) {
+            if (prevBusStop) {
+                [prevBusStop release];
+                prevBusStop = nil;
+            }
+            [drawingImageView removeBusStop:busStop fromMapView:_mapView];
+        } else if (createRoute.selected) {
+            if (prevBusStop) {
+                [prevBusStop release];
+                prevBusStop = nil;
+            }
+            [drawingImageView addBusStop:busStop toMapView:_mapView];
+        } else if (!prevBusStop && isDrawing) {
+            prevBusStop = [busStop retain];
+        } else if (isDrawing) {
+            [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
             [prevBusStop release];
             prevBusStop = nil;
+            prevBusStop = [busStop retain];
         }
-        [drawingImageView removeBusStop:busStop fromMapView:_mapView];
-    } else if (createRoute.selected) {
-        if (prevBusStop) {
-            [prevBusStop release];
-            prevBusStop = nil;
-        }
-        [drawingImageView addBusStop:busStop toMapView:_mapView];
-    } else if (!prevBusStop && isDrawing) {
-        prevBusStop = [busStop retain];
-    } else  if (isDrawing) {
-        [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
-        [prevBusStop release];
-        prevBusStop = nil;
-        prevBusStop = [busStop retain];
-    }
+        [busStop release];
+    });
+    dispatch_release(drawingQueue);
 }
 
 @end
