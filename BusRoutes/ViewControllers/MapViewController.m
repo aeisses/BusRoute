@@ -528,7 +528,6 @@
             prevBusStop = nil;
             prevBusStop = [busStop retain];
         }
-        [busStop release];
     });
     dispatch_release(drawingQueue);
 }

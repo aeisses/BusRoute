@@ -59,6 +59,16 @@ typedef enum {
 } FCODE;
 
 typedef enum {
+    north,
+    south,
+    east,
+    west,
+    inbound,
+    outbound,
+    unknown
+} DIRECTION;
+
+typedef enum {
     transit,
     hastus
 } SOURCE;

@@ -26,7 +26,8 @@
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSDate *date;
 @property (nonatomic, copy) NSString *address;
-
+@property (nonatomic, retain) NSString *street;
+@property (readonly) DIRECTION direction;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
 - (void)addRouteNumber:(NSNumber*)route;
