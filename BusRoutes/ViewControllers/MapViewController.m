@@ -68,7 +68,6 @@
     saveViewController.view.superview.bounds = origFrame;
 }
 
-
 - (void)touchClearButton
 {
     dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
@@ -508,6 +507,30 @@
     dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(drawingQueue, ^{
         BusStop *busStop = view.annotation;
+        NSLog(@"Street: %@",busStop.street);
+        switch (busStop.direction) {
+            case north:
+                NSLog(@"Direction: North");
+                break;
+            case south:
+                NSLog(@"Direction: South");
+                break;
+            case east:
+                NSLog(@"Direction: East");
+                break;
+            case west:
+                NSLog(@"Direction: West");
+                break;
+            case inbound:
+                NSLog(@"Direction: Inbound");
+                break;
+            case outbound:
+                NSLog(@"Direction: Outbound");
+                break;
+            case unknown:
+                NSLog(@"Direction: Unknown");
+                break;
+        }
         if (deleteButton.selected) {
             if (prevBusStop) {
                 [prevBusStop release];
@@ -523,10 +546,12 @@
         } else if (!prevBusStop && isDrawing) {
             prevBusStop = [busStop retain];
         } else if (isDrawing) {
-            [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
-            [prevBusStop release];
-            prevBusStop = nil;
-            prevBusStop = [busStop retain];
+            if ([prevBusStop.street isEqualToString:busStop.street]) {
+                [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
+                [prevBusStop release];
+                prevBusStop = nil;
+                prevBusStop = [busStop retain];
+            }
         }
     });
     dispatch_release(drawingQueue);
