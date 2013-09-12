@@ -25,6 +25,7 @@
 
 - (void)addLineFrom:(BusStop*)fromBusStop To:(BusStop*)toBusStop forMapView:(MKMapView*)mapView;
 - (void)addBusStop:(BusStop*)busStop toMapView:(MKMapView*)mapView;
+- (void)clearBusStop:(BusStop *)busStop fromMapView:(MKMapView*)mapView;
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView;
 - (void)removeAllBusRoutesFromMap:(MKMapView*)mapView;
 - (void)reverseRoute;
@@ -35,6 +36,7 @@
 @end
 
 @interface DrawingImageView (PrivateMethods)
+- (void)showLine:(MKMapView*)mapView;
 - (void)showBusRoute:(MKMapView*)mapView;
 - (void)drawLineFrom:(CGPoint)from To:(CGPoint)to;
 @end

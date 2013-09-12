@@ -388,6 +388,12 @@
     _zoomButton.enabled = NO;
 }
 
+- (NSArray*)filterArrayForStreetName:(NSString*)street
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"street like %@",street];
+    return [[_delegate getStops] filteredArrayUsingPredicate:predicate];
+}
+
 #pragma SaveViewControllerDelegate Methods
 - (void)createRouteWithValue:(NSDictionary*)values
 {
@@ -507,50 +513,51 @@
     dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(drawingQueue, ^{
         BusStop *busStop = view.annotation;
-        NSLog(@"Street: %@",busStop.street);
-        switch (busStop.direction) {
-            case north:
-                NSLog(@"Direction: North");
-                break;
-            case south:
-                NSLog(@"Direction: South");
-                break;
-            case east:
-                NSLog(@"Direction: East");
-                break;
-            case west:
-                NSLog(@"Direction: West");
-                break;
-            case inbound:
-                NSLog(@"Direction: Inbound");
-                break;
-            case outbound:
-                NSLog(@"Direction: Outbound");
-                break;
-            case unknown:
-                NSLog(@"Direction: Unknown");
-                break;
-        }
         if (deleteButton.selected) {
             if (prevBusStop) {
-                [prevBusStop release];
-                prevBusStop = nil;
+                [prevBusStop release]; prevBusStop = nil;
+            }
+            if (intermediateBusStop) {
+                [intermediateBusStop release]; intermediateBusStop = nil;
             }
             [drawingImageView removeBusStop:busStop fromMapView:_mapView];
         } else if (createRoute.selected) {
             if (prevBusStop) {
-                [prevBusStop release];
-                prevBusStop = nil;
+                [prevBusStop release]; prevBusStop = nil;
+            }
+            if (intermediateBusStop) {
+                [intermediateBusStop release]; intermediateBusStop = nil;
             }
             [drawingImageView addBusStop:busStop toMapView:_mapView];
         } else if (!prevBusStop && isDrawing) {
             prevBusStop = [busStop retain];
+//            NSArray *array = [self filterArrayForStreetName:prevBusStop.street];
+//            NSLog(@"Array: %@",array);
+//            for (BusStop *stop in array)
+//                NSLog(@"direction: %i",stop.direction);
         } else if (isDrawing) {
-            if ([prevBusStop.street isEqualToString:busStop.street]) {
+            if ([prevBusStop.street isEqualToString:busStop.street] && prevBusStop.direction == busStop.direction) {
+                if (intermediateBusStop) {
+                    [drawingImageView clearBusStop:intermediateBusStop fromMapView:_mapView];
+                    [intermediateBusStop release]; intermediateBusStop = nil;
+                }
                 [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
-                [prevBusStop release];
-                prevBusStop = nil;
+                [prevBusStop release]; prevBusStop = nil;
                 prevBusStop = [busStop retain];
+            } else if ([prevBusStop.street isEqualToString:busStop.street] && prevBusStop.direction != busStop.direction) {
+                // Might need to deal with unknown here....
+            } else if (![prevBusStop.street isEqualToString:busStop.street]) {
+                if (intermediateBusStop) {
+                    if (intermediateBusStop.direction == busStop.direction) {
+                        [drawingImageView addLineFrom:intermediateBusStop To:busStop forMapView:_mapView];
+                        [prevBusStop release]; prevBusStop = nil;
+                        prevBusStop = [busStop retain];
+                        [intermediateBusStop release]; intermediateBusStop = nil;
+                    }
+                } else {
+                    [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
+                    intermediateBusStop = [busStop retain];
+                }
             }
         }
     });

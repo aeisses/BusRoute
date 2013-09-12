@@ -38,15 +38,16 @@
 
 - (void)addLineFrom:(BusStop*)fromBusStop To:(BusStop*)toBusStop forMapView:(MKMapView*)mapView
 {
-    CGPoint toPoint = [mapView convertCoordinate:toBusStop.coordinate toPointToView:self];
-    CGPoint fromPoint = [mapView convertCoordinate:fromBusStop.coordinate toPointToView:self];
+//    CGPoint toPoint = [mapView convertCoordinate:toBusStop.coordinate toPointToView:self];
+//    CGPoint fromPoint = [mapView convertCoordinate:fromBusStop.coordinate toPointToView:self];
     if ([annotations count] == 0) {
         [annotations addObject:fromBusStop];
     }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self drawLineFrom:fromPoint To:toPoint];
-    });
     [annotations addObject:toBusStop];
+    [self showLine:mapView];
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        [self drawLineFrom:fromPoint To:toPoint];
+//    });
 }
 
 - (void)addBusStop:(BusStop*)busStop toMapView:(MKMapView*)mapView
@@ -72,6 +73,12 @@
         [self showBusRoute:mapView];
 //    });
 //    dispatch_release(drawingQueue);
+}
+
+- (void)clearBusStop:(BusStop *)busStop fromMapView:(MKMapView*)mapView
+{
+    [annotations removeObject:busStop];
+//    [self showLine:mapView];
 }
 
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView
@@ -155,6 +162,17 @@
 }
 
 #pragma Private Methods
+- (void)showLine:(MKMapView*)mapView
+{
+    self.image = nil;
+    for (int i=1; i<[annotations count]; i++) {
+        CGPoint toPoint = [mapView convertCoordinate:((BusStop*)[annotations objectAtIndex:i]).coordinate toPointToView:self];
+        CGPoint fromPoint = [mapView convertCoordinate:((BusStop*)[annotations objectAtIndex:i-1]).coordinate toPointToView:self];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self drawLineFrom:fromPoint To:toPoint];
+        });
+    }
+}
 - (void)showBusRoute:(MKMapView*)mapView
 {
     NSArray *arrayLines = [_busRoute.lines copy];

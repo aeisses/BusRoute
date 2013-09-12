@@ -45,9 +45,6 @@
     [_title release];
     [_description release];
     if (_street) [_street release];
-//    if (_date) [_date release];
-//    if (_address) [_address release];
-//    if (_routes) [_routes release];
 }
 
 #pragma Private Methods
@@ -119,13 +116,11 @@
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
                 _address = (NSString *)[[thisArray subarrayWithRange:NSMakeRange(1, [thisArray count]-1)] componentsJoinedByString:@" "];
                 _direction = unknown;
-#warning This needs to be tested
                 NSError *error = nil;
-                if ([_address isEqualToString:@"ROSS RD <FS> <IB> HWY 7"]) {
-                    NSLog(@"Hello");
-                }
+//                if ([_address isEqualToString:@"ROSS RD <FS> <IB> HWY 7"]) {
+//                    NSLog(@"Hello");
+//                }
                 NSMutableString *myAddress = [NSMutableString stringWithString:_address];
-#warning the regexp is not working right
                 NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"( *<\\w+> *)" options:NSRegularExpressionCaseInsensitive error:&error];
                 if (error) {
                     NSLog(@"Error on regexp: %@",[error localizedDescription]);
@@ -136,7 +131,6 @@
                         for (NSTextCheckingResult *match in matches)
                         {
                             NSRange matchRange = match.range;
-//                            NSLog(@"MyAddress: %@",[myAddress substringWithRange:matchRange]);
                             if ([[[myAddress substringWithRange:matchRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]] isEqualToString:@"<NB>"]) {
                                 _direction = north;
                             } else if ([[[myAddress substringWithRange:matchRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]] isEqualToString:@"<SB>"]) {
@@ -149,13 +143,8 @@
                                 _direction = inbound;
                             } else if ([[[myAddress substringWithRange:matchRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]] isEqualToString:@"<OB>"]) {
                                 _direction = outbound;
-//                            } else {
-//                                _direction = unknown;
-//                                NSLog(@"This Array: %@",thisArray);
-//                                NSLog(@"Address: %@",_address);
                             }
                         }
-//                        [regexp replaceMatchesInString:myAddress options:0 range:NSMakeRange(0, [myAddress length]) withTemplate:@" "];
                     } else {
                         regexp = [NSRegularExpression regularExpressionWithPattern:@"( \\\[\\w+] *)" options:NSRegularExpressionCaseInsensitive error:&error];
                         if (error) {
@@ -178,18 +167,12 @@
                                     _direction = inbound;
                                 } else if ([[[myAddress substringWithRange:matchRange] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]] isEqualToString:@"[OB]"]) {
                                     _direction = outbound;
-//                                } else {
-//                                    _direction = unknown;
-//                                    NSLog(@"This Array: %@",thisArray);
-//                                    NSLog(@"Address: %@",_address);
                                 }
                             }
-//                            [regexp replaceMatchesInString:myAddress options:0 range:NSMakeRange(0, [myAddress length]) withTemplate:@""];
                         }
                         error = nil;
                     }
                 }
-#warning the regexp is not working right
                 regexp = [NSRegularExpression regularExpressionWithPattern:@"\\w+" options:NSRegularExpressionCaseInsensitive error:&error];
                 if (error) {
                     _street = @"";
@@ -199,16 +182,14 @@
                     for (NSTextCheckingResult *match in matches)
                     {
                         NSRange matchRange = match.range;
-//                        NSLog(@"%@",[myAddress substringWithRange:matchRange]);
                         if ([[myAddress substringWithRange:matchRange] isEqualToString:@"FS"] ||
                             [[myAddress substringWithRange:matchRange] isEqualToString:@"OPP"] ||
                             [[myAddress substringWithRange:matchRange] isEqualToString:@"AT"] ||
                             [[myAddress substringWithRange:matchRange] isEqualToString:@"<FS>"] ||
                             [[myAddress substringWithRange:matchRange] isEqualToString:@"<AT>"] ||
-                            [[myAddress substringWithRange:matchRange] isEqualToString:@"<OP>"]) {
+                            [[myAddress substringWithRange:matchRange] isEqualToString:@"<OP>"] ||
+                            [[myAddress substringWithRange:matchRange] isEqualToString:@"NS"]) {
                             break;
-                        } else if ([[myAddress substringWithRange:matchRange] isEqualToString:@"NS"]) {
-                            _direction = north;
                         } else if ([[myAddress substringWithRange:matchRange] isEqualToString:@"<NS>"]) {
                             _direction = north;
                             break;
@@ -234,14 +215,14 @@
                     _street = [[NSString alloc] initWithString:[street stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" "]]];
                     [street release];
                 }
-                if (!_street) {
+/*                if (!_street) {
                     NSLog(@"MyArray: %@",thisArray);
                     NSLog(@"Address: %@",_address);
                 }
                 if (_direction == unknown) {
                     NSLog(@"MyArray: %@",thisArray);
                     NSLog(@"Address: %@",_address);
-                }
+                }*/
             }
         }
     }
