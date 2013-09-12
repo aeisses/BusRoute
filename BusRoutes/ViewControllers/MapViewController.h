@@ -46,6 +46,7 @@
     BOOL isMoving;
     UIPopoverController *popOverController;
     BusStop *prevBusStop;
+    BusStop *intermediateBusStop;
     DrawingImageView *drawingImageView;
     SaveViewController *saveViewController;
     int counter;
@@ -84,4 +85,5 @@
 - (void)showHudView;
 - (void)enableGestures;
 - (void)disableGestures;
+- (NSArray*)filterArrayForStreetName:(NSString*)street;
 @end;
