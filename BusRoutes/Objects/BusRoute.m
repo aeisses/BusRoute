@@ -54,7 +54,7 @@
         _lines = [lines copy];
         _title = [title copy];
         _description = [description copy];
-        routeNum = [number integerValue];
+        _routeNum = [number integerValue];
         _routeTitle = nil;
         _startDate = nil;
         _revDate = nil;
@@ -78,6 +78,19 @@
     return self;
 }
 
+- (BOOL)isEqual:(id)object
+{
+    if (self == object)
+        return true;
+    if ([self class] != [object class])
+        return false;
+    BusRoute *other = (BusRoute*)object;
+    if (self.routeNum == other.routeNum) {
+        return true;
+    }
+    return false;
+}
+
 - (void)dealloc
 {
     [super dealloc];
@@ -85,8 +98,6 @@
     if (_lines) [_lines release];
     if (_description) [_description release];
     if (_routeTitle) [_routeTitle release];
-    if (_startDate) [_startDate release];
-    if (_revDate) [_revDate release];
     if (_socrateId) [_socrateId release];
 }
 
@@ -108,7 +119,7 @@
             if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"OBJECTID"]) {
                 objectId = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"ROUTE_NUM"]) {
-                routeNum = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
+                _routeNum = [(NSString *)([thisArray objectAtIndex:1]) integerValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"CLASS"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"WEEKDAY LIMITED"]) {
                     classType = weekday_limited;
@@ -134,7 +145,7 @@
                 }
  */
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"TITLE"]) {
-                _routeTitle = (NSString *)[thisArray objectAtIndex:1];
+                _routeTitle = [(NSString *)[thisArray objectAtIndex:1] retain];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"SOURCE"]) {
                 if ([(NSString*)([thisArray objectAtIndex:1]) isEqualToString:@"TRANSIT"]) {
                     source = transit;
@@ -168,7 +179,7 @@
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"GOTIME"]) {
                 shapeLen = [(NSString *)([thisArray objectAtIndex:1]) floatValue];
             } else if ([(NSString *)([thisArray objectAtIndex:0]) isEqualToString:@"LOCATION"]) {
-                _socrateId = (NSString *)[thisArray objectAtIndex:1];
+                _socrateId = [(NSString *)[thisArray objectAtIndex:1] retain];
             }
         }
     }

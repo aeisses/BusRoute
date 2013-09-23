@@ -188,9 +188,11 @@
         for (KMLPlacemark *placemark in kmlRoutes.placemarks) {
             if (placemark.geometry && placemark.name) {
                 BusRoute *busRoute = [[BusRoute alloc] initWithTitle:placemark.name description:placemark.descriptionValue andGeometries:(KMLMultiGeometry *)placemark.geometry];
-                [mutableRoutes addObject:busRoute];
-                if (show)
-                    [_delegate addRoute:busRoute];
+                if (![mutableRoutes containsObject:busRoute]) {
+                    [mutableRoutes addObject:busRoute];
+                    if (show)
+                        [_delegate addRoute:busRoute];
+                }
                 [busRoute release];
             }
         }

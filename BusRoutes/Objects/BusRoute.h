@@ -20,7 +20,6 @@ typedef struct lineSegment {
 {
 //    NSString *stopDescription;
     NSInteger objectId;
-    NSInteger routeNum;
     CLASS classType;
 //    NSString *routeTitle;
     SOURCE source;
@@ -38,6 +37,7 @@ typedef struct lineSegment {
 @property (nonatomic, copy) NSDate *startDate;
 @property (nonatomic, copy) NSDate *revDate;
 @property (nonatomic, copy) NSString *socrateId;
+@property (assign) NSInteger routeNum;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;
 - (id)initWithLines:(NSArray *)lines andTitle:(NSString *)title andNumber:(NSString*)number andDescription:(NSString*)description;
