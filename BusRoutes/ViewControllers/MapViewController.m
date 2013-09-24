@@ -410,7 +410,7 @@
 {
     switch (info) {
         case reverseInfo:
-            [drawingImageView reverseRoute];
+            [drawingImageView reverseRouteOnMapView:_mapView];
             break;
     }
 }
@@ -491,7 +491,7 @@
         polylineView.lineWidth = 2.0;
     } else if ([overlay.title isEqualToString:@"Red"]) {
         polylineView.strokeColor = [UIColor redColor];
-        polylineView.lineWidth = 4.0;
+        polylineView.lineWidth = 3.0;
     } else if ([overlay.title isEqualToString:@"Blue"]) {
         polylineView.strokeColor = [UIColor blueColor];
         polylineView.lineWidth = 4.0;
@@ -517,20 +517,35 @@
             if (prevBusStop) {
                 [prevBusStop release]; prevBusStop = nil;
             }
+            if (prevBusView) {
+                [prevBusView release]; prevBusView = nil;
+            }
             if (intermediateBusStop) {
                 [intermediateBusStop release]; intermediateBusStop = nil;
             }
+            if (intermediateBusView) {
+                [intermediateBusView release]; intermediateBusView = nil;
+            }
+            view.image = [UIImage imageNamed:@"dot0"];
             [drawingImageView removeBusStop:busStop fromMapView:_mapView];
         } else if (createRoute.selected) {
             if (prevBusStop) {
                 [prevBusStop release]; prevBusStop = nil;
             }
+            if (prevBusView) {
+                [prevBusView release]; prevBusView = nil;
+            }
             if (intermediateBusStop) {
                 [intermediateBusStop release]; intermediateBusStop = nil;
+            }
+            if (intermediateBusView) {
+                [intermediateBusView release]; intermediateBusView = nil;
             }
             [drawingImageView addBusStop:busStop toMapView:_mapView];
         } else if (!prevBusStop && isDrawing) {
             prevBusStop = [busStop retain];
+            prevBusView = [view retain];
+            prevBusView.image = [UIImage imageNamed:@"redDot"];
 //            NSArray *array = [self filterArrayForStreetName:prevBusStop.street];
 //            NSLog(@"Array: %@",array);
 //            for (BusStop *stop in array)
@@ -538,25 +553,36 @@
         } else if (isDrawing) {
             if ([prevBusStop.street isEqualToString:busStop.street] && prevBusStop.direction == busStop.direction) {
                 if (intermediateBusStop) {
+                    intermediateBusView.image = [UIImage imageNamed:@"dot0"];
                     [drawingImageView clearBusStop:intermediateBusStop fromMapView:_mapView];
                     [intermediateBusStop release]; intermediateBusStop = nil;
                 }
+                view.image = [UIImage imageNamed:@"redDot"];
                 [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
                 [prevBusStop release]; prevBusStop = nil;
+                [prevBusView release]; prevBusView = nil;
                 prevBusStop = [busStop retain];
-            } else if ([prevBusStop.street isEqualToString:busStop.street] && prevBusStop.direction != busStop.direction) {
+                prevBusView = [view retain];
+            } else if ([prevBusStop.street isEqualToString:busStop.street] && [prevBusStop directionIsOpp:busStop.direction]) {
                 // Might need to deal with unknown here....
+                view.image = [UIImage imageNamed:@"greenDot.png"];
+                [drawingImageView addReverseStop:busStop];
             } else if (![prevBusStop.street isEqualToString:busStop.street]) {
                 if (intermediateBusStop) {
                     if (intermediateBusStop.direction == busStop.direction) {
+                        view.image = [UIImage imageNamed:@"redDot"];
                         [drawingImageView addLineFrom:intermediateBusStop To:busStop forMapView:_mapView];
                         [prevBusStop release]; prevBusStop = nil;
+                        [prevBusView release]; prevBusView = nil;
                         prevBusStop = [busStop retain];
+                        prevBusView = [view retain];
                         [intermediateBusStop release]; intermediateBusStop = nil;
                     }
                 } else {
+                    view.image = [UIImage imageNamed:@"redDot"];
                     [drawingImageView addLineFrom:prevBusStop To:busStop forMapView:_mapView];
                     intermediateBusStop = [busStop retain];
+                    intermediateBusView = [view retain];
                 }
             }
         }

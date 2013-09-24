@@ -17,7 +17,9 @@
         // Initialization code
         [self setUserInteractionEnabled:NO];
         annotations = [[NSMutableArray alloc] initWithCapacity:0];
+        reverse = [[NSMutableArray alloc] initWithCapacity:0];
         lines = [[NSMutableArray alloc] initWithCapacity:0];
+        linesReverse = [[NSMutableArray alloc] initWithCapacity:0];
         _created = [[NSMutableArray alloc] initWithCapacity:0];
         keyView = [[[[NSBundle mainBundle] loadNibNamed:@"KeyView" owner:self options:nil] objectAtIndex:0] retain];
         keyView.frame = (CGRect){10,55,keyView.frame.size};
@@ -139,19 +141,27 @@
     lines = [[NSMutableArray alloc] initWithCapacity:0];
 }
 
-- (void)reverseRoute
+- (void)addReverseStop:(BusStop*)busStop
 {
-    
+    [reverse addObject:busStop];
+}
+
+- (void)reverseRouteOnMapView:(MKMapView *)mapView
+{
+    isReverse = YES;
 }
 
 - (void)endLine:(MKMapView*)mapView
 {
     if (annotations && [annotations count] != 0) {
         [lines addObject:annotations];
+        [linesReverse addObject:reverse];
         activeLine = [lines count] - 1;
         [self showBusRoute:mapView];
         [annotations release]; annotations = nil;
+        [reverse release]; reverse = nil;
         annotations = [[NSMutableArray alloc] initWithCapacity:0];
+        reverse = [[NSMutableArray alloc] initWithCapacity:0];
     }
 }
 
@@ -194,6 +204,19 @@
         } else {
             polyLine.title = @"Blue";
         }
+        polyLine.subtitle = [NSString stringWithFormat:@"%i",j];
+        free(line);
+        [brLines addObject:polyLine];
+        [lineArray release];
+    }
+    for (int j=0; j<[linesReverse count]; j++) {
+        NSArray *lineArray = [[linesReverse objectAtIndex:j] retain];
+        CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [lineArray count]);
+        for (int i = 0; i < [lineArray count]; i++) {
+            line[i] = ((BusStop*)[lineArray objectAtIndex:i]).coordinate;
+        }
+        MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[lineArray count]];
+        polyLine.title = @"Green";
         polyLine.subtitle = [NSString stringWithFormat:@"%i",j];
         free(line);
         [brLines addObject:polyLine];

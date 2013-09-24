@@ -16,8 +16,10 @@
     NSMutableArray *annotations;
     NSMutableArray *lines;
     NSMutableArray *reverse;
+    NSMutableArray *linesReverse;
     KeyView *keyView;
     NSInteger activeLine;
+    BOOL isReverse;
 }
 
 @property (retain, nonatomic) BusRoute *busRoute;
@@ -25,10 +27,11 @@
 
 - (void)addLineFrom:(BusStop*)fromBusStop To:(BusStop*)toBusStop forMapView:(MKMapView*)mapView;
 - (void)addBusStop:(BusStop*)busStop toMapView:(MKMapView*)mapView;
+- (void)addReverseStop:(BusStop*)busStop;
 - (void)clearBusStop:(BusStop *)busStop fromMapView:(MKMapView*)mapView;
 - (void)removeBusStop:(BusStop*)busStop fromMapView:(MKMapView*)mapView;
 - (void)removeAllBusRoutesFromMap:(MKMapView*)mapView;
-- (void)reverseRoute;
+- (void)reverseRouteOnMapView:(MKMapView*)mapView;
 - (void)endLine:(MKMapView*)mapView;
 - (void)setActiveLine:(NSString*)lineNum forMapView:(MKMapView*)mapView;
 - (void)createBusRouteOnMap:(MKMapView*)mapView withName:(NSString*)name andNumber:(NSString*)number andDescription:(NSString*)description andIsReversed:(BOOL)isReversed;

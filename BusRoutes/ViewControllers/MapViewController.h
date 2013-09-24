@@ -47,6 +47,8 @@
     UIPopoverController *popOverController;
     BusStop *prevBusStop;
     BusStop *intermediateBusStop;
+    MKAnnotationView *prevBusView;
+    MKAnnotationView *intermediateBusView;
     DrawingImageView *drawingImageView;
     SaveViewController *saveViewController;
     int counter;

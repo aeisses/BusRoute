@@ -31,5 +31,6 @@
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andLocation:(KMLPoint*)location;
 - (void)addRouteNumber:(NSNumber*)route;
+- (BOOL)directionIsOpp:(DIRECTION)direction;
 
 @end

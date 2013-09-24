@@ -39,6 +39,41 @@
     }
 }
 
+- (BOOL)directionIsOpp:(DIRECTION)direction;
+{
+    switch (_direction)
+    {
+        case north:
+            if (direction == south)
+                return true;
+            break;
+        case south:
+            if (direction == north)
+                return true;
+            break;
+        case east:
+            if (direction == west)
+                return true;
+            break;
+        case west:
+            if (direction == east)
+                return true;
+            break;
+        case inbound:
+            if (direction == outbound)
+                return true;
+            break;
+        case outbound:
+            if (direction == inbound)
+                return true;
+            break;
+        case unknown:
+            return false;
+            break;
+    }
+    return false;
+}
+
 - (void)dealloc
 {
     [super dealloc];
