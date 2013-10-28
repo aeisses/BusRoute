@@ -26,7 +26,7 @@
 - (NSArray *)getStops;
 - (NSArray *)getRoutes;
 - (void)showStopsWithValue:(NSInteger)value isTerminal:(BOOL)isTerminal;
-- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute;
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute andStMargaretsBay:(BOOL)stMargaretsBay;
 - (void)showRoutes;
 - (void)clearSets;
 @end

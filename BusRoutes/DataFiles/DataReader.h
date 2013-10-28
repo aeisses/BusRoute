@@ -11,6 +11,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import "BusStop.h"
 #import "BusRoute.h"
+#import "PreloadedRoute.h"
 
 @protocol DataReaderDelegate <NSObject>
 -(void)startProgressIndicator;
@@ -30,8 +31,9 @@
 - (void)showRoutes;
 - (void)showBusStopsWithValue:(NSSet*)set;
 - (void)showTerminalsWithValue:(NSSet*)set;
-- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute;
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute andStMargaretsBay:(BOOL)stMargaretsBay;
 
+@property (nonatomic, retain) PreloadedRoute *stMargaretsBay;
 @property (nonatomic, retain) NSArray *stops;
 @property (nonatomic, retain) NSArray *routes;
 @property (nonatomic, retain) id <DataReaderDelegate> delegate;

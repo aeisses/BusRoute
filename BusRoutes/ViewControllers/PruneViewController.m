@@ -43,7 +43,7 @@
 
 - (IBAction)touchPruneButton:(id)sender
 {
-    [_delegate pruneRoutesMetroX:_metroXButton.selected andMetroLink:_metroLinkButton.selected andExpressRoute:_expressRouteButton.selected];
+    [_delegate pruneRoutesMetroX:_metroXButton.selected andMetroLink:_metroLinkButton.selected andExpressRoute:_expressRouteButton.selected andStMargaretsBay:_stMargaretBayButton.selected];
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 

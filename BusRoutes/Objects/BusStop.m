@@ -74,6 +74,15 @@
     return false;
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if (((BusStop*)other).goTime == _goTime)
+    {
+        return YES;
+    }
+    return NO;
+}
+
 - (void)dealloc
 {
     [super dealloc];

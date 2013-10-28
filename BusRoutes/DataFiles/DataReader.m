@@ -6,12 +6,15 @@
 //  Copyright (c) 2013 Aaron Eisses. All rights reserved.
 //
 #import "DataReader.h"
+#import "DrawingImageView.h"
 
 #define KMLBUSSTOPSURL @"https://www.halifaxopendata.ca/api/geospatial/xus8-fjzt?method=export&format=KML"
 #define KMLBUSROUTEURL @"https://www.halifaxopendata.ca/api/geospatial/y3cf-ivzs?method=export&format=KML"
 #define ESERVICENUMBER @"http://eservices.halifax.ca/GoTime/index.jsf?goTime="
 
 @interface DataReader (PrivateMethods)
+- (void)createRouteFromPreLoadedRoute:(PreloadedRoute*)preloadedRoute;
+- (BusStop*)getStopFromGoTimeNumber:(NSNumber*)goTime;
 - (void)loadStopDataAndShow:(BOOL)show withSet:(NSSet*)set;
 - (void)loadTerminalDataAndShow:(BOOL)show withSet:(NSSet*)set;
 - (void)loadRouteDataAndShow:(BOOL)show;
@@ -34,6 +37,7 @@
 {
     [_delegate startProgressIndicator];
     [self loadStopDataAndShow:YES withSet:[NSSet set]];
+    [self loadPreLoadedRoutes];
 //    [self loadRouteDataAndShow:NO];
     [_delegate endProgressIndicator];
 }
@@ -59,7 +63,7 @@
     [_delegate endProgressIndicator];
 }
 
-- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute andStMargaretsBay:(BOOL)stMargaretsBay
 {
     [_delegate startProgressIndicator];
     NSMutableArray *stops = [[NSMutableArray alloc] initWithArray:_stops];
@@ -101,6 +105,9 @@
                 busStop.routes = [self removeRoute:[NSNumber numberWithInt:34] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
                 busStop.routes = [self removeRoute:[NSNumber numberWithInt:35] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
             }
+            if (stMargaretsBay) {
+                [self createRouteFromPreLoadedRoute:_stMargaretsBay];
+            }
         }
         if (!removed)
             [_delegate addBusStop:busStop];
@@ -117,10 +124,81 @@
     [_routes release];
     [stopsUrl release];
     [routesUrl release];
+    [_stMargaretsBay release];
     _delegate = nil;
 }
 
 #pragma Private Methods
+- (void)createRouteFromPreLoadedRoute:(PreloadedRoute*)preloadedRoute
+{
+    NSMutableArray *brLines = [[NSMutableArray alloc] initWithCapacity:2];
+    CLLocationCoordinate2D *line = malloc(sizeof(CLLocationCoordinate2D) * [preloadedRoute.forward count]);
+    for (int j=0; j<[preloadedRoute.forward count]; j++) {
+        NSNumber *goTime = (NSNumber*)[preloadedRoute.forward objectAtIndex:j];
+        line[j] = ((BusStop*)[self getStopFromGoTimeNumber:goTime]).coordinate;
+        //                    NSArray *lineArray = [[lines objectAtIndex:j] retain];
+        //                    for (int i = 0; i < [lineArray count]; i++) {
+        //                        line[i] = ((BusStop*)[_stMargaretsBay.forward objectAtIndex:i]).coordinate;
+    }
+    MKPolyline *polyLine = [MKPolyline polylineWithCoordinates:line count:[preloadedRoute.forward count]];
+    polyLine.title = @"Black";
+    polyLine.subtitle = [NSString stringWithFormat:@"%i",-1];
+    free(line);
+    [brLines addObject:polyLine];
+    CLLocationCoordinate2D *lineReverse = malloc(sizeof(CLLocationCoordinate2D) * [preloadedRoute.reverse count]);
+    for (int j=0; j<[preloadedRoute.reverse count]; j++) {
+        NSNumber *goTime = (NSNumber*)[preloadedRoute.reverse objectAtIndex:j];
+        lineReverse[j] = ((BusStop*)[self getStopFromGoTimeNumber:goTime]).coordinate;
+        //                    NSArray *lineArray = [[lines objectAtIndex:j] retain];
+        //                    for (int i = 0; i < [lineArray count]; i++) {
+        //                        line[i] = ((BusStop*)[_stMargaretsBay.forward objectAtIndex:i]).coordinate;
+    }
+    MKPolyline *polyLineReverse = [MKPolyline polylineWithCoordinates:lineReverse count:[preloadedRoute.reverse count]];
+    polyLineReverse.title = @"Red";
+    polyLineReverse.subtitle = [NSString stringWithFormat:@"%i",-1];
+    free(lineReverse);
+    [brLines addObject:polyLineReverse];
+    //                [lineArray release];
+    //                }
+    BusRoute *busRoute = [[BusRoute alloc] initWithLines:brLines andTitle:_stMargaretsBay.title andNumber:preloadedRoute.title andDescription:@""];
+    busRoute.stopCount = [preloadedRoute.forward count] + [preloadedRoute.reverse count] - 2;
+    //                [_created addObject:busRoute];
+    [_delegate addRoute:busRoute];
+    [[DrawingImageView sharedInstance].created addObject:busRoute];
+    [busRoute release];
+    [brLines release];
+}
+
+- (void)loadPreLoadedRoutes
+{
+    NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"routes" ofType:@"json"]];
+    NSError *error = nil;
+    id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if ([object isKindOfClass:[NSArray class]])
+    {
+        for (NSDictionary *route in (NSArray*)object)
+        {
+            if ([[route valueForKey:@"id"] isEqualToString:@"StMargaretsBay"])
+            {
+                _stMargaretsBay = [[PreloadedRoute alloc] initWithTitle:[route valueForKey:@"id"] forward:[route valueForKey:@"forward"] andReverse:[route valueForKey:@"reverse"]];
+            }
+        }
+    }
+}
+
+- (BusStop*)getStopFromGoTimeNumber:(NSNumber*)goTime
+{
+    BusStop *newStop = [[BusStop alloc] init];
+    newStop.goTime = [goTime integerValue];
+    NSUInteger index = [_stops indexOfObject:newStop];
+    [newStop release];
+    if (index != NSNotFound)
+    {
+        return [_stops objectAtIndex:index];
+    }
+    return nil;
+}
+
 - (void)loadStopDataAndShow:(BOOL)show withSet:(NSSet*)set
 {
     NSDictionary *dictonary = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"sample" ofType:@"plist"]];
@@ -145,9 +223,60 @@
                             busStop.routes = [self removeRoute:[NSNumber numberWithInt:401] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
                             busStop.routes = [self removeRoute:[NSNumber numberWithInt:402] FromBusRoutes:[NSMutableArray arrayWithArray:busStop.routes]];
                         }
-                        [mutableStops addObject:busStop];
-                        if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
-                            [_delegate addBusStop:busStop];
+                        switch (busStop.goTime)
+                        {
+                            case 8643:
+                            case 7285:
+                            case 6445:
+                            case 6929:
+                            case 7609:
+                            case 7608:
+                            case 7607:
+                            case 7610:
+                            case 7617:
+                            case 7611:
+                            case 7606:
+                            case 7613:
+                            case 7604:
+                            case 7614:
+                            case 7603:
+                            case 7602:
+                            case 7615:
+                            case 7616:
+                            case 7601:
+                            case 6027:
+                            case 8607:
+                            case 8606:
+                            case 6066:
+                            case 6065:
+                            case 6068:
+                            case 6063:
+                            case 7086:
+                            case 8646:
+                                break;
+                            case 7284:
+                            case 6446:
+                            case 6930:
+                            case 7605:
+                            case 6031:
+                            case 8435:
+                            case 6086:
+                            case 8605:
+                            case 7087:
+                                busStop.fcode = trbstmac;
+                                [mutableStops addObject:busStop];
+                                if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
+                                    [_delegate addBusStop:busStop];
+                                break;
+                            default:
+                                [mutableStops addObject:busStop];
+                                if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
+                                    [_delegate addBusStop:busStop];
+                                break;
+                        }
+//                        [mutableStops addObject:busStop];
+//                        if (show && ([set anyObject] == nil || [set containsObject:[NSNumber numberWithInteger:[busStop.routes count]]]))
+//                            [_delegate addBusStop:busStop];
                     }
                 }
                 [busStop release];

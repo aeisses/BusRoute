@@ -10,6 +10,17 @@
 
 @implementation DrawingImageView
 
+static id instance;
+
++ (DrawingImageView*)sharedInstance;
+{
+    if (!instance)
+    {
+        instance = [[[DrawingImageView alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    }
+    return instance;
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

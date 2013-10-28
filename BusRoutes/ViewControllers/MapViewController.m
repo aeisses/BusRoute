@@ -147,6 +147,7 @@
         }];
         pruneVC.view.superview.bounds = origFrame;
     } else if (button.tag == 4) {
+        // Implement the submit button code here
         
     }
 }
@@ -416,7 +417,7 @@
 }
 
 #pragma PruneViewControllerDelegate Methods
-- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute andStMargaretsBay:(BOOL)stMargaretsBay
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self hideHudView];
@@ -425,7 +426,7 @@
     dispatch_queue_t loadDataQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(loadDataQueue, ^{
         [self addProgressIndicator];
-        [_delegate pruneRoutesMetroX:metroX andMetroLink:metroLink andExpressRoute:expressRoute];
+        [_delegate pruneRoutesMetroX:metroX andMetroLink:metroLink andExpressRoute:expressRoute andStMargaretsBay:stMargaretsBay];
     });
     dispatch_release(loadDataQueue);
 }
@@ -443,31 +444,43 @@
 #pragma MKMapViewDelegate Methods
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[BusStop class]]) {
-        NSString *identifier;
-        if (!showNumberOfRoutesStops && !showTerminals) {
-            identifier = @"BusStop";
-        } else if (!showNumberOfRoutesStops && showTerminals) {
+        BusStop *busStop = (BusStop*)annotation;
+        NSString *identifier = [NSString stringWithFormat:@"BusStop%i",busStop.goTime];
+//        if (!showNumberOfRoutesStops && !showTerminals) {
+//        identifier = [NSString stringWithFormat:@"BusStop%i",busStop.goTime];
+/*        } else if (!showNumberOfRoutesStops && showTerminals) {
             BusStop *busStop = (BusStop*)annotation;
             identifier = [NSString stringWithFormat:@"Terminal%i",busStop.fcode];
         } else {
             BusStop *busStop = (BusStop*)annotation;
             identifier = [NSString stringWithFormat:@"BusStop%i",[busStop.routes count]];
-        }
+        }*/
         MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
             annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
             NSString *imageName;
-            if (!showNumberOfRoutesStops && !showTerminals) {
+//            if (!showNumberOfRoutesStops && !showTerminals) {
+//            BusStop *busStop = (BusStop*)annotation;
+            if (busStop.fcode == trbstmac)
+            {
+                imageName = @"terminal2.png";
+            } else if (busStop.fcode == trbstm) {
+                imageName = @"terminal9.png";
+            } else if (busStop.fcode == trpr) {
+                imageName = @"terminal6.png";
+            } else {
                 imageName = @"dot0.png";
-            } else if (!showNumberOfRoutesStops && showTerminals) {
+            }
+/*            } else if (!showNumberOfRoutesStops && showTerminals) {
                 BusStop *busStop = (BusStop*)annotation;
                 imageName = [NSString stringWithFormat:@"terminal%i",busStop.fcode];
             } else {
                 BusStop *busStop = (BusStop*)annotation;
                 imageName = [NSString stringWithFormat:@"dot%i.png",[busStop.routes count]];
             }
+ */
             annotationView.image = [UIImage imageNamed:imageName];//here we use a nice image instead of the default pins
         } else {
             annotationView.annotation = annotation;
@@ -513,6 +526,7 @@
     dispatch_queue_t drawingQueue  = dispatch_queue_create("load data queue", NULL);
     dispatch_async(drawingQueue, ^{
         BusStop *busStop = view.annotation;
+        NSLog(@"Bustop Gotime#: %i",busStop.goTime);
         if (deleteButton.selected) {
             if (prevBusStop) {
                 [prevBusStop release]; prevBusStop = nil;

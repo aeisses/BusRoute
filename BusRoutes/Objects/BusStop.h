@@ -20,9 +20,9 @@
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (readonly) NSInteger goTime;
+@property (assign) NSInteger goTime;
 @property (nonatomic, copy) NSArray *routes;
-@property (readonly) FCODE fcode;
+@property (assign) FCODE fcode;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSDate *date;
 @property (nonatomic, copy) NSString *address;

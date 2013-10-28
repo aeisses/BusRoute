@@ -10,7 +10,7 @@
 #import "Enums.h"
 
 @protocol PruneControllerDelegate <NSObject>
-- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute;
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute andStMargaretsBay:(BOOL)stMargaretsBay;
 @end
 
 @interface PruneViewController : UIViewController
@@ -22,6 +22,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *metroXButton;
 @property (retain, nonatomic) IBOutlet UIButton *metroLinkButton;
 @property (retain, nonatomic) IBOutlet UIButton *expressRouteButton;
+@property (retain, nonatomic) IBOutlet UIButton *stMargaretBayButton;
 @property (retain, nonatomic) IBOutlet UIButton *dontShowAgain;
 @property (retain, nonatomic) IBOutlet UILabel *viewTitle;
 @property (retain, nonatomic) IBOutlet UITextView *body;

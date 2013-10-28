@@ -37,6 +37,9 @@ typedef struct lineSegment {
 @property (nonatomic, copy) NSDate *startDate;
 @property (nonatomic, copy) NSDate *revDate;
 @property (nonatomic, copy) NSString *socrateId;
+@property (nonatomic, assign) NSInteger *stops;
+@property (assign) NSInteger stopCount;
+
 @property (assign) NSInteger routeNum;
 
 - (id)initWithTitle:(NSString *)title description:(NSString*)description andGeometries:(KMLMultiGeometry*)geometries;

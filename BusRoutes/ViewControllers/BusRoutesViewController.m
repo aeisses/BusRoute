@@ -104,9 +104,9 @@
     }
 }
 
-- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute
+- (void)pruneRoutesMetroX:(BOOL)metroX andMetroLink:(BOOL)metroLink andExpressRoute:(BOOL)expressRoute andStMargaretsBay:(BOOL)stMargaretsBay
 {
-    [dataReader pruneRoutesMetroX:metroX andMetroLink:metroLink andExpressRoute:expressRoute];
+    [dataReader pruneRoutesMetroX:metroX andMetroLink:metroLink andExpressRoute:expressRoute andStMargaretsBay:stMargaretsBay];
 }
 
 - (void)showRoutes
